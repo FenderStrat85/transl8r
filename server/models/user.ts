@@ -11,6 +11,7 @@ interface UserModel extends Model {
 type UserInstance = typeof Model & {
   new (values?: object, options?: BuildOptions): UserModel;
 };
+
 const User = <UserInstance>sequelize.define('User', {
   _id: {
     type: DataTypes.UUID,
