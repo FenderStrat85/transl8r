@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = process.env.SECRET_KEY
+import db from '../models/db';
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // need to require the user model and change accordingly
 
 const create = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-// change to sql syntax
-  const user = await User.findOne({ email: email });
+  // change to sql syntax
+  const user = await db.User.findOne({ email: email });
   if (user)
     return res
       .status(409)
@@ -18,7 +19,7 @@ const create = async (req: Request, res: Response) => {
     const hash = await bcrypt.hash(password, 10);
     // insert all the infos
     // add also languages?
-    const newUser = new User({
+    const newUser = new db.User({
       ...req.body,
       password: hash,
     });
@@ -30,12 +31,11 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
     // Use sql syntax and import user model
-    const user = await User.findOne({ email: email });
+    const user = await db.User.findOne({ email: email });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
     const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);

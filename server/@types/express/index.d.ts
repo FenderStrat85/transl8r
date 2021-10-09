@@ -1,9 +1,10 @@
-import { Express } from 'express'
+import { Express } from 'express';
+import { IntUser } from '../../interfaces/interfaces';
 
-declare global{
+declare global {
   namespace Express {
-      interface Request {
-          user: any
-      }
+    interface Request {
+      user: IntUser;
+    }
   }
 }

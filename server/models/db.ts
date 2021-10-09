@@ -1,6 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 const Sequelize = require('sequelize');
+// import * as Sequelize from 'sequelize';
 const { Op } = require('sequelize');
 const db: { [key: string]: any } = {};
 
@@ -9,7 +10,7 @@ const DB_USERNAME = 'postgres';
 const DB_PASSWORD = '1234';
 const DB_PORT = 5432;
 
-const sequelize = new Sequelize({
+export const sequelize = new Sequelize({
   database: 'translate-test',
   username: DB_USERNAME,
   password: DB_PASSWORD,
@@ -23,7 +24,8 @@ const sequelize = new Sequelize({
 const files = fs.readdirSync(__dirname);
 
 for (const file of files) {
-  if (file !== 'db.js') {
+  if (file !== 'db.ts') {
+    console.log('files from loop', path.join(__dirname, file));
     const model = require(path.join(__dirname, file))(
       sequelize,
       Sequelize.DataTypes,
@@ -34,9 +36,9 @@ for (const file of files) {
 }
 
 db.User.hasMany(db.Job);
-db.Job.BelongsTo(db.User);
+db.Job.belongsTo(db.User);
 db.Translator.hasMany(db.Job);
-db.Job.BelongsTo(db.Translator);
+db.Job.belongsTo(db.Translator);
 
 db.Translator.belongsToMany(db.Language, {
   through: 'Translator_Languages',
@@ -47,4 +49,4 @@ db.Language.belongsToMany(db.Translator, {
   as: 'translator',
 });
 
-module.exports = db;
+export default db;

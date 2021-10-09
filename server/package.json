@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/sequelize": "^4.28.10",
+    "@types/validator": "^13.6.3",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -17,6 +20,8 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "path": "^0.12.7",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
