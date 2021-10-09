@@ -31,7 +31,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "cors": "^2.8.5"
-  }
+  "dependencies": {}
 }
