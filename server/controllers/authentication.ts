@@ -30,7 +30,6 @@ const register = async (req: Request, res: Response) => {
       const accessToken = jwt.sign({ _id }, SECRET_KEY);
       res.status(201).send({ accessToken });
     } else {
-      // write functions for adding languages
       const newTranslator = new db.Translator({
         _id: uuidv4(),
         name,
