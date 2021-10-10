@@ -10,6 +10,7 @@ router.post('/login', authController.login);
 // jobs routes
 router.post('/createJob', jobsController.createJob);
 router.post('/acceptJob', jobsController.acceptJob);
+router.get('/getJobs/:id/:role', jobsController.getJobs);
 
 // languages routes
 router.post('/addLang', languagesController.addLang);
