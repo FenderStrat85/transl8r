@@ -1,6 +1,11 @@
 const router = require('express').Router();
-const authController = require('./controllers/authentication')
+const authController = require('./controllers/authentication');
+const languagesController = require('./controllers/languages');
 
-router.post('/register', authController.register)
+// auth routes
+router.post('/register', authController.register);
+
+// languages routes
+router.post('/addLang', languagesController.addLang);
 
 export = router;

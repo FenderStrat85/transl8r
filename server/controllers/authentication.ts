@@ -39,8 +39,20 @@ const register = async (req: Request, res: Response) => {
         password: hash,
         role,
       });
-      const { _id } = await newTranslator.save();
-      const accessToken = jwt.sign({ _id }, SECRET_KEY);
+      const translator = await newTranslator.save();
+      // we need to transform the string into an array, but this is probably because we are
+      // sending the array in a json format, check this logic when the client will send a real array
+      const langArray = languages.slice(1, -1).split(', ');
+      for (let lang of langArray) {
+        //accesses the language model and then adds the link between translator and language
+        const languageSpoken = await db.Language.findOne({
+          where: { languageName: lang },
+        });
+        translator.addLanguage(languageSpoken._id);
+        translator.save();
+      }
+      const translatorId = translator._id;
+      const accessToken = jwt.sign({ translatorId }, SECRET_KEY);
       res.status(201).send({ accessToken });
     }
   } catch (error) {
