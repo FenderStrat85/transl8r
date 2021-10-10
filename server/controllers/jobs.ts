@@ -8,13 +8,18 @@ const createJob = async (req: Request, res: Response) => {
   const customer = await db.Customer.findOne({
     where: { _id: createdBy },
   });
-  // console.log(customer);
+  const languageFromId = await db.Language.findOne({
+    where: { languageName: languageFrom },
+  });
+  const languageToId = await db.Language.findOne({
+    where: { languageName: languageTo },
+  });
   const newJob = new db.Job({
     jobName: jobName,
     jobType: jobType,
     _id: uuidv4(),
-    languageFrom: languageFrom,
-    languageTo: languageTo,
+    languageFrom: languageFromId._id,
+    languageTo: languageToId._id,
     CustomerId: customer._id,
   });
   const job = await newJob.save();
