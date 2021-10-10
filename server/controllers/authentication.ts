@@ -7,9 +7,9 @@ const SECRET_KEY = process.env.SECRET_KEY;
 // need to require the user model and change accordingly
 
 const create = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, name, role } = req.body;
   // change to sql syntax
-  const user = await db.User.findOne({ email: email });
+  const user = await db.User.findOne({ where: { email: email } });
   if (user)
     return res
       .status(409)

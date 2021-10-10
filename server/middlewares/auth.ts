@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.SECRET_KEY;
 import { IntUser } from '../interfaces/interfaces';
 
-// import User model
-
 const authMiddleware = async (
   req: Request,
   res: Response,
@@ -17,7 +15,7 @@ const authMiddleware = async (
 
   try {
     const { _id } = jwt.verify(token, SECRET_KEY);
-    const user: IntUser = await db.User.findOne({ _id });
+    const user: IntUser = await db.User.findOne({ where: { _id: _id } });
     if (!user) return res.sendStatus(401);
     req.user = user;
     next();
