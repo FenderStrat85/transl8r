@@ -15,7 +15,7 @@ const authMiddleware = async (
 
   try {
     const { _id } = jwt.verify(token, SECRET_KEY);
-    const user: IntUser = await db.User.findOne({ where: { _id: _id } });
+    const user: IntUser = await db.Customer.findOne({ where: { _id: _id } });
     if (!user) return res.sendStatus(401);
     req.user = user;
     next();

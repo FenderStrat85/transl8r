@@ -34,8 +34,8 @@ for (const file of files) {
   }
 }
 
-db.User.hasMany(db.Job);
-db.Job.belongsTo(db.User);
+db.Customer.hasMany(db.Job);
+db.Job.belongsTo(db.Customer);
 db.Translator.hasMany(db.Job);
 db.Job.belongsTo(db.Translator);
 
