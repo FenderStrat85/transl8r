@@ -36,11 +36,10 @@ const Translator = (sequelize: any, DataTypes: any) =>
     },
     role: {
       type: DataTypes.STRING,
-      default: 'translator',
     },
     averageRating: {
       type: DataTypes.INTEGER,
-      default: 0,
+      defaultValue: 0,
     },
   });
 

@@ -38,7 +38,6 @@ const Customer = (sequelize: any, DataTypes: any) =>
     },
     role: {
       type: DataTypes.STRING,
-      default: 'customer',
     },
   });
 
