@@ -7,8 +7,9 @@ const jobsController = require('./controllers/jobs');
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
-// job routes
+// jobs routes
 router.post('/createJob', jobsController.createJob);
+router.post('/acceptJob', jobsController.acceptJob);
 
 // languages routes
 router.post('/addLang', languagesController.addLang);
