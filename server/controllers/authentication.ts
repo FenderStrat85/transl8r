@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { IntUser } from '../interfaces/interfaces';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 import db from '../models/db';
@@ -63,8 +62,9 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
-    // Use sql syntax and import user model
-    const user = await db.Customer.findOne({ email: email });
+    const user =
+      (await db.Customer.findOne({ where: { email: email } })) ||
+      (await db.Translator.findOne({ where: { email: email } }));
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
     const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
@@ -72,7 +72,7 @@ const login = async (req: Request, res: Response) => {
   } catch (error) {
     res
       .status(401)
-      .send({ error: '401', message: 'Username or password is incorrect' });
+      .send({ error: '401', message: 'Username or password not valid' });
   }
 };
 

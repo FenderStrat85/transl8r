@@ -4,6 +4,7 @@ const languagesController = require('./controllers/languages');
 
 // auth routes
 router.post('/register', authController.register);
+router.post('/login', authController.login);
 
 // languages routes
 router.post('/addLang', languagesController.addLang);
