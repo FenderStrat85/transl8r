@@ -39,7 +39,7 @@ const Translator = (sequelize: any, DataTypes: any) =>
       default: 'translator',
     },
     averageRating: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       default: 0,
     },
   });
