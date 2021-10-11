@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Dashboard from '../screen/Dashboard.screen';
+import { UserContext } from '../services/Context';
 
 const AppLayout = () => {
   return (
-    <div>
-      <h1>App Layout</h1>
-    </div>
+    <>
+      <Dashboard />
+    </>
   )
 }
 
