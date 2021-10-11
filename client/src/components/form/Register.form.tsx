@@ -28,10 +28,10 @@ const RegisterForm = () => {
           <p>Please select your role:</p>
 
           <input type="radio" value="Customer" name='role' onClick={(event) => handleInputChange(event)} required />
-          <label htmlFor="contactChoice1">Customer</label>
+          <label htmlFor="contactChoice1">customer</label>
 
           <input type="radio" value="Translator" name='role' onClick={(event) => handleInputChange(event)} required />
-          <label htmlFor="contactChoice2">Translator</label>
+          <label htmlFor="contactChoice2">translator</label>
         </div>
         <div className='form-group'>
           <input className='form-control' type='text' name='firstName' placeholder={'first name'} onChange={(event) => handleInputChange(event)} required />
@@ -52,7 +52,3 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm;
-
-function e(e: any): void {
-  throw new Error("Function not implemented.");
-}
