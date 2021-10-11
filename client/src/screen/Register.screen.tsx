@@ -1,6 +1,4 @@
-import React from 'react'
 import RegisterForm from '../components/form/Register.form';
-
 
 const RegisterScreen = () => {
 

@@ -1,12 +1,17 @@
 import './App.scss';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Root from './layouts/root';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import AuthLayout from './layouts/auth.layout';
+import AppLayout from './layouts/app.layout';
+import LoginScreen from './screen/Login.screen';
 
 function App() {
   return (
     <Router>
-      <h1>APP</h1>
-      <Root />
+      <Switch>
+        <Route path='/auth'><AuthLayout /></Route>
+        <Route path='/app'><AppLayout /></Route>
+        <Redirect from='/' to='auth/login'><LoginScreen /></Redirect>
+      </Switch>
     </Router>
   );
 }

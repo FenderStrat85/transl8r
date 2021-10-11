@@ -1,6 +1,9 @@
 import { ChangeEvent, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 const RegisterForm = () => {
+
+  const history = useHistory();
 
   const [formValue, setFormValue] = useState({ firstName: '', lastName: '', email: '', password: '', role: '' });
 
@@ -15,10 +18,12 @@ const RegisterForm = () => {
 
   // FIX ME --> form submission values seem to be one step behind, but submit correctly
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
 
     // API REGISTER FUNCTION ()
+    const role = 'translator';
+    history.push(`/app/${role}/dashboard`);
   }
 
   return (
