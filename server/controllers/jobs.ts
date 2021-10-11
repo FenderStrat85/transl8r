@@ -23,9 +23,9 @@ const createJob = async (req: Request, res: Response) => {
       CustomerId: CustomerId,
     });
     const job = await newJob.save();
-    res.send(job);
+    res.status(201).send(job);
   } catch (error) {
-    res.status(401).send({ error: '400', message: 'Not able to create a job' });
+    res.status(400).send({ error: '400', message: 'Not able to create a job' });
   }
 };
 
@@ -35,10 +35,10 @@ const acceptJob = async (req: Request, res: Response) => {
     const job = await db.Job.findOne({ where: { _id: jobId } });
     job.status = 'accepted';
     job.TranslatorId = translatorId;
-    res.send(job);
     await job.save();
+    res.status(200).send(job);
   } catch (error) {
-    res.status(401).send({ error: '400', message: 'Not able to accept a job' });
+    res.status(400).send({ error: '400', message: 'Not able to accept a job' });
   }
 };
 
@@ -52,12 +52,12 @@ const getJobs = async (req: Request, res: Response) => {
       res.send(jobs);
     } else if (role === 'translator') {
       let jobs = await db.Job.findAll({ where: { TranslatorId: id } });
-      res.send(jobs);
+      res.status(200).send(jobs);
     }
   } catch (error) {
     res
-      .status(401)
-      .send({ error: '400', message: 'Not able to retrieve the jobs' });
+      .status(404)
+      .send({ error: '404', message: 'Not able to retrieve the jobs' });
   }
 };
 
@@ -90,9 +90,9 @@ const getAvailableJobs = async (req: Request, res: Response) => {
         suitedJobs.push(job);
       }
     }
-    res.send(suitedJobs);
+    res.status(200).send(suitedJobs);
   } catch (error) {
-    res.status(401).send({
+    res.status(400).send({
       error: '400',
       message: 'Not able to retrieve the available jobs',
     });
