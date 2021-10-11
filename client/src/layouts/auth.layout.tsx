@@ -1,16 +1,15 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from '../screen/Login.screen'
 import Register from '../screen/Register.screen'
 
-const Auth = () => {
+const AuthLayout = () => {
   return (
-    <>
-      <Route path='auth/login' exact><Login /></Route>
-      <Route path='auth/register' exact><Register /></Route>
-
-    </>
+    <Switch>
+      <Route path='/auth/login' exact><Login /></Route>
+      <Route path='/auth/register' exact><Register /></Route>
+    </Switch>
   )
 }
 
-export default Auth;
+export default AuthLayout;

@@ -5,6 +5,7 @@ import Root from './layouts/root';
 function App() {
   return (
     <Router>
+      <h1>APP</h1>
       <Root />
     </Router>
   );
