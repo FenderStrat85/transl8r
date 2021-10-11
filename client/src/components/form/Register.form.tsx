@@ -17,6 +17,8 @@ const RegisterForm = () => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+
+    // API REGISTER FUNCTION ()
   }
 
   return (
@@ -25,23 +27,23 @@ const RegisterForm = () => {
         <div>
           <p>Please select your role:</p>
 
-          <input type="radio" value="Customer" name='role' onClick={(event) => handleInputChange(event)} />
+          <input type="radio" value="Customer" name='role' onClick={(event) => handleInputChange(event)} required />
           <label htmlFor="contactChoice1">Customer</label>
 
-          <input type="radio" value="Translator" name='role' onClick={(event) => handleInputChange(event)} />
+          <input type="radio" value="Translator" name='role' onClick={(event) => handleInputChange(event)} required />
           <label htmlFor="contactChoice2">Translator</label>
         </div>
         <div className='form-group'>
-          <input className='form-control' type='text' name='firstName' placeholder={'first name'} onChange={(event) => handleInputChange(event)} />
+          <input className='form-control' type='text' name='firstName' placeholder={'first name'} onChange={(event) => handleInputChange(event)} required />
         </div>
         <div className='form-group'>
-          <input className='form-control' type='text' name='lastName' placeholder={'last name'} onChange={(event) => handleInputChange(event)} />
+          <input className='form-control' type='text' name='lastName' placeholder={'last name'} onChange={(event) => handleInputChange(event)} required />
         </div>
         <div className='form-group'>
-          <input className='form-control' type='email' name='email' placeholder={'email'} onChange={(event) => handleInputChange(event)} />
+          <input className='form-control' type='email' name='email' placeholder={'email'} onChange={(event) => handleInputChange(event)} required />
         </div>
         <div className='form-group'>
-          <input className='form-control' type='password' name='password' placeholder={'password'} onChange={(event) => handleInputChange(event)} />
+          <input className='form-control' type='password' name='password' placeholder={'password'} onChange={(event) => handleInputChange(event)} required />
         </div>
         <button type="submit" >Register</button>
       </form>
