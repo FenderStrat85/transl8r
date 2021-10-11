@@ -37,3 +37,13 @@ export interface IntLanguage {
   _id: string;
   languageName: string;
 }
+
+export interface IntConversation {
+  _id: string;
+}
+
+export interface IntMessage {
+  _id: string;
+  messageAuthor: string;
+  messageContent: string;
+}

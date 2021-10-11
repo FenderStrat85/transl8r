@@ -49,4 +49,10 @@ db.Language.belongsToMany(db.Translator, {
   as: 'translator',
 });
 
+db.Job.hasOne(db.Conversation);
+db.Conversation.belongsTo(db.Job);
+
+db.Conversation.hasMany(db.Messages);
+db.Message.belongsTo(db.Conversation);
+
 export default db;
