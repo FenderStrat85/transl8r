@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import { useState, createContext } from 'react';
 
 const initialState = {
   id: '',

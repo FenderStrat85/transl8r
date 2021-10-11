@@ -12,12 +12,10 @@ const Dashboard = () => {
     //setJobs(response)
   }, []);
 
-
-
   return (<>
     {user &&
       <div>
-        <h1> {user.role}Dashboard</h1>
+        <h1>{user.role} Dashboard</h1>
         <JobList jobs={jobs} />
       </div>}
   </>);

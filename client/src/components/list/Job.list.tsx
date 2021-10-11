@@ -1,4 +1,4 @@
-import JobItem from "../item/Job.item";
+import JobItem from "../items/Job.item";
 
 const JobList = (props: { jobs: any }) => {
   const jobs = props.jobs
