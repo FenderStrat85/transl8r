@@ -4,7 +4,7 @@ export interface IntUser {
   email: string;
   password: string;
   role: string;
-  averageRating?: string;
+  averageRating?: number;
 }
 export interface IntCustomer {
   _id: string;
