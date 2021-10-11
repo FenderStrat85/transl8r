@@ -2,7 +2,8 @@ import { Model, BuildOptions } from 'sequelize';
 
 interface CustomerModel extends Model {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: string;
@@ -24,7 +25,11 @@ const Customer = (sequelize: any, DataTypes: any) =>
       primaryKey: true,
       unique: true,
     },
-    name: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

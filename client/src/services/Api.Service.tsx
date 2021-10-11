@@ -1,3 +1,33 @@
 import env from 'react-dotenv';
-const server = env.SERVER_URL;
+// const server = process.env.REACT_APP_SERVER_URL;
+const server = 'http://localhost:5000';
 
+// TODO: change server to env
+
+const apiService: { [key: string]: any } = {};
+
+apiService.register = (userInfo) => {
+  return fetch(`${server}/register`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userInfo),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
+apiService.login = (userInfo) => {
+  return fetch(`${server}/login`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userInfo),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
+export default apiService;

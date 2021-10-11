@@ -12,12 +12,11 @@ const addLang = async (req: Request, res: Response) => {
         _id: uuidv4(),
       });
       const language = await newLang.save();
-      res.sendStatus(200);
     }
+    res.sendStatus(200);
   } catch (error) {
-    res
-      .status(400)
-      .send({ error: '400', message: 'Not able to populate the database' });
+    res.status(400);
+    // .send({ error: '400', message: 'Not able to populate the database' });
   }
 };
 

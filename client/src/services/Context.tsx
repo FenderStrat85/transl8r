@@ -1,34 +1,51 @@
 import { useState, createContext } from 'react';
 
 const initialState = {
-  id: '',
-  token: '',
   isAuthenticated: false,
-  role: ''
+  token: '',
+  _id: '',
+  role: '',
+  firstName: '',
+  lastName: '',
 };
 
 const mock = {
   user: initialState,
-  login: (Accesstoken: string, id: string, role: string) => { },
-  logout: () => { },
-}
+  login: (
+    accessToken: string,
+    _id: string,
+    role: string,
+    firstName: string,
+    lastName: string,
+  ) => {},
+  logout: (accessToken: string) => {},
+};
 
 const UserContext = createContext(mock);
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
 
-  const login = (Accesstoken: string, id: string, role: string) => {
+  const login = (
+    accessToken: string,
+    _id: string,
+    role: string,
+    firstName: string,
+    lastName: string,
+  ) => {
     setUser((prevState) => ({
-      token: Accesstoken,
-      id: id,
       isAuthenticated: true,
-      role
+      token: accessToken,
+      _id: _id,
+      role,
+      firstName,
+      lastName,
     }));
   };
 
-  const logout = () => {
+  const logout = (accessToken) => {
     setUser(initialState);
+    localStorage.removeItem(accessToken);
   };
 
   return (

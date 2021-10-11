@@ -24,7 +24,7 @@ const files = fs.readdirSync(__dirname);
 
 for (const file of files) {
   if (file !== 'db.ts') {
-    // console.log('files from loop', path.join(__dirname, file));
+    console.log('files from loop', path.join(__dirname, file));
     const model = require(path.join(__dirname, file))(
       sequelize,
       Sequelize.DataTypes,
@@ -52,7 +52,7 @@ db.Language.belongsToMany(db.Translator, {
 db.Job.hasOne(db.Conversation);
 db.Conversation.belongsTo(db.Job);
 
-db.Conversation.hasMany(db.Messages);
+db.Conversation.hasMany(db.Message);
 db.Message.belongsTo(db.Conversation);
 
 export default db;

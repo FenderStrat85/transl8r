@@ -29,6 +29,5 @@ const Message = (sequelize: any, DataTypes: any) =>
     },
   });
 
-module.exports = (sequelize: any, DataTypes: any) => {
+module.exports = (sequelize: any, DataTypes: any) =>
   Message(sequelize, DataTypes);
-};

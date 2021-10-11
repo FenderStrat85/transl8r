@@ -1,55 +1,68 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import apiService from '../../services/Api.Service';
+import { UserContext } from '../../services/Context';
 
 const LoginForm = () => {
-
+  const { login } = useContext(UserContext);
   const history = useHistory();
-
-  const [formValue, setFormValue] = useState({ firstName: '', password: '' });
+  const initialState = { email: '', password: '' };
+  const [formValue, setFormValue] = useState(initialState);
 
   const handleInputChange = (event) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
         [event.target.name]: event.target.value,
-      }
-    })
-  }
+      };
+    });
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const res = await apiService.login(formValue);
+    if (res.error) {
+      alert(`${res.message}`);
+      setFormValue(initialState);
+    } else {
+      const { accessToken, role, firstName, lastName, _id } = res;
+      localStorage.setItem('accessToken', accessToken);
+      login(accessToken, _id, role, firstName, lastName);
+      history.push(`/app/${role}/dashboard`);
+    }
+  };
 
-    // API SERVICE LOGIN -> return USER
-
-    // if (API SUCCESS) {
-    // setUser(USER)
-    const role = 'customer'
-    history.push(`/app/${role}/dashboard`);
-
-    // if(API FAILURE) {
-    // console.log('Failed to login')
-    // }
-
-    // ??? if we need a global authorised state ???
-    // setIsAuthorised(true)
-  }
-
-  return (<>
-    <form className='LoginForm' onSubmit={handleSubmit}>
-      <div>
-        <label>Name: </label>
-        <input className='form-control' type='email' name='email' placeholder={'email'} required onChange={(event) => handleInputChange(event)} />
-      </div>
-      <div>
-        <label>Password: </label>
-        <input className='form-control' type='password' name='password' placeholder={'password'} required onChange={(event) => handleInputChange(event)} />
-      </div>
-      <div>
-        <button type="submit"> Login </button>
-      </div>
-    </form>
-
-  </>);
-}
+  return (
+    <>
+      <form className="LoginForm" onSubmit={handleSubmit}>
+        <div>
+          <label>email </label>
+          <input
+            className="form-control"
+            type="email"
+            name="email"
+            placeholder={'email'}
+            required
+            onChange={(event) => handleInputChange(event)}
+          />
+        </div>
+        <div>
+          <label>password: </label>
+          <input
+            className="form-control"
+            type="password"
+            name="password"
+            placeholder={'password'}
+            required
+            onChange={(event) => handleInputChange(event)}
+          />
+        </div>
+        <div>
+          <button type="submit"> Login </button>
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default LoginForm;

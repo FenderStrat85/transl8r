@@ -5,12 +5,13 @@ const cors = require('cors');
 
 require('dotenv').config();
 const PORT = process.env.SERVER_PORT;
+const CLIENT_PORT = process.env.CLIENT_PORT;
 const router = require('./router');
 
 const app = express();
 
 const corsConfig = {
-  origin: `http://localhost:${PORT}`,
+  origin: `http://localhost:${CLIENT_PORT}`,
   credentials: true,
 };
 

@@ -1,6 +1,7 @@
 export interface IntUser {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: string;
@@ -8,7 +9,8 @@ export interface IntUser {
 }
 export interface IntCustomer {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: string;
@@ -16,7 +18,8 @@ export interface IntCustomer {
 
 export interface IntTranslator {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: string;
