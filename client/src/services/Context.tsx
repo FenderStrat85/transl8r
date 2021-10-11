@@ -3,12 +3,12 @@ import React, { useState, createContext, useEffect } from 'react';
 const initialState = {
   id: '',
   token: '',
-  auth: false,
+  isAuthenticated: false,
   role: ''
 };
 
 const mock = {
-  user: {},
+  user: initialState,
   login: (Accesstoken: string, id: string, role: string) => { },
   logout: () => { },
 }
@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
     setUser((prevState) => ({
       token: Accesstoken,
       id: id,
-      auth: true,
+      isAuthenticated: true,
       role
     }));
   };
