@@ -1,23 +1,25 @@
 import { Model, BuildOptions } from 'sequelize';
 
-interface TranslatorModel extends Model {
+interface CustomerModel extends Model {
   _id: string;
   name: string;
   email: string;
   password: string;
   role: string;
-  averageRating: string;
 }
 
-type TranslatorInstance = typeof Model & {
-  new (values?: object, options?: BuildOptions): TranslatorModel;
+type CustomerInstance = typeof Model & {
+  new (values?: object, options?: BuildOptions): CustomerModel;
 };
 
-const Translator = (sequelize: any, DataTypes: any) =>
-  <TranslatorInstance>sequelize.define('Translator', {
+const Customer = (sequelize: any, DataTypes: any) =>
+  <CustomerInstance>sequelize.define('Customer', {
     _id: {
       type: DataTypes.UUID,
-      defaultValue: sequelize.UUID,
+      // do we need the default value here? Sequelize won't
+      // allows us to create a customer or translator without passing an _id
+      // so maybe we can remove it
+      defaultValue: sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
       unique: true,
@@ -37,11 +39,7 @@ const Translator = (sequelize: any, DataTypes: any) =>
     role: {
       type: DataTypes.STRING,
     },
-    averageRating: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
   });
 
 module.exports = (sequelize: any, DataTypes: any) =>
-  Translator(sequelize, DataTypes);
+  Customer(sequelize, DataTypes);

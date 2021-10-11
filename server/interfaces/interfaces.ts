@@ -4,6 +4,14 @@ export interface IntUser {
   email: string;
   password: string;
   role: string;
+  averageRating?: string;
+}
+export interface IntCustomer {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
 }
 
 export interface IntTranslator {
