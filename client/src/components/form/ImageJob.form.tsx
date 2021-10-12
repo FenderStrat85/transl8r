@@ -76,24 +76,19 @@ const ImageJobForm = () => {
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     reader.onloadend = () => {
-      saveArea();
+      uploadImage();
     };
     reader.onerror = () => {
       console.error('ERROR!!');
     };
   };
 
-  const saveArea = () => {
-    const b64 = document.getElementById('user').src;
-    document.getElementById('translator').src = b64;
-    uploadImage();
-  };
-
   const uploadImage = async () => {
-    const imgToUpload = document.getElementById('user').src;
+    const imgToUpload = (document.getElementById('user') as HTMLInputElement)
+      .src;
     const data = new FormData();
     data.append('file', imgToUpload);
-    data.append('upload_preset', 'testimages');
+    data.append('upload_preset', 'transl8r');
 
     // call to the api cloudinary need to be setup
     const res = await fetch(
