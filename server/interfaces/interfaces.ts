@@ -50,3 +50,12 @@ export interface IntMessage {
   messageAuthor: string;
   messageContent: string;
 }
+
+export interface IntImage {
+  _id: string;
+  imageUrl: string;
+}
+
+export interface IntVideoChat {
+  _id: string;
+}
