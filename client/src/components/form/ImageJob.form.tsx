@@ -12,17 +12,11 @@ const ImageJobForm = () => {
   const accessToken = user.token;
   const jobType = 'image';
   const options = languageChoice;
-<<<<<<< HEAD
-  const [selectedTo, setSelectedTo] = useState([]);
-  const [selectedFrom, setSelectedFrom] = useState([]);
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-=======
-
   const [selectedFrom, setSelectedFrom] = useState<Language>();
   const [selectedTo, setSelectedTo] = useState<Language>();
->>>>>>> feat-job-creation-and-rendering
 
   const initialState = {
     jobName: '',
@@ -36,14 +30,12 @@ const ImageJobForm = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result);
+      setPreviewSource(reader.result as any);
       //console.log(imageUser);
     };
   };
 
-  const handleFileInputChange = (event: {
-    target: { files: any[]; value: SetStateAction<string> };
-  }) => {
+  const handleFileInputChange = (event: any) => {
     const file = event.target.files[0];
     previewFile(file);
     setSelectedFile(file);
@@ -61,7 +53,6 @@ const ImageJobForm = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-<<<<<<< HEAD
     console.log(selectedTo);
     // formValue.languageFromName = selectedFrom.value.toString();
     // formValue.languageToName = selectedTo.value.toString();
@@ -114,7 +105,6 @@ const ImageJobForm = () => {
         imageUrl: imgsec,
       };
     });
-=======
 
     try {
       let languageFromName = selectedFrom.value;
@@ -136,7 +126,6 @@ const ImageJobForm = () => {
     } catch (error) {
       console.log(error);
     }
->>>>>>> feat-job-creation-and-rendering
   };
 
   return (
