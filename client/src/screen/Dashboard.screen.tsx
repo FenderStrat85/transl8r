@@ -1,9 +1,7 @@
 import JobList from '../components/list/Job.list';
 import { UserContext } from '../services/Context';
 import { useContext, useEffect, useState } from 'react';
-import SelectJob from './SelectJob.screen';
-import { Route } from 'react-router-dom';
-import CreateJob from './SelectJob.screen';
+import { Route, Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -19,8 +17,7 @@ const Dashboard = () => {
     <>
       {user.role !== 'customer' ? (
         <>
-
-
+          <JobList jobs={jobs} />
         </>
       ) : (
         <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function CreateJob() {
+function SelectJob() {
 
   return (
     <>
@@ -14,8 +14,11 @@ function CreateJob() {
       <Link to='/app/customer/createJob/grande'>
         <button>Grande</button>
       </Link>
+      <Link to='/app/customer/dashboard'>
+        <button>View pending translations!!!</button>
+      </Link>
     </>
   )
 }
 
-export default CreateJob;
+export default SelectJob;

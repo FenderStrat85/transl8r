@@ -56,7 +56,7 @@ const RegisterForm = () => {
       const { accessToken, role, firstName, lastName, _id } = res;
       localStorage.setItem('accessToken', accessToken);
       login(accessToken, _id, role, firstName, lastName);
-      history.push(`/app/${role}/dashboard`);
+      history.push(role === 'customer' ? `/app/${role}/selectjob` : `/app/${role}/dashboard`);
     }
   };
 
