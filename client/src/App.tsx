@@ -8,7 +8,6 @@ import {
 import AuthLayout from './layouts/auth.layout';
 import AppLayout from './layouts/app.layout';
 import NotFound from './screen/NotFound.screen';
-import LoginScreen from './screen/Login.screen';
 
 function App() {
   return (
@@ -20,9 +19,7 @@ function App() {
         <Route path="/app">
           <AppLayout />
         </Route>
-        <Redirect from="/" to="auth/login">
-          <LoginScreen />
-        </Redirect>
+        <Redirect from="/" to="auth/login"></Redirect>
         <Route path="*">
           <NotFound />
         </Route>
