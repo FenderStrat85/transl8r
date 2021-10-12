@@ -29,13 +29,13 @@ const AppLayout = () => {
       </Route>
 
       <Route path='/app/customer/selectjob/espresso'>
-        <CreateJob />
+        {/* ESPRESSO JOB */}
       </Route>
-      <Route path='/app/customer/selectjob/venti'>
-        <CreateJob />
+      <Route path='/app/customer/selectjob/cappuccino'>
+        {/* CAPPUCINO JOB */}
       </Route>
-      <Route path='/app/customer/selectjob/grande'>
-        <CreateJob />
+      <Route path='/app/customer/selectjob/macchiato'>
+        {/* MACCHIATO JOB */}
       </Route>
 
       {/* {Translator Route} */}

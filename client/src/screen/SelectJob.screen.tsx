@@ -8,11 +8,11 @@ function SelectJob() {
       <Link to='/app/customer/createJob/espresso'>
         <button>Espresso</button>
       </Link>
-      <Link to='/app/customer/createJob/venti'>
-        <button>Venti</button>
+      <Link to='/app/customer/createJob/cappuccino'>
+        <button>Cappuccino</button>
       </Link>
-      <Link to='/app/customer/createJob/grande'>
-        <button>Grande</button>
+      <Link to='/app/customer/createJob/macchiato'>
+        <button>Macchiato</button>
       </Link>
       <Link to='/app/customer/dashboard'>
         <button>View pending translations!!!</button>
