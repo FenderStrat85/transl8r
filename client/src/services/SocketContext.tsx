@@ -2,7 +2,8 @@ import React, { createContext, useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
-const SocketContext = createContext();
+
+const SocketContext = createContext({});
 
 const socket = io('http://localhost:3001/');
 
@@ -35,7 +36,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     // Get permission from users' camera and mic
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then((currentStream) => {
+      .then((currentStream: any) => {
         setStream(currentStream);
         // set the current stream to the state
         myVideo.current.srcObject = currentStream;
