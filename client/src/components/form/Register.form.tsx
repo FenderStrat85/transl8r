@@ -84,7 +84,7 @@ const RegisterForm = () => {
           />
           <label htmlFor="contactChoice2">Translator</label>
         </div>
-        {formValue.role === 'customer' ? (
+        {formValue.role !== 'translator' ? (
           <>
             <div className="form-group">
               <input
