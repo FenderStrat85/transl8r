@@ -55,4 +55,10 @@ db.Conversation.belongsTo(db.Job);
 db.Conversation.hasMany(db.Message);
 db.Message.belongsTo(db.Conversation);
 
+db.Job.hasOne(db.Image);
+db.Image.belongsTo(db.Job);
+
+db.Job.hasOne(db.VideoChat);
+db.VideoChat.belongsTo(db.Job);
+
 export default db;
