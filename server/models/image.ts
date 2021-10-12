@@ -1,16 +1,16 @@
 import { Model, BuildOptions } from 'sequelize';
 
-interface LanguageModel extends Model {
+interface ImageModel extends Model {
   _id: string;
-  languageName: string;
+  imageUrl: string;
 }
 
-type LanguageInstance = typeof Model & {
-  new (values?: object, options?: BuildOptions): LanguageModel;
+type ImageInstance = typeof Model & {
+  new (values?: object, options?: BuildOptions): ImageModel;
 };
 
-const Language = (sequelize: any, DataTypes: any) =>
-  <LanguageInstance>sequelize.define('Language', {
+const Image = (sequelize: any, DataTypes: any) =>
+  <ImageInstance>sequelize.define('Image', {
     _id: {
       type: DataTypes.UUID,
       defaultValue: sequelize.UUID,
@@ -18,11 +18,11 @@ const Language = (sequelize: any, DataTypes: any) =>
       primaryKey: true,
       unique: true,
     },
-    languageName: {
+    imageUrl: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
 module.exports = (sequelize: any, DataTypes: any) =>
-  Language(sequelize, DataTypes);
+  Image(sequelize, DataTypes);

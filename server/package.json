@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon --watch './**/*.ts' --exec 'ts-node' index.ts"
+    "dev:server": "nodemon --watch './**/*.ts' --exec 'ts-node' index.ts",
+    "populate": "ts-node ./utils/languages.ts"
   },
   "author": "",
   "license": "ISC",

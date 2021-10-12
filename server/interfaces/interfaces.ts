@@ -34,6 +34,7 @@ export interface IntJob {
   jobType: string;
   dateCompleted: Date;
   jobName: string;
+  jobDescription: string;
 }
 
 export interface IntLanguage {
@@ -49,4 +50,13 @@ export interface IntMessage {
   _id: string;
   messageAuthor: string;
   messageContent: string;
+}
+
+export interface IntImage {
+  _id: string;
+  imageUrl: string;
+}
+
+export interface IntVideoChat {
+  _id: string;
 }

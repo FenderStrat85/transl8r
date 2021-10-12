@@ -47,6 +47,10 @@ const Job = (sequelize: any, DataTypes: any) => <JobInstance>sequelize.define(
         type: DataTypes.STRING,
         allowNull: false,
       },
+      jobDescription: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
   );
 
