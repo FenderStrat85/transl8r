@@ -31,7 +31,6 @@ apiService.login = (userInfo) => {
 };
 
 apiService.createJob = (jobInfos, jobType, accessToken) => {
-  console.log(jobInfos);
   return fetch(`${server}/createJob/${jobType}`, {
     method: 'POST',
     credentials: 'include',

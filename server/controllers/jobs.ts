@@ -40,6 +40,22 @@ const createJob = async (req: Request, res: Response) => {
       const img = await newImage.save();
       res.status(201).send(img);
     }
+    if (type === 'chat') {
+      const newChat = new db.Conversation({
+        _id: uuidv4(),
+        JobId: jobId,
+      });
+      const chat = await newChat.save();
+      res.status(201).send(chat);
+    }
+    if (type === 'video') {
+      const newVideoChat = new db.VideoChat({
+        _id: uuidv4(),
+        JobId: jobId,
+      });
+      const videoChat = await newVideoChat.save();
+      res.status(201).send(videoChat);
+    }
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Not able to create a job' });
   }
