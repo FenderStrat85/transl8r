@@ -1,6 +1,6 @@
 import env from 'react-dotenv';
 // const server = process.env.REACT_APP_SERVER_URL;
-const server = 'http://localhost:5000';
+import { server } from '../constants/server';
 
 // TODO: change server to env
 
