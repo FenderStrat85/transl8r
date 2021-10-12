@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { MultiSelect } from 'react-multi-select-component';
 import ApiService from './../../services/Api.Service';
 import { UserContext } from '../../services/Context';
-import languageChoice from '../../assets/languageChoice';
+import languageChoice from '../../constants/languageChoice';
 
 const RegisterForm = () => {
   const { login } = useContext(UserContext);

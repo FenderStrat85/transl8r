@@ -2,9 +2,9 @@ import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/Api.Service';
 import { UserContext } from '../../services/Context';
-import languageChoice from '../../assets/languageChoice';
+import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
-import { Language } from '../../assets/interfaces';
+import { Language } from '../../interfaces/interfaces';
 
 const ChatAndVideoJobForm = (props) => {
   const history = useHistory();
@@ -71,9 +71,9 @@ const ChatAndVideoJobForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <input
+          <textarea
             className="form-control"
-            type="text"
+            // type="text"
             name="jobDescription"
             placeholder={'Tell the translator about the job'}
             onChange={(event) => handleInputChange(event)}

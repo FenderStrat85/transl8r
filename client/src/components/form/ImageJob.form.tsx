@@ -2,9 +2,9 @@ import { useState, useContext, SetStateAction, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/Api.Service';
 import { UserContext } from '../../services/Context';
-import languageChoice from '../../assets/languageChoice';
+import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
-import { Language } from '../../assets/interfaces';
+import { Language } from '../../interfaces/interfaces';
 
 const ImageJobForm = () => {
   const { user } = useContext(UserContext);
