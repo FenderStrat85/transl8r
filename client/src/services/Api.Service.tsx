@@ -31,7 +31,8 @@ apiService.login = (userInfo) => {
 };
 
 apiService.createJob = (jobInfos, jobType, accessToken) => {
-  return fetch(`${server}/${jobType}`, {
+  console.log(jobInfos);
+  return fetch(`${server}/createJob/${jobType}`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',

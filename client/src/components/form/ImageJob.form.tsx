@@ -4,6 +4,7 @@ import apiService from '../../services/Api.Service';
 import { UserContext } from '../../services/Context';
 import languageChoice from '../../assets/languageChoice';
 import Select from 'react-select';
+import { Language } from '../../assets/interfaces';
 
 const ImageJobForm = () => {
   const history = useHistory();
@@ -11,16 +12,20 @@ const ImageJobForm = () => {
   const accessToken = user.token;
   const jobType = 'image';
   const options = languageChoice;
+<<<<<<< HEAD
   const [selectedTo, setSelectedTo] = useState([]);
   const [selectedFrom, setSelectedFrom] = useState([]);
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
+=======
+
+  const [selectedFrom, setSelectedFrom] = useState<Language>();
+  const [selectedTo, setSelectedTo] = useState<Language>();
+>>>>>>> feat-job-creation-and-rendering
 
   const initialState = {
     jobName: '',
-    languageFromName: '',
-    languageToName: '',
     jobDescription: '',
     imageUrl: '',
   };
@@ -56,6 +61,7 @@ const ImageJobForm = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+<<<<<<< HEAD
     console.log(selectedTo);
     // formValue.languageFromName = selectedFrom.value.toString();
     // formValue.languageToName = selectedTo.value.toString();
@@ -108,6 +114,29 @@ const ImageJobForm = () => {
         imageUrl: imgsec,
       };
     });
+=======
+
+    try {
+      let languageFromName = selectedFrom.value;
+      let languageToName = selectedTo.value;
+      const objToSendBackToTheDb = {
+        ...formValue,
+        languageFromName,
+        languageToName,
+      };
+      const res = await apiService.createJob(
+        objToSendBackToTheDb,
+        jobType,
+        accessToken,
+      );
+      if (res.error) {
+        alert(`${res.message}`);
+        setFormValue(initialState);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+>>>>>>> feat-job-creation-and-rendering
   };
 
   return (
@@ -129,6 +158,16 @@ const ImageJobForm = () => {
             type="text"
             name="jobDescription"
             placeholder={'Tell the translator about the job'}
+            onChange={(event) => handleInputChange(event)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-control"
+            type="text"
+            name="imageUrl"
+            placeholder={'Add Image'}
             onChange={(event) => handleInputChange(event)}
             required
           />
