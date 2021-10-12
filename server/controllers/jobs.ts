@@ -26,13 +26,15 @@ const createJob = async (req: Request, res: Response) => {
       languageFrom: languageFrom._id,
       languageTo: languageTo._id,
       CustomerId: _id,
+      jobDescription: jobDescription,
     });
     const job = await newJob.save();
     const jobId = job._id;
     if (type === 'image') {
       const { imageUrl } = req.body;
       const newImage = new db.Image({
-        imageUrl,
+        _id: uuidv4(),
+        imageUrl: imageUrl,
         JobId: jobId,
       });
       const img = await newImage.save();
