@@ -1,5 +1,7 @@
 import db from '../models/db';
 import { Request, Response } from 'express';
+import { IntJob } from './../interfaces/interfaces';
+
 const { v4: uuidv4 } = require('uuid');
 
 const createJob = async (req: Request, res: Response) => {
@@ -43,16 +45,17 @@ const acceptJob = async (req: Request, res: Response) => {
 };
 
 const getJobs = async (req: Request, res: Response) => {
-  // function for retrieving all the jobs of an user, regardless of the job's state
-  // useful for showing jobs on the dashboard
-  const { id, role } = req.params;
+  const { role, _id } = req.user;
+  const { status } = req.params;
   try {
     if (role === 'customer') {
-      let jobs = await db.Job.findAll({ where: { CustomerId: id } });
-      res.send(jobs);
+      const jobs = await db.Job.findAll({ where: { CustomerId: _id } });
+      const filteredJobs = jobs.filter((job: IntJob) => job.status === status);
+      res.status(200).send(filteredJobs);
     } else if (role === 'translator') {
-      let jobs = await db.Job.findAll({ where: { TranslatorId: id } });
-      res.status(200).send(jobs);
+      let jobs = await db.Job.findAll({ where: { TranslatorId: _id } });
+      const filteredJobs = jobs.filter((job: IntJob) => job.status === status);
+      res.status(200).send(filteredJobs);
     }
   } catch (error) {
     res
@@ -62,14 +65,11 @@ const getJobs = async (req: Request, res: Response) => {
 };
 
 const getAvailableJobs = async (req: Request, res: Response) => {
-  // functions that accept the id of the translator as parameter,
-  // search for pending jobs and shows only the one that matches
-  // the translator profile.
-  const { id } = req.params;
+  const { role, _id } = req.user;
   try {
     // retrieving all the languages that the translator speaks
     const { language } = await db.Translator.findOne({
-      where: { _id: id },
+      where: { _id: _id },
       include: [{ model: db.Language, as: 'language' }],
     });
     // pushing the ids of the languages into an array
