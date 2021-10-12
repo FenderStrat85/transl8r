@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const authController = require('./controllers/authentication');
-const languagesController = require('./controllers/languages');
 const jobsController = require('./controllers/jobs');
 const authMiddleware = require('./middlewares/auth');
 
@@ -19,8 +18,5 @@ router.get(
   authMiddleware,
   jobsController.getAvailableJobs,
 );
-
-// languages routes
-router.post('/addLang', languagesController.addLang);
 
 export = router;

@@ -34,6 +34,7 @@ export interface IntJob {
   jobType: string;
   dateCompleted: Date;
   jobName: string;
+  jobDescription: string;
 }
 
 export interface IntLanguage {
