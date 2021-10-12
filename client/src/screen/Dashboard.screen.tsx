@@ -17,6 +17,7 @@ const Dashboard = () => {
     <>
       {user.role !== 'customer' ? (
         <>
+          <h1>Your Pending and Accepted jobs</h1>
           <JobList jobs={jobs} />
         </>
       ) : (

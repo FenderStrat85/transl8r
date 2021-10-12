@@ -37,7 +37,6 @@ const AppLayout = () => {
         <h1>Translator Dashboard (Home)</h1>
         <Dashboard />
       </Route>
-      <Dashboard />
     </>
   )
 }
