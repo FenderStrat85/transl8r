@@ -47,16 +47,24 @@ const RegisterForm = () => {
       objectToSendToDb.languages = resArr;
     }
 
-    const res = await ApiService.register(objectToSendToDb);
-    if (res.error) {
-      alert(`${res.message}`);
-      setFormValue(initialState);
-      setSelected([]);
-    } else {
-      const { accessToken, role, firstName, lastName, _id } = res;
-      localStorage.setItem('accessToken', accessToken);
-      login(accessToken, _id, role, firstName, lastName);
-      history.push(role === 'customer' ? `/app/${role}/selectjob` : `/app/${role}/dashboard`);
+    try {
+      const res = await ApiService.register(objectToSendToDb);
+      if (res.error) {
+        alert(`${res.message}`);
+        setFormValue(initialState);
+        setSelected([]);
+      } else {
+        const { accessToken, role, firstName, lastName, _id } = res;
+        localStorage.setItem('accessToken', accessToken);
+        login(accessToken, _id, role, firstName, lastName);
+        history.push(
+          role === 'customer'
+            ? `/app/${role}/selectjob`
+            : `/app/${role}/dashboard`,
+        );
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

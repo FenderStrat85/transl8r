@@ -15,7 +15,8 @@ const AppLayout = () => {
   return (
     <>
       {/* If user isn't authenticated, disable route rendering and redirect to login */}
-      {!user.isAuthenticated ?
+      {/* if !user.isAuthenticated will disable authentication */}
+      {user.isAuthenticated ?
 
         //Customer Route
         <Switch>
