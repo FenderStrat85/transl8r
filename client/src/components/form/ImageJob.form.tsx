@@ -16,7 +16,6 @@ const ImageJobForm = () => {
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-  const [imageUser, setImageUser] = useState(['']);
 
   const initialState = {
     jobName: '',
@@ -37,13 +36,13 @@ const ImageJobForm = () => {
     };
   };
 
-  const handleFileInputChange = (e: {
+  const handleFileInputChange = (event: {
     target: { files: any[]; value: SetStateAction<string> };
   }) => {
-    const file = e.target.files[0];
+    const file = event.target.files[0];
     previewFile(file);
     setSelectedFile(file);
-    setFileInputState(e.target.value);
+    setFileInputState(event.target.value);
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
