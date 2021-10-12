@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, SetStateAction, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/Api.Service';
 import { UserContext } from '../../services/Context';
@@ -13,6 +13,10 @@ const ImageJobForm = () => {
   const options = languageChoice;
   const [selectedTo, setSelectedTo] = useState([]);
   const [selectedFrom, setSelectedFrom] = useState([]);
+  const [fileInputState, setFileInputState] = useState('');
+  const [previewSource, setPreviewSource] = useState('');
+  const [selectedFile, setSelectedFile] = useState();
+  const [imageUser, setImageUser] = useState(['']);
 
   const initialState = {
     jobName: '',
@@ -24,7 +28,25 @@ const ImageJobForm = () => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event) => {
+  const previewFile = (file: Blob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+      //console.log(imageUser);
+    };
+  };
+
+  const handleFileInputChange = (e: {
+    target: { files: any[]; value: SetStateAction<string> };
+  }) => {
+    const file = e.target.files[0];
+    previewFile(file);
+    setSelectedFile(file);
+    setFileInputState(e.target.value);
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -48,6 +70,50 @@ const ImageJobForm = () => {
     // } catch (error) {
     //   console.log(error);
     // }
+
+    event.preventDefault();
+    if (!selectedFile) return;
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = () => {
+      saveArea();
+    };
+    reader.onerror = () => {
+      console.error('ERROR!!');
+    };
+  };
+
+  const saveArea = () => {
+    const b64 = document.getElementById('user').src;
+    document.getElementById('translator').src = b64;
+    uploadImage();
+  };
+
+  const uploadImage = async () => {
+    const imgToUpload = document.getElementById('user').src;
+    const data = new FormData();
+    data.append('file', imgToUpload);
+    data.append('upload_preset', 'testimages');
+
+    // call to the api cloudinary need to be setup
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/uro00/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      },
+    );
+
+    const img = await res.json();
+    console.log(typeof img.secure_url);
+    const imgsec = img.secure_url;
+
+    setFormValue((prevState) => {
+      return {
+        ...prevState,
+        imageUrl: imgsec,
+      };
+    });
   };
 
   return (
@@ -89,8 +155,24 @@ const ImageJobForm = () => {
           onChange={setSelectedTo}
           // labelledBy="Select"
         />
+
+        <input
+          id="fileInput"
+          type="file"
+          name="image"
+          onChange={handleFileInputChange}
+          value={fileInputState}
+        />
         <button type="submit">Submit your job</button>
       </div>
+      {previewSource && (
+        <img
+          src={previewSource}
+          id="user"
+          crossOrigin="anonymous"
+          alt="chosen"
+        />
+      )}
     </form>
   );
 };
