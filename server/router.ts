@@ -10,7 +10,7 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // jobs routes
-router.post('/createJob', authMiddleware, jobsController.createJob);
+router.post('/createJob/:type', authMiddleware, jobsController.createJob);
 router.put('/acceptJob', authMiddleware, jobsController.acceptJob);
 router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
 router.get(

@@ -5,8 +5,11 @@ import { IntJob } from './../interfaces/interfaces';
 const { v4: uuidv4 } = require('uuid');
 
 const createJob = async (req: Request, res: Response) => {
-  const { CustomerId, jobName, jobType, languageFromName, languageToName } =
+  const { jobName, languageFromName, languageToName, jobDescription } =
     req.body;
+  const { type } = req.params;
+  const { _id } = req.user;
+  const jobType = type;
   try {
     // languageFromName and languageToName are strings, therefore the
     // the next two queries are for retrieving the id of the languages
@@ -22,10 +25,19 @@ const createJob = async (req: Request, res: Response) => {
       _id: uuidv4(),
       languageFrom: languageFrom._id,
       languageTo: languageTo._id,
-      CustomerId: CustomerId,
+      CustomerId: _id,
     });
     const job = await newJob.save();
-    res.status(201).send(job);
+    const jobId = job._id;
+    if (type === 'image') {
+      const { imageUrl } = req.body;
+      const newImage = new db.Image({
+        imageUrl,
+        JobId: jobId,
+      });
+      const img = await newImage.save();
+      res.status(201).send(img);
+    }
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Not able to create a job' });
   }

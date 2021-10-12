@@ -31,5 +31,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-select": "^5.1.0"
+  }
 }

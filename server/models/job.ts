@@ -8,6 +8,7 @@ interface JobModel extends Model {
   jobType: string;
   dateCompleted: Date;
   jobName: string;
+  jobDescription: string;
 }
 
 type JobInstance = typeof Model & {

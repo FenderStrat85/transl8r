@@ -3,19 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { MultiSelect } from 'react-multi-select-component';
 import ApiService from './../../services/Api.Service';
 import { UserContext } from '../../services/Context';
+import languageChoice from '../../assets/languageChoice';
 
 const RegisterForm = () => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   const [selected, setSelected] = useState([]);
 
-  const options = [
-    { label: '🇬🇧 English', value: 'English' },
-    { label: '🇪🇸 Spanish', value: 'Spanish' },
-    { label: '🇫🇷 French', value: 'French' },
-    { label: '🇮🇹 Italian', value: 'Italian' },
-    { label: '🇨🇳 Chinese', value: 'Chinese' },
-  ];
+  const options = languageChoice;
 
   const initialState = {
     firstName: '',
