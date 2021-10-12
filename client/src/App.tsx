@@ -19,9 +19,10 @@ function App() {
         <Route path="/app">
           <AppLayout />
         </Route>
-        <Redirect path="*">
-          <NotFound />{' '}
-        </Redirect>
+        <Redirect from="/" to="auth/login"></Redirect>
+        <Route path="*">
+          <NotFound />
+        </Route>
       </Switch>
     </Router>
   );

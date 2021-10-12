@@ -17,11 +17,11 @@ const ImageJobForm = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [selectedFrom, setSelectedFrom] = useState<Language>();
   const [selectedTo, setSelectedTo] = useState<Language>();
+  const [imageLink, setImageLink] = useState('');
 
   const initialState = {
     jobName: '',
     jobDescription: '',
-    imageUrl: '',
   };
 
   const [formValue, setFormValue] = useState(initialState);
@@ -53,30 +53,19 @@ const ImageJobForm = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log(selectedTo);
-    // formValue.languageFromName = selectedFrom.value.toString();
-    // formValue.languageToName = selectedTo.value.toString();
-    console.log(formValue);
-    // try {
-    //   const res = await apiService.createJob(formValue, jobType, accessToken);
-    //   if (res.error) {
-    //     alert(`${res.message}`);
-    //     setFormValue(initialState);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    event.preventDefault();
-    if (!selectedFile) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onloadend = () => {
-      uploadImage();
-    };
-    reader.onerror = () => {
-      console.error('ERROR!!');
-    };
+    try {
+      if (!selectedFile) return;
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile);
+      reader.onloadend = () => {
+        uploadImage();
+      };
+      reader.onerror = () => {
+        console.error('ERROR!!');
+      };
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const uploadImage = async () => {
@@ -94,17 +83,7 @@ const ImageJobForm = () => {
         body: data,
       },
     );
-
-    const img = await res.json();
-    console.log(typeof img.secure_url);
-    const imgsec = img.secure_url;
-
-    setFormValue((prevState) => {
-      return {
-        ...prevState,
-        imageUrl: imgsec,
-      };
-    });
+    const { secure_url } = await res.json();
 
     try {
       let languageFromName = selectedFrom.value;
@@ -113,6 +92,7 @@ const ImageJobForm = () => {
         ...formValue,
         languageFromName,
         languageToName,
+        imageUrl: secure_url,
       };
       const res = await apiService.createJob(
         objToSendBackToTheDb,
@@ -147,16 +127,6 @@ const ImageJobForm = () => {
             type="text"
             name="jobDescription"
             placeholder={'Tell the translator about the job'}
-            onChange={(event) => handleInputChange(event)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            name="imageUrl"
-            placeholder={'Add Image'}
             onChange={(event) => handleInputChange(event)}
             required
           />
