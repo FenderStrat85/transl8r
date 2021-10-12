@@ -12,6 +12,7 @@ import {
 import CreateJob from '../screen/CreateJob.screen';
 import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
+import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -46,12 +47,14 @@ const AppLayout = () => {
           <Route exact path="/app/customer/createjob/cappuccino">
             {/* CAPPUCINO CREATE JOB */}
             <h1>CAPPUCCINO</h1>
+            <ChatAndVideoJobForm jobType={'chat'} />
           </Route>
 
           {/* This is the route for Macchiato, where a user will taken to a video chat screen  */}
           <Route exact path="/app/customer/createjob/macchiato">
             {/* MACCHIATO CREATE JOB */}
             <h1>MACCHIATO</h1>
+            <ChatAndVideoJobForm jobType={'video'} />
           </Route>
 
           {/* Translator Route */}

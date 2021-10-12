@@ -1,4 +1,4 @@
-import { useState, useContext, SetStateAction, ChangeEvent } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/Api.Service';
 import { UserContext } from '../../services/Context';
@@ -6,14 +6,13 @@ import languageChoice from '../../assets/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../assets/interfaces';
 
-const ImageJobForm = () => {
+const ChatAndVideoJobForm = (props) => {
+  const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = user.token;
-  const jobType = 'image';
+  const jobType = props.jobType;
   const options = languageChoice;
-  const [fileInputState, setFileInputState] = useState('');
-  const [previewSource, setPreviewSource] = useState('');
-  const [selectedFile, setSelectedFile] = useState();
+
   const [selectedFrom, setSelectedFrom] = useState<Language>();
   const [selectedTo, setSelectedTo] = useState<Language>();
 
@@ -24,23 +23,7 @@ const ImageJobForm = () => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const previewFile = (file: Blob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result as any);
-      //console.log(imageUser);
-    };
-  };
-
-  const handleFileInputChange = (event: any) => {
-    const file = event.target.files[0];
-    previewFile(file);
-    setSelectedFile(file);
-    setFileInputState(event.target.value);
-  };
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -51,37 +34,6 @@ const ImageJobForm = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    try {
-      if (!selectedFile) return;
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile);
-      reader.onloadend = () => {
-        uploadImage();
-      };
-      reader.onerror = () => {
-        console.error('ERROR!!');
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const uploadImage = async () => {
-    const imgToUpload = (document.getElementById('user') as HTMLInputElement)
-      .src;
-    const data = new FormData();
-    data.append('file', imgToUpload);
-    data.append('upload_preset', 'transl8r');
-
-    // call to the api cloudinary need to be setup
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/uro00/image/upload',
-      {
-        method: 'POST',
-        body: data,
-      },
-    );
-    const { secure_url } = await res.json();
 
     try {
       let languageFromName = selectedFrom.value;
@@ -90,7 +42,6 @@ const ImageJobForm = () => {
         ...formValue,
         languageFromName,
         languageToName,
-        imageUrl: secure_url,
       };
       const res = await apiService.createJob(
         objToSendBackToTheDb,
@@ -145,26 +96,10 @@ const ImageJobForm = () => {
           onChange={setSelectedTo}
           // labelledBy="Select"
         />
-
-        <input
-          id="fileInput"
-          type="file"
-          name="image"
-          onChange={handleFileInputChange}
-          value={fileInputState}
-        />
         <button type="submit">Submit your job</button>
       </div>
-      {previewSource && (
-        <img
-          src={previewSource}
-          id="user"
-          crossOrigin="anonymous"
-          alt="chosen"
-        />
-      )}
     </form>
   );
 };
 
-export default ImageJobForm;
+export default ChatAndVideoJobForm;
