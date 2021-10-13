@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from '../screen/Dashboard.screen';
 import SelectJob from '../screen/SelectJob.screen';
+import TranslatorJobDetail from '../components/items/Translator.job.detail';
 import { useContext } from 'react';
 import { UserContext } from '../services/Context';
 import {
@@ -57,6 +58,8 @@ const AppLayout = () => {
             <ChatAndVideoJobForm jobType={'video'} />
           </Route>
 
+
+
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}
           <Route exact path="/app/translator/dashboard">
@@ -68,6 +71,22 @@ const AppLayout = () => {
             <h1>Translator Accepted (Home)</h1>
             <Dashboard />
           </Route>
+
+          <Route exact path="/app/translator/dashboard/viewjob">
+            <TranslatorJobDetail />
+          </Route>
+
+          {/* TRANSLATOR JOB ROUTES */}
+          <Route exact path="/app/translator/dashboard/viewjob">
+            {/* I'm the image */}
+          </Route>
+          <Route exact path="/app/translator/dashboard/viewjob">
+            {/* I'm the chat */}
+          </Route>
+          <Route exact path="/app/translator/dashboard/viewjob">
+            {/* I'm the video */}
+          </Route>
+
 
           {/* 404 route */}
           <Route path="*">
