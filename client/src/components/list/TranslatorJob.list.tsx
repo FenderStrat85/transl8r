@@ -1,9 +1,9 @@
-import React from 'react';
 import TranslatorJobItem from '../items/TranslatorJob.item';
 import { UserContext } from '../../services/Context';
 import { useContext } from 'react';
 import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 
 const TranslatorJobList = (props: { jobs: any }) => {
   const { user } = useContext(UserContext);
@@ -28,7 +28,7 @@ const TranslatorJobList = (props: { jobs: any }) => {
   });
 
   return (
-    <div>
+    <>
       <h2>Pending Jobs</h2>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
@@ -37,11 +37,16 @@ const TranslatorJobList = (props: { jobs: any }) => {
           {data.length > 0 ? (
             data.map((job) => <TranslatorJobItem key={job._id} job={job} />)
           ) : (
-            <h3>No pending jobs</h3>
+            <>
+              <h3>No pending jobs</h3>
+              <Link to={{ pathname: '/app/translator/dashboard/history' }}>
+                <button>View Accepted jobs</button>
+              </Link>
+            </>
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ export const TranslatorJobDetail = (props) => {
     const res = await apiService.acceptJob(job.state, user.token);
     if (res.status === 'accepted') {
       jobAccepted = true;
-      history.push(`/app/translator/${res.jobType}`);
+      history.push(`/app/translator/${res.jobType}:${res._id}`);
     }
 
   };
