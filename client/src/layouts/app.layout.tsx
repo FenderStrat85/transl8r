@@ -58,6 +58,19 @@ const AppLayout = () => {
             <ChatAndVideoJobForm jobType={'video'} />
           </Route>
 
+          {/* {CUSTOMER JOBS ROUTE} */}
+          <Route exact path='/app/customer/acceptedjob/image:id'>
+            {/* {IM THE IMAGE COMPONENT} */}
+            <h1>IMAGE COMPONENT</h1>
+          </Route>
+          <Route exact path='/app/customer/acceptedjob/chat:id'>
+            {/* {IM THE CHAT COMPONENT} */}
+            <h1>CHAT COMPONENT</h1>
+          </Route>
+          <Route exact path='/app/customer/acceptedjob/video:id'>
+            {/* {IM THE VIDEO COMPONENT} */}
+            <h1>VIDEO COMPONENT</h1>
+          </Route>
 
 
           {/* Translator Route */}
@@ -71,7 +84,7 @@ const AppLayout = () => {
             <h1>Translator Accepted (Home)</h1>
             <Dashboard />
           </Route>
-
+          {/*  */}
           <Route exact path="/app/translator/dashboard/viewjob">
             <TranslatorJobDetail />
           </Route>
