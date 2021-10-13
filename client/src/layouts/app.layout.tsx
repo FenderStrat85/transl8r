@@ -81,22 +81,21 @@ const AppLayout = () => {
           <Route exact path="/app/translator/dashboard/history">
             <Dashboard />
           </Route>
-          {/*  */}
+          {/* Here a translator can view a selected job tile in more detail, and accept the job */}
           <Route exact path="/app/translator/dashboard/viewjob">
             <TranslatorJobDetail />
           </Route>
 
           {/* TRANSLATOR JOB ROUTES */}
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the image */}
+          <Route exact path="/app/translator/image:jobId">
+            <h1>Image Component</h1>
           </Route>
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the chat */}
+          <Route exact path="/app/translator/chat:jobId">
+            <h1>Chat Component</h1>
           </Route>
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the video */}
+          <Route exact path="/app/translator/video:jobId">
+            <h1>Video Component</h1>
           </Route>
-
 
           {/* 404 route */}
           <Route path="*">

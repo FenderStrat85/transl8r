@@ -13,6 +13,7 @@ const TranslatorJobItem = (props: { job: any }) => {
     languageFromName,
     languageToName,
     jobDescription,
+    _id
   } = props.job;
   // console.log('user!!!', user);
   const acceptJob = async () => {
