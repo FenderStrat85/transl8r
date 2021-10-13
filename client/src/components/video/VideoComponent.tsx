@@ -1,15 +1,14 @@
-import React from "react";
-import VideoPlayer from "./components/videoPlayer";
-import Options from "./components/options";
-import Notifications from "./components/notifications";
+import VideoStream from "./VideoStream";
+import VideoOptions from "./VideoOptions";
+import VideoNotifications from "./VideoNotifications";
 
 const VideoComponent = () => {
   return (
     <>
-      <VideoPlayer />
-      <Options>
-        <Notifications />
-      </Options>
+      <VideoStream />
+      <VideoOptions>
+        <VideoNotifications />
+      </VideoOptions>
     </>
   );
 }

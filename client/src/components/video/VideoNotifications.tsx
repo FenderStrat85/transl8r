@@ -2,7 +2,7 @@ import React from "react"
 import { useContext } from "react";
 import { SocketContext } from '../../services/SocketContext';
 
-const Notifications = () => {
+const VideoNotifications = () => {
   const { answerCall, call, callAccepted } = useContext(SocketContext);
   return (
     <>
@@ -17,4 +17,4 @@ const Notifications = () => {
   )
 }
 
-export default Notifications;
+export default VideoNotifications;
