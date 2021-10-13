@@ -30,7 +30,9 @@ export interface IntJob {
   _id: string;
   status: string;
   languageFrom: string;
+  languageFromName: string;
   languageTo: string;
+  languageToName: string;
   jobType: string;
   dateCompleted: Date;
   jobName: string;

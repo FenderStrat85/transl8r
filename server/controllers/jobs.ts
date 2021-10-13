@@ -24,7 +24,9 @@ const createJob = async (req: Request, res: Response) => {
       jobType: jobType,
       _id: uuidv4(),
       languageFrom: languageFrom._id,
+      languageFromName: languageFromName,
       languageTo: languageTo._id,
+      languageToName: languageToName,
       CustomerId: _id,
       jobDescription: jobDescription,
     });
@@ -80,11 +82,29 @@ const getJobs = async (req: Request, res: Response) => {
   try {
     if (role === 'customer') {
       const jobs = await db.Job.findAll({ where: { CustomerId: _id } });
-      const filteredJobs = jobs.filter((job: IntJob) => job.status === status);
-      res.status(200).send(filteredJobs);
+      if (status === 'pendingAndAccepted') {
+        const filteredJobs = jobs.filter(
+          (job: IntJob) =>
+            job.status === 'pending' || job.status === 'accepted',
+        );
+        if (filteredJobs.length === 0) {
+          console.log('i have no jobs');
+          res.status(200).send([]);
+        } else {
+          res.status(200).send(filteredJobs);
+        }
+      } else {
+        const filteredJobs = jobs.filter(
+          (job: IntJob) => job.status === status,
+        );
+        res.status(200).send(filteredJobs);
+      }
     } else if (role === 'translator') {
       let jobs = await db.Job.findAll({ where: { TranslatorId: _id } });
       const filteredJobs = jobs.filter((job: IntJob) => job.status === status);
+      if (!filteredJobs) {
+        res.status(200).send([]);
+      }
       res.status(200).send(filteredJobs);
     }
   } catch (error) {
@@ -120,7 +140,11 @@ const getAvailableJobs = async (req: Request, res: Response) => {
         suitedJobs.push(job);
       }
     }
-    res.status(200).send(suitedJobs);
+    if (suitedJobs.length <= 0) {
+      res.status(200).send([]);
+    } else {
+      res.status(200).send(suitedJobs);
+    }
   } catch (error) {
     res.status(400).send({
       error: '400',
