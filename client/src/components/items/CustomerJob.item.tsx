@@ -1,4 +1,4 @@
-const JobItem = (props: { job: any }) => {
+const CustomerJobItem = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName } =
     props.job;
   console.log(props.job);
@@ -11,4 +11,4 @@ const JobItem = (props: { job: any }) => {
   );
 };
 
-export default JobItem;
+export default CustomerJobItem;

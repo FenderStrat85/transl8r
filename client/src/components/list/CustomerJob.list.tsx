@@ -1,5 +1,5 @@
 import React from 'react';
-import JobItem from '../items/Job.item';
+import CustomerJobItem from '../items/CustomerJob.item';
 import { UserContext } from '../../services/Context';
 import { useContext } from 'react';
 import { server } from '../../constants/server';
@@ -29,27 +29,49 @@ const CustomerJobList = (props: { jobs: any }) => {
     },
   );
 
-  const jobs = props.jobs;
-  const listJobs = jobs.map((job: any) => {
-    <li>
-      <JobItem job={job} />
-    </li>;
-  });
+  let pendingJobs = [];
+  let acceptedJobs = [];
 
-  <ul>{listJobs}</ul>;
+  console.log(data);
+  if (data && data.length > 0) {
+    pendingJobs = data.filter((job) => job.status === 'pending');
+    acceptedJobs = data.filter((job) => job.status === 'accepted');
+  }
 
   return (
     <div>
-      <h2>Pending Jobs</h2>
-      {status === 'error' && <div>Error fetching data</div>}
-      {status === 'loading' && <div>Fetching data</div>}
-      {status === 'success' && (
-        <div>
-          {data.map((job) => (
-            <JobItem key={job._id} job={job} />
-          ))}
-        </div>
-      )}
+      <div>
+        <h2>Pending Jobs</h2>
+        {status === 'error' && <div>Error fetching data</div>}
+        {status === 'loading' && <div>Fetching data</div>}
+        {status === 'success' && (
+          <div>
+            {pendingJobs.length > 0 ? (
+              pendingJobs.map((job) => (
+                <CustomerJobItem key={job._id} job={job} />
+              ))
+            ) : (
+              <h3>No pending jobs</h3>
+            )}
+          </div>
+        )}
+      </div>
+      <div>
+        <h2>Accepted Jobs</h2>
+        {status === 'error' && <div>Error fetching data</div>}
+        {status === 'loading' && <div>Fetching data</div>}
+        {status === 'success' && (
+          <div>
+            {acceptedJobs.length > 0 ? (
+              acceptedJobs.map((job) => (
+                <CustomerJobItem key={job._id} job={job} />
+              ))
+            ) : (
+              <h3>No accepted jobs</h3>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

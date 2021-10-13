@@ -15,6 +15,7 @@ const authMiddleware = async (
 
   try {
     const { _id } = jwt.verify(token, SECRET_KEY);
+    console.log(_id);
     const user: IntUser =
       (await db.Customer.findOne({ where: { _id: _id } })) ||
       (await db.Translator.findOne({ where: { _id: _id } }));
