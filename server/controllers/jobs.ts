@@ -64,12 +64,15 @@ const createJob = async (req: Request, res: Response) => {
 };
 
 const acceptJob = async (req: Request, res: Response) => {
-  const { jobId, translatorId } = req.body;
+  console.log(req.body);
+  const { _id } = req.body;
+  console.log(req.user._id);
   try {
-    const job = await db.Job.findOne({ where: { _id: jobId } });
+    const job = await db.Job.findOne({ where: { _id: _id } });
     job.status = 'accepted';
-    job.TranslatorId = translatorId;
+    job.TranslatorId = req.user._id;
     await job.save();
+    console.log('updated job!', job);
     res.status(200).send(job);
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Not able to accept a job' });

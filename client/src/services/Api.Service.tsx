@@ -45,4 +45,19 @@ apiService.createJob = (jobInfos, jobType, accessToken) => {
     .catch((err) => console.log(err));
 };
 
+apiService.acceptJob = (jobInfos, accessToken) => {
+  return fetch(`${server}/acceptJob`, {
+    method: 'PUT',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(jobInfos),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
 export default apiService;
