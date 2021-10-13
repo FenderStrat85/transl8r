@@ -18,6 +18,7 @@ import TranslatorJobList from '../components/list/TranslatorJob.list';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
+  const accessToken = localStorage.getItem('accessToken');
 
   return (
     <>
@@ -58,19 +59,18 @@ const AppLayout = () => {
           </Route>
 
           {/* {CUSTOMER JOBS ROUTE} */}
-          <Route exact path='/app/customer/acceptedjob/image:id'>
+          <Route exact path="/app/customer/acceptedjob/image:id">
             {/* {IM THE IMAGE COMPONENT} */}
             <h1>IMAGE COMPONENT</h1>
           </Route>
-          <Route exact path='/app/customer/acceptedjob/chat:id'>
+          <Route exact path="/app/customer/acceptedjob/chat:id">
             {/* {IM THE CHAT COMPONENT} */}
             <h1>CHAT COMPONENT</h1>
           </Route>
-          <Route exact path='/app/customer/acceptedjob/video:id'>
+          <Route exact path="/app/customer/acceptedjob/video:id">
             {/* {IM THE VIDEO COMPONENT} */}
             <h1>VIDEO COMPONENT</h1>
           </Route>
-
 
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}

@@ -12,19 +12,13 @@ const authMiddleware = async (
   const authHeaders = req.headers['authorization'];
   if (!authHeaders) return res.sendStatus(403);
   const token = authHeaders.split(' ')[1];
-
   try {
-    // const res = jwt.verify(token, SECRET_KEY);
-    // console.log('res objec tin auth', res);
     const { _id } = jwt.verify(token, SECRET_KEY);
-    // console.log(_id);
     const user: IntUser =
       (await db.Customer.findOne({ where: { _id: _id } })) ||
       (await db.Translator.findOne({ where: { _id: _id } }));
-    // console.log(user);
     if (!user) {
-      console.log('I am not a user');
-      return res.sendStatus(401);
+      return res.sendStatus(402);
     }
     req.user = user;
     next();

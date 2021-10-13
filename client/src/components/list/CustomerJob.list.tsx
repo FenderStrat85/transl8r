@@ -7,7 +7,7 @@ import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
 
 const CustomerJobList = (props: { jobs: any }) => {
-  const { user } = useContext(UserContext);
+  const accessToken = localStorage.getItem('accessToken');
 
   const fetchPendingAndAcceptedJobs = async () => {
     const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
@@ -16,7 +16,7 @@ const CustomerJobList = (props: { jobs: any }) => {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     return res.json();

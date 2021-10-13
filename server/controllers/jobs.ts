@@ -1,10 +1,14 @@
 import db from '../models/db';
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { IntJob } from './../interfaces/interfaces';
 
 const { v4: uuidv4 } = require('uuid');
 
 const createJob = async (req: Request, res: Response) => {
+  console.log('Inside create job function in server');
+  console.log('req.body', req.body);
+  console.log('req.user', req.user);
+  console.log('params', req.params);
   const { jobName, languageFromName, languageToName, jobDescription } =
     req.body;
   const { type } = req.params;
@@ -43,6 +47,7 @@ const createJob = async (req: Request, res: Response) => {
       res.status(201).send(img);
     }
     if (type === 'chat') {
+      console.log('I am a chat!');
       const newChat = new db.Conversation({
         _id: uuidv4(),
         JobId: jobId,
@@ -51,6 +56,7 @@ const createJob = async (req: Request, res: Response) => {
       res.status(201).send(chat);
     }
     if (type === 'video') {
+      console.log('I am a video');
       const newVideoChat = new db.VideoChat({
         _id: uuidv4(),
         JobId: jobId,

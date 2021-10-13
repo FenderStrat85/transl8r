@@ -7,20 +7,19 @@ import { Link } from 'react-router-dom';
 
 const TranslatorJobList = (props: { jobs: any }) => {
   const { user } = useContext(UserContext);
+  const accessToken = localStorage.getItem('accessToken');
 
   const fetchPendingJobs = async () => {
-    if (user.token) {
-      const res = await fetch(`${server}/getAvailableJobs`, {
-        method: 'GET',
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      return res.json();
-    }
+    const res = await fetch(`${server}/getAvailableJobs`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return res.json();
   };
 
   const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
