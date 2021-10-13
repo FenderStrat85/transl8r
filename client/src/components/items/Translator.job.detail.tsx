@@ -1,24 +1,29 @@
-import { UserContext } from "../../services/Context";
-import { useContext } from "react";
+import { UserContext } from '../../services/Context';
+import { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import apiService from "../../services/Api.Service";
+import apiService from '../../services/Api.Service';
 
 export const TranslatorJobDetail = (props) => {
-
-  const history = useHistory()
-
+  const history = useHistory();
   const { user } = useContext(UserContext);
+  const accessToken = localStorage.getItem('accessToken');
   const job = useLocation();
 
-  const { jobName, status, jobType, languageFromName, languageToName, jobDescription } = job.state;
+  const {
+    jobName,
+    status,
+    jobType,
+    languageFromName,
+    languageToName,
+    jobDescription,
+  } = job.state;
 
   const acceptJob = async () => {
-    const res = await apiService.acceptJob(job.state, user.token);
+    const res = await apiService.acceptJob(job.state, accessToken);
     if (res.status === 'accepted') {
       jobAccepted = true;
       history.push(`/app/translator/${res.jobType}`);
     }
-
   };
 
   let jobAccepted = false;
@@ -33,13 +38,12 @@ export const TranslatorJobDetail = (props) => {
           <h3>{jobDescription}</h3>
 
           <button onClick={() => acceptJob()}>Accept this job</button>
-        </div >
-
-      ) : (<h1>Awesome, you've accepted!</h1>)
-
-      }
+        </div>
+      ) : (
+        <h1>Awesome, you've accepted!</h1>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default TranslatorJobDetail;

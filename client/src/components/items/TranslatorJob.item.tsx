@@ -14,17 +14,15 @@ const TranslatorJobItem = (props: { job: any }) => {
     languageToName,
     jobDescription,
   } = props.job;
-  // console.log('user!!!', user);
-  const acceptJob = async () => {
-    const res = apiService.acceptJob(props.job, user.token);
-  };
 
   return (
     <div>
       {jobName} : Status:{status} is a {jobType}
       <p>Language from: {languageFromName}</p>
       <p>Language to: {languageToName}</p>
-      <Link to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}>
+      <Link
+        to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
+      >
         <button>See more details:</button>
       </Link>
     </div>

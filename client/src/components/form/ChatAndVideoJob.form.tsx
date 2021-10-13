@@ -9,7 +9,7 @@ import { Language } from '../../interfaces/interfaces';
 const ChatAndVideoJobForm = (props) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
-  const accessToken = user.token;
+  const accessToken = localStorage.getItem('accessToken');
   const jobType = props.jobType;
   const options = languageChoice;
 

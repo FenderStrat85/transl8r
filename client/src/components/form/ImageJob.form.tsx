@@ -8,7 +8,8 @@ import { Language } from '../../interfaces/interfaces';
 
 const ImageJobForm = () => {
   const { user } = useContext(UserContext);
-  const accessToken = user.token;
+  const accessToken = localStorage.getItem('accessToken');
+  console.log(accessToken);
   const jobType = 'image';
   const options = languageChoice;
   const [fileInputState, setFileInputState] = useState('');

@@ -17,6 +17,7 @@ import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
+  const accessToken = localStorage.getItem('accessToken');
 
   return (
     <>
@@ -58,8 +59,6 @@ const AppLayout = () => {
             <ChatAndVideoJobForm jobType={'video'} />
           </Route>
 
-
-
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}
           <Route exact path="/app/translator/dashboard">
@@ -86,7 +85,6 @@ const AppLayout = () => {
           <Route exact path="/app/translator/dashboard/viewjob">
             {/* I'm the video */}
           </Route>
-
 
           {/* 404 route */}
           <Route path="*">
