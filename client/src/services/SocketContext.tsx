@@ -2,6 +2,9 @@ import React, { createContext, useState, useRef, useEffect, MutableRefObject } f
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
+const mock = {
+
+}
 
 const SocketContext = createContext({});
 
@@ -23,7 +26,7 @@ const ContextProvider = ({ children }) => {
 
   // an object containing the call info
   // contains a 'from' which is the ID of the initiator
-  const [call, setCall] = useState({});
+  const [call, setCall] = useState({ from: '', signal: '', isReceivingCall: false, name: '' });
 
 
   const [me, setMe] = useState('');
@@ -67,7 +70,7 @@ const ContextProvider = ({ children }) => {
     })
     // Video for other user
     peer.on('stream', (currentStream) => {
-      userVideo.current.srcObject = currentStream
+      userVideo.current.srcObject = currentStream;
     })
 
     peer.signal(call.signal);
@@ -76,7 +79,7 @@ const ContextProvider = ({ children }) => {
   }
 
   // 39'
-  const callUser = (id) => {
+  const callUser = (id: string) => {
     const peer = new Peer({ initiator: true, trickle: false, stream })
 
     peer.on('signal', (data) => {
