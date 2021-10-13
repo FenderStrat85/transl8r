@@ -1,5 +1,7 @@
 import React from 'react';
 import CustomerJobItem from '../items/CustomerJob.item';
+import CustomerAcceptedJobItem from '../items/Customer.accepted.job.item';
+import { UserContext } from '../../services/Context';
 import { useContext } from 'react';
 import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
@@ -38,7 +40,7 @@ const CustomerJobList = (props: { jobs: any }) => {
   }
 
   return (
-    <div>
+    <>
       <div>
         <h2>Pending Jobs</h2>
         {status === 'error' && <div>Error fetching data</div>}
@@ -63,7 +65,7 @@ const CustomerJobList = (props: { jobs: any }) => {
           <div>
             {acceptedJobs.length > 0 ? (
               acceptedJobs.map((job) => (
-                <CustomerJobItem key={job._id} job={job} />
+                <CustomerAcceptedJobItem key={job._id} job={job} />
               ))
             ) : (
               <h3>No accepted jobs</h3>
@@ -71,7 +73,7 @@ const CustomerJobList = (props: { jobs: any }) => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

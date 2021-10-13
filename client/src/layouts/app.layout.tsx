@@ -14,6 +14,7 @@ import CreateJob from '../screen/CreateJob.screen';
 import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
+import TranslatorJobList from '../components/list/TranslatorJob.list';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -28,13 +29,11 @@ const AppLayout = () => {
         <Switch>
           {/* Selectjob is where a customer can select a job type from a 3-button menu */}
           <Route exact path="/app/customer/selectjob">
-            <h1>Customer Select Job (Home)</h1>
             <SelectJob />
           </Route>
 
           {/* Customer Dashboard is where the user can see a list of active jobs */}
           <Route path="/app/customer/dashboard">
-            <h1>Customer Dashboard</h1>
             <Dashboard />
           </Route>
 
@@ -59,31 +58,43 @@ const AppLayout = () => {
             <ChatAndVideoJobForm jobType={'video'} />
           </Route>
 
+          {/* {CUSTOMER JOBS ROUTE} */}
+          <Route exact path="/app/customer/acceptedjob/image:id">
+            {/* {IM THE IMAGE COMPONENT} */}
+            <h1>IMAGE COMPONENT</h1>
+          </Route>
+          <Route exact path="/app/customer/acceptedjob/chat:id">
+            {/* {IM THE CHAT COMPONENT} */}
+            <h1>CHAT COMPONENT</h1>
+          </Route>
+          <Route exact path="/app/customer/acceptedjob/video:id">
+            {/* {IM THE VIDEO COMPONENT} */}
+            <h1>VIDEO COMPONENT</h1>
+          </Route>
+
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}
           <Route exact path="/app/translator/dashboard">
-            <h1>Translator Dashboard (Home)</h1>
             <Dashboard />
           </Route>
           {/* Here the translator can view pending and completed jobs  */}
           <Route exact path="/app/translator/dashboard/history">
-            <h1>Translator Accepted (Home)</h1>
             <Dashboard />
           </Route>
-
+          {/* Here a translator can view a selected job tile in more detail, and accept the job */}
           <Route exact path="/app/translator/dashboard/viewjob">
             <TranslatorJobDetail />
           </Route>
 
           {/* TRANSLATOR JOB ROUTES */}
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the image */}
+          <Route exact path="/app/translator/image:jobId">
+            <h1>Image Component</h1>
           </Route>
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the chat */}
+          <Route exact path="/app/translator/chat:jobId">
+            <h1>Chat Component</h1>
           </Route>
-          <Route exact path="/app/translator/dashboard/viewjob">
-            {/* I'm the video */}
+          <Route exact path="/app/translator/video:jobId">
+            <h1>Video Component</h1>
           </Route>
 
           {/* 404 route */}
