@@ -16,7 +16,7 @@ export const TranslatorJobDetail = (props) => {
     const res = await apiService.acceptJob(job.state, user.token);
     if (res.status === 'accepted') {
       jobAccepted = true;
-      history.push("/app/translator/dashboard");
+      history.push(`/app/translator/${res.jobType}`);
     }
 
   };
@@ -24,14 +24,21 @@ export const TranslatorJobDetail = (props) => {
   let jobAccepted = false;
 
   return (
-    <div>
-      <h1>Job detail</h1>
-      <h1>{user.firstName}</h1>
-      <h1>{jobType}</h1>
-      <h3>{jobDescription}</h3>
+    <>
+      {!jobAccepted ? (
+        <div>
+          <h1>Job detail</h1>
+          <h1>{user.firstName}</h1>
+          <h1>{jobType}</h1>
+          <h3>{jobDescription}</h3>
 
-      <button onClick={() => acceptJob()}>Accept this job</button>
-    </div >
+          <button onClick={() => acceptJob()}>Accept this job</button>
+        </div >
+
+      ) : (<h1>Awesome, you've accepted!</h1>)
+
+      }
+    </>
   )
 }
 
