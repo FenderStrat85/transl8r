@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from '../screen/Dashboard.screen';
 import SelectJob from '../screen/SelectJob.screen';
+import TranslatorJobDetail from '../components/items/Translator.job.detail';
 import { useContext } from 'react';
 import { UserContext } from '../services/Context';
 import {
@@ -68,6 +69,11 @@ const AppLayout = () => {
             <h1>Translator Accepted (Home)</h1>
             <Dashboard />
           </Route>
+
+          <Route exact path="/app/translator/dashboard/viewjob">
+            <TranslatorJobDetail />
+          </Route>
+
 
           {/* 404 route */}
           <Route path="*">
