@@ -1,4 +1,5 @@
-import JobList from '../components/list/Job.list';
+import CustomerJobList from '../components/list/CustomerJob.list';
+import TranslatorJobList from '../components/list/TranslatorJob.list';
 import { UserContext } from '../services/Context';
 import { useContext, useEffect, useState } from 'react';
 import { Route, Link } from 'react-router-dom';
@@ -15,16 +16,18 @@ const Dashboard = () => {
 
   return (
     <>
-      {user.role !== 'customer' ? (
+      {user.role === 'customer' ? (
         <>
+          <h1>{user.role} Dashboard</h1>
           <h1>Your Pending and Accepted jobs</h1>
-          <JobList jobs={jobs} />
+          <CustomerJobList jobs={jobs} />
+          <button>Take me to my completed jobs!</button>
         </>
       ) : (
         <div>
           <h1>{user.role} Dashboard</h1>
-          <JobList jobs={jobs} />
-        </div >
+          <TranslatorJobList jobs={jobs} />
+        </div>
       )}
     </>
   );

@@ -52,11 +52,9 @@ const register = async (req: Request, res: Response) => {
         translator.addLanguage(languageSpoken._id);
         translator.save();
       }
-      const translatorId = translator._id;
-      const accessToken = jwt.sign({ translatorId }, SECRET_KEY);
-      res
-        .status(201)
-        .send({ accessToken, role, translatorId, firstName, lastName });
+      const { _id } = translator;
+      const accessToken = jwt.sign({ _id }, SECRET_KEY);
+      res.status(201).send({ accessToken, role, _id, firstName, lastName });
     }
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user' });

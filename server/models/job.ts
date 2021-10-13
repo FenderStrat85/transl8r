@@ -33,7 +33,15 @@ const Job = (sequelize: any, DataTypes: any) => <JobInstance>sequelize.define(
         type: DataTypes.STRING,
         allowNull: false,
       },
+      languageFromName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       languageTo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      languageToName: {
         type: DataTypes.STRING,
         allowNull: false,
       },

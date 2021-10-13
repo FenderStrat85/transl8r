@@ -10,6 +10,7 @@ const authMiddleware = async (
   next: NextFunction,
 ) => {
   const authHeaders = req.headers['authorization'];
+  console.log('authHeaders', authHeaders);
   if (!authHeaders) return res.sendStatus(403);
   const token = authHeaders.split(' ')[1];
 
