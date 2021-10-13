@@ -40,7 +40,7 @@ const CustomerJobList = (props: { jobs: any }) => {
   }
 
   return (
-    <div>
+    <>
       <div>
         <h2>Pending Jobs</h2>
         {status === 'error' && <div>Error fetching data</div>}
@@ -73,7 +73,7 @@ const CustomerJobList = (props: { jobs: any }) => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

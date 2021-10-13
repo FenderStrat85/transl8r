@@ -14,6 +14,7 @@ import CreateJob from '../screen/CreateJob.screen';
 import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
+import TranslatorJobList from '../components/list/TranslatorJob.list';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -27,13 +28,11 @@ const AppLayout = () => {
         <Switch>
           {/* Selectjob is where a customer can select a job type from a 3-button menu */}
           <Route exact path="/app/customer/selectjob">
-            <h1>Customer Select Job (Home)</h1>
             <SelectJob />
           </Route>
 
           {/* Customer Dashboard is where the user can see a list of active jobs */}
           <Route path="/app/customer/dashboard">
-            <h1>Customer Dashboard</h1>
             <Dashboard />
           </Route>
 
@@ -76,12 +75,10 @@ const AppLayout = () => {
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}
           <Route exact path="/app/translator/dashboard">
-            <h1>Translator Dashboard (Home)</h1>
             <Dashboard />
           </Route>
           {/* Here the translator can view pending and completed jobs  */}
           <Route exact path="/app/translator/dashboard/history">
-            <h1>Translator Accepted (Home)</h1>
             <Dashboard />
           </Route>
           {/*  */}
