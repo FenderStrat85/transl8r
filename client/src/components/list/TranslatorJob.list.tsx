@@ -10,7 +10,6 @@ const TranslatorJobList = (props: { jobs: any }) => {
 
   const fetchPendingJobs = async () => {
     if (user.token) {
-      console.log('usertoken in frontend', user.token);
       const res = await fetch(`${server}/getAvailableJobs`, {
         method: 'GET',
         credentials: 'include',
@@ -29,13 +28,13 @@ const TranslatorJobList = (props: { jobs: any }) => {
   });
 
   const jobs = props.jobs;
-  const listJobs = jobs.map((job: any) => {
-    <li>
-      <TranslatorJobItem job={job} />
-    </li>;
-  });
+  // const listJobs = jobs.map((job: any) => {
+  //   <li>
+  //     <TranslatorJobItem job={job} />
+  //   </li>;
+  // });
 
-  <ul>{listJobs}</ul>;
+  // <ul>{listJobs}</ul>;
 
   return (
     <div>
