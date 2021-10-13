@@ -10,7 +10,7 @@ const TranslatorJobList = (props: { jobs: any }) => {
 
   const fetchPendingJobs = async () => {
     if (user.token) {
-      console.log(user.token);
+      console.log('usertoken in frontend', user.token);
       const res = await fetch(`${server}/getAvailableJobs`, {
         method: 'GET',
         credentials: 'include',

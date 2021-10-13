@@ -10,12 +10,12 @@ const authMiddleware = async (
   next: NextFunction,
 ) => {
   const authHeaders = req.headers['authorization'];
+  console.log('authHeaders', authHeaders);
   if (!authHeaders) return res.sendStatus(403);
   const token = authHeaders.split(' ')[1];
 
   try {
     const { _id } = jwt.verify(token, SECRET_KEY);
-    console.log(_id);
     const user: IntUser =
       (await db.Customer.findOne({ where: { _id: _id } })) ||
       (await db.Translator.findOne({ where: { _id: _id } }));
