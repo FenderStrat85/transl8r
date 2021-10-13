@@ -1,10 +1,14 @@
-
 const JobItem = (props: { job: any }) => {
-  const { jobName, status, jobType, dateCompleted } = props.job
+  const { jobName, status, jobType, languageFromName, languageToName } =
+    props.job;
+  console.log(props.job);
   return (
     <div>
-      {jobName} : {status} is a {jobType} and {dateCompleted} ended?
-    </div>);
-}
+      {jobName} : Status:{status} is a {jobType}
+      <p>Language from: {languageFromName}</p>
+      <p>Language to: {languageToName}</p>
+    </div>
+  );
+};
 
 export default JobItem;

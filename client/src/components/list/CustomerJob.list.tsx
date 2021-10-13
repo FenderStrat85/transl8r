@@ -5,11 +5,11 @@ import { useContext } from 'react';
 import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
 
-const JobList = (props: { jobs: any }) => {
+const CustomerJobList = (props: { jobs: any }) => {
   const { user } = useContext(UserContext);
 
-  const fetchPendingJobs = async () => {
-    const res = await fetch(`${server}/getJobs/pending`, {
+  const fetchPendingAndAcceptedJobs = async () => {
+    const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
@@ -21,9 +21,13 @@ const JobList = (props: { jobs: any }) => {
     return res.json();
   };
 
-  const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
-    refetchInterval: 5000,
-  });
+  const { data, status } = useQuery(
+    'pendingJobs',
+    fetchPendingAndAcceptedJobs,
+    {
+      refetchInterval: 5000,
+    },
+  );
 
   const jobs = props.jobs;
   const listJobs = jobs.map((job: any) => {
@@ -50,4 +54,4 @@ const JobList = (props: { jobs: any }) => {
   );
 };
 
-export default JobList;
+export default CustomerJobList;
