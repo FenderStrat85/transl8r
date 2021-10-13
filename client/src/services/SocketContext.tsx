@@ -1,11 +1,11 @@
-import React, { createContext, useState, useRef, useEffect } from 'react';
+import React, { createContext, useState, useRef, useEffect, MutableRefObject } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 
 const SocketContext = createContext({});
 
-const socket = io('http://localhost:3001/');
+const socket = io('http://localhost:3000/');
 
 const ContextProvider = ({ children }) => {
 
@@ -28,9 +28,9 @@ const ContextProvider = ({ children }) => {
 
   const [me, setMe] = useState('');
 
-  const myVideo = useRef();
-  const userVideo = useRef();
-  const connectionRef = useRef();
+  const myVideo: MutableRefObject<any> = useRef();
+  const userVideo: MutableRefObject<any> = useRef();
+  const connectionRef: MutableRefObject<any> = useRef();
 
 
   useEffect(() => {
