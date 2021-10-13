@@ -2,11 +2,22 @@ import React, { createContext, useState, useRef, useEffect, MutableRefObject } f
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
-const mock = {
+// const mock = {
+//   call: {},
+//   callAccepted: false,
+//   myVideo: {},
+//   userVideo: {},
+//   stream: {},
+//   name: '',
+//   setName: '',
+//   callEnded: false,
+//   me: '',
+//   callUser: {},
+//   leaveCall: {},
+//   answerCall: {}
+// }
 
-}
-
-const SocketContext = createContext({});
+const SocketContext = createContext(null);
 
 const socket = io('http://localhost:3000/');
 
@@ -102,7 +113,7 @@ const ContextProvider = ({ children }) => {
     window.location.reload();
   }
   return (
-    //Provides all of the methods above the the child components
+    //Provides all of the methods above to the child components
     <SocketContext.Provider value={{
       call, callAccepted, myVideo, userVideo, stream, name, setName, callEnded, me, callUser, leaveCall, answerCall
     }}>
