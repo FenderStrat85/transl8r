@@ -27,5 +27,10 @@ router.put(
   authMiddleware,
   imageController.uploadTranslatedImageUrl,
 );
+router.put(
+  '/addTranslatedTextOfImage/:jobId',
+  authMiddleware,
+  imageController.uploadTranslatedTextOfImage,
+);
 
 export = router;

@@ -55,16 +55,10 @@ const TranslatorImage = (props: { job: any }) => {
 
   const uploadImageToDB = async (url: string) => {
     await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
-    //db magic + check "-"
-    // console.log(`${url} on db`);
-    //rendering results if needed
-    //setResultsImage(secure_url);
   };
-  const uploadTextToDb = (text: string) => {
-    //db magic + check "-"
-    console.log(`${text} on db`);
-    //rendering results if needed
-    //setResultsImage(secure_url);
+
+  const uploadTextToDb =  async(text: string) => {
+    await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
   };
 
   const handleChange = (event: {
@@ -85,8 +79,6 @@ const TranslatorImage = (props: { job: any }) => {
           style={{ maxWidth: '50%' }}
           onClick={() => showMarkerArea()}
         />
-        {console.log(props.job)}
-
         <textarea
           required
           name="textarea"
