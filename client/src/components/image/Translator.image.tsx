@@ -11,7 +11,8 @@ const TranslatorImage = (props: { job: any }) => {
   // const [resultsImage, setResultsImage] = useState('');
 
   const showMarkerArea = () => {
-    let markerArea = new markerjs2.MarkerArea(
+    //TODO: It's probably better to avoid native DOM API methods and use the Refs which is React's way of accessing DOM elements.
+    const markerArea = new markerjs2.MarkerArea(
       document.getElementById('translator'),
     );
 
@@ -67,7 +68,11 @@ const TranslatorImage = (props: { job: any }) => {
   return (
     <>
       <h2>{jobName}</h2>
+<<<<<<< HEAD
       <form onSubmit={handleSubmit}>
+=======
+      <div>
+>>>>>>> development
         <img
           crossOrigin="anonymous"
           id="translator"
