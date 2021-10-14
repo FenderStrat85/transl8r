@@ -36,8 +36,8 @@ const ChatAndVideoJobForm = (props) => {
     event.preventDefault();
 
     try {
-      let languageFromName = selectedFrom.value;
-      let languageToName = selectedTo.value;
+      const languageFromName = selectedFrom.value;
+      const languageToName = selectedTo.value;
       const objToSendBackToTheDb = {
         ...formValue,
         languageFromName,
@@ -53,6 +53,7 @@ const ChatAndVideoJobForm = (props) => {
         setFormValue(initialState);
       }
     } catch (error) {
+      //TODO: redirect to an error page
       console.log(error);
     }
   };

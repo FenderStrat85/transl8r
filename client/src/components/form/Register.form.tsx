@@ -35,11 +35,12 @@ const RegisterForm = () => {
     event.preventDefault();
     const objectToSendToDb: any = formValue;
     if (formValue.role === 'translator') {
-      let resArr = [];
-      selected.forEach((item) => {
-        resArr.push(item.value);
-      });
-      objectToSendToDb.languages = resArr;
+      // let resArr = [];
+      // selected.forEach((item) => {
+      //   resArr.push(item.value);
+      // });
+      const languageArray = selected.map((item) => item.value);
+      objectToSendToDb.languages = languageArray;
     }
 
     try {

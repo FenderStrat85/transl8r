@@ -19,7 +19,7 @@ const TranslatorJobList = (props: { jobs: any }) => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return res.json();
+    return await res.json();
   };
 
   const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
