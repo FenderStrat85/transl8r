@@ -57,6 +57,8 @@ export interface IMessage {
 export interface IImage {
   _id: string;
   imageUrl: string;
+  imageUrlTranslate: string;
+  translatedText: string;
 }
 
 export interface IVideoChat {
