@@ -4,6 +4,8 @@ import { SocketContext } from '../../services/SocketContext';
 import './VideoStream.css';
 
 const VideoStream = () => {
+  console.log(useContext(SocketContext))
+
   const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext);
 
   // 48'

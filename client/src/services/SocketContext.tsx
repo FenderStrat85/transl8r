@@ -1,25 +1,46 @@
-import React, { createContext, useState, useRef, useEffect, MutableRefObject } from 'react';
-import { io } from 'socket.io-client';
+import { createContext, useState, useRef, useEffect, MutableRefObject } from 'react';
+import { io, Socket } from 'socket.io-client';
 import Peer from 'simple-peer';
 
-// const mock = {
-//   call: {},
-//   callAccepted: false,
-//   myVideo: {},
-//   userVideo: {},
-//   stream: {},
-//   name: '',
-//   setName: '',
-//   callEnded: false,
-//   me: '',
-//   callUser: {},
-//   leaveCall: {},
-//   answerCall: {}
-// }
+// name: string, callAccepted: boolean, myVideo: {current: video.user.stream}, userVideo: same as myVideo, callEnded: boolean, stream: mediaStream, call: callObject
+interface IContextProps {
+  state: IMock;
+  dispatch: ({ type }: { type: string }) => void;
+}
+type IMock = {
+  call: { name: string, isReceivingCall: boolean },
+  callAccepted: boolean,
+  myVideo: {},
+  userVideo: {},
+  stream: any,
+  name: string,
+  setName: any,
+  callEnded: boolean,
+  me: string,
+  callUser: any,
+  leaveCall: {},
+  answerCall: {},
+}
 
-const SocketContext = createContext(null);
+const mock: IMock = {
+  call: { isReceivingCall: false, name: '' },
+  callAccepted: false,
+  myVideo: {},
+  userVideo: {},
+  stream: {},
+  name: '',
+  setName: () => { },
+  callEnded: false,
+  me: '',
+  callUser: (id) => { },
+  leaveCall: {},
+  answerCall: {}
+}
 
-const socket = io('http://localhost:3000/');
+const SocketContext = createContext<IMock>(mock);
+// const SocketContext = createContext({} as IContextProps);
+
+const socket: Socket = io('http://localhost:5001/');
 
 const ContextProvider = ({ children }) => {
 
@@ -42,9 +63,9 @@ const ContextProvider = ({ children }) => {
 
   const [me, setMe] = useState('');
 
-  const myVideo: MutableRefObject<any> = useRef();
-  const userVideo: MutableRefObject<any> = useRef();
-  const connectionRef: MutableRefObject<any> = useRef();
+  const myVideo: any = useRef();
+  const userVideo: any = useRef();
+  const connectionRef: any = useRef();
 
 
   useEffect(() => {
@@ -93,11 +114,11 @@ const ContextProvider = ({ children }) => {
   const callUser = (id: string) => {
     const peer = new Peer({ initiator: true, trickle: false, stream })
 
-    peer.on('signal', (data) => {
+    peer.on('signal', (data: any) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me, name })
     })
     // Video for other user
-    peer.on('stream', (currentStream) => {
+    peer.on('stream', (currentStream: any) => {
       userVideo.current.srcObject = currentStream
     })
     socket.on('callAccepted', (signal) => {
@@ -112,6 +133,7 @@ const ContextProvider = ({ children }) => {
     connectionRef.current.destroy();
     window.location.reload();
   }
+
   return (
     //Provides all of the methods above to the child components
     <SocketContext.Provider value={{
@@ -121,5 +143,4 @@ const ContextProvider = ({ children }) => {
     </SocketContext.Provider>
   )
 }
-
 export { ContextProvider, SocketContext }

@@ -1,4 +1,4 @@
-import React from "react"
+import { MouseEvent } from "react";
 import { useContext } from "react";
 import { SocketContext } from '../../services/SocketContext';
 
