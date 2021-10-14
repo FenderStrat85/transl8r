@@ -1,4 +1,4 @@
-export interface IntUser {
+export interface IUser {
   _id: string;
   firstName: string;
   lastName: string;
@@ -7,7 +7,7 @@ export interface IntUser {
   role: string;
   averageRating?: number;
 }
-export interface IntCustomer {
+export interface ICustomer {
   _id: string;
   firstName: string;
   lastName: string;
@@ -16,7 +16,7 @@ export interface IntCustomer {
   role: string;
 }
 
-export interface IntTranslator {
+export interface ITranslator {
   _id: string;
   firstName: string;
   lastName: string;
@@ -26,7 +26,7 @@ export interface IntTranslator {
   averageRating: string;
 }
 
-export interface IntJob {
+export interface IJob {
   _id: string;
   status: string;
   languageFrom: string;
@@ -39,26 +39,26 @@ export interface IntJob {
   jobDescription: string;
 }
 
-export interface IntLanguage {
+export interface ILanguage {
   _id: string;
   languageName: string;
 }
 
-export interface IntConversation {
+export interface IConversation {
   _id: string;
 }
 
-export interface IntMessage {
+export interface IMessage {
   _id: string;
   messageAuthor: string;
   messageContent: string;
 }
 
-export interface IntImage {
+export interface IImage {
   _id: string;
   imageUrl: string;
 }
 
-export interface IntVideoChat {
+export interface IVideoChat {
   _id: string;
 }

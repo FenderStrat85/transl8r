@@ -1,6 +1,6 @@
 import db from '../models/db';
 import e, { Request, Response } from 'express';
-import { IntJob } from './../interfaces/interfaces';
+import { IJob } from './../interfaces/interfaces';
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -93,8 +93,7 @@ const getJobs = async (req: Request, res: Response) => {
       const jobs = await db.Job.findAll({ where: { CustomerId: _id } });
       if (status === 'pendingAndAccepted') {
         const filteredJobs = jobs.filter(
-          (job: IntJob) =>
-            job.status === 'pending' || job.status === 'accepted',
+          (job: IJob) => job.status === 'pending' || job.status === 'accepted',
         );
         if (filteredJobs.length === 0) {
           console.log('i have no jobs');
@@ -103,14 +102,12 @@ const getJobs = async (req: Request, res: Response) => {
           res.status(200).send(filteredJobs);
         }
       } else {
-        const filteredJobs = jobs.filter(
-          (job: IntJob) => job.status === status,
-        );
+        const filteredJobs = jobs.filter((job: IJob) => job.status === status);
         res.status(200).send(filteredJobs);
       }
     } else if (role === 'translator') {
       let jobs = await db.Job.findAll({ where: { TranslatorId: _id } });
-      const filteredJobs = jobs.filter((job: IntJob) => job.status === status);
+      const filteredJobs = jobs.filter((job: IJob) => job.status === status);
       if (!filteredJobs) {
         res.status(200).send([]);
       }

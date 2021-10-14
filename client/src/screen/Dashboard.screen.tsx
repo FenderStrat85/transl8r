@@ -28,7 +28,7 @@ const Dashboard = () => {
       {user.role === 'customer' ? (
         <>
           <h1>{user.role} Dashboard</h1>
-          <h1>Your Pending and Accepted jobs</h1>
+          <h2>Your Pending and Accepted jobs</h2>
           <CustomerJobList jobs={jobs} />
           <button>Take me to my completed jobs!</button>
           <button onClick={logoutFromApp}>Logout</button>
