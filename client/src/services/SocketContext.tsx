@@ -37,7 +37,7 @@ const mock: IMock = {
   answerCall: {}
 }
 
-const SocketContext = createContext<IMock>(mock);
+const SocketContext = createContext(mock);
 // const SocketContext = createContext({} as IContextProps);
 
 const socket = io('http://localhost:5001/');
