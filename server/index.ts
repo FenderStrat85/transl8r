@@ -38,13 +38,13 @@ io.on('connection', (socket: any) => {
     room = data.room;
     name = data.name;
     socket.join(data.room);
-    console.log(`User with name: ${data.name} joined room: ${data.room}`);
+    // console.log(`User with name: ${data.name} joined room: ${data.room}`);
   });
 
   socket.on('send_message', (data: IChatMessage) => {
-    console.log(data);
-    console.log(data.message);
-    console.log(data.room);
+    // console.log(data);
+    // console.log(data.message);
+    // console.log(data.room);
     socket.to(data.room).emit('receive_message', data);
   });
 
@@ -53,7 +53,7 @@ io.on('connection', (socket: any) => {
   });
 
   socket.on('disconnect', (data: IRoomJoin) => {
-    console.log('user disconnect inside disconnect', socket.id);
+    // console.log('user disconnect inside disconnect', socket.id);
     io.to(room).emit();
   });
 });

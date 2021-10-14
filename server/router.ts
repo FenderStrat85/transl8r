@@ -2,6 +2,7 @@ const router = require('express').Router();
 const authController = require('./controllers/authentication');
 const jobsController = require('./controllers/jobs');
 const imageController = require('./controllers/images');
+const chatController = require('./controllers/chat');
 const authMiddleware = require('./middlewares/auth');
 
 // TODO: add correct codes for the status in all the controllers
@@ -32,5 +33,8 @@ router.put(
   authMiddleware,
   imageController.uploadTranslatedTextOfImage,
 );
+
+// chat router
+router.post('/postMessage', authMiddleware, chatController.createMessage);
 
 export = router;

@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage, IRoomInfo } from '../../interfaces/interfaces';
 import './chat.css';
+import ApiService from '../../services/Api.Service';
 
 export const Chat = ({ socket, name, room, user_id }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
+
+  const accessToken = localStorage.getItem('accessToken');
 
   const roomInfo = {
     room: room,
@@ -25,6 +28,8 @@ export const Chat = ({ socket, name, room, user_id }) => {
           ':' +
           new Date(Date.now()).getMinutes(),
       };
+      let res = await ApiService.createMessage(messageData, accessToken);
+      console.log(res);
       await socket.emit('send_message', messageData);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
