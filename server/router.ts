@@ -22,5 +22,10 @@ router.get(
 
 // images router
 router.get('/getImageUrl/:jobId', authMiddleware, imageController.getImageUrl);
+router.put(
+  '/addTranslatedImage/:jobId',
+  authMiddleware,
+  imageController.uploadTranslatedImageUrl,
+);
 
 export = router;

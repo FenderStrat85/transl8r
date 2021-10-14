@@ -30,4 +30,4 @@ const uploadTranslatedImageUrl = async (req: Request, res: Response) => {
   }
 };
 
-module.exports = { getImageUrl };
+module.exports = { getImageUrl, uploadTranslatedImageUrl };
