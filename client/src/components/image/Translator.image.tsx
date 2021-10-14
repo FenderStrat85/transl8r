@@ -57,7 +57,7 @@ const TranslatorImage = (props: { job: any }) => {
     await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
   };
 
-  const uploadTextToDb =  async(text: string) => {
+  const uploadTextToDb = async (text: string) => {
     await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
   };
 

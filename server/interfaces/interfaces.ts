@@ -64,3 +64,16 @@ export interface IImage {
 export interface IVideoChat {
   _id: string;
 }
+
+export interface IRoomJoin {
+  room: string;
+  name: string;
+}
+
+export interface IChatMessage {
+  room: string;
+  authorName: string;
+  user_id: string;
+  message: string;
+  time: string;
+}

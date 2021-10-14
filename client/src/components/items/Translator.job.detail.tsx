@@ -28,18 +28,29 @@ export const TranslatorJobDetail = (props) => {
     fetchImage();
   }, []);
 
+  let jobAccepted = false;
+
   const acceptJob = async () => {
     const res = await apiService.acceptJob(job.state, accessToken);
+    console.log('res from translatorJobDetail', res);
     if (res.status === 'accepted') {
       jobAccepted = true;
-      history.push({
-        pathname: `/app/translator/${res.jobType}:${res._id}`,
-        state: { ...job.state, image },
-      });
+      if (res.jobType === 'chat') {
+        history.push(`/app/translator/${res.jobType}:${res._id}`, {
+          state: res,
+        });
+      }
+      if (res.jobType === 'image') {
+        history.push({
+          pathname: `/app/translator/${res.jobType}:${res._id}`,
+          state: { ...job.state, image },
+        });
+      }
+      if (res.jobType === 'video') {
+        console.log('I am a video function');
+      }
     }
   };
-
-  let jobAccepted = false;
 
   return (
     <>
