@@ -3,15 +3,13 @@ import React, { useEffect, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage, IRoomInfo } from '../../interfaces/interfaces';
 import './chat.css';
+import ApiService from '../../services/Api.Service';
 
 export const Chat = ({ socket, name, room, user_id }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
-  const roomInfo = {
-    room: room,
-    name: name,
-  };
+  const accessToken = localStorage.getItem('accessToken');
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -25,6 +23,8 @@ export const Chat = ({ socket, name, room, user_id }) => {
           ':' +
           new Date(Date.now()).getMinutes(),
       };
+      let res = await ApiService.createMessage(messageData, accessToken);
+      console.log(res);
       await socket.emit('send_message', messageData);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
@@ -35,9 +35,24 @@ export const Chat = ({ socket, name, room, user_id }) => {
     socket.on('receive_message', (data: IChatMessage) => {
       setMessageList((list) => [...list, data]);
     });
+    socket.on('leave_message', (data: IChatMessage) => {
+      setMessageList((list) => [...list, data]);
+    });
   }, [socket]);
 
-  const disconnectFromChat = async (roomInfo: any) => {
+  //generic leave message to be displayed when disconnect function called
+  const leaveMessage = {
+    message: `${name} has left the chat`,
+    authorName: 'ChatBot',
+    room: room,
+    user_id: 111,
+    time:
+      new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
+  };
+
+  const disconnectFromChat = async () => {
+    //leave chat function called in index.ts
+    await socket.emit('leave_chat', leaveMessage);
     socket.close();
   };
 

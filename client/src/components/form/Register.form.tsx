@@ -39,6 +39,8 @@ const RegisterForm = () => {
       // selected.forEach((item) => {
       //   resArr.push(item.value);
       // });
+      // objectToSendToDb.languages = resArr;
+
       const languageArray = selected.map((item) => item.value);
       objectToSendToDb.languages = languageArray;
     }

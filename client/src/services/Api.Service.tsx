@@ -108,6 +108,21 @@ apiService.uploadTranslatedTextOfImage = (
     .catch((err) => console.log(err));
 };
 
+apiService.createMessage = (messageData, accessToken) => {
+  return fetch(`${server}/postMessage`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(messageData),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
 apiService.changeStatus = (jobId, status, accessToken) => {
   return fetch(`${server}/changeStatus/${jobId}/${status}`, {
     method: 'PUT',
