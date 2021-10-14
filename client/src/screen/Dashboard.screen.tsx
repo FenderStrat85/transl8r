@@ -23,6 +23,10 @@ const Dashboard = () => {
     history.push(`/auth/login`);
   };
 
+  const goToCompletedJobs = () => {
+    history.push(`/app/completedJobs`);
+  };
+
   return (
     <>
       {user.role === 'customer' ? (
@@ -30,7 +34,9 @@ const Dashboard = () => {
           <h1>{user.role} Dashboard</h1>
           <h2>Your Pending and Accepted jobs</h2>
           <CustomerJobList jobs={jobs} />
-          <button>Take me to my completed jobs!</button>
+          <button onClick={goToCompletedJobs}>
+            Take me to my completed jobs!
+          </button>
           <button onClick={logoutFromApp}>Logout</button>
         </>
       ) : (

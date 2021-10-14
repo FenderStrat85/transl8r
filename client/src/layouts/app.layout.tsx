@@ -19,6 +19,7 @@ import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 import TranslatorJobList from '../components/list/TranslatorJob.list';
 import Conversation from '../components/chat/Conversation.job';
 import TranslatorImage from '../components/image/Translator.image';
+import CompletedJobs from './../components/list/CompletedJob.list';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -103,6 +104,11 @@ const AppLayout = () => {
           </Route>
           <Route exact path="/app/translator/video:jobId">
             <VideoComponent />
+          </Route>
+
+          {/* COMPLETED JOBS TRANSLATORS */}
+          <Route exact path="/app/completedJobs">
+            <CompletedJobs />
           </Route>
 
           {/* 404 route */}
