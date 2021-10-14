@@ -36,9 +36,17 @@ const ImageJobForm = () => {
 
   const handleFileInputChange = (event: any) => {
     const file = event.target.files[0];
-    previewFile(file);
-    setSelectedFile(file);
-    setFileInputState(event.target.value);
+    const extension = file.split('.')[-1].toLowerCase();
+    const supportedExtensions = ['png', 'jpeg', 'heic', 'gif', 'jpg'];
+    //TODO: add supported extensions
+    if (supportedExtensions.includes(extension)) {
+      previewFile(file);
+      setSelectedFile(file);
+      setFileInputState(event.target.value);
+    } else {
+      //TODO: redirect to an error page
+      alert('This image is not an image');
+    }
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +76,7 @@ const ImageJobForm = () => {
   };
 
   const uploadImage = async () => {
+    //TODO: It's better to use React's way of handing HTML elements (refs) instead of using the native DOM API (getElementById).
     const imgToUpload = (document.getElementById('user') as HTMLInputElement)
       .src;
     const data = new FormData();
@@ -75,13 +84,10 @@ const ImageJobForm = () => {
     data.append('upload_preset', 'transl8r');
 
     // call to the api cloudinary need to be setup
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/uro00/image/upload',
-      {
-        method: 'POST',
-        body: data,
-      },
-    );
+    const res = await fetch(`${process.env.REACT_APP_CLOUDINARY_API_KEY}`, {
+      method: 'POST',
+      body: data,
+    });
     const { secure_url } = await res.json();
 
     try {
