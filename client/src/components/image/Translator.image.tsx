@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './App.css';
 import * as markerjs2 from 'markerjs2';
+import ApiService from './../../services/Api.Service';
 
 const TranslatorImage = (props: { job: any }) => {
-  const { jobName, imageUrl, translationText } = props.job;
+  const accessToken = localStorage.getItem('accessToken');
+  const { jobName, image, translationText, _id } = props.job;
 
   const [value, setValue] = useState('');
 
@@ -24,14 +25,15 @@ const TranslatorImage = (props: { job: any }) => {
     markerArea.show();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     const imgToUpload = (
       document.getElementById('translator') as HTMLInputElement
     ).src;
 
     const textToUpload = value;
 
-    if (!(imgToUpload === imageUrl)) {
+    if (!(imgToUpload === image)) {
       const data = new FormData();
       data.append('file', imgToUpload);
       data.append('upload_preset', 'transl8r');
@@ -46,17 +48,17 @@ const TranslatorImage = (props: { job: any }) => {
       );
       const { secure_url } = await res.json();
 
-      uploadToDB(secure_url, textToUpload);
-    } else {
-      uploadToDB('-', textToUpload);
+      uploadImageToDB(secure_url);
     }
+    uploadTextToDb(textToUpload);
   };
 
-  const uploadToDB = (url: string, text: string) => {
-    //db magic + check "-"
-    console.log(`${url} and  ${text} in on db`);
-    //rendering results if needed
-    //setResultsImage(secure_url);
+  const uploadImageToDB = async (url: string) => {
+    await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
+  };
+
+  const uploadTextToDb =  async(text: string) => {
+    await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
   };
 
   const handleChange = (event: {
@@ -72,12 +74,11 @@ const TranslatorImage = (props: { job: any }) => {
         <img
           crossOrigin="anonymous"
           id="translator"
-          src={imageUrl}
+          src={image}
           alt="sample"
-          style={{ maxWidth: '100%' }}
+          style={{ maxWidth: '50%' }}
           onClick={() => showMarkerArea()}
         />
-
         <textarea
           required
           name="textarea"
@@ -93,3 +94,5 @@ const TranslatorImage = (props: { job: any }) => {
     </>
   );
 };
+
+export default TranslatorImage;

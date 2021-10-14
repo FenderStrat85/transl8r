@@ -3,6 +3,8 @@ import { Model, BuildOptions } from 'sequelize';
 interface ImageModel extends Model {
   _id: string;
   imageUrl: string;
+  imageUrlTranslated: string;
+  translatedText: string;
 }
 
 type ImageInstance = typeof Model & {
@@ -21,6 +23,12 @@ const Image = (sequelize: any, DataTypes: any) =>
     imageUrl: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    imageUrlTranslated: {
+      type: DataTypes.STRING,
+    },
+    translatedText: {
+      type: DataTypes.STRING,
     },
   });
 
