@@ -8,7 +8,7 @@ interface IContextProps {
   dispatch: ({ type }: { type: string }) => void;
 }
 type IMock = {
-  call: { name: string, isReceivingCall: boolean },
+  call: any,
   callAccepted: boolean,
   myVideo: any,
   userVideo: any,
@@ -18,12 +18,12 @@ type IMock = {
   callEnded: boolean,
   me: string,
   callUser: any,
-  leaveCall: {},
-  answerCall: {},
+  leaveCall: any,
+  answerCall: any,
 }
 
 const mock: IMock = {
-  call: { isReceivingCall: false, name: '' },
+  call: 'hahahahahahaha',
   callAccepted: false,
   myVideo: {},
   userVideo: {},
