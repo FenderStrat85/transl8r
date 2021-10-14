@@ -57,7 +57,7 @@ export interface IMessage {
 export interface IImage {
   _id: string;
   imageUrl: string;
-  imageUrlTranslate: string;
+  imageUrlTranslated: string;
   translatedText: string;
 }
 

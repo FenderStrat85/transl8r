@@ -20,7 +20,7 @@ const uploadTranslatedImageUrl = async (req: Request, res: Response) => {
   const { jobId } = req.params;
   try {
     const image = await db.Image.findOne({ where: { JobId: jobId } });
-    image.imageUrlTranslate = url;
+    image.imageUrlTranslated = url;
     await image.save();
     res.status(200).send(image);
   } catch (error) {

@@ -3,7 +3,7 @@ import { Model, BuildOptions } from 'sequelize';
 interface ImageModel extends Model {
   _id: string;
   imageUrl: string;
-  imageUrlTranslate: string;
+  imageUrlTranslated: string;
   translatedText: string;
 }
 
@@ -24,7 +24,7 @@ const Image = (sequelize: any, DataTypes: any) =>
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imageUrlTranslate: {
+    imageUrlTranslated: {
       type: DataTypes.STRING,
     },
     translatedText: {
