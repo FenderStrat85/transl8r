@@ -68,11 +68,7 @@ const TranslatorImage = (props: { job: any }) => {
   return (
     <>
       <h2>{jobName}</h2>
-<<<<<<< HEAD
-      <form onSubmit={handleSubmit}>
-=======
       <div>
->>>>>>> development
         <img
           crossOrigin="anonymous"
           id="translator"
@@ -89,8 +85,8 @@ const TranslatorImage = (props: { job: any }) => {
           onChange={(event) => handleChange(event)}
         />
         <button type="submit">Send Translation</button>
-      </form>
-
+        {/* </form> */}
+      </div>
       {/*
         <img src={resultsImage} alt="results" />
         */}

@@ -72,9 +72,9 @@ const Conversation = (props: { job: any }) => {
   };
 
   return (
-    <div>
+    <div className="App">
       {!showChat ? (
-        <div>
+        <div className="joinChatContainer">
           <h1>I am in the chat component</h1>
           <button onClick={joinRoom}>Join live chat!</button>
         </div>

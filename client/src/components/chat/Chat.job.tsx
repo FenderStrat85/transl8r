@@ -1,15 +1,23 @@
+import { disconnect } from 'process';
 import React, { useEffect, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { IChatMessage, IRoomInfo } from '../../interfaces/interfaces';
 import './chat.css';
 
 export const Chat = ({ socket, name, room, user_id }) => {
   const [currentMessage, setCurrentMessage] = useState('');
+  const [messageList, setMessageList] = useState([]);
+
+  const roomInfo = {
+    room: room,
+    name: name,
+  };
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
-      const messageData = {
+      const messageData: IChatMessage = {
         room: room,
-        name: name,
+        authorName: name,
         user_id: user_id,
         message: currentMessage,
         time:
@@ -18,14 +26,22 @@ export const Chat = ({ socket, name, room, user_id }) => {
           new Date(Date.now()).getMinutes(),
       };
       await socket.emit('send_message', messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage('');
     }
   };
 
   useEffect(() => {
-    socket.on('receive_message', (data: string) => {
-      console.log('New message received', data);
+    socket.on('receive_message', (data: IChatMessage) => {
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
+
+  const disconnectFromChat = async (roomInfo: any) => {
+    socket.close();
+  };
+
+  //id's 'other' and 'you' are for css styling
 
   return (
     <div className="chat-window">
@@ -33,26 +49,27 @@ export const Chat = ({ socket, name, room, user_id }) => {
         <p>Live Chat</p>
       </div>
       <div className="chat-body">
-        {/* <ScrollToBottom className="message-container">
+        <ScrollToBottom className="message-container">
           {messageList.map((messageContent) => {
             return (
               <div
+                key={messageContent.message}
                 className="message"
-                id={username === messageContent.author ? 'you' : 'other'}
+                id={name === messageContent.authorName ? 'you' : 'other'}
               >
                 <div>
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
                   <div className="message-meta">
-                    <p id="author">{messageContent.author}</p>
                     <p id="time">{messageContent.time}</p>
+                    <p id="author">{messageContent.authorName}</p>
                   </div>
                 </div>
               </div>
             );
           })}
-        </ScrollToBottom> */}
+        </ScrollToBottom>
       </div>
       <div className="chat-footer">
         <input
@@ -69,6 +86,7 @@ export const Chat = ({ socket, name, room, user_id }) => {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
+      <button onClick={disconnectFromChat}>Click me to disconnect</button>
     </div>
   );
 };
