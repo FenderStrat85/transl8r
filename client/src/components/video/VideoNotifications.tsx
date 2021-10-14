@@ -1,4 +1,4 @@
-import React from "react"
+import { MouseEvent } from "react";
 import { useContext } from "react";
 import { SocketContext } from '../../services/SocketContext';
 
@@ -9,7 +9,7 @@ const VideoNotifications = () => {
       {call.isReceivingCall && !callAccepted && (
         <div>
           <h1>{call.name} is calling:</h1>
-          <button onClick={answerCall}>Answer</button>
+          <button onClick={(event: MouseEvent<HTMLElement>) => answerCall}>Answer</button>
         </div>
 
       )}
