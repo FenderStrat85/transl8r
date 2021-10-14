@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 
 const TranslatorImage = (props: { job: any }) => {
-  const { jobName, image, translationText } = props.job;
+  const { jobName, image, translationText, _id } = props.job;
+  console.log(
+    '🚀 ~ file: Translator.image.tsx ~ line 6 ~ TranslatorImage ~ props.job',
+    props.job,
+  );
 
   const [value, setValue] = useState('');
 
@@ -23,7 +27,8 @@ const TranslatorImage = (props: { job: any }) => {
     markerArea.show();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     const imgToUpload = (
       document.getElementById('translator') as HTMLInputElement
     ).src;
@@ -45,15 +50,20 @@ const TranslatorImage = (props: { job: any }) => {
       );
       const { secure_url } = await res.json();
 
-      uploadToDB(secure_url, textToUpload);
-    } else {
-      uploadToDB('-', textToUpload);
+      uploadImageToDB(secure_url);
     }
+    uploadTextToDb(textToUpload);
   };
 
-  const uploadToDB = (url: string, text: string) => {
+  const uploadImageToDB = (url: string) => {
     //db magic + check "-"
-    console.log(`${url} and  ${text} in on db`);
+    console.log(`${url} on db`);
+    //rendering results if needed
+    //setResultsImage(secure_url);
+  };
+  const uploadTextToDb = (text: string) => {
+    //db magic + check "-"
+    console.log(`${text} on db`);
     //rendering results if needed
     //setResultsImage(secure_url);
   };
