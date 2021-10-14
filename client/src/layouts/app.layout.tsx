@@ -11,6 +11,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import CreateJob from '../screen/CreateJob.screen';
+import VideoComponent from '../components/video/VideoComponent';
 import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
@@ -94,7 +95,7 @@ const AppLayout = () => {
             <h1>Chat Component</h1>
           </Route>
           <Route exact path="/app/translator/video:jobId">
-            <h1>Video Component</h1>
+            <VideoComponent />
           </Route>
 
           {/* 404 route */}
