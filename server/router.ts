@@ -14,6 +14,11 @@ router.post('/login', authController.login);
 // jobs routes
 router.post('/createJob/:type', authMiddleware, jobsController.createJob);
 router.put('/acceptJob', authMiddleware, jobsController.acceptJob);
+router.put(
+  '/changeStatus/:jobId/:status',
+  authMiddleware,
+  jobsController.changeStatus,
+);
 router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
 router.get(
   '/getAvailableJobs',

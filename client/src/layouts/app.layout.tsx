@@ -4,6 +4,7 @@ import SelectJob from '../screen/SelectJob.screen';
 import TranslatorJobDetail from '../components/items/Translator.job.detail';
 import { useContext } from 'react';
 import { UserContext } from '../services/Context';
+import { ContextProvider } from '../services/SocketContext';
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +20,7 @@ import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 import TranslatorJobList from '../components/list/TranslatorJob.list';
 import Conversation from '../components/chat/Conversation.job';
 import TranslatorImage from '../components/image/Translator.image';
+import CompletedJobs from './../components/list/CompletedJob.list';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -75,8 +77,9 @@ const AppLayout = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
-            {/* {IM THE VIDEO COMPONENT} */}
-            <h1>VIDEO COMPONENT</h1>
+            <ContextProvider>
+              <VideoComponent />
+            </ContextProvider>
           </Route>
 
           {/* Translator Route */}
@@ -102,7 +105,14 @@ const AppLayout = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/translator/video:jobId">
-            <VideoComponent />
+            <ContextProvider>
+              <VideoComponent />
+            </ContextProvider>
+          </Route>
+
+          {/* COMPLETED JOBS TRANSLATORS */}
+          <Route exact path="/app/completedJobs">
+            <CompletedJobs />
           </Route>
 
           {/* 404 route */}
