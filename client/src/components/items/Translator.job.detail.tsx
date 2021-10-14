@@ -47,7 +47,10 @@ export const TranslatorJobDetail = (props) => {
         });
       }
       if (res.jobType === 'video') {
-        console.log('I am a video function');
+        history.push({
+          pathname: `/app/translator/${res.jobType}:${res._id}`,
+          state: { ...job.state, image },
+        });
       }
     }
   };
