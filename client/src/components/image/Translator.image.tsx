@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 import ApiService from './../../services/Api.Service';
+import apiService from './../../services/Api.Service';
 
 const TranslatorImage = (props: { job: any }) => {
   const accessToken = localStorage.getItem('accessToken');
   const { jobName, image, translationText, _id } = props.job;
+  const COMPLETED = 'completed';
 
   const [value, setValue] = useState('');
 
@@ -59,6 +61,7 @@ const TranslatorImage = (props: { job: any }) => {
 
   const uploadTextToDb = async (text: string) => {
     await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
+    await apiService.changeStatus(_id, COMPLETED, accessToken);
   };
 
   const handleChange = (event: {

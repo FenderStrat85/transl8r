@@ -159,4 +159,27 @@ const getAvailableJobs = async (req: Request, res: Response) => {
   }
 };
 
-module.exports = { createJob, acceptJob, getJobs, getAvailableJobs };
+const changeStatus = async (req: Request, res: Response) => {
+  const { jobId, status } = req.params;
+  try {
+    const job = await db.Job.findOne({ where: { _id: jobId } });
+    job.status = status;
+    await job.save();
+    res.status(200).send(job);
+  } catch (error) {
+    res
+      .status(400)
+      .send({
+        error: '400',
+        message: 'Not able to change the status of the job',
+      });
+  }
+};
+
+module.exports = {
+  createJob,
+  acceptJob,
+  getJobs,
+  getAvailableJobs,
+  changeStatus,
+};
