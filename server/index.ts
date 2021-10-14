@@ -38,24 +38,19 @@ io.on('connection', (socket: any) => {
     room = data.room;
     name = data.name;
     socket.join(data.room);
+    socket.broadcast.emit('Welcome to the chat!');
     // console.log(`User with name: ${data.name} joined room: ${data.room}`);
   });
 
   socket.on('send_message', (data: IChatMessage) => {
-    // console.log(data);
-    // console.log(data.message);
-    // console.log(data.room);
     socket.to(data.room).emit('receive_message', data);
   });
 
-  socket.on('leave_chat', (data: IRoomJoin) => {
+  socket.on('leave_chat', (data: IChatMessage) => {
     socket.to(data.room).emit('leave_message', data);
   });
 
-  socket.on('disconnect', (data: IRoomJoin) => {
-    // console.log('user disconnect inside disconnect', socket.id);
-    io.to(room).emit();
-  });
+  socket.on('disconnect', () => {});
 });
 
 try {
