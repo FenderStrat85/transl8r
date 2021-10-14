@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   useState,
   useRef,
@@ -35,10 +35,10 @@ const mock: IMock = {
   userVideo: {},
   stream: {},
   name: '',
-  setName: () => {},
+  setName: () => { },
   callEnded: false,
   me: '',
-  callUser: (id) => {},
+  callUser: (id) => { },
   leaveCall: {},
   answerCall: {},
 };
@@ -82,6 +82,8 @@ const ContextProvider = ({ children }) => {
       .getUserMedia({ video: true, audio: true })
       .then((currentStream: any) => {
         setStream(currentStream);
+        console.log('stream', stream);
+
         // set the current stream to the state
         myVideo.current.srcObject = currentStream;
       });
