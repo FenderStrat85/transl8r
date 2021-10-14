@@ -1,5 +1,5 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useState, useContext } from "react";
+import { useState, useContext, MouseEvent } from "react";
 import { SocketContext } from "../../services/SocketContext";
 import './VideoOptions.css';
 
@@ -22,7 +22,7 @@ const VideoOptions = ({ children }) => {
           <input type='text' value={idToCall} placeholder={'ID to call'} onChange={(event) => setIdToCall(event.target.value)} />
 
           {callAccepted && !callEnded ? (
-            <button type='button' onClick={leaveCall}>Hang Up</button>
+            <button type='button' onClick={(event: MouseEvent<HTMLElement>) => leaveCall}>Hang Up</button>
           ) : (
             <button type='button'
               onClick={() => callUser(idToCall)}>Call</button>

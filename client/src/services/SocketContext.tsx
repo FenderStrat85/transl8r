@@ -1,5 +1,5 @@
 import { createContext, useState, useRef, useEffect, MutableRefObject } from 'react';
-import { io, Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 // name: string, callAccepted: boolean, myVideo: {current: video.user.stream}, userVideo: same as myVideo, callEnded: boolean, stream: mediaStream, call: callObject
@@ -10,8 +10,8 @@ interface IContextProps {
 type IMock = {
   call: { name: string, isReceivingCall: boolean },
   callAccepted: boolean,
-  myVideo: {},
-  userVideo: {},
+  myVideo: any,
+  userVideo: any,
   stream: any,
   name: string,
   setName: any,
@@ -40,7 +40,7 @@ const mock: IMock = {
 const SocketContext = createContext<IMock>(mock);
 // const SocketContext = createContext({} as IContextProps);
 
-const socket: Socket = io('http://localhost:5001/');
+const socket = io('http://localhost:5001/');
 
 const ContextProvider = ({ children }) => {
 
@@ -97,11 +97,11 @@ const ContextProvider = ({ children }) => {
     const peer = new Peer({ initiator: false, trickle: false, stream })
 
     // establish video connection
-    peer.on('signal', (data) => {
+    peer.on('signal', (data: any) => {
       socket.emit('answerCall', { signal: data, to: call.from })
     })
     // Video for other user
-    peer.on('stream', (currentStream) => {
+    peer.on('stream', (currentStream: MediaStream) => {
       userVideo.current.srcObject = currentStream;
     })
 
