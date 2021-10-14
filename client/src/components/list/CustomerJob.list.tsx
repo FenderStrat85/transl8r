@@ -34,6 +34,7 @@ const CustomerJobList = (props: { jobs: any }) => {
   let acceptedJobs = [];
 
   if (data && data.length > 0) {
+    // TODO: only one loop
     pendingJobs = data.filter((job) => job.status === 'pending');
     acceptedJobs = data.filter((job) => job.status === 'accepted');
   }

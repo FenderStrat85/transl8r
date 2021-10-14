@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authController = require('./controllers/authentication');
 const jobsController = require('./controllers/jobs');
+const imageController = require('./controllers/images');
 const authMiddleware = require('./middlewares/auth');
 
 // TODO: add correct codes for the status in all the controllers
@@ -18,5 +19,8 @@ router.get(
   authMiddleware,
   jobsController.getAvailableJobs,
 );
+
+// images router
+router.get('/getImageUrl/:jobId', authMiddleware, imageController.getImageUrl);
 
 export = router;

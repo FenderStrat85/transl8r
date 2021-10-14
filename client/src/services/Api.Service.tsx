@@ -15,7 +15,7 @@ apiService.register = (userInfo) => {
     body: JSON.stringify(userInfo),
   })
     .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('error register', err));
 };
 
 apiService.login = (userInfo) => {
@@ -58,6 +58,20 @@ apiService.acceptJob = (jobInfos, accessToken) => {
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
+};
+
+apiService.fetchImage = (jobId, accessToken) => {
+  return fetch(`${server}/getImageUrl/${jobId}`, {
+    method: 'GET',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error('error', err));
 };
 
 export default apiService;

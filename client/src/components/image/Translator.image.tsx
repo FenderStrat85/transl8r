@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './App.css';
 import * as markerjs2 from 'markerjs2';
 
 const TranslatorImage = (props: { job: any }) => {
-  const { jobName, imageUrl, translationText } = props.job;
+  const { jobName, image, translationText } = props.job;
 
   const [value, setValue] = useState('');
 
@@ -31,7 +30,7 @@ const TranslatorImage = (props: { job: any }) => {
 
     const textToUpload = value;
 
-    if (!(imgToUpload === imageUrl)) {
+    if (!(imgToUpload === image)) {
       const data = new FormData();
       data.append('file', imgToUpload);
       data.append('upload_preset', 'transl8r');
@@ -68,19 +67,16 @@ const TranslatorImage = (props: { job: any }) => {
   return (
     <>
       <h2>{jobName}</h2>
-<<<<<<< HEAD
       <form onSubmit={handleSubmit}>
-=======
-      <div>
->>>>>>> development
         <img
           crossOrigin="anonymous"
           id="translator"
-          src={imageUrl}
+          src={image}
           alt="sample"
-          style={{ maxWidth: '100%' }}
+          style={{ maxWidth: '50%' }}
           onClick={() => showMarkerArea()}
         />
+        {console.log(props.job)}
 
         <textarea
           required
@@ -97,3 +93,5 @@ const TranslatorImage = (props: { job: any }) => {
     </>
   );
 };
+
+export default TranslatorImage;
