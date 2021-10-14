@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
+import ApiService from './../../services/Api.Service';
 
 const TranslatorImage = (props: { job: any }) => {
+  const accessToken = localStorage.getItem('accessToken');
   const { jobName, image, translationText, _id } = props.job;
-  console.log(
-    '🚀 ~ file: Translator.image.tsx ~ line 6 ~ TranslatorImage ~ props.job',
-    props.job,
-  );
 
   const [value, setValue] = useState('');
 
@@ -55,9 +53,10 @@ const TranslatorImage = (props: { job: any }) => {
     uploadTextToDb(textToUpload);
   };
 
-  const uploadImageToDB = (url: string) => {
+  const uploadImageToDB = async (url: string) => {
+    await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
     //db magic + check "-"
-    console.log(`${url} on db`);
+    // console.log(`${url} on db`);
     //rendering results if needed
     //setResultsImage(secure_url);
   };

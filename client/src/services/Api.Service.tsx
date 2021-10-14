@@ -74,4 +74,21 @@ apiService.fetchImage = (jobId, accessToken) => {
     .catch((err) => console.error('error', err));
 };
 
+apiService.uploadTranslatedImage = (imageUrl, accessToken, jobId) => {
+  console.log(imageUrl);
+  console.log(accessToken);
+  return fetch(`${server}/addTranslatedImage/${jobId}`, {
+    method: 'PUT',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(imageUrl),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
 export default apiService;
