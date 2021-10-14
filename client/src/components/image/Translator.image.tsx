@@ -33,7 +33,7 @@ const TranslatorImage = (props: { job: any }) => {
     if (!(imgToUpload === imageUrl)) {
       const data = new FormData();
       data.append('file', imgToUpload);
-      data.append('upload_preset', 'transl8rEdited');
+      data.append('upload_preset', 'transl8r');
 
       // call to the api cloudinary need to be setup
       const res = await fetch(
