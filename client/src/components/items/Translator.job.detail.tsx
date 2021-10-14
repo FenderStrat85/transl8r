@@ -7,7 +7,7 @@ export const TranslatorJobDetail = (props) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const job = useLocation();
+  const jobInfoPassedFromPrevPage = useLocation();
 
   const {
     jobName,
@@ -16,13 +16,21 @@ export const TranslatorJobDetail = (props) => {
     languageFromName,
     languageToName,
     jobDescription,
-  } = job.state;
+  } = jobInfoPassedFromPrevPage.state;
+
+  console.log('jobInfoPassedFromPreviousPage', jobInfoPassedFromPrevPage);
 
   const acceptJob = async () => {
-    const res = await apiService.acceptJob(job.state, accessToken);
+    const res = await apiService.acceptJob(
+      jobInfoPassedFromPrevPage.state,
+      accessToken,
+    );
+    console.log('res from translatorJobDetail', res);
     if (res.status === 'accepted') {
       jobAccepted = true;
-      history.push(`/app/translator/${res.jobType}:${res._id}`);
+      history.push(`/app/translator/${res.jobType}:${res._id}`, {
+        state: res,
+      });
     }
   };
 

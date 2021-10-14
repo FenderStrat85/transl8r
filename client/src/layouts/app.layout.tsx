@@ -15,6 +15,7 @@ import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 import TranslatorJobList from '../components/list/TranslatorJob.list';
+import Conversation from '../components/chat/Conversation.job';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -66,6 +67,7 @@ const AppLayout = () => {
           <Route exact path="/app/customer/acceptedjob/chat:id">
             {/* {IM THE CHAT COMPONENT} */}
             <h1>CHAT COMPONENT</h1>
+            <Conversation job />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
             {/* {IM THE VIDEO COMPONENT} */}
@@ -92,6 +94,7 @@ const AppLayout = () => {
           </Route>
           <Route exact path="/app/translator/chat:jobId">
             <h1>Chat Component</h1>
+            <Conversation job />
           </Route>
           <Route exact path="/app/translator/video:jobId">
             <h1>Video Component</h1>
