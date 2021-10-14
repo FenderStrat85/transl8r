@@ -15,7 +15,7 @@ apiService.register = (userInfo) => {
     body: JSON.stringify(userInfo),
   })
     .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('error register', err));
 };
 
 apiService.login = (userInfo) => {
@@ -60,4 +60,51 @@ apiService.acceptJob = (jobInfos, accessToken) => {
     .catch((err) => console.log(err));
 };
 
+apiService.fetchImage = (jobId, accessToken) => {
+  return fetch(`${server}/getImageUrl/${jobId}`, {
+    method: 'GET',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error('error', err));
+};
+
+apiService.uploadTranslatedImage = (imageUrl, accessToken, jobId) => {
+  return fetch(`${server}/addTranslatedImage/${jobId}`, {
+    method: 'PUT',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(imageUrl),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
+apiService.uploadTranslatedTextOfImage = (
+  translatedText,
+  accessToken,
+  jobId,
+) => {
+  return fetch(`${server}/addTranslatedTextOfImage/${jobId}`, {
+    method: 'PUT',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(translatedText),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
 export default apiService;

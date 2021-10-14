@@ -36,7 +36,7 @@ const ImageJobForm = () => {
 
   const handleFileInputChange = (event: any) => {
     const file = event.target.files[0];
-    const extension = file.split('.')[-1].toLowerCase();
+    const extension = file.name.split('.').reverse()[0].toLowerCase();
     const supportedExtensions = ['png', 'jpeg', 'heic', 'gif', 'jpg'];
     //TODO: add supported extensions
     if (supportedExtensions.includes(extension)) {

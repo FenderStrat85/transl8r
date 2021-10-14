@@ -9,17 +9,22 @@ import {
   Route,
   Redirect,
   Switch,
+  useLocation,
 } from 'react-router-dom';
 import CreateJob from '../screen/CreateJob.screen';
+import VideoComponent from '../components/video/VideoComponent';
 import NotFound from '../screen/NotFound.screen';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 import TranslatorJobList from '../components/list/TranslatorJob.list';
 import Conversation from '../components/chat/Conversation.job';
+import TranslatorImage from '../components/image/Translator.image';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
+
+  let job = useLocation();
 
   return (
     <>
@@ -90,14 +95,14 @@ const AppLayout = () => {
 
           {/* TRANSLATOR JOB ROUTES */}
           <Route exact path="/app/translator/image:jobId">
-            <h1>Image Component</h1>
+            <TranslatorImage job={job.state} />
           </Route>
           <Route exact path="/app/translator/chat:jobId">
             <h1>Chat Component</h1>
             <Conversation job />
           </Route>
           <Route exact path="/app/translator/video:jobId">
-            <h1>Video Component</h1>
+            <VideoComponent />
           </Route>
 
           {/* 404 route */}
