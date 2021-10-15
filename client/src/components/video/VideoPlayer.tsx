@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
-import { server } from '../../constants/server';
+const server = process.env.REACT_APP_SERVER;
 
 console.log(server);
 

@@ -1,6 +1,6 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState, useContext } from "react";
-import { SocketContext } from '../../services/SocketContext'
+import { SocketContext } from '../../context/SocketContext'
 import './VideoOptions.css';
 // import { MeContext } from '../../services/Me.context';
 

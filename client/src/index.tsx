@@ -3,18 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './services/Context';
-// import { SocketProvider } from './services/SocketContext';
-// import { MeProvider } from './services/Me.context';
+import { UserProvider } from './context/Context';
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      {/* <MeProvider> */}
-      {/* <SocketProvider> */}
       <App />
-      {/* </MeProvider> */}
-      {/* </SocketProvider> */}
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root'),
