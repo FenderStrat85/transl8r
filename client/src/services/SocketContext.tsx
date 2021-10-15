@@ -1,9 +1,8 @@
-import React, {
+import {
   createContext,
   useState,
   useRef,
   useEffect,
-  MutableRefObject,
 } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
@@ -15,40 +14,24 @@ interface IContextProps {
 }
 type IMock = {
   call: any;
-  callAccepted: boolean;
+  callAccepted: any;
   myVideo: any;
   userVideo: any;
   stream: any;
-  name: string;
+  name: any;
   setName: any;
-  callEnded: boolean;
-  me: string;
+  callEnded: any;
+  me: any;
   callUser: any;
   leaveCall: any;
   answerCall: any;
 };
 
-const mock: IMock = {
-  call: 'hahahahahahaha',
-  callAccepted: false,
-  myVideo: {},
-  userVideo: {},
-  stream: {},
-  name: '',
-  setName: () => { },
-  callEnded: false,
-  me: '',
-  callUser: (id) => { },
-  leaveCall: {},
-  answerCall: {},
-};
-
-const SocketContext = createContext<IMock>(mock);
-// const SocketContext = createContext({} as IContextProps);
+const SocketContext = createContext<IMock>({} as IMock);
 
 const socket = io('http://localhost:5000/');
 
-const ContextProvider = ({ children }) => {
+const SocketProvider = ({ children }) => {
   // a state to be changed when a user accepts a call
   const [callAccepted, setCallAccepted] = useState(false);
 
@@ -82,21 +65,18 @@ const ContextProvider = ({ children }) => {
       .getUserMedia({ video: true, audio: true })
       .then((currentStream: any) => {
         setStream(currentStream);
-        console.log('stream', stream);
-
         // set the current stream to the state
         myVideo.current.srcObject = currentStream;
       });
-
     // listen
     // first arg is the emit action defined in the backend
     // callback is the id of the action
     // set the id of 'me' to the state
-    socket.on('me', (id) => {
+    // takes a data object
+    socket.on('myId', (id) => {
       setMe(id);
     });
 
-    // takes a data object
     socket.on('callUser', ({ from, name: callerName, signal }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal });
     });
@@ -112,7 +92,7 @@ const ContextProvider = ({ children }) => {
       socket.emit('answerCall', { signal: data, to: call.from });
     });
     // Video for other user
-    peer.on('stream', (currentStream: MediaStream) => {
+    peer.on('stream', (currentStream: any) => {
       userVideo.current.srcObject = currentStream;
     });
 
@@ -120,6 +100,8 @@ const ContextProvider = ({ children }) => {
 
     connectionRef.current = peer;
   };
+
+
 
   // 39'
   const callUser = (id: string) => {
@@ -136,6 +118,10 @@ const ContextProvider = ({ children }) => {
     // Video for other user
     peer.on('stream', (currentStream: any) => {
       userVideo.current.srcObject = currentStream;
+    });
+    socket.on('callOtherUser', (signal) => {
+      setCallAccepted(true);
+      peer.signal(signal);
     });
     socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
@@ -166,10 +152,9 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
-      }}
-    >
+      }}>
       {children}
     </SocketContext.Provider>
   );
 };
-export { ContextProvider, SocketContext };
+export { SocketProvider, SocketContext };

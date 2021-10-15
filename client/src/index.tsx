@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './services/Context'
+import { UserProvider } from './services/Context';
+import { SocketProvider } from './services/SocketContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
+      {/* <SocketProvider> */}
       <App />
+      {/* </SocketProvider> */}
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root'),
