@@ -1,6 +1,6 @@
 import React from 'react';
-import Dashboard from '../screen/Dashboard.screen';
-import SelectJob from '../screen/SelectJob.screen';
+import Dashboard from '../screen/Dashboard';
+import SelectJob from '../screen/SelectJob';
 import TranslatorJobDetail from '../components/items/Translator.job.detail';
 import { useContext } from 'react';
 import { UserContext } from '../services/Context';
@@ -11,18 +11,18 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import CreateJob from '../screen/CreateJob.screen';
+import CreateJob from '../screen/CreateJob';
 import VideoComponent from '../components/video/VideoComponent';
-import NotFound from '../screen/NotFound.screen';
+import NotFound from '../screen/NotFound';
 import ImageJobForm from '../components/form/ImageJob.form';
 import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
 import TranslatorJobList from '../components/list/TranslatorJob.list';
 import Conversation from '../components/chat/Conversation.job';
 import TranslatorImage from '../components/image/Translator.image';
-import CompletedJobs from './../components/list/CompletedJob.list';
+import CompletedJobs from '../components/list/CompletedJob.list';
 import { SocketProvider } from '../services/SocketContext';
 
-const AppLayout = () => {
+const AppRouting = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
 
@@ -128,4 +128,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default AppRouting;
