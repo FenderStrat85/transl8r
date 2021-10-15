@@ -73,6 +73,7 @@ export interface IRoomJoin {
 export interface IChatMessage {
   room: string;
   authorName: string;
+  _id: string;
   user_id: string;
   message: string;
   time: string;
