@@ -3,6 +3,8 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useQuery } from 'react-query';
+
 const server = process.env.REACT_APP_SERVER;
 const accessToken = localStorage.getItem('accessToken');
 
@@ -27,6 +29,26 @@ const VideoPlayer = () => {
   const connectionRef: any = useRef();
   const history = useHistory();
 
+  const getSocketId = async () => {
+    const res = await fetch(`${server}/retrieveSocketId/${job.state._id}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return await res.json();
+  };
+
+  const { data, status } = useQuery('getSocketId', getSocketId, {
+    refetchInterval: 1000,
+  });
+
+  console.log('data', data)
+  console.log('status', status)
+
   const reqBody = { jobId: job.state._id, socketId: '' }
 
   const insertToken = () => {
@@ -50,6 +72,7 @@ const VideoPlayer = () => {
     socket.on('me', (id) => {
       console.log('socketIdUser', id)
       reqBody.socketId = id
+      setMe(id);
       insertToken()
     });
 
@@ -121,14 +144,14 @@ const VideoPlayer = () => {
 
   return (
     <div>
-      {/* {console.log('me', me)} */}
       {stream && (
         <video playsInline muted ref={myVideo} autoPlay />
       )}
       <div >
-        <CopyToClipboard text={me} >
+        {/* <CopyToClipboard text={me} >
           <button type='button'>Copy Your ID</button>
-        </CopyToClipboard>
+        </CopyToClipboard> */}
+        <h1>{me}</h1>
         <input type="text" placeholder="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} />
         {callAccepted && !callEnded ? (
           <button onClick={leaveCall} >
