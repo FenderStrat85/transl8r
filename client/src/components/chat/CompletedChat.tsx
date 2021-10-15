@@ -9,6 +9,8 @@ const CompletedChat = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const [messages, setMessages] = useState([]);
+
+  //ability to access job info from previous page
   const job = useLocation().state.state;
 
   const fetchMessages = async () => {

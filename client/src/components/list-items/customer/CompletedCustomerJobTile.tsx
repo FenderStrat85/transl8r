@@ -18,7 +18,7 @@ const CompletedCustomerJobTile = (props: { job: any }) => {
     if (jobType === 'image') {
       history.push({
         // pathname: `/app/customer/${jobType}:${_id}`,
-        pathname: `app/customer/${jobType}/completed`,
+        pathname: `/app/customer/${jobType}/completed`,
         state: props.job,
       });
     }

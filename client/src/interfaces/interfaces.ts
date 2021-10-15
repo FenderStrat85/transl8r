@@ -16,3 +16,11 @@ export interface IChatMessage {
   message: string;
   time: string;
 }
+
+export interface IImage {
+  _id: string;
+  imageUrl: string;
+  translatedText: string;
+  imageUrlTranslated: string;
+  JobId: string;
+}

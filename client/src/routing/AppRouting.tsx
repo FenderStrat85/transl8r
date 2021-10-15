@@ -21,6 +21,7 @@ import Conversation from '../components/chat/ConversationJob';
 import TranslatorImage from '../components/image/TranslatorImage';
 import CompletedJobList from '../components/list/CompletedJobList';
 import CompletedChat from '../components/chat/CompletedChat';
+import CompletedImage from '../components/image/CompletedImage';
 
 const AppRouting = () => {
   const { user } = useContext(UserContext);
@@ -79,7 +80,9 @@ const AppRouting = () => {
           <Route exact path="/app/customer/acceptedjob/video:id">
             <VideoPlayer />
           </Route>
-          <Route exact path="/app/customer/image/completed"></Route>
+          <Route exact path="/app/customer/image/completed">
+            <CompletedImage />
+          </Route>
           <Route exact path="/app/customer/chat/completed">
             <CompletedChat />
           </Route>

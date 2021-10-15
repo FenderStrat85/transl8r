@@ -38,6 +38,11 @@ router.put(
   authMiddleware,
   imageController.uploadTranslatedTextOfImage,
 );
+router.get(
+  '/fetchImageData/:jobId',
+  authMiddleware,
+  imageController.fetchImageData,
+);
 
 // chat router
 router.post('/postMessage', authMiddleware, chatController.createMessage);
