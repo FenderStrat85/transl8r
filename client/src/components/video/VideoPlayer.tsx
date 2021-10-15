@@ -144,35 +144,44 @@ const VideoPlayer = () => {
 
   return (
     <div>
-      {stream && (
-        <video playsInline muted ref={myVideo} autoPlay />
-      )}
-      <div >
-        {/* <CopyToClipboard text={me} >
+      {status === 'error' && <div>Error fetching data</div>}
+      {status === 'loading' && <div>Fetching data</div>}
+      {status === 'success' && (
+        <>
+          {console.log(data)}
+          {stream && (
+            <video playsInline muted ref={myVideo} autoPlay />
+          )}
+          <div >
+            {/* <CopyToClipboard text={me} >
           <button type='button'>Copy Your ID</button>
         </CopyToClipboard> */}
-        <h1>{me}</h1>
-        <input type="text" placeholder="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} />
-        {callAccepted && !callEnded ? (
-          <button onClick={leaveCall} >
-            Leave call
-          </button>
-        ) : (
-          <button onClick={() => callUser(idToCall)} >
-            Call
-          </button>
-        )}
-        {call.isReceivingCall && !callAccepted && (
-          <button type="button" onClick={answerCall}>
-            Answer this call
-          </button>
-        )}
-      </div>
+            <h1>{me}</h1>
+            <input type="text" placeholder="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} />
+            {callAccepted && !callEnded ? (
+              <button onClick={leaveCall} >
+                Leave call
+              </button>
+            ) : (
+              <button onClick={() => callUser(data.socketId)} >
+                Call
+              </button>
+            )}
+            {call.isReceivingCall && !callAccepted && (
+              <button type="button" onClick={answerCall}>
+                Answer this call
+              </button>
+            )}
+          </div>
 
-      {callAccepted && !callEnded && (
-        <video playsInline ref={userVideo} autoPlay />
-      )}
-    </div>
+
+          {callAccepted && !callEnded && (
+            <video playsInline ref={userVideo} autoPlay />
+          )}
+        </>
+      )
+      }
+    </div >
   );
 };
 

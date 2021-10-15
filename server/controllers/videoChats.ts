@@ -34,9 +34,9 @@ const retrieveSocketId = async (req: Request, res: Response) => {
       where: { JobId: jobId },
     });
     if (role === 'translator') {
-      res.status(201).send({ customerSocketId });
+      res.status(201).send({ 'socketId': customerSocketId });
     } else if (role === 'customer') {
-      res.status(201).send({ translatorSocketId });
+      res.status(201).send({ 'socketId': translatorSocketId });
     }
   } catch (error) {
     res
