@@ -3,6 +3,8 @@ import { UserContext } from '../../context/Context';
 import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
+import { render } from '@testing-library/react';
+
 // (props: {
 //   job: { imageUrl: string; imageUrlTranslated: string; translatedText: string };
 // })
@@ -34,10 +36,6 @@ const CompletedImage = () => {
   }, []);
 
   console.log('image', image);
-  // const { imageUrl, imageUrlTranslated, translatedText } = image;
-  //const imageUrl = image?.imageUrl;
-
-  // const { imageUrl, imageUrlTranslated, translatedText } = job;
 
   return (
     <div>
