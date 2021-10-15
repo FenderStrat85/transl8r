@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 import db from '../models/db';
 
 const insertSocketId = async (req: Request, res: Response) => {
-  const { jobId, socketId, role } = req.body;
+  const { jobId, socketId } = req.body;
+  const { role } = req.user;
+
   try {
     const videoChat = await db.VideoChat.findOne({
       where: { JobId: jobId },
@@ -32,15 +34,13 @@ const retrieveSocketId = async (req: Request, res: Response) => {
     if (role === 'translator') {
       res.status(201).send({ customerSocketId });
     } else if (role === 'customer') {
-      videoChat.customerSocketId = socketId
+      res.status(201).send({ translatorSocketId });
     }
-    await videoChat.save()
-    res.status(201).send(videoChat);
   } catch (error) {
     res
       .status(404)
-      .send({ error: '404', message: 'Not able to insert the socket id' });
+      .send({ error: '404', message: 'Not able to retrieve the socket id' });
   }
 };
 
-module.exports = { insertSocketId }
+module.exports = { insertSocketId, retrieveSocketId }
