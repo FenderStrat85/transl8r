@@ -21,4 +21,26 @@ const insertSocketId = async (req: Request, res: Response) => {
   }
 };
 
+const retrieveSocketId = async (req: Request, res: Response) => {
+  const { jobId } = req.params;
+  const { role } = req.user;
+
+  try {
+    const { customerSocketId, translatorSocketId } = await db.VideoChat.findOne({
+      where: { JobId: jobId },
+    });
+    if (role === 'translator') {
+      res.status(201).send({ customerSocketId });
+    } else if (role === 'customer') {
+      videoChat.customerSocketId = socketId
+    }
+    await videoChat.save()
+    res.status(201).send(videoChat);
+  } catch (error) {
+    res
+      .status(404)
+      .send({ error: '404', message: 'Not able to insert the socket id' });
+  }
+};
+
 module.exports = { insertSocketId }

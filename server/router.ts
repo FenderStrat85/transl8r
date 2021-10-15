@@ -44,6 +44,7 @@ router.put(
 router.post('/postMessage', authMiddleware, chatController.createMessage);
 
 // videoChat router
-router.post('/insertSocketId', videoChatController.insertSocketId);
+router.post('/insertSocketId', authMiddleware, videoChatController.insertSocketId);
+router.get('/retrieveSocketId/:jobId', authMiddleware, videoChatController.retrieveSocketId);
 
 export = router;
