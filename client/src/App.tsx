@@ -5,9 +5,9 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import AuthLayout from './layouts/auth.layout';
-import AppLayout from './layouts/app.layout';
-import NotFound from './screen/NotFound.screen';
+import AuthRouting from './routing/AuthRouting';
+import AppRouting from './routing/AppRouting';
+import NotFound from './screen/NotFound';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -19,10 +19,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/auth">
-            <AuthLayout />
+            <AuthRouting />
           </Route>
           <Route path="/app">
-            <AppLayout />
+            <AppRouting />
           </Route>
           <Redirect from="/" to="auth/login"></Redirect>
           <Route path="*">

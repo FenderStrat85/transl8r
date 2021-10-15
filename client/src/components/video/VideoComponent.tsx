@@ -1,7 +1,7 @@
 import VideoStream from "./VideoStream";
 import VideoOptions from "./VideoOptions";
 import VideoNotifications from "./VideoNotifications";
-import { SocketProvider } from "../../services/SocketContext";
+import { SocketProvider } from "../../context/SocketContext";
 
 const VideoComponent = () => {
   return (
