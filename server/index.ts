@@ -57,7 +57,10 @@ io.on('connection', (socket: any) => {
   //----------------------------------------------------------
 
   //Video Socket Info
-  socket.emit('me', socket.id);
+  socket.emit('me', () => {
+    console.log(socket.id);
+    socket.id
+  });
 
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded')

@@ -63,6 +63,8 @@ export interface IImage {
 
 export interface IVideoChat {
   _id: string;
+  translatorSocketId: string;
+  customerSocketId: string;
 }
 
 export interface IRoomJoin {
