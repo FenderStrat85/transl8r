@@ -4,11 +4,14 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage, IRoomInfo } from '../../interfaces/interfaces';
 import './chat.css';
 import ApiService from '../../services/Api.Service';
+import apiService from '../../services/Api.Service';
+import { access } from 'fs';
 
 export const Chat = ({ socket, name, room, user_id }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
+  //room is set to job._id
   const accessToken = localStorage.getItem('accessToken');
 
   const sendMessage = async () => {
@@ -24,7 +27,6 @@ export const Chat = ({ socket, name, room, user_id }) => {
           new Date(Date.now()).getMinutes(),
       };
       let res = await ApiService.createMessage(messageData, accessToken);
-      console.log(res);
       await socket.emit('send_message', messageData);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
@@ -54,6 +56,7 @@ export const Chat = ({ socket, name, room, user_id }) => {
     //leave chat function called in index.ts
     await socket.emit('leave_chat', leaveMessage);
     socket.close();
+    await apiService.changeStatus(room, 'completed', accessToken);
   };
 
   //id's 'other' and 'you' are for css styling
