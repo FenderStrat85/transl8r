@@ -4,13 +4,16 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './services/Context';
-import { SocketProvider } from './services/SocketContext';
+// import { SocketProvider } from './services/SocketContext';
+// import { MeProvider } from './services/Me.context';
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
+      {/* <MeProvider> */}
       {/* <SocketProvider> */}
       <App />
+      {/* </MeProvider> */}
       {/* </SocketProvider> */}
     </UserProvider>
   </React.StrictMode>,

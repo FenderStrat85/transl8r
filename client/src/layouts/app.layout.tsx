@@ -20,7 +20,10 @@ import TranslatorJobList from '../components/list/TranslatorJob.list';
 import Conversation from '../components/chat/Conversation.job';
 import TranslatorImage from '../components/image/Translator.image';
 import CompletedJobs from './../components/list/CompletedJob.list';
-import { SocketProvider } from '../services/SocketContext';
+// import { SocketProvider } from '../services/SocketContext';
+// import { ContextProvider } from '../components/jsvideo/SocketContext';
+import JSVideo from '../components/jsvideo/JSVideo';
+import VideoPlayer from '../components/video/VideoPlayer';
 
 const AppLayout = () => {
   const { user } = useContext(UserContext);
@@ -77,9 +80,9 @@ const AppLayout = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
-            <SocketProvider>
-              <VideoComponent />
-            </SocketProvider>
+            {/* <SocketProvider> */}
+            <VideoPlayer />
+            {/* </SocketProvider> */}
           </Route>
 
           {/* Translator Route */}
@@ -105,9 +108,9 @@ const AppLayout = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/translator/video:jobId">
-            <SocketProvider>
-              <VideoComponent />
-            </SocketProvider>
+            {/* <SocketProvider> */}
+            <VideoPlayer />
+            {/* </SocketProvider> */}
           </Route>
 
           {/* COMPLETED JOBS TRANSLATORS */}
