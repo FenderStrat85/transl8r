@@ -7,7 +7,7 @@ const TranslatorImage = (props: { job: any }) => {
   const history = useHistory();
 
   const accessToken = localStorage.getItem('accessToken');
-  const { jobName, image, translationText, _id } = props.job;
+  const { jobName, image, _id } = props.job;
   const COMPLETED = 'completed';
 
   const [value, setValue] = useState('');
