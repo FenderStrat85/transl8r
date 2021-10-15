@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
 import { useContext } from "react";
 import { SocketContext } from '../../services/SocketContext';
 import './VideoStream.css';
 
 const VideoStream = () => {
-
   const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext);
-  console.log(useContext(SocketContext))
 
   return (
     <div className='video-stream-component'>

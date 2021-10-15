@@ -30,6 +30,7 @@ const io = new Server(server, {
   },
 });
 
+
 io.on('connection', (socket: any) => {
   // console.log('User Connected', socket.id);
   let room: string;
@@ -50,8 +51,35 @@ io.on('connection', (socket: any) => {
     socket.to(data.room).emit('leave_message', data);
   });
 
-  socket.on('disconnect', () => {});
+  socket.on('disconnect', () => { });
+
+
+  //----------------------------------------------------------
+
+  //Video Socket Info
+  socket.emit('myId', socket.id);
+
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('callEnded')
+  })
+
+  // Takes an action from the frontend = in this case 'callUser'
+  // Callback takes a data argument, which we will destructure
+  // userToCall - id of user we'll be calling
+  // signalData - massive chunk of data
+  // From - ID of the person starting the call
+  // Name - name of the person starting the call, entered into text field
+  socket.on('callUser', ({ userToCall, signalData, from, name }: any) => {
+    socket.to(userToCall).emit('callUser', { signal: signalData, from, name })
+  })
+  //Data contains the ID of the person making the call as well as a huge data chunk
+  socket.on('answerCall', (data: any) => {
+    socket.to(data.to).emit('callAccepted', data.signal)
+  })
+  //---------------------------------------------------------
 });
+
+
 
 try {
   (async () => {
