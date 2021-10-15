@@ -1,6 +1,6 @@
 import env from 'react-dotenv';
 // const server = process.env.REACT_APP_SERVER_URL;
-const server = process.env.REACT_APP_SERVER
+const server = process.env.REACT_APP_SERVER;
 // TODO: change server to env
 
 const apiService: { [key: string]: any } = {};
@@ -120,6 +120,20 @@ apiService.createMessage = (messageData, accessToken) => {
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
+};
+
+apiService.getChatMessages = (jobId, accessToken) => {
+  return fetch(`${server}/getChatMessages/${jobId}`, {
+    method: 'GET',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log('error', err));
 };
 
 apiService.changeStatus = (jobId, status, accessToken) => {

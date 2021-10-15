@@ -8,14 +8,14 @@ const createMessage = async (req: Request, res: Response) => {
   const messageAuthor = messageData.user_id;
   const messageContent = messageData.message;
   try {
-    const ConversationId = await db.Conversation.findOne({
+    const Conversation = await db.Conversation.findOne({
       where: { JobId: JobId },
     });
     const newMessage = await new db.Message({
       _id: uuidv4(),
       messageAuthor: messageAuthor,
       messageContent: messageContent,
-      ConversationId: ConversationId._id,
+      ConversationId: Conversation._id,
     });
     const message = await newMessage.save();
     res.status(201).send(message);
@@ -24,4 +24,21 @@ const createMessage = async (req: Request, res: Response) => {
   }
 };
 
-module.exports = { createMessage };
+const getChatMessages = async (req: Request, res: Response) => {
+  const { jobId } = req.params;
+  try {
+    const Conversation = await db.Conversation.findOne({
+      where: { JobId: jobId },
+    });
+    const messageArray = await db.Message.findAll({
+      where: { ConversationId: Conversation._id },
+    });
+    res.status(201).send(messageArray);
+  } catch (error) {
+    res
+      .status(400)
+      .send({ error: '404', message: 'not able to fetch messages' });
+  }
+};
+
+module.exports = { createMessage, getChatMessages };

@@ -21,12 +21,14 @@ export const Chat = ({ socket, name, room, user_id }) => {
         authorName: name,
         user_id: user_id,
         message: currentMessage,
+        _id: '',
         time:
           new Date(Date.now()).getHours() +
           ':' +
           new Date(Date.now()).getMinutes(),
       };
-      let res = await ApiService.createMessage(messageData, accessToken);
+      let res = await apiService.createMessage(messageData, accessToken);
+      messageData._id = res._id;
       await socket.emit('send_message', messageData);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
@@ -48,6 +50,7 @@ export const Chat = ({ socket, name, room, user_id }) => {
     authorName: 'ChatBot',
     room: room,
     user_id: 111,
+    _id: user_id.role === 'customer' ? 1 : 2,
     time:
       new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
   };
@@ -71,7 +74,7 @@ export const Chat = ({ socket, name, room, user_id }) => {
           {messageList.map((messageContent) => {
             return (
               <div
-                key={messageContent.message}
+                key={messageContent._id}
                 className="message"
                 id={name === messageContent.authorName ? 'you' : 'other'}
               >

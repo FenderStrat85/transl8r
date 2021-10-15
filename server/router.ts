@@ -41,5 +41,10 @@ router.put(
 
 // chat router
 router.post('/postMessage', authMiddleware, chatController.createMessage);
+router.get(
+  '/getChatMessages/:jobId',
+  authMiddleware,
+  chatController.getChatMessages,
+);
 
 export = router;

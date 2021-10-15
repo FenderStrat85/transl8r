@@ -28,7 +28,6 @@ const CompletedJobList = () => {
   return (
     <>
       <div>
-        {console.log(data)}
         <h2>Completed Jobs</h2>
         {status === 'error' && <div>Error fetching data</div>}
         {status === 'loading' && <div>Fetching data</div>}
