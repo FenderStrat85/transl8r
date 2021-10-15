@@ -1,9 +1,9 @@
-import TranslatorJobItem from '../items/TranslatorJob.item';
-import { UserContext } from '../../services/Context';
+import PendingTranslatorJobTile from '../list-items/translator/PendingTranslatorJobTile';
+import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
-import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+const server = process.env.REACT_APP_SERVER;
 
 const TranslatorJobList = (props: { jobs: any }) => {
   const { user } = useContext(UserContext);
@@ -34,7 +34,9 @@ const TranslatorJobList = (props: { jobs: any }) => {
       {status === 'success' && (
         <div>
           {data.length > 0 ? (
-            data.map((job) => <TranslatorJobItem key={job._id} job={job} />)
+            data.map((job) => (
+              <PendingTranslatorJobTile key={job._id} job={job} />
+            ))
           ) : (
             <>
               <h3>No pending jobs</h3>

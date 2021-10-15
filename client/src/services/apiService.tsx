@@ -1,7 +1,6 @@
 import env from 'react-dotenv';
 // const server = process.env.REACT_APP_SERVER_URL;
-import { server } from '../constants/server';
-
+const server = process.env.REACT_APP_SERVER
 // TODO: change server to env
 
 const apiService: { [key: string]: any } = {};

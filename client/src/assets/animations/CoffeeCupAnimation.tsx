@@ -1,5 +1,5 @@
-import Lottie from 'react-lottie-player'
-import coffeeCupJson from './coffeeCup.json';
+import Lottie from 'react-lottie-player';
+import coffeeCupJson from './CoffeeCup.json';
 
 function CoffeeCupAnimation() {
   return (
@@ -8,7 +8,8 @@ function CoffeeCupAnimation() {
         loop
         animationData={coffeeCupJson}
         play
-        style={{ height: '300px', width: '300px' }} />
+        style={{ height: '300px', width: '300px' }}
+      />
     </>
   );
 }

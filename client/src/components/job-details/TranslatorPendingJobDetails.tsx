@@ -1,9 +1,9 @@
-import { UserContext } from '../../services/Context';
+import { UserContext } from '../../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import apiService from '../../services/Api.Service';
+import apiService from '../../services/apiService';
 
-export const TranslatorJobDetail = (props) => {
+export const TranslatorPendingJobDetails = (props) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
@@ -78,4 +78,4 @@ export const TranslatorJobDetail = (props) => {
   );
 };
 
-export default TranslatorJobDetail;
+export default TranslatorPendingJobDetails;

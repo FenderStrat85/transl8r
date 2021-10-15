@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import apiService from '../../services/Api.Service';
-import { UserContext } from '../../services/Context';
+import apiService from '../../services/apiService';
+import { UserContext } from '../../context/Context';
 
 const LoginForm = () => {
   const { login } = useContext(UserContext);

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SocketContext } from '../../services/SocketContext';
+import { SocketContext } from '../../context/SocketContext';
 import './VideoStream.css';
 
 const VideoStream = () => {

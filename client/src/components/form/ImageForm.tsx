@@ -1,12 +1,12 @@
 import { useState, useContext, SetStateAction, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-import apiService from '../../services/Api.Service';
-import { UserContext } from '../../services/Context';
+import apiService from '../../services/apiService';
+import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 
-const ImageJobForm = () => {
+const ImageForm = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   console.log(accessToken);
@@ -174,4 +174,4 @@ const ImageJobForm = () => {
   );
 };
 
-export default ImageJobForm;
+export default ImageForm;

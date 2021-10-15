@@ -1,10 +1,10 @@
-import apiService from '../../services/Api.Service';
-import { UserContext } from '../../services/Context';
+import apiService from '../../../services/apiService';
+import { UserContext } from '../../../context/Context';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import TranslatorJobDetail from './Translator.job.detail';
+import TranslatorPendingJobDetails from '../../job-details/TranslatorPendingJobDetails';
 
-const TranslatorJobItem = (props: { job: any }) => {
+const PendingTranslatorJobTile = (props: { job: any }) => {
   const { user } = useContext(UserContext);
   const {
     jobName,
@@ -13,7 +13,7 @@ const TranslatorJobItem = (props: { job: any }) => {
     languageFromName,
     languageToName,
     jobDescription,
-    _id
+    _id,
   } = props.job;
 
   return (
@@ -30,4 +30,4 @@ const TranslatorJobItem = (props: { job: any }) => {
   );
 };
 
-export default TranslatorJobItem;
+export default PendingTranslatorJobTile;

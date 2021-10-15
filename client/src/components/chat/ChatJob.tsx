@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage, IRoomInfo } from '../../interfaces/interfaces';
 import './chat.css';
-import ApiService from '../../services/Api.Service';
-import apiService from '../../services/Api.Service';
+import ApiService from '../../services/apiService';
+import apiService from '../../services/apiService';
 import { access } from 'fs';
 
 export const Chat = ({ socket, name, room, user_id }) => {

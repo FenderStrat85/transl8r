@@ -1,8 +1,8 @@
 import { ChangeEvent, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MultiSelect } from 'react-multi-select-component';
-import ApiService from './../../services/Api.Service';
-import { UserContext } from '../../services/Context';
+import ApiService from '../../services/apiService';
+import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 
 const RegisterForm = () => {

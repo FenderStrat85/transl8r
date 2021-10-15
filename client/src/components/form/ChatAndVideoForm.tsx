@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import apiService from '../../services/Api.Service';
-import { UserContext } from '../../services/Context';
+import apiService from '../../services/apiService';
+import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 
-const ChatAndVideoJobForm = (props) => {
+const ChatAndVideoForm = (props) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
@@ -103,4 +103,4 @@ const ChatAndVideoJobForm = (props) => {
   );
 };
 
-export default ChatAndVideoJobForm;
+export default ChatAndVideoForm;

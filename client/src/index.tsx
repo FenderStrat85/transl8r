@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './services/Context';
-import { SocketProvider } from './services/SocketContext';
+import { UserProvider } from './context/Context';
+import { SocketProvider } from './context/SocketContext';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,6 +1,6 @@
-import CustomerJobList from '../components/list/CustomerJob.list';
-import TranslatorJobList from '../components/list/TranslatorJob.list';
-import { UserContext } from '../services/Context';
+import CustomerJobList from '../components/list/CustomerJobList';
+import TranslatorJobList from '../components/list/TranslatorJobList';
+import { UserContext } from '../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';

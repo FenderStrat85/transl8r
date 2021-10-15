@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
-import ApiService from './../../services/Api.Service';
+import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
 
 const TranslatorImage = (props: { job: any }) => {

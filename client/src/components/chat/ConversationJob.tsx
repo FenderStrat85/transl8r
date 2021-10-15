@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import io from 'socket.io-client';
-import { UserContext } from '../../services/Context';
-import Chat from './Chat.job';
+import { UserContext } from '../../context/Context';
+import Chat from './ChatJob';
 
 export const socket = io('http://localhost:5000');
 

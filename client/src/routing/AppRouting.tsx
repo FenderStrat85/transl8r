@@ -1,9 +1,9 @@
 import React from 'react';
 import Dashboard from '../screen/Dashboard';
 import SelectJob from '../screen/SelectJob';
-import TranslatorJobDetail from '../components/items/Translator.job.detail';
+import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
 import { useContext } from 'react';
-import { UserContext } from '../services/Context';
+import { UserContext } from '../context/Context';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,13 +14,13 @@ import {
 import CreateJob from '../screen/CreateJob';
 import VideoComponent from '../components/video/VideoComponent';
 import NotFound from '../screen/NotFound';
-import ImageJobForm from '../components/form/ImageJob.form';
-import ChatAndVideoJobForm from '../components/form/ChatAndVideoJob.form';
-import TranslatorJobList from '../components/list/TranslatorJob.list';
-import Conversation from '../components/chat/Conversation.job';
-import TranslatorImage from '../components/image/Translator.image';
-import CompletedJobs from '../components/list/CompletedJob.list';
-import { SocketProvider } from '../services/SocketContext';
+import ImageForm from '../components/form/ImageForm';
+import ChatAndVideoForm from '../components/form/ChatAndVideoForm';
+import TranslatorJobList from '../components/list/TranslatorJobList';
+import Conversation from '../components/chat/ConversationJob';
+import TranslatorImage from '../components/image/TranslatorImage';
+import CompletedJobList from '../components/list/CompletedJobList';
+import { SocketProvider } from '../context/SocketContext';
 
 const AppRouting = () => {
   const { user } = useContext(UserContext);
@@ -49,21 +49,21 @@ const AppRouting = () => {
           <Route exact path="/app/customer/createjob/espresso">
             {/* ESPRESSO CREATE JOB */}
             <h1>ESPRESSO</h1>
-            <ImageJobForm />
+            <ImageForm />
           </Route>
 
           {/* This is the route for Cappuccino, where a user will taken to a chat screen  */}
           <Route exact path="/app/customer/createjob/cappuccino">
             {/* CAPPUCINO CREATE JOB */}
             <h1>CAPPUCCINO</h1>
-            <ChatAndVideoJobForm jobType={'chat'} />
+            <ChatAndVideoForm jobType={'chat'} />
           </Route>
 
           {/* This is the route for Macchiato, where a user will taken to a video chat screen  */}
           <Route exact path="/app/customer/createjob/macchiato">
             {/* MACCHIATO CREATE JOB */}
             <h1>MACCHIATO</h1>
-            <ChatAndVideoJobForm jobType={'video'} />
+            <ChatAndVideoForm jobType={'video'} />
           </Route>
 
           {/* {CUSTOMER JOBS ROUTE} */}
@@ -93,7 +93,7 @@ const AppRouting = () => {
           </Route>
           {/* Here a translator can view a selected job tile in more detail, and accept the job */}
           <Route exact path="/app/translator/dashboard/viewjob">
-            <TranslatorJobDetail />
+            <TranslatorPendingJobDetails />
           </Route>
 
           {/* TRANSLATOR JOB ROUTES */}
@@ -112,7 +112,7 @@ const AppRouting = () => {
 
           {/* COMPLETED JOBS TRANSLATORS */}
           <Route exact path="/app/completedJobs">
-            <CompletedJobs />
+            <CompletedJobList />
           </Route>
 
           {/* 404 route */}

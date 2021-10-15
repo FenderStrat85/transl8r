@@ -1,12 +1,11 @@
 import React from 'react';
-import CustomerJobItem from '../items/CustomerJob.item';
-import CustomerAcceptedJobItem from '../items/Customer.accepted.job.item';
-import { UserContext } from '../../services/Context';
+import CompletedCustomerJobTile from './../list-items/customer/CompletedCustomerJobTile';
+import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
-import { server } from '../../constants/server';
 import { useQuery } from 'react-query';
+const server = process.env.REACT_APP_SERVER;
 
-const CompletedJobs = () => {
+const CompletedJobList = () => {
   const accessToken = localStorage.getItem('accessToken');
 
   const fetchCompletedJobs = async () => {
@@ -22,7 +21,7 @@ const CompletedJobs = () => {
     return res.json();
   };
 
-  const { data, status } = useQuery('pendingJobs', fetchCompletedJobs, {
+  const { data, status } = useQuery('completed', fetchCompletedJobs, {
     refetchInterval: 5000,
   });
 
@@ -36,7 +35,9 @@ const CompletedJobs = () => {
         {status === 'success' && (
           <div>
             {data.length > 0 ? (
-              data.map((job) => <CustomerJobItem key={job._id} job={job} />)
+              data.map((job) => (
+                <CompletedCustomerJobTile key={job._id} job={job} />
+              ))
             ) : (
               <h3>No completed jobs</h3>
             )}
@@ -47,4 +48,4 @@ const CompletedJobs = () => {
   );
 };
 
-export default CompletedJobs;
+export default CompletedJobList;
