@@ -11,8 +11,8 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import CreateJob from '../screen/CreateJob';
 import VideoComponent from '../components/video/VideoComponent';
+import VideoPlayer from '../components/video/VideoPlayer';
 import NotFound from '../screen/NotFound';
 import ImageForm from '../components/form/ImageForm';
 import ChatAndVideoForm from '../components/form/ChatAndVideoForm';
@@ -20,7 +20,7 @@ import TranslatorJobList from '../components/list/TranslatorJobList';
 import Conversation from '../components/chat/ConversationJob';
 import TranslatorImage from '../components/image/TranslatorImage';
 import CompletedJobList from '../components/list/CompletedJobList';
-import { SocketProvider } from '../context/SocketContext';
+
 
 const AppRouting = () => {
   const { user } = useContext(UserContext);
@@ -77,9 +77,7 @@ const AppRouting = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
-            <SocketProvider>
-              <VideoComponent />
-            </SocketProvider>
+            <VideoPlayer />
           </Route>
 
           {/* Translator Route */}
@@ -105,9 +103,7 @@ const AppRouting = () => {
             <Conversation job />
           </Route>
           <Route exact path="/app/translator/video:jobId">
-            <SocketProvider>
-              <VideoComponent />
-            </SocketProvider>
+            <VideoPlayer />
           </Route>
 
           {/* COMPLETED JOBS TRANSLATORS */}

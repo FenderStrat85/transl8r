@@ -57,7 +57,7 @@ io.on('connection', (socket: any) => {
   //----------------------------------------------------------
 
   //Video Socket Info
-  socket.emit('myId', socket.id);
+  socket.emit('me', socket.id);
 
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded')
@@ -70,16 +70,14 @@ io.on('connection', (socket: any) => {
   // From - ID of the person starting the call
   // Name - name of the person starting the call, entered into text field
   socket.on('callUser', ({ userToCall, signalData, from, name }: any) => {
-    socket.to(userToCall).emit('callUser', { signal: signalData, from, name })
+    io.to(userToCall).emit('callUser', { signal: signalData, from, name })
   })
   //Data contains the ID of the person making the call as well as a huge data chunk
   socket.on('answerCall', (data: any) => {
-    socket.to(data.to).emit('callAccepted', data.signal)
+    io.to(data.to).emit('callAccepted', data.signal)
   })
   //---------------------------------------------------------
 });
-
-
 
 try {
   (async () => {

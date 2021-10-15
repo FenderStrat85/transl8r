@@ -27,6 +27,9 @@ type IMock = {
   answerCall: any;
 };
 
+
+
+
 const SocketContext = createContext<IMock>({} as IMock);
 
 const socket = io('http://localhost:5000/');
@@ -68,14 +71,16 @@ const SocketProvider = ({ children }) => {
         // set the current stream to the state
         myVideo.current.srcObject = currentStream;
       });
+
     // listen
     // first arg is the emit action defined in the backend
     // callback is the id of the action
     // set the id of 'me' to the state
     // takes a data object
-    socket.on('myId', (id) => {
+    socket.on('me', (id) => {
       setMe(id);
     });
+
 
     socket.on('callUser', ({ from, name: callerName, signal }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal });
@@ -84,6 +89,7 @@ const SocketProvider = ({ children }) => {
 
   const answerCall = () => {
     setCallAccepted(true);
+
 
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
@@ -97,11 +103,8 @@ const SocketProvider = ({ children }) => {
     });
 
     peer.signal(call.signal);
-
     connectionRef.current = peer;
   };
-
-
 
   // 39'
   const callUser = (id: string) => {
