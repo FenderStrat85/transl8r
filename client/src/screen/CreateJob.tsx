@@ -7,8 +7,7 @@ const CreateJob = () => {
 
   return (
     <>
-      {' '}
-      <h1> {product} </h1>{' '}
+      <h1> {product} </h1>
     </>
   );
 };
