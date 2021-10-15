@@ -4,6 +4,8 @@ import db from '../models/db';
 const insertSocketId = async (req: Request, res: Response) => {
   const { jobId, socketId } = req.body;
   const { role } = req.user;
+  console.log('req.user', req.user)
+  console.log('req.params', req.body)
 
   try {
     const videoChat = await db.VideoChat.findOne({

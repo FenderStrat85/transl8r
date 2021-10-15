@@ -20,13 +20,13 @@ const VideoChat = (sequelize: any, DataTypes: any) =>
       unique: true,
     },
     translatorSocketId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: true,
       primaryKey: false,
       unique: true,
     },
     customerSocketId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: true,
       primaryKey: false,
       unique: true,

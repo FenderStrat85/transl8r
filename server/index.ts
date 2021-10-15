@@ -35,6 +35,7 @@ io.on('connection', (socket: any) => {
   // console.log('User Connected', socket.id);
   let room: string;
   let name: string;
+  socket.emit("me", socket.id);
   socket.on('join_room', (data: IRoomJoin) => {
     room = data.room;
     name = data.name;
@@ -57,10 +58,10 @@ io.on('connection', (socket: any) => {
   //----------------------------------------------------------
 
   //Video Socket Info
-  socket.emit('me', () => {
-    console.log(socket.id);
-    socket.id
-  });
+  // socket.emit('me', () => {
+  //   console.log("SOCKET.ID", socket.id);
+  //   socket.id
+  // });
 
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded')

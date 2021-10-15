@@ -2,19 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 const server = process.env.REACT_APP_SERVER;
+const accessToken = localStorage.getItem('accessToken');
 
-console.log(server);
-
-const CONNECTION_PORT = server || '';
-const socket = io(CONNECTION_PORT, { transports: ['websocket'] });
-let socketId: any;
-socket.on('me', (id) => {
-  socketId = id;
-});
 
 const VideoPlayer = () => {
+  const CONNECTION_PORT = server || '';
+  const socket = io(CONNECTION_PORT, { transports: ['websocket'] });
+  let socketId: any;
+
+  const accessToken = localStorage.getItem('accessToken');
+  const job = useLocation();
+
+
   const [idToCall, setIdToCall] = useState('');
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [callEnded, setCallEnded] = useState(false);
@@ -26,22 +27,51 @@ const VideoPlayer = () => {
   const connectionRef: any = useRef();
   const history = useHistory();
 
+  const reqBody = { jobId: job.state._id, socketId: '' }
+
+  const insertToken = () => {
+    fetch(`${server}/insertSocketId`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqBody),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
+
+
+
   useEffect(() => {
+    socket.on('me', (id) => {
+      console.log('socketIdUser', id)
+      reqBody.socketId = id
+      insertToken()
+    });
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((currentStream: any) => {
         setStream(currentStream);
         myVideo.current.srcObject = currentStream;
       });
 
-    socket.on('me', (id) => {
-      setMe(id)
-    });
 
+    // socket.on('me', (id) => {
+    //   console.log("id", id)
+    //   // setMe(id)
+    //   const reqBody = { jobId: job.state._id, socketId: id }
+    //   insertToken(reqBody, accessToken)
+    // });
 
     socket.on('callUser', ({ from, signal }) => {
       setCall({ isReceivingCall: true, from, signal });
     });
   }, []);
+
 
   const answerCall = () => {
     setCallAccepted(true);
@@ -91,7 +121,7 @@ const VideoPlayer = () => {
 
   return (
     <div>
-      {console.log('me', me)}
+      {/* {console.log('me', me)} */}
       {stream && (
         <video playsInline muted ref={myVideo} autoPlay />
       )}
