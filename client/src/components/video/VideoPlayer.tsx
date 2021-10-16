@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useQuery } from 'react-query';
 const server = process.env.REACT_APP_SERVER;
 
 console.log(server);
@@ -25,18 +26,62 @@ const VideoPlayer = () => {
   const userVideo: any = useRef();
   const connectionRef: any = useRef();
   const history = useHistory();
+  const job = useLocation();
+  const accessToken = localStorage.getItem('accessToken');
+
+  const getSocketId = async () => {
+    const res = await fetch(`${server}/retrieveSocketId/${job.state._id}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return await res.json();
+  };
+  // const { data: dataFromDb, status } = useQuery('getSocketId', getSocketId, {
+  //   refetchInterval: 5000,
+  // });
+  const queryResult = useQuery('getSocketId', getSocketId, {
+    refetchInterval: 5000,
+  });
+
+  const reqBody = { jobId: job.state._id, socketId: '' };
+
+  const insertToken = () => {
+    fetch(`${server}/insertSocketId`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqBody),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
+
+  const populateDb = () => {
+    setTimeout(() => {
+      reqBody.socketId = socketId;
+      setMe(socketId);
+      insertToken();
+    }, 2000);
+  };
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
       .then((currentStream: any) => {
         setStream(currentStream);
         myVideo.current.srcObject = currentStream;
       });
 
-    socket.on('me', (id) => {
-      setMe(id)
-    });
-
+    populateDb();
 
     socket.on('callUser', ({ from, signal }) => {
       setCall({ isReceivingCall: true, from, signal });
@@ -92,20 +137,21 @@ const VideoPlayer = () => {
   return (
     <div>
       {console.log('me', me)}
-      {stream && (
-        <video playsInline muted ref={myVideo} autoPlay />
-      )}
-      <div >
-        <CopyToClipboard text={me} >
-          <button type='button'>Copy Your ID</button>
+      {stream && <video playsInline muted ref={myVideo} autoPlay />}
+      <div>
+        <CopyToClipboard text={me}>
+          <button type="button">Copy Your ID</button>
         </CopyToClipboard>
-        <input type="text" placeholder="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} />
+        <input
+          type="text"
+          placeholder="ID to call"
+          value={idToCall}
+          onChange={(e) => setIdToCall(e.target.value)}
+        />
         {callAccepted && !callEnded ? (
-          <button onClick={leaveCall} >
-            Leave call
-          </button>
+          <button onClick={leaveCall}>Leave call</button>
         ) : (
-          <button onClick={() => callUser(idToCall)} >
+          <button onClick={() => callUser(queryResult.data.socketId)}>
             Call
           </button>
         )}
