@@ -23,7 +23,8 @@ const mock = {
 
 const UserContext = createContext(mock);
 
-const UserProvider = ({ children }) => {
+const UserProvider = (props: { children: any }) => {
+  const { children } = props;
   const [user, setUser] = useState(initialState);
 
   const login = (
@@ -43,7 +44,7 @@ const UserProvider = ({ children }) => {
     }));
   };
 
-  const logout = (accessToken) => {
+  const logout = (accessToken: string) => {
     setUser(initialState);
     localStorage.removeItem(accessToken);
   };

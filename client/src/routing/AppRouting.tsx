@@ -72,7 +72,7 @@ const AppRouting = () => {
           <Route exact path="/app/customer/acceptedjob/chat:id">
             {/* {IM THE CHAT COMPONENT} */}
             <h1>CHAT COMPONENT</h1>
-            <Conversation job />
+            <Conversation />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
             <VideoPlayer />
@@ -104,7 +104,7 @@ const AppRouting = () => {
           </Route>
           <Route exact path="/app/translator/chat:jobId">
             <h1>Chat Component</h1>
-            <Conversation job />
+            <Conversation />
           </Route>
           <Route exact path="/app/translator/video:jobId">
             <VideoPlayer />

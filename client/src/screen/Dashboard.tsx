@@ -1,22 +1,16 @@
 import CustomerJobList from '../components/list/CustomerJobList';
 import TranslatorJobList from '../components/list/TranslatorJobList';
 import { UserContext } from '../context/Context';
-import { useContext, useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = (): JSX.Element => {
   const history = useHistory();
   const { user, logout } = useContext(UserContext);
-  const accessToken = localStorage.getItem('accessToken');
-
-  useEffect(() => {
-    // API GET JOBS
-    //setJobs(response)
-  }, []);
+  const accessToken: any = localStorage.getItem('accessToken');
 
   const logoutFromApp = () => {
-    logout(accessToken);
+    logout(accessToken as string);
     console.log('accessToken', accessToken);
     console.log('accessToken', user);
     history.push(`/auth/login`);

@@ -7,38 +7,24 @@ import Chat from './ChatJob';
 
 export const socket = io('http://localhost:5000');
 
-const Conversation = (props: { job: any }) => {
+const Conversation = () => {
   const { user } = useContext(UserContext);
   const [showChat, setShowChat] = useState(false);
 
-  const job = useLocation();
+  const job: any = useLocation();
   let room: string;
   let userId: string;
 
   console.log('user.role', user.role);
   if (user.role === 'customer') {
-    const {
-      _id,
-      status,
-      CustomerId,
-      TranslatorId,
-      languageFromName,
-      LanguageToName,
-    } = job.state;
+    const { _id, CustomerId } = job.state;
 
     userId = CustomerId;
 
     //room set to job._id
     room = _id;
   } else {
-    const {
-      _id,
-      status,
-      CustomerId,
-      TranslatorId,
-      languageFromName,
-      LanguageToName,
-    } = job.state.state;
+    const { _id, TranslatorId } = job.state.state;
 
     userId = TranslatorId;
 

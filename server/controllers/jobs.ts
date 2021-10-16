@@ -1,5 +1,5 @@
 import db from '../models/db';
-import e, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { IJob } from './../interfaces/interfaces';
 
 const { v4: uuidv4 } = require('uuid');
@@ -167,12 +167,10 @@ const changeStatus = async (req: Request, res: Response) => {
     await job.save();
     res.status(200).send(job);
   } catch (error) {
-    res
-      .status(400)
-      .send({
-        error: '400',
-        message: 'Not able to change the status of the job',
-      });
+    res.status(400).send({
+      error: '400',
+      message: 'Not able to change the status of the job',
+    });
   }
 };
 

@@ -1,7 +1,5 @@
 import React from 'react';
 import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAndAcceptedCustomerJobTile';
-import { UserContext } from '../../context/Context';
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 const server = process.env.REACT_APP_SERVER;
 
@@ -34,8 +32,12 @@ const CustomerJobList = () => {
 
   if (data && data.length > 0) {
     // TODO: only one loop
-    pendingJobs = data.filter((job) => job.status === 'pending');
-    acceptedJobs = data.filter((job) => job.status === 'accepted');
+    pendingJobs = data.filter(
+      (job: { status: string }) => job.status === 'pending',
+    );
+    acceptedJobs = data.filter(
+      (job: { status: string }) => job.status === 'accepted',
+    );
   }
 
   return (
@@ -47,7 +49,7 @@ const CustomerJobList = () => {
         {status === 'success' && (
           <div>
             {pendingJobs.length > 0 ? (
-              pendingJobs.map((job) => (
+              pendingJobs.map((job: { _id: React.Key }) => (
                 <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
               ))
             ) : (
@@ -63,7 +65,7 @@ const CustomerJobList = () => {
         {status === 'success' && (
           <div>
             {acceptedJobs.length > 0 ? (
-              acceptedJobs.map((job) => (
+              acceptedJobs.map((job: { _id: React.Key }) => (
                 <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
               ))
             ) : (

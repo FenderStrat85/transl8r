@@ -18,7 +18,7 @@ const TranslatorImage = (props: { job: any }) => {
   const showMarkerArea = () => {
     //TODO: It's probably better to avoid native DOM API methods and use the Refs which is React's way of accessing DOM elements.
     const markerArea = new markerjs2.MarkerArea(
-      document.getElementById('translator'),
+      document.getElementById('translator') as HTMLInputElement,
     );
 
     markerArea.addRenderEventListener((dataUrl) => {

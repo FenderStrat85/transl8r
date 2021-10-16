@@ -1,10 +1,5 @@
-import {
-  useState,
-  useContext,
-  SetStateAction,
-  ChangeEvent,
-  useRef,
-} from 'react';
+// @ts-nocheck
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -13,7 +8,7 @@ import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 
-const ImageForm = () => {
+const ImageForm = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const history = useHistory();
@@ -82,10 +77,6 @@ const ImageForm = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const toDashBoard = () => {
-    history.push(`/app/customer/dashboard`);
   };
 
   const toSelectJob = () => {

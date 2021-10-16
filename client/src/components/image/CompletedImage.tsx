@@ -1,10 +1,9 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
 import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
 import { useContext } from 'react';
-import { render } from '@testing-library/react';
 import BackButton from '../button/BackButton';
 
 // (props: {
@@ -12,7 +11,7 @@ import BackButton from '../button/BackButton';
 // })
 
 const CompletedImage = () => {
-  const job = useLocation().state;
+  const job: any = useLocation().state;
   const accessToken = localStorage.getItem('accessToken');
   const { user } = useContext(UserContext);
   const [image, setImage] = useState<IImage>({

@@ -3,7 +3,6 @@ import CompletedJobTile from '../list-items/CompletedJobTile';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
 import { useQuery } from 'react-query';
-import { userInfo } from 'os';
 import { useHistory } from 'react-router-dom';
 const server = process.env.REACT_APP_SERVER;
 
@@ -50,7 +49,9 @@ const CompletedJobList = () => {
         {status === 'success' && (
           <div>
             {data.length > 0 ? (
-              data.map((job) => <CompletedJobTile key={job._id} job={job} />)
+              data.map((job: { _id: React.Key }) => (
+                <CompletedJobTile key={job._id} job={job} />
+              ))
             ) : (
               <h3>No completed jobs</h3>
             )}

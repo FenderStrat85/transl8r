@@ -1,15 +1,12 @@
 import RegisterForm from '../components/form/RegisterForm';
 
-const RegisterScreen = () => {
-
+const RegisterScreen = (): JSX.Element => {
   return (
     <div className="RegisterScreen">
-      <h1>
-        Registration
-      </h1>
+      <h1>Registration</h1>
       <RegisterForm />
     </div>
   );
-}
+};
 
 export default RegisterScreen;

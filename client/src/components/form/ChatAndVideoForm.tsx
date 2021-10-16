@@ -1,4 +1,5 @@
-import { useState, useContext } from 'react';
+// @ts-nocheck
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -7,7 +8,7 @@ import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 
-const ChatAndVideoForm = (props) => {
+const ChatAndVideoForm = (props: { jobType: any }) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
@@ -24,7 +25,9 @@ const ChatAndVideoForm = (props) => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (
+    event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>,
+  ) => {
     setFormValue((prevState) => {
       return {
         ...prevState,

@@ -1,6 +1,5 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import CompletedChat from '../chat/CompletedChat';
 
 const CompletedJobTile = (props: { job: any }) => {
   const history = useHistory();

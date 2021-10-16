@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { UserContext } from '../../context/Context';
@@ -17,7 +16,7 @@ socket.on('me', (id) => {
   socketId = id;
 });
 
-const VideoPlayer = () => {
+const VideoPlayer = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [callEnded, setCallEnded] = useState(false);
@@ -28,7 +27,7 @@ const VideoPlayer = () => {
   const userVideo: any = useRef();
   const connectionRef: any = useRef();
   const history = useHistory();
-  const job = useLocation();
+  const job: any = useLocation();
   const accessToken = localStorage.getItem('accessToken');
 
   const getSocketId = async () => {
@@ -127,7 +126,7 @@ const VideoPlayer = () => {
       {stream && <video playsInline muted ref={myVideo} autoPlay />}
       <div>
         {queryResult.data === undefined ||
-          queryResult.data.socketId === null ? (
+        queryResult.data.socketId === null ? (
           <div>Waiting for the other user to connect</div>
         ) : null}
         {/* {console.log(queryResult)} */}
@@ -136,7 +135,7 @@ const VideoPlayer = () => {
         ) : null}
         {console.log(queryResult.data)}
         {queryResult.data !== undefined &&
-          queryResult.data.socketId !== null ? (
+        queryResult.data.socketId !== null ? (
           <button onClick={() => callUser(queryResult.data.socketId)}>
             Call
           </button>

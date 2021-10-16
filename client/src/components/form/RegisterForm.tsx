@@ -1,11 +1,11 @@
-import { ChangeEvent, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MultiSelect } from 'react-multi-select-component';
 import ApiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 
-const RegisterForm = () => {
+const RegisterForm = (): JSX.Element => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   const [selected, setSelected] = useState([]);
@@ -22,7 +22,7 @@ const RegisterForm = () => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -41,7 +41,7 @@ const RegisterForm = () => {
       // });
       // objectToSendToDb.languages = resArr;
 
-      const languageArray = selected.map((item) => item.value);
+      const languageArray = selected.map((item: any) => item.value);
       objectToSendToDb.languages = languageArray;
     }
 
