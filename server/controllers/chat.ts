@@ -1,14 +1,19 @@
 import db from '../models/db';
 import { Request, Response } from 'express';
+import {
+  IChatMessage,
+  IConversation,
+  IMessage,
+} from '../interfaces/interfaces';
 const { v4: uuidv4 } = require('uuid');
 
 const createMessage = async (req: Request, res: Response) => {
-  const messageData = req.body;
-  const JobId = messageData.room;
-  const messageAuthor = messageData.user_id;
-  const messageContent = messageData.message;
+  const messageData: IChatMessage = req.body;
+  const JobId: string = messageData.room;
+  const messageAuthor: string = messageData.userId;
+  const messageContent: string = messageData.message;
   try {
-    const Conversation = await db.Conversation.findOne({
+    const Conversation: IConversation = await db.Conversation.findOne({
       where: { JobId: JobId },
     });
     const newMessage = await new db.Message({
@@ -27,10 +32,10 @@ const createMessage = async (req: Request, res: Response) => {
 const getChatMessages = async (req: Request, res: Response) => {
   const { jobId } = req.params;
   try {
-    const Conversation = await db.Conversation.findOne({
+    const Conversation: IConversation = await db.Conversation.findOne({
       where: { JobId: jobId },
     });
-    const messageArray = await db.Message.findAll({
+    const messageArray: [IMessage] = await db.Message.findAll({
       where: { ConversationId: Conversation._id },
     });
     res.status(201).send(messageArray);

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import io from 'socket.io-client';
 import { UserContext } from '../../context/Context';
+import { IChatMessage } from '../../interfaces/interfaces';
 import Chat from './ChatJob';
 
 export const socket = io('http://localhost:5000');
@@ -12,7 +13,7 @@ const Conversation = (props: { job: any }) => {
 
   const job = useLocation();
   let room: string;
-  let user_id: string;
+  let userId: string;
 
   console.log('user.role', user.role);
   if (user.role === 'customer') {
@@ -25,17 +26,10 @@ const Conversation = (props: { job: any }) => {
       LanguageToName,
     } = job.state;
 
-    console.log('job.state', job.state);
-    console.log('res.state', job.state);
-    console.log('job.state._id', job.state._id);
-
-    user_id = CustomerId;
+    userId = CustomerId;
 
     //room set to job._id
     room = _id;
-
-    console.log('customer block _id', _id);
-    console.log('customer block user_id', user_id);
   } else {
     const {
       _id,
@@ -46,24 +40,23 @@ const Conversation = (props: { job: any }) => {
       LanguageToName,
     } = job.state.state;
 
-    console.log('job.state', job.state);
-    console.log('res.state', job.state);
-    console.log('job_id inside translator block', _id);
-
-    user_id = TranslatorId;
+    userId = TranslatorId;
 
     //room set to job._id
     room = _id;
-
-    console.log('translator block _id', _id);
-    console.log('translator block user_id', user_id);
   }
 
   const name = user.firstName;
 
-  const joinRoomInfo = {
+  const joinRoomInfo: IChatMessage = {
     room: room,
-    name: name,
+    authorName: 'ChatBot',
+    userId: '111',
+    //given so as each message will have a unique key prop.
+    _id: user.role === 'customer' ? '1' : '2',
+    message: `${name} has joined the chat!`,
+    time:
+      new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
   };
 
   const joinRoom = () => {
@@ -80,7 +73,7 @@ const Conversation = (props: { job: any }) => {
         </div>
       ) : (
         <div>
-          <Chat name={name} socket={socket} room={room} user_id={user_id} />
+          <Chat name={name} socket={socket} room={room} userId={userId} />
         </div>
       )}
     </div>
