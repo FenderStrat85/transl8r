@@ -49,7 +49,7 @@ export const TranslatorPendingJobDetails = (props) => {
       if (res.jobType === 'video') {
         history.push({
           pathname: `/app/translator/${res.jobType}:${res._id}`,
-          state: { ...job.state, image },
+          state: { ...job.state },
         });
       }
     }

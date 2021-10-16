@@ -2,6 +2,8 @@ import { Model, BuildOptions } from 'sequelize';
 
 interface VideoChatModel extends Model {
   _id: string;
+  translatorSocketId: string;
+  customerSocketId: string;
 }
 
 type VideoChatInstance = typeof Model & {
@@ -15,6 +17,18 @@ const VideoChat = (sequelize: any, DataTypes: any) =>
       defaultValue: sequelize.UUID,
       allowNull: false,
       primaryKey: true,
+      unique: true,
+    },
+    translatorSocketId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      primaryKey: false,
+      unique: true,
+    },
+    customerSocketId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      primaryKey: false,
       unique: true,
     },
   });

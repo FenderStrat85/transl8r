@@ -4,6 +4,7 @@ const jobsController = require('./controllers/jobs');
 const imageController = require('./controllers/images');
 const chatController = require('./controllers/chat');
 const authMiddleware = require('./middlewares/auth');
+const videoChatController = require('./controllers/videoChats');
 
 // TODO: add correct codes for the status in all the controllers
 
@@ -50,6 +51,18 @@ router.get(
   '/getChatMessages/:jobId',
   authMiddleware,
   chatController.getChatMessages,
+);
+
+// videoChat router
+router.post(
+  '/insertSocketId',
+  authMiddleware,
+  videoChatController.insertSocketId,
+);
+router.get(
+  '/retrieveSocketId/:jobId',
+  authMiddleware,
+  videoChatController.retrieveSocketId,
 );
 
 export = router;
