@@ -5,6 +5,7 @@ import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
 import { useContext } from 'react';
 import { render } from '@testing-library/react';
+import BackButton from '../button/BackButton';
 
 // (props: {
 //   job: { imageUrl: string; imageUrlTranslated: string; translatedText: string };
@@ -94,6 +95,7 @@ const CompletedImage = () => {
           )}
         </div>
       )}
+      <BackButton />
     </>
   );
 };

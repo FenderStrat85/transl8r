@@ -3,6 +3,7 @@ import apiService from '../../services/apiService';
 import { useContext } from 'react';
 import { UserContext } from '../../context/Context';
 import { useLocation, useHistory } from 'react-router-dom';
+import BackButton from '../button/BackButton';
 
 const CompletedChat = () => {
   const history = useHistory();
@@ -37,6 +38,7 @@ const CompletedChat = () => {
       ) : (
         <h2>No messages yet!</h2>
       )}
+      <BackButton />
     </div>
   );
 };

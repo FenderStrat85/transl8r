@@ -5,6 +5,7 @@ import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
+import DashboardButton from '../button/DashboardButton';
 
 const ChatAndVideoForm = (props) => {
   const history = useHistory();
@@ -52,14 +53,11 @@ const ChatAndVideoForm = (props) => {
         alert(`${res.message}`);
         setFormValue(initialState);
       }
+      history.push(`/app/customer/dashboard`);
     } catch (error) {
       //TODO: redirect to an error page
       console.log(error);
     }
-  };
-
-  const toDashBoard = () => {
-    history.push(`/app/customer/dashboard`);
   };
 
   const toSelectJob = () => {
@@ -110,7 +108,7 @@ const ChatAndVideoForm = (props) => {
         </div>
       </form>
       <button onClick={toSelectJob}>Submit a different job</button>
-      <button onClick={toDashBoard}>To the dashboard!</button>
+      <DashboardButton role={user.role} />
     </div>
   );
 };
