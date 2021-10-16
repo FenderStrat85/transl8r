@@ -27,6 +27,10 @@ const Dashboard = () => {
     history.push(`/app/completedJobs`);
   };
 
+  const toSelectJob = () => {
+    history.push(`/app/customer/selectjob`);
+  };
+
   return (
     <>
       {user.role === 'customer' ? (
@@ -37,6 +41,7 @@ const Dashboard = () => {
           <button onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
+          <button onClick={toSelectJob}>Submit a different job</button>
           <button onClick={logoutFromApp}>Logout</button>
         </>
       ) : (
