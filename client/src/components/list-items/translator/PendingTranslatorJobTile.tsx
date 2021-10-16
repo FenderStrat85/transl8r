@@ -1,8 +1,7 @@
-import apiService from '../../../services/apiService';
 import { UserContext } from '../../../context/Context';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import TranslatorPendingJobDetails from '../../job-details/TranslatorPendingJobDetails';
+import FlagComponent from '../../flags/FlagComponent';
 
 const PendingTranslatorJobTile = (props: { job: any }) => {
   const { user } = useContext(UserContext);
@@ -20,7 +19,9 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
     <div>
       {jobName} : Status:{status} is a {jobType}
       <p>Language from: {languageFromName}</p>
+      <FlagComponent language={languageFromName} />
       <p>Language to: {languageToName}</p>
+      <FlagComponent language={languageToName} />
       <Link
         to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
       >

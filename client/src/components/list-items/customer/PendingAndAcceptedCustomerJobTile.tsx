@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import FlagComponent from '../../flags/Flag';
+import FlagComponent from '../../flags/FlagComponent';
 
 const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
@@ -10,15 +10,17 @@ const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
         <div>
           {jobName} : Status:{status} is a {jobType}
           <p>Language from: {languageFromName}</p>
+          <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
+          <FlagComponent language={languageToName} />
         </div>
       ) : (
         <div>
           {jobName} : Status:{status} is a {jobType}
           <p>Language from: {languageFromName}</p>
-          <FlagComponent />
+          <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
-          <FlagComponent />
+          <FlagComponent language={languageToName} />
           <Link
             to={{
               pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,

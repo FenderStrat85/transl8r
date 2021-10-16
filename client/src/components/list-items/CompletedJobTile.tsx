@@ -1,6 +1,6 @@
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import CompletedChat from '../chat/CompletedChat';
+import FlagComponent from '../flags/FlagComponent';
 
 const CompletedJobTile = (props: { job: any }) => {
   const history = useHistory();
@@ -37,7 +37,9 @@ const CompletedJobTile = (props: { job: any }) => {
       <div>
         {jobName} : Status:{status}
         <p>Language from: {languageFromName}</p>
+        <FlagComponent language={languageFromName} />
         <p>Language to: {languageToName}</p>
+        <FlagComponent language={languageToName} />
         <p>Job Type: {jobType}</p>
         <button onClick={handleClick}>See details</button>
       </div>
