@@ -65,26 +65,26 @@ export const Chat = ({ socket, name, room, user_id }) => {
   //id's 'other' and 'you' are for css styling
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
+    <div className="chat-job--container">
+      <div className="chat-job--header">
         <p>Live Chat</p>
       </div>
-      <div className="chat-body">
+      <div className="chat-job--body">
         <ScrollToBottom className="message-container">
           {messageList.map((messageContent) => {
             return (
               <div
                 key={messageContent._id}
-                className="message"
+                className="chat-job--message-container"
                 id={name === messageContent.authorName ? 'you' : 'other'}
               >
                 <div>
-                  <div className="message-content">
+                  <div className="chat-job--message--content">
                     <p>{messageContent.message}</p>
                   </div>
-                  <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.authorName}</p>
+                  <div className="chat-job--message--meta">
+                    <p id="chat-job--message--time">{messageContent.time}</p>
+                    <p id="chat-job--message--author">{messageContent.authorName}</p>
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export const Chat = ({ socket, name, room, user_id }) => {
           })}
         </ScrollToBottom>
       </div>
-      <div className="chat-footer">
+      <div className="chat-job--footer">
         <input
           value={currentMessage}
           type="text"

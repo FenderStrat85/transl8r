@@ -25,7 +25,7 @@ const CompletedChat = () => {
   }, []);
 
   return (
-    <div>
+    <div className='completed-chat--container'>
       <h2>I am a completed chat</h2>
       {messages.length > 0 ? (
         messages.map((message) => {
