@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { UserContext } from '../../context/Context';
+
 const server = process.env.REACT_APP_SERVER;
 
 console.log(server);
@@ -16,6 +18,7 @@ socket.on('me', (id) => {
 });
 
 const VideoPlayer = () => {
+  const { user } = useContext(UserContext);
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [callEnded, setCallEnded] = useState(false);
   const [stream, setStream] = useState();
@@ -116,7 +119,7 @@ const VideoPlayer = () => {
   const leaveCall = () => {
     setCallEnded(true);
     connectionRef.current.destroy();
-    history.push('/dashboard');
+    history.push(`/app/${user.role}/dashboard`);
   };
 
   return (
