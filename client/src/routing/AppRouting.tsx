@@ -113,7 +113,7 @@ const AppRouting = () => {
             <VideoPlayer />
           </Route>
 
-          {/* COMPLETED JOBS TRANSLATORS */}
+          {/* COMPLETED JOBS CUSTOMERS AND TRANSLATORS */}
           <Route exact path="/app/completedJobs">
             <CompletedJobList />
           </Route>

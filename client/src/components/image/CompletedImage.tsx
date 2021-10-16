@@ -3,15 +3,19 @@ import { UserContext } from '../../context/Context';
 import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
-import { render } from '@testing-library/react';
-
-// (props: {
-//   job: { imageUrl: string; imageUrlTranslated: string; translatedText: string };
-// })
+import { Rating, RatingView } from 'react-simple-star-rating';
 
 const CompletedImage = () => {
   const job = useLocation().state;
   const accessToken = localStorage.getItem('accessToken');
+  const [rating, setRating] = useState(0);
+  const handleRating = (rate: number) => {
+    setRating(rate);
+    //call to database to update the rating for the job
+    //conditionally render the Rating or RatingView if job.rating
+    //can then use this to update translators rating if still want to use it
+  };
+
   const [image, setImage] = useState<IImage>({
     _id: '',
     imageUrl: '',
@@ -19,8 +23,6 @@ const CompletedImage = () => {
     imageUrlTranslated: '',
     JobId: '',
   });
-
-  // console.log('job', job);
 
   const fetchImageData = async () => {
     const imageCompleted = await apiService.fetchImageData(
@@ -56,6 +58,8 @@ const CompletedImage = () => {
             {image.translatedText}
           </div>
           <div>Hoping you liked it don't forget to rate the translator !</div>
+          <Rating onClick={handleRating} ratingValue={rating} />
+          <RatingView ratingValue={2} />
         </div>
       ) : (
         <h2>Fetching your image</h2>
