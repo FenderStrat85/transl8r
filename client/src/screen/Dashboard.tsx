@@ -9,7 +9,6 @@ const Dashboard = () => {
   const history = useHistory();
   const { user, logout } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     // API GET JOBS
@@ -27,22 +26,30 @@ const Dashboard = () => {
     history.push(`/app/completedJobs`);
   };
 
+  const toSelectJob = () => {
+    history.push(`/app/customer/selectjob`);
+  };
+
   return (
     <>
       {user.role === 'customer' ? (
         <>
           <h1>{user.role} Dashboard</h1>
           <h2>Your Pending and Accepted jobs</h2>
-          <CustomerJobList jobs={jobs} />
+          <CustomerJobList />
           <button onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
+          <button onClick={toSelectJob}>Submit a different job</button>
           <button onClick={logoutFromApp}>Logout</button>
         </>
       ) : (
         <div>
           <h1>{user.role} Dashboard</h1>
-          <TranslatorJobList jobs={jobs} />
+          <TranslatorJobList />
+          <button onClick={goToCompletedJobs}>
+            Take me to my completed jobs!
+          </button>
           <button onClick={logoutFromApp}>Logout</button>
         </div>
       )}
