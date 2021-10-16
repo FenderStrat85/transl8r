@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { useQuery } from 'react-query';
 const server = process.env.REACT_APP_SERVER;
 
-const CustomerJobList = (props: { jobs: any }) => {
+const CustomerJobList = () => {
   const accessToken = localStorage.getItem('accessToken');
 
   const fetchPendingAndAcceptedJobs = async () => {

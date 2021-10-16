@@ -9,7 +9,6 @@ const Dashboard = () => {
   const history = useHistory();
   const { user, logout } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     // API GET JOBS
@@ -37,7 +36,7 @@ const Dashboard = () => {
         <>
           <h1>{user.role} Dashboard</h1>
           <h2>Your Pending and Accepted jobs</h2>
-          <CustomerJobList jobs={jobs} />
+          <CustomerJobList />
           <button onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
@@ -47,7 +46,7 @@ const Dashboard = () => {
       ) : (
         <div>
           <h1>{user.role} Dashboard</h1>
-          <TranslatorJobList jobs={jobs} />
+          <TranslatorJobList />
           <button onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
