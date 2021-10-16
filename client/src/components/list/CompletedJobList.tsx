@@ -1,5 +1,5 @@
 import React from 'react';
-import CompletedCustomerJobTile from './../list-items/customer/CompletedCustomerJobTile';
+import CompletedJobTile from '../list-items/CompletedJobTile';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
 import { useQuery } from 'react-query';
@@ -34,9 +34,7 @@ const CompletedJobList = () => {
         {status === 'success' && (
           <div>
             {data.length > 0 ? (
-              data.map((job) => (
-                <CompletedCustomerJobTile key={job._id} job={job} />
-              ))
+              data.map((job) => <CompletedJobTile key={job._id} job={job} />)
             ) : (
               <h3>No completed jobs</h3>
             )}

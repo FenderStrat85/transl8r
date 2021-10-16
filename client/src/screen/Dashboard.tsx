@@ -43,6 +43,9 @@ const Dashboard = () => {
         <div>
           <h1>{user.role} Dashboard</h1>
           <TranslatorJobList jobs={jobs} />
+          <button onClick={goToCompletedJobs}>
+            Take me to my completed jobs!
+          </button>
           <button onClick={logoutFromApp}>Logout</button>
         </div>
       )}

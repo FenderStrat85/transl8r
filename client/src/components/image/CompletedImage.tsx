@@ -3,6 +3,7 @@ import { UserContext } from '../../context/Context';
 import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
+import { useContext } from 'react';
 import { render } from '@testing-library/react';
 
 // (props: {
@@ -12,6 +13,7 @@ import { render } from '@testing-library/react';
 const CompletedImage = () => {
   const job = useLocation().state;
   const accessToken = localStorage.getItem('accessToken');
+  const { user } = useContext(UserContext);
   const [image, setImage] = useState<IImage>({
     _id: '',
     imageUrl: '',
@@ -38,29 +40,61 @@ const CompletedImage = () => {
   console.log('image', image);
 
   return (
-    <div>
-      <h2> Image Job : </h2>
-      {image.imageUrl ? (
+    <>
+      {user.role === 'customer' ? (
         <div>
-          <div>
-            <p>You have requested a translation for this image: </p>
-            <img src={image.imageUrl} alt="user" style={{ width: '50%' }} />
-          </div>
-          <div>
-            <p>and you have recieved this translation and this helper text: </p>
-            <img
-              src={image.imageUrlTranslated}
-              alt="translator"
-              style={{ width: '50%' }}
-            />
-            {image.translatedText}
-          </div>
-          <div>Hoping you liked it don't forget to rate the translator !</div>
+          <h2> Image Job : </h2>
+          {image.imageUrl ? (
+            <div>
+              <div>
+                <p>You have requested a translation for this image: </p>
+                <img src={image.imageUrl} alt="user" style={{ width: '50%' }} />
+              </div>
+              <div>
+                <p>
+                  and you have recieved this translation and this helper text:{' '}
+                </p>
+                <img
+                  src={image.imageUrlTranslated}
+                  alt="translator"
+                  style={{ width: '50%' }}
+                />
+                {image.translatedText}
+              </div>
+              <div>
+                Hoping you liked it don't forget to rate the translator !
+              </div>
+            </div>
+          ) : (
+            <h2>Fetching your image</h2>
+          )}
         </div>
       ) : (
-        <h2>Fetching your image</h2>
+        <div>
+          <h2> Image Job : </h2>
+          {image.imageUrl ? (
+            <div>
+              <div>
+                <p>You completed a translation for this image: </p>
+                <img src={image.imageUrl} alt="user" style={{ width: '50%' }} />
+              </div>
+              <div>
+                <p>and you added this helper text: </p>
+                <img
+                  src={image.imageUrlTranslated}
+                  alt="translator"
+                  style={{ width: '50%' }}
+                />
+                {image.translatedText}
+              </div>
+              <div>Thanks for helping someone translate!</div>
+            </div>
+          ) : (
+            <h2>Fetching your image</h2>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
