@@ -1,10 +1,17 @@
-import { useState, useContext, SetStateAction, ChangeEvent } from 'react';
+import {
+  useState,
+  useContext,
+  SetStateAction,
+  ChangeEvent,
+  useRef,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
+import DashboardButton from '../button/DashboardButton';
 
 const ImageForm = () => {
   const { user } = useContext(UserContext);
@@ -49,7 +56,9 @@ const ImageForm = () => {
     }
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -116,6 +125,7 @@ const ImageForm = () => {
         alert(`${res.message}`);
         setFormValue(initialState);
       }
+      history.push(`/app/customer/dashboard`);
     } catch (error) {
       console.log(error);
     }
@@ -136,9 +146,8 @@ const ImageForm = () => {
             />
           </div>
           <div className="form-group">
-            <input
+            <textarea
               className="form-control"
-              type="text"
               name="jobDescription"
               placeholder={'Tell the translator about the job'}
               onChange={(event) => handleInputChange(event)}
@@ -181,7 +190,7 @@ const ImageForm = () => {
         )}
       </form>
       <button onClick={toSelectJob}>Submit a different job</button>
-      <button onClick={toDashBoard}>To the dashboard!</button>
+      <DashboardButton role={user.role} />
     </div>
   );
 };

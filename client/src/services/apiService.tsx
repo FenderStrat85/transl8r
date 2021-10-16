@@ -6,6 +6,7 @@ const server = process.env.REACT_APP_SERVER;
 const apiService: { [key: string]: any } = {};
 
 apiService.register = (userInfo) => {
+  console.log(':D');
   return fetch(`${server}/register`, {
     method: 'POST',
     credentials: 'include',

@@ -2,8 +2,9 @@ import { UserContext } from '../../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
+import BackButton from '../button/BackButton';
 
-export const TranslatorPendingJobDetails = (props) => {
+export const TranslatorPendingJobDetails = (props: any) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
@@ -69,6 +70,7 @@ export const TranslatorPendingJobDetails = (props) => {
             ) : null}
 
             <button onClick={() => acceptJob()}>Accept this job</button>
+            <BackButton />
           </div>
         ) : (
           <h1>Awesome, you've accepted!</h1>
