@@ -58,48 +58,60 @@ const ChatAndVideoForm = (props) => {
     }
   };
 
+  const toDashBoard = () => {
+    history.push(`/app/customer/dashboard`);
+  };
+
+  const toSelectJob = () => {
+    history.push(`/app/customer/selectjob`);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            name="jobName"
-            placeholder={'Give your job a name!'}
-            onChange={(event) => handleInputChange(event)}
-            required
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              name="jobName"
+              placeholder={'Give your job a name!'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              // type="text"
+              name="jobDescription"
+              placeholder={'Tell the translator about the job'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+          </div>
+          <h3>What language do you need translating from?</h3>
+          {/* <pre>{JSON.stringify(selected)}</pre> */}
+          <Select
+            options={options}
+            value={selectedFrom}
+            onChange={setSelectedFrom}
+            // labelledBy="Select"
           />
-        </div>
-        <div className="form-group">
-          <textarea
-            className="form-control"
-            // type="text"
-            name="jobDescription"
-            placeholder={'Tell the translator about the job'}
-            onChange={(event) => handleInputChange(event)}
-            required
+          <h3>What languages do you need translating to?</h3>
+          {/* <pre>{JSON.stringify(selected)}</pre> */}
+          <Select
+            options={options}
+            value={selectedTo}
+            onChange={setSelectedTo}
+            // labelledBy="Select"
           />
+          <button type="submit">Submit your job</button>
         </div>
-        <h3>What language do you need translating from?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
-        <Select
-          options={options}
-          value={selectedFrom}
-          onChange={setSelectedFrom}
-          // labelledBy="Select"
-        />
-        <h3>What languages do you need translating to?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
-        <Select
-          options={options}
-          value={selectedTo}
-          onChange={setSelectedTo}
-          // labelledBy="Select"
-        />
-        <button type="submit">Submit your job</button>
-      </div>
-    </form>
+      </form>
+      <button onClick={toSelectJob}>Submit a different job</button>
+      <button onClick={toDashBoard}>To the dashboard!</button>
+    </div>
   );
 };
 

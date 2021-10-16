@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
     props.job;
-  // console.log(props.job);
   return (
     <div>
       {status === 'pending' ? (

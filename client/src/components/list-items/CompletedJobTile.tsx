@@ -1,8 +1,8 @@
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import CompletedChat from '../../chat/CompletedChat';
+import CompletedChat from '../chat/CompletedChat';
 
-const CompletedCustomerJobTile = (props: { job: any }) => {
+const CompletedJobTile = (props: { job: any }) => {
   const history = useHistory();
 
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
@@ -31,14 +31,6 @@ const CompletedCustomerJobTile = (props: { job: any }) => {
     }
     setShowJob(true);
   };
-  //set the component to show based on jobType
-  // let component
-
-  // const componentToShowFunction = (jobType) => {
-  //   if(jobType === 'image') {
-  //     component = <CompletedImage job={job}/>
-  //   }
-  // }
 
   return (
     <div>
@@ -53,4 +45,4 @@ const CompletedCustomerJobTile = (props: { job: any }) => {
   );
 };
 
-export default CompletedCustomerJobTile;
+export default CompletedJobTile;

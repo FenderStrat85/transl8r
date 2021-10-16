@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 const server = process.env.REACT_APP_SERVER;
 
-const TranslatorJobList = (props: { jobs: any }) => {
+const TranslatorJobList = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
 

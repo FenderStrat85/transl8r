@@ -9,7 +9,7 @@ import { Language } from '../../interfaces/interfaces';
 const ImageForm = () => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  console.log(accessToken);
+  const history = useHistory();
   const jobType = 'image';
   const options = languageChoice;
   const [fileInputState, setFileInputState] = useState('');
@@ -75,6 +75,14 @@ const ImageForm = () => {
     }
   };
 
+  const toDashBoard = () => {
+    history.push(`/app/customer/dashboard`);
+  };
+
+  const toSelectJob = () => {
+    history.push(`/app/customer/selectjob`);
+  };
+
   const uploadImage = async () => {
     //TODO: It's better to use React's way of handing HTML elements (refs) instead of using the native DOM API (getElementById).
     const imgToUpload = (document.getElementById('user') as HTMLInputElement)
@@ -114,63 +122,67 @@ const ImageForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            name="jobName"
-            placeholder={'Give your job a name!'}
-            onChange={(event) => handleInputChange(event)}
-            required
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              name="jobName"
+              placeholder={'Give your job a name!'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              name="jobDescription"
+              placeholder={'Tell the translator about the job'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+          </div>
+          <h3>What language do you need translating from?</h3>
+          {/* <pre>{JSON.stringify(selected)}</pre> */}
+          <Select
+            options={options}
+            value={selectedFrom}
+            onChange={setSelectedFrom}
+            // labelledBy="Select"
           />
-        </div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            name="jobDescription"
-            placeholder={'Tell the translator about the job'}
-            onChange={(event) => handleInputChange(event)}
-            required
+          <h3>What languages do you need translating to?</h3>
+          {/* <pre>{JSON.stringify(selected)}</pre> */}
+          <Select
+            options={options}
+            value={selectedTo}
+            onChange={setSelectedTo}
+            // labelledBy="Select"
           />
-        </div>
-        <h3>What language do you need translating from?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
-        <Select
-          options={options}
-          value={selectedFrom}
-          onChange={setSelectedFrom}
-          // labelledBy="Select"
-        />
-        <h3>What languages do you need translating to?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
-        <Select
-          options={options}
-          value={selectedTo}
-          onChange={setSelectedTo}
-          // labelledBy="Select"
-        />
 
-        <input
-          id="fileInput"
-          type="file"
-          name="image"
-          onChange={handleFileInputChange}
-          value={fileInputState}
-        />
-        <button type="submit">Submit your job</button>
-      </div>
-      {previewSource && (
-        <img
-          src={previewSource}
-          id="user"
-          crossOrigin="anonymous"
-          alt="chosen"
-        />
-      )}
-    </form>
+          <input
+            id="fileInput"
+            type="file"
+            name="image"
+            onChange={handleFileInputChange}
+            value={fileInputState}
+          />
+          <button type="submit">Submit your job</button>
+        </div>
+        {previewSource && (
+          <img
+            src={previewSource}
+            id="user"
+            crossOrigin="anonymous"
+            alt="chosen"
+          />
+        )}
+      </form>
+      <button onClick={toSelectJob}>Submit a different job</button>
+      <button onClick={toDashBoard}>To the dashboard!</button>
+    </div>
   );
 };
 
