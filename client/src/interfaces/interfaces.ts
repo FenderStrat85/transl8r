@@ -3,16 +3,11 @@ export interface Language {
   value: string;
 }
 
-export interface IRoomInfo {
-  room: string;
-  name: string;
-}
-
 export interface IChatMessage {
   room: string;
   authorName: string;
   _id: string;
-  user_id: string;
+  userId: string;
   message: string;
   time: string;
 }

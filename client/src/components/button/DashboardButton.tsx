@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-const BackButton = (props: { role: string }) => {
+const DashboardButton = (props: { role: string }) => {
   const role = props.role;
   const history = useHistory();
 
@@ -15,4 +15,4 @@ const BackButton = (props: { role: string }) => {
   );
 };
 
-export default BackButton;
+export default DashboardButton;

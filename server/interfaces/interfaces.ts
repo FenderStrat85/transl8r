@@ -76,7 +76,7 @@ export interface IChatMessage {
   room: string;
   authorName: string;
   _id: string;
-  user_id: string;
+  userId: string;
   message: string;
   time: string;
 }
