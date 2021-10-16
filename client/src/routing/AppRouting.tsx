@@ -1,4 +1,3 @@
-import React from 'react';
 import Dashboard from '../screen/Dashboard';
 import SelectJob from '../screen/SelectJob';
 import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
@@ -11,12 +10,10 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import VideoComponent from '../components/video/VideoComponent';
 import VideoPlayer from '../components/video/VideoPlayer';
 import NotFound from '../screen/NotFound';
 import ImageForm from '../components/form/ImageForm';
 import ChatAndVideoForm from '../components/form/ChatAndVideoForm';
-import TranslatorJobList from '../components/list/TranslatorJobList';
 import Conversation from '../components/chat/ConversationJob';
 import TranslatorImage from '../components/image/TranslatorImage';
 import CompletedJobList from '../components/list/CompletedJobList';

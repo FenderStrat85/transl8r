@@ -70,7 +70,7 @@ const VideoPlayer = () => {
       reqBody.socketId = socketId;
       setMe(socketId);
       insertToken();
-    }, 500);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const VideoPlayer = () => {
       {stream && <video playsInline muted ref={myVideo} autoPlay />}
       <div>
         {queryResult.data === undefined ||
-        queryResult.data.socketId === null ? (
+          queryResult.data.socketId === null ? (
           <div>Waiting for the other user to connect</div>
         ) : null}
         {/* {console.log(queryResult)} */}
@@ -136,7 +136,7 @@ const VideoPlayer = () => {
         ) : null}
         {console.log(queryResult.data)}
         {queryResult.data !== undefined &&
-        queryResult.data.socketId !== null ? (
+          queryResult.data.socketId !== null ? (
           <button onClick={() => callUser(queryResult.data.socketId)}>
             Call
           </button>
