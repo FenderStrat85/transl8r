@@ -73,9 +73,12 @@ io.on('connection', (socket: any) => {
   // signalData - massive chunk of data
   // From - ID of the person starting the call
   // Name - name of the person starting the call, entered into text field
-  socket.on('callUser', ({ userToCall, signalData, from, name }: any) => {
-    io.to(userToCall).emit('callUser', { signal: signalData, from, name })
-  })
+  socket.on("callUser", ({ userToCall, name, signalData, from }: any) => {
+    io.to(userToCall).emit("callUser", { signal: signalData, from, name });
+  });
+  // socket.on('callUser', ({ userToCall, signalData, from, name }: any) => {
+  //   io.to(userToCall).emit('callUser', { signal: signalData, from, name })
+  // })
   //Data contains the ID of the person making the call as well as a huge data chunk
   socket.on('answerCall', (data: any) => {
     io.to(data.to).emit('callAccepted', data.signal)
