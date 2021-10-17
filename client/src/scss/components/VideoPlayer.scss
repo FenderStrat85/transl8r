@@ -1,0 +1,12 @@
+.video-player {
+  @include container;
+  * {
+    margin: 10px;
+  }
+  &__video--my-video {
+    border-radius: 20px;
+  }
+  &__video--user-video {
+    border-radius: 20px;
+  }
+}

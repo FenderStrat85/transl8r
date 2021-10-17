@@ -123,7 +123,7 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className='video-player__container'>
+    <div className='video-player'>
       {stream &&
         <video className='video-player__video--my-video' playsInline muted ref={myVideo} autoPlay />}
 

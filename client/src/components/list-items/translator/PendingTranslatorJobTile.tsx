@@ -16,7 +16,7 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
   } = props.job;
 
   return (
-    <div className='pending-translator-job-tile__container'>
+    <div className='pending-translator-job-tile'>
       {jobName} : Status:{status} is a {jobType}
       <p>Language from: {languageFromName}</p>
       <FlagComponent language={languageFromName} />

@@ -31,7 +31,7 @@ const TranslatorJobList = () => {
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='translator-job-list__container'>
+        <div className='translator-job-list'>
           {data.length > 0 ? (
             data.map((job) => (
               <>

@@ -74,7 +74,7 @@ const TranslatorImage = (props: { job: any }) => {
   };
 
   return (
-    <div className='translator-image__container'>
+    <div className='translator-image'>
       <h2>{jobName}</h2>
       <form className='translator-image__form' onSubmit={handleSubmit}>
         <img
