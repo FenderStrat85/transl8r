@@ -1,5 +1,3 @@
-//TODO: check env error
-import env from 'react-dotenv';
 // const server = process.env.REACT_APP_SERVER_URL;
 const server = process.env.REACT_APP_SERVER;
 
@@ -29,7 +27,11 @@ apiService.login = (userInfo: any) => {
     .catch((err) => console.log(err));
 };
 
-apiService.createJob = (jobInfos: any, jobType: string, accessToken: any) => {
+apiService.createJob = (
+  jobInfos: any,
+  jobType: string,
+  accessToken: string,
+) => {
   return fetch(`${server}/createJob/${jobType}`, {
     method: 'POST',
     credentials: 'include',
@@ -44,7 +46,7 @@ apiService.createJob = (jobInfos: any, jobType: string, accessToken: any) => {
     .catch((err) => console.log(err));
 };
 
-apiService.acceptJob = (jobInfos: any, accessToken: any) => {
+apiService.acceptJob = (jobInfos: any, accessToken: string) => {
   return fetch(`${server}/acceptJob`, {
     method: 'PUT',
     credentials: 'include',
@@ -59,7 +61,7 @@ apiService.acceptJob = (jobInfos: any, accessToken: any) => {
     .catch((err) => console.log(err));
 };
 
-apiService.fetchImage = (jobId: any, accessToken: any) => {
+apiService.fetchImage = (jobId: any, accessToken: string) => {
   return fetch(`${server}/getImageUrl/${jobId}`, {
     method: 'GET',
     credentials: 'include',

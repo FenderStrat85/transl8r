@@ -3,14 +3,7 @@ import SelectJob from '../screen/SelectJob';
 import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
 import { useContext } from 'react';
 import { UserContext } from '../context/Context';
-//TODO: check if as Router has a sense
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-  useLocation,
-} from 'react-router-dom';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import VideoPlayer from '../components/video/VideoPlayer';
 import NotFound from '../screen/NotFound';
 import ImageForm from '../components/form/ImageForm';
@@ -23,9 +16,6 @@ import CompletedImage from '../components/image/CompletedImage';
 
 const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
-  //TODO: check if really necessary
-  const accessToken = localStorage.getItem('accessToken');
-
   let job = useLocation();
 
   return (

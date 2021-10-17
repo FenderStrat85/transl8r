@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
@@ -25,6 +24,14 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
 
   const [formValue, setFormValue] = useState(initialState);
 
+  const handleSelectedFrom = (event: any) => {
+    setSelectedFrom(event);
+  };
+
+  const handleSelectedTo = (event: any) => {
+    setSelectedTo(event);
+  };
+
   const handleInputChange = (
     event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>,
   ) => {
@@ -40,8 +47,10 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
     event.preventDefault();
 
     try {
-      const languageFromName = selectedFrom.value;
-      const languageToName = selectedTo.value;
+      console.log('🧗‍♀️', selectedFrom);
+      console.log('🧗‍♀️🧗‍♀️', selectedTo);
+      const languageFromName = selectedFrom?.value;
+      const languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
         ...formValue,
         languageFromName,
@@ -96,7 +105,7 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
           <Select
             options={options}
             value={selectedFrom}
-            onChange={setSelectedFrom}
+            onChange={(event) => handleSelectedFrom(event)}
             // labelledBy="Select"
           />
           <h3>What languages do you need translating to?</h3>
@@ -104,7 +113,7 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
           <Select
             options={options}
             value={selectedTo}
-            onChange={setSelectedTo}
+            onChange={(event) => handleSelectedTo(event)}
             // labelledBy="Select"
           />
           <button type="submit">Submit your job</button>

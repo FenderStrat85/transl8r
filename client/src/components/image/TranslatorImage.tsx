@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';

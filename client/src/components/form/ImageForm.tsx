@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
@@ -99,8 +99,9 @@ const ImageForm = (): JSX.Element => {
     const { secure_url } = await res.json();
 
     try {
-      let languageFromName = selectedFrom.value;
-      let languageToName = selectedTo.value;
+      let languageFromName = selectedFrom?.value;
+      console.log(languageFromName);
+      let languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
         ...formValue,
         languageFromName,
