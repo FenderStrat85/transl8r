@@ -15,7 +15,7 @@ function SelectJob() {
     history.push(`/auth/login`);
   };
   return (
-    <div className='select-job-screen__container'>
+    <div className='select-job-screen'>
       <h1>Customer Select Job</h1>
       <Link to="/app/customer/createJob/espresso">
         <button className='select-job-screen__button'>Espresso</button>

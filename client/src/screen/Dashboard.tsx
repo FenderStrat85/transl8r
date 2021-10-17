@@ -31,7 +31,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='dashboard-screen__container'>
+    <div className='dashboard-screen'>
       {user.role === 'customer' ? (
         <>
           <h1>{user.role} Dashboard</h1>
