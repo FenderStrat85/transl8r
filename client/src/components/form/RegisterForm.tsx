@@ -61,28 +61,30 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="register-form__container">
+    <div className="register-form">
       <form onSubmit={handleSubmit}>
         <div className="register-form__radio-button-container">
           <p>Please select your role:</p>
-          <input
-            className="register-form__radio-select"
-            type="radio"
-            value="customer"
-            name="role"
-            onClick={(event) => handleInputChange(event)}
-            required
-          />
-          <label htmlFor="contactChoice1">Customer</label>
-          <input
-            className="register-form__radio-select"
-            type="radio"
-            value="translator"
-            name="role"
-            onClick={(event) => handleInputChange(event)}
-            required
-          />
-          <label htmlFor="contactChoice2">Translator</label>
+          <div className="register-form__radio-button">
+            <input
+              className="register-form__radio-select"
+              type="radio"
+              value="customer"
+              name="role"
+              onClick={(event) => handleInputChange(event)}
+              required
+            />
+            <label htmlFor="contactChoice1">Customer</label>
+            <input
+              className="register-form__radio-select"
+              type="radio"
+              value="translator"
+              name="role"
+              onClick={(event) => handleInputChange(event)}
+              required
+            />
+            <label htmlFor="contactChoice2">Translator</label>
+          </div>
         </div>
         {formValue.role === 'customer' ? (
           <div className="register-form__input-container--customer">
@@ -159,7 +161,7 @@ const RegisterForm = () => {
             <h3>What languages do you speak?</h3>
             {/* <pre>{JSON.stringify(selected)}</pre> */}
             <MultiSelect
-              className='register-form__multi-select'
+              className="register-form__multi-select"
               options={options}
               value={selected}
               onChange={setSelected}
@@ -167,7 +169,9 @@ const RegisterForm = () => {
             />
           </>
         )}
-        <button className='register-form__button' type="submit">Register</button>
+        <button className="register-form__button" type="submit">
+          Register
+        </button>
       </form>
     </div>
   );

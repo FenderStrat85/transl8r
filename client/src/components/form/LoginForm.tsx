@@ -37,7 +37,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className='login-form__container'>
+    <div className='login-form'>
       <form className="login-form__form" onSubmit={handleSubmit}>
         <input
           className="login-form__input"
