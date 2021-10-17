@@ -16,6 +16,7 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
+    "react-country-flag": "^2.3.1",
     "react-dom": "^17.0.2",
     "react-lottie-player": "^1.4.0",
     "react-multi-select-component": "^4.1.13",
