@@ -37,7 +37,6 @@ const ImageForm = () => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource(reader.result as any);
-      //console.log(imageUser);
     };
   };
 
@@ -132,56 +131,51 @@ const ImageForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              name="jobName"
-              placeholder={'Give your job a name!'}
-              onChange={(event) => handleInputChange(event)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <textarea
-              className="form-control"
-              name="jobDescription"
-              placeholder={'Tell the translator about the job'}
-              onChange={(event) => handleInputChange(event)}
-              required
-            />
-          </div>
+    <div className='image-form__container'>
+      <form className='image-form__form' onSubmit={handleSubmit}>
+        <>
+          <input
+            className="image-form__input"
+            type="text"
+            name="jobName"
+            placeholder={'Give your job a name!'}
+            onChange={(event) => handleInputChange(event)}
+            required
+          />
+          <textarea
+            className="image-form__text-area"
+            name="jobDescription"
+            placeholder={'Tell the translator about the job'}
+            onChange={(event) => handleInputChange(event)}
+            required
+          />
           <h3>What language do you need translating from?</h3>
-          {/* <pre>{JSON.stringify(selected)}</pre> */}
           <Select
+            className='image-form__select'
             options={options}
             value={selectedFrom}
             onChange={setSelectedFrom}
-            // labelledBy="Select"
           />
           <h3>What languages do you need translating to?</h3>
-          {/* <pre>{JSON.stringify(selected)}</pre> */}
           <Select
+            className='image-form__select'
             options={options}
             value={selectedTo}
             onChange={setSelectedTo}
-            // labelledBy="Select"
           />
-
           <input
+            className='image-form__image-select'
             id="fileInput"
             type="file"
             name="image"
             onChange={handleFileInputChange}
             value={fileInputState}
           />
-          <button type="submit">Submit your job</button>
-        </div>
+          <button className='image-form__button' type="submit">Submit your job</button>
+        </>
         {previewSource && (
           <img
+            className='image-form__image-preview'
             src={previewSource}
             id="user"
             crossOrigin="anonymous"
@@ -189,7 +183,7 @@ const ImageForm = () => {
           />
         )}
       </form>
-      <button onClick={toSelectJob}>Submit a different job</button>
+      <button className='image-form__button' onClick={toSelectJob}>Submit a different job</button>
       <DashboardButton role={user.role} />
     </div>
   );
