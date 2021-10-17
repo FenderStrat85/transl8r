@@ -14,7 +14,6 @@ const CompletedChat = (): JSX.Element => {
     const messageArray = await apiService.getChatMessages(job._id, accessToken);
     setMessages(messageArray);
   };
-  console.log(messages);
 
   useEffect(() => {
     fetchMessages();

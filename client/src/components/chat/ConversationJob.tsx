@@ -15,7 +15,6 @@ const Conversation = (): JSX.Element => {
   let room: string;
   let userId: string;
 
-  console.log('user.role', user.role);
   if (user.role === 'customer') {
     const { _id, CustomerId } = job.state;
 
