@@ -5,7 +5,7 @@ const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
     props.job;
   return (
-    <div className='panding-and-accepted-customer-job-tile__container'>
+    <div className='pending-and-accepted-customer-job-tile'>
       {status === 'pending' ? (
         <>
           <p> {jobName} : Status:{status} is a {jobType}</p>

@@ -1,0 +1,6 @@
+.completed-job-tile {
+  @include container;
+  * {
+    margin-bottom: 10px;
+  }
+}

@@ -43,7 +43,7 @@ const FlagComponent = (props: { language: string }) => {
   }
 
   return (
-    <div style={{ width: 75, height: 75 }}>
+    <div className='flag-component'>
       <img src={country} />
     </div>
   );

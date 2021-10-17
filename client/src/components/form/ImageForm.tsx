@@ -131,7 +131,7 @@ const ImageForm = () => {
   };
 
   return (
-    <div className='image-form__container'>
+    <div className='image-form'>
       <form className='image-form__form' onSubmit={handleSubmit}>
         <>
           <input

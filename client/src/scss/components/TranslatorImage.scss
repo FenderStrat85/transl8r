@@ -1,0 +1,6 @@
+.translator-image {
+  @include container;
+  &__form {
+    @include flex-column;
+  }
+}

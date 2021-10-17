@@ -65,8 +65,9 @@ const ChatAndVideoForm = (props) => {
   };
 
   return (
-    <div className='chat-and-video-form__container'>
-      <form onSubmit={handleSubmit}>
+    <div className='chat-and-video-form'>
+      <form className='chat-and-video-form__form'
+        onSubmit={handleSubmit}>
         <input
           className="chat-and-video-form__input"
           type="text"
