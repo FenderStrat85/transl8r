@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import io from 'socket.io-client';
 import { UserContext } from '../../context/Context';
@@ -7,7 +7,7 @@ import Chat from './ChatJob';
 
 export const socket = io('http://localhost:5000');
 
-const Conversation = () => {
+const Conversation = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const [showChat, setShowChat] = useState(false);
 
@@ -45,7 +45,7 @@ const Conversation = () => {
       new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
   };
 
-  const joinRoom = () => {
+  const joinRoom = (): void => {
     socket.emit('join_room', joinRoomInfo);
     setShowChat(true);
   };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const PendingTranslatorJobTile = (props: { job: any }) => {
+const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
   const { jobName, status, jobType, languageFromName, languageToName } =
     props.job;
 

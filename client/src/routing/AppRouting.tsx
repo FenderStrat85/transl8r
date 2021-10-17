@@ -3,6 +3,7 @@ import SelectJob from '../screen/SelectJob';
 import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
 import { useContext } from 'react';
 import { UserContext } from '../context/Context';
+//TODO: check if as Router has a sense
 import {
   BrowserRouter as Router,
   Route,
@@ -20,8 +21,9 @@ import CompletedJobList from '../components/list/CompletedJobList';
 import CompletedChat from '../components/chat/CompletedChat';
 import CompletedImage from '../components/image/CompletedImage';
 
-const AppRouting = () => {
+const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
+  //TODO: check if really necessary
   const accessToken = localStorage.getItem('accessToken');
 
   let job = useLocation();

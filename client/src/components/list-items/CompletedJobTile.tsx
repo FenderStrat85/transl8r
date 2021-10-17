@@ -1,11 +1,12 @@
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
-const CompletedJobTile = (props: { job: any }) => {
+const CompletedJobTile = (props: { job: any }): JSX.Element => {
   const history = useHistory();
 
-  const { jobName, status, jobType, languageFromName, languageToName, _id } =
+  const { jobName, status, jobType, languageFromName, languageToName } =
     props.job;
+
   const [showJob, setShowJob] = useState(false);
 
   const handleClick = () => {

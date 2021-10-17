@@ -4,7 +4,7 @@ const DashboardButton = (props: { role: string }) => {
   const role = props.role;
   const history = useHistory();
 
-  const toTranslatorDashboard = () => {
+  const toTranslatorDashboard = (): void => {
     history.push(`/app/${role}/dashboard`);
   };
 

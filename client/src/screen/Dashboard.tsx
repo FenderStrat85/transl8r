@@ -9,10 +9,8 @@ const Dashboard = (): JSX.Element => {
   const { user, logout } = useContext(UserContext);
   const accessToken: any = localStorage.getItem('accessToken');
 
-  const logoutFromApp = () => {
+  const logoutFromApp = (): void => {
     logout(accessToken as string);
-    console.log('accessToken', accessToken);
-    console.log('accessToken', user);
     history.push(`/auth/login`);
   };
 

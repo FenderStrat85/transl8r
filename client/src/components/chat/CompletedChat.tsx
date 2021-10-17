@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { useLocation } from 'react-router-dom';
 import BackButton from '../button/BackButton';
 
-const CompletedChat = () => {
-  const accessToken = localStorage.getItem('accessToken');
+const CompletedChat = (): JSX.Element => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   const [messages, setMessages] = useState([]);
 
   //ability to access job info from previous page
   const job = useLocation<any>().state.state;
 
-  const fetchMessages = async () => {
+  const fetchMessages = async (): Promise<void> => {
     const messageArray = await apiService.getChatMessages(job._id, accessToken);
     setMessages(messageArray);
   };

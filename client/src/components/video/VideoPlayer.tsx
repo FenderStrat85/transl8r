@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -30,7 +30,7 @@ const VideoPlayer = (): JSX.Element => {
   const job: any = useLocation();
   const accessToken = localStorage.getItem('accessToken');
 
-  const getSocketId = async () => {
+  const getSocketId = async (): Promise<any> => {
     const res = await fetch(`${server}/retrieveSocketId/${job.state._id}`, {
       method: 'GET',
       credentials: 'include',
@@ -49,7 +49,7 @@ const VideoPlayer = (): JSX.Element => {
 
   const reqBody = { jobId: job.state._id, socketId: '' };
 
-  const insertToken = () => {
+  const insertToken = (): void => {
     fetch(`${server}/insertSocketId`, {
       method: 'POST',
       credentials: 'include',
@@ -64,7 +64,7 @@ const VideoPlayer = (): JSX.Element => {
       .catch((err) => console.log(err));
   };
 
-  const populateDb = () => {
+  const populateDb = (): void => {
     setTimeout(() => {
       reqBody.socketId = socketId;
       setMe(socketId);
@@ -87,7 +87,7 @@ const VideoPlayer = (): JSX.Element => {
     });
   }, []);
 
-  const answerCall = () => {
+  const answerCall = (): void => {
     setCallAccepted(true);
     const peer = new Peer({ initiator: false, trickle: false, stream });
     peer.on('signal', (data) => {
@@ -100,7 +100,7 @@ const VideoPlayer = (): JSX.Element => {
     connectionRef.current = peer;
   };
 
-  const callUser = (id: any) => {
+  const callUser = (id: any): void => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
     peer.on('signal', (data) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me });
@@ -115,7 +115,7 @@ const VideoPlayer = (): JSX.Element => {
     connectionRef.current = peer;
   };
 
-  const leaveCall = () => {
+  const leaveCall = (): void => {
     setCallEnded(true);
     connectionRef.current.destroy();
     history.push(`/app/${user.role}/dashboard`);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../context/Context';
 import { useContext } from 'react';
@@ -8,7 +7,7 @@ const SelectJob = (): JSX.Element => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   const history = useHistory();
 
-  const logoutFromApp = () => {
+  const logoutFromApp = (): void => {
     logout(accessToken as string);
     console.log('accessToken', accessToken);
     console.log('accessToken', user);

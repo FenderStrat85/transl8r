@@ -27,7 +27,7 @@ const ImageForm = (): JSX.Element => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const previewFile = (file: Blob) => {
+  const previewFile = (file: Blob): void => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
@@ -36,7 +36,7 @@ const ImageForm = (): JSX.Element => {
     };
   };
 
-  const handleFileInputChange = (event: any) => {
+  const handleFileInputChange = (event: any): void => {
     const file = event.target.files[0];
     const extension = file.name.split('.').reverse()[0].toLowerCase();
     const supportedExtensions = ['png', 'jpeg', 'heic', 'gif', 'jpg'];
@@ -53,7 +53,7 @@ const ImageForm = (): JSX.Element => {
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
-  ) => {
+  ): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -79,11 +79,11 @@ const ImageForm = (): JSX.Element => {
     }
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 
-  const uploadImage = async () => {
+  const uploadImage = async (): Promise<void> => {
     //TODO: It's better to use React's way of handing HTML elements (refs) instead of using the native DOM API (getElementById).
     const imgToUpload = (document.getElementById('user') as HTMLInputElement)
       .src;

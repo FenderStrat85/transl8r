@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-const BackButton = () => {
+const BackButton = (): JSX.Element => {
   const history = useHistory();
   const goBack = () => {
     history.goBack();

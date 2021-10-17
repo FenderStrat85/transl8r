@@ -8,7 +8,7 @@ import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 
-const ChatAndVideoForm = (props: { jobType: any }) => {
+const ChatAndVideoForm = (props: { jobType: String }) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');

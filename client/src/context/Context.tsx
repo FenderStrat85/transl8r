@@ -9,6 +9,7 @@ const initialState = {
   lastName: '',
 };
 
+// TODO: Do we still need the mock ?
 const mock = {
   user: initialState,
   login: (
@@ -23,7 +24,7 @@ const mock = {
 
 const UserContext = createContext(mock);
 
-const UserProvider = (props: { children: any }) => {
+const UserProvider = (props: { children: any }): JSX.Element => {
   const { children } = props;
   const [user, setUser] = useState(initialState);
 
@@ -44,7 +45,7 @@ const UserProvider = (props: { children: any }) => {
     }));
   };
 
-  const logout = (accessToken: string) => {
+  const logout = (accessToken: string): void => {
     setUser(initialState);
     localStorage.removeItem(accessToken);
   };

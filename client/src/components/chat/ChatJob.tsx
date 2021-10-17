@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Key,
   ReactChild,
@@ -7,6 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+//@ts-expect-error
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage } from '../../interfaces/interfaces';
 import './chat.css';
@@ -31,9 +31,9 @@ export const Chat = (props: {
   //authorName = first name of the user
   //userId = the id of the user sending the message
   //_id initial undefined, but is set the _id of the specific message sent
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
 
-  const sendMessage = async () => {
+  const sendMessage = async (): Promise<void> => {
     if (currentMessage !== '') {
       const messageData: IChatMessage = {
         room: room,
