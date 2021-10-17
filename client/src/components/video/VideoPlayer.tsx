@@ -5,6 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { UserContext } from '../../context/Context';
+import Draggable, { DraggableCore } from 'react-draggable';
 
 const server = process.env.REACT_APP_SERVER;
 
@@ -123,36 +124,59 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className='video-player'>
-      {stream &&
-        <video className='video-player__video--my-video' playsInline muted ref={myVideo} autoPlay />}
+    <div className="video-player">
+      {stream && (
+        <video
+          className="video-player__video--my-video"
+          playsInline
+          muted
+          ref={myVideo}
+          autoPlay
+        />
+      )}
 
-      <div className='video-player__controls'>
+      <div className="video-player__controls">
         {queryResult.data === undefined ||
-          queryResult.data.socketId === null ? (
+        queryResult.data.socketId === null ? (
           <p>Waiting for the other user to connect</p>
         ) : null}
 
         {callAccepted && !callEnded ? (
-          <button className='video-player__button' onClick={leaveCall}>Leave call</button>
+          <button className="video-player__button" onClick={leaveCall}>
+            Leave call
+          </button>
         ) : null}
 
         {queryResult.data !== undefined &&
-          queryResult.data.socketId !== null ? (
-          <button className='video-player__button' onClick={() => callUser(queryResult.data.socketId)}>
+        queryResult.data.socketId !== null ? (
+          <button
+            className="video-player__button"
+            onClick={() => callUser(queryResult.data.socketId)}
+          >
             Call
           </button>
         ) : null}
 
         {call.isReceivingCall && !callAccepted && queryResult.data !== null ? (
-          <button className='video-player__button' type="button" onClick={answerCall}>
+          <button
+            className="video-player__button"
+            type="button"
+            onClick={answerCall}
+          >
             Answer this call
           </button>
         ) : null}
       </div>
 
       {callAccepted && !callEnded && (
-        <video className='video-player__video--user-video' playsInline ref={userVideo} autoPlay />
+        <Draggable bounds="parent">
+          <video
+            className="video-player__video--user-video"
+            playsInline
+            ref={userVideo}
+            autoPlay
+          />
+        </Draggable>
       )}
     </div>
   );

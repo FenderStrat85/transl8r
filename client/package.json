@@ -18,6 +18,7 @@
     "react-copy-to-clipboard": "^5.0.4",
     "react-country-flag": "^2.3.1",
     "react-dom": "^17.0.2",
+    "react-draggable": "^4.4.4",
     "react-lottie-player": "^1.4.0",
     "react-multi-select-component": "^4.1.13",
     "react-query": "^3.26.0",
