@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 import { Link } from 'react-router-dom';
+import 'screen.css';
 
 const LoginScreen = () => {
   return (
