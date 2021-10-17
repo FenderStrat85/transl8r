@@ -1,9 +1,13 @@
 const languageChoice = [
   { label: '🇬🇧 English', value: 'English' },
-  { label: '🇪🇸 Spanish', value: 'Spanish' },
   { label: '🇫🇷 French', value: 'French' },
+  { label: '🇩🇪 German', value: 'German' },
   { label: '🇮🇹 Italian', value: 'Italian' },
+  { label: '🇷🇺 Russian', value: 'Russian' },
+  { label: '🇪🇸 Spanish', value: 'Spanish' },
   { label: '🇨🇳 Chinese', value: 'Chinese' },
+  { label: '🇯🇵 Japanese', value: 'Japanese' },
+  { label: '🇰🇷 Korean', value: 'Korean' },
 ];
 
 export default languageChoice;
