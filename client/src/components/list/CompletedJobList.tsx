@@ -42,7 +42,7 @@ const CompletedJobList = () => {
   };
 
   return (
-    <div className='completed-jobs-list__container'>
+    <div className='completed-job-list'>
       <h2>Completed Jobs</h2>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}

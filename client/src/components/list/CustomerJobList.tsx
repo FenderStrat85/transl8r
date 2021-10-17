@@ -39,7 +39,7 @@ const CustomerJobList = () => {
   }
 
   return (
-    <div className='customer-job-list__container'>
+    <div className='customer-job-list'>
       {/* PENDING JOB CONTAINER */}
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}

@@ -32,7 +32,7 @@ const CompletedImage = () => {
   }, []);
 
   return (
-    <div className='completed-image__container'>
+    <div className='completed-image'>
       {user.role === 'customer' ? (
         <div className='completed-image__container--customer'>
           <h2> Image Job : </h2>

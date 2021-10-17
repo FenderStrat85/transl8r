@@ -33,7 +33,7 @@ const CompletedJobTile = (props: { job: any }) => {
   };
 
   return (
-    <div className='completed-job-tile__container'>
+    <div className='completed-job-tile'>
       <p>{jobName} : Status:{status}</p>
       <p>Language from: {languageFromName}</p>
       <FlagComponent language={languageFromName} />
