@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Key } from 'react';
 const server = process.env.REACT_APP_SERVER;
 
-const TranslatorJobList = () => {
+const TranslatorJobList = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
 
   const fetchPendingJobs = async () => {

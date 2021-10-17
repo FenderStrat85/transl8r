@@ -6,11 +6,7 @@ import { IImage } from '../../interfaces/interfaces';
 import { useContext } from 'react';
 import BackButton from '../button/BackButton';
 
-// (props: {
-//   job: { imageUrl: string; imageUrlTranslated: string; translatedText: string };
-// })
-
-const CompletedImage = () => {
+const CompletedImage = (): JSX.Element => {
   const job: any = useLocation().state;
   const accessToken = localStorage.getItem('accessToken');
   const { user } = useContext(UserContext);
@@ -22,9 +18,7 @@ const CompletedImage = () => {
     JobId: '',
   });
 
-  // console.log('job', job);
-
-  const fetchImageData = async () => {
+  const fetchImageData = async (): Promise<void> => {
     const imageCompleted = await apiService.fetchImageData(
       job._id,
       accessToken,

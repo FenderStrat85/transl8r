@@ -34,7 +34,7 @@ const UserProvider = (props: { children: any }): JSX.Element => {
     role: string,
     firstName: string,
     lastName: string,
-  ) => {
+  ): void => {
     setUser((prevState) => ({
       isAuthenticated: true,
       token: accessToken,

@@ -3,7 +3,7 @@ import * as markerjs2 from 'markerjs2';
 import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
 
-const TranslatorImage = (props: { job: any }) => {
+const TranslatorImage = (props: { job: any }): JSX.Element => {
   const history = useHistory();
 
   const accessToken = localStorage.getItem('accessToken');
@@ -15,13 +15,13 @@ const TranslatorImage = (props: { job: any }) => {
   // needed if we want a confirmation img
   // const [resultsImage, setResultsImage] = useState('');
 
-  const showMarkerArea = () => {
+  const showMarkerArea = (): void => {
     //TODO: It's probably better to avoid native DOM API methods and use the Refs which is React's way of accessing DOM elements.
     const markerArea = new markerjs2.MarkerArea(
       document.getElementById('translator') as HTMLInputElement,
     );
 
-    markerArea.addRenderEventListener((dataUrl) => {
+    markerArea.addRenderEventListener((dataUrl): void => {
       (document.getElementById('translator') as HTMLInputElement).src = dataUrl;
     });
 
@@ -29,7 +29,9 @@ const TranslatorImage = (props: { job: any }) => {
     markerArea.show();
   };
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     event.preventDefault();
     const imgToUpload = (
       document.getElementById('translator') as HTMLInputElement
@@ -57,11 +59,11 @@ const TranslatorImage = (props: { job: any }) => {
     uploadTextToDb(textToUpload);
   };
 
-  const uploadImageToDB = async (url: string) => {
+  const uploadImageToDB = async (url: string): Promise<void> => {
     await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
   };
 
-  const uploadTextToDb = async (text: string) => {
+  const uploadTextToDb = async (text: string): Promise<void> => {
     await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
     await ApiService.changeStatus(_id, COMPLETED, accessToken);
     history.push(`/app/translator/dashboard`);
@@ -69,7 +71,7 @@ const TranslatorImage = (props: { job: any }) => {
 
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
-  }) => {
+  }): void => {
     setValue(event.target.value);
   };
 

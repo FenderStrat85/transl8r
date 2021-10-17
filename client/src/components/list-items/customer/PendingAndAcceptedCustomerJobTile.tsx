@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
+const PendingAndAcceptedCustomerJobTile = (props: {
+  job: any;
+}): JSX.Element => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
     props.job;
   return (

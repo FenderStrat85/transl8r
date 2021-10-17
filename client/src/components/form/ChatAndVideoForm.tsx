@@ -43,12 +43,12 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
     });
   };
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     event.preventDefault();
 
     try {
-      console.log('🧗‍♀️', selectedFrom);
-      console.log('🧗‍♀️🧗‍♀️', selectedTo);
       const languageFromName = selectedFrom?.value;
       const languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
@@ -72,7 +72,7 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
     }
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 

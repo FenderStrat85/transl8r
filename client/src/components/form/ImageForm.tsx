@@ -153,21 +153,18 @@ const ImageForm = (): JSX.Element => {
               required
             />
           </div>
+
           <h3>What language do you need translating from?</h3>
-          {/* <pre>{JSON.stringify(selected)}</pre> */}
           <Select
             options={options}
             value={selectedFrom}
             onChange={(event) => handleSelectedFrom(event)}
-            // labelledBy="Select"
           />
           <h3>What languages do you need translating to?</h3>
-          {/* <pre>{JSON.stringify(selected)}</pre> */}
           <Select
             options={options}
             value={selectedTo}
             onChange={(event) => handleSelectedTo(event)}
-            // labelledBy="Select"
           />
 
           <input

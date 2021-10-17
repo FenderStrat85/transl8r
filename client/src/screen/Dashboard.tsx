@@ -14,11 +14,11 @@ const Dashboard = (): JSX.Element => {
     history.push(`/auth/login`);
   };
 
-  const goToCompletedJobs = () => {
+  const goToCompletedJobs = (): void => {
     history.push(`/app/completedJobs`);
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 

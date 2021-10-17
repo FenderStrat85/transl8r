@@ -3,10 +3,10 @@ import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAnd
 import { useQuery } from 'react-query';
 const server = process.env.REACT_APP_SERVER;
 
-const CustomerJobList = () => {
+const CustomerJobList = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
 
-  const fetchPendingAndAcceptedJobs = async () => {
+  const fetchPendingAndAcceptedJobs = async (): Promise<any> => {
     const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
       method: 'GET',
       credentials: 'include',

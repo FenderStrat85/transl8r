@@ -9,7 +9,7 @@ const LoginForm = (): JSX.Element => {
   const initialState = { email: '', password: '' };
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: any): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -18,7 +18,7 @@ const LoginForm = (): JSX.Element => {
     });
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: any): Promise<void> => {
     event.preventDefault();
     const res = await apiService.login(formValue);
     if (res.error) {

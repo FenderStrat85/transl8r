@@ -9,7 +9,7 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
 
   const [showJob, setShowJob] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (jobType === 'chat') {
       history.push(`/app/customer/${jobType}/completed`, {
         state: props.job,

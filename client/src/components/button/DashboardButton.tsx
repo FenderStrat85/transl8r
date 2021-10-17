@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-const DashboardButton = (props: { role: string }) => {
+const DashboardButton = (props: { role: string }): JSX.Element => {
   const role = props.role;
   const history = useHistory();
 

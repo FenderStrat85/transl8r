@@ -6,12 +6,12 @@ import { useQuery } from 'react-query';
 import { useHistory } from 'react-router-dom';
 const server = process.env.REACT_APP_SERVER;
 
-const CompletedJobList = () => {
+const CompletedJobList = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
   const history = useHistory();
   const { user } = useContext(UserContext);
 
-  const fetchCompletedJobs = async () => {
+  const fetchCompletedJobs = async (): Promise<any> => {
     const res = await fetch(`${server}/getJobs/completed`, {
       method: 'GET',
       credentials: 'include',
@@ -28,15 +28,15 @@ const CompletedJobList = () => {
     refetchInterval: 5000,
   });
 
-  const toDashBoard = () => {
+  const toDashBoard = (): void => {
     history.push(`/app/customer/dashboard`);
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 
-  const toTranslatorDashboard = () => {
+  const toTranslatorDashboard = (): void => {
     history.push(`/app/translator/dashboard`);
   };
 

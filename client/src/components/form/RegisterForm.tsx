@@ -22,7 +22,7 @@ const RegisterForm = (): JSX.Element => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: any): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -31,7 +31,9 @@ const RegisterForm = (): JSX.Element => {
     });
   };
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     event.preventDefault();
     const objectToSendToDb: any = formValue;
     if (formValue.role === 'translator') {
