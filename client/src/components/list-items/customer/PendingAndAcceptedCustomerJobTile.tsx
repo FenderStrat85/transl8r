@@ -5,18 +5,18 @@ const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
     props.job;
   return (
-    <div>
+    <div className='panding-and-accepted-customer-job-tile__container'>
       {status === 'pending' ? (
-        <div>
-          {jobName} : Status:{status} is a {jobType}
+        <>
+          <p> {jobName} : Status:{status} is a {jobType}</p>
           <p>Language from: {languageFromName}</p>
           <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
           <FlagComponent language={languageToName} />
-        </div>
+        </>
       ) : (
-        <div>
-          {jobName} : Status:{status} is a {jobType}
+        <>
+          <p> {jobName} : Status:{status} is a {jobType}</p>
           <p>Language from: {languageFromName}</p>
           <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
@@ -29,7 +29,7 @@ const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
           >
             <button>Go to job:</button>
           </Link>
-        </div>
+        </>
       )}
     </div>
   );

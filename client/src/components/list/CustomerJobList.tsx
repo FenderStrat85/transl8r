@@ -39,40 +39,38 @@ const CustomerJobList = () => {
   }
 
   return (
-    <>
-      <div>
-        <h2>Pending Jobs</h2>
-        {status === 'error' && <div>Error fetching data</div>}
-        {status === 'loading' && <div>Fetching data</div>}
-        {status === 'success' && (
-          <div>
-            {pendingJobs.length > 0 ? (
-              pendingJobs.map((job) => (
-                <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
-              ))
-            ) : (
-              <h3>No pending jobs</h3>
-            )}
-          </div>
-        )}
-      </div>
-      <div>
-        <h2>Accepted Jobs</h2>
-        {status === 'error' && <div>Error fetching data</div>}
-        {status === 'loading' && <div>Fetching data</div>}
-        {status === 'success' && (
-          <div>
-            {acceptedJobs.length > 0 ? (
-              acceptedJobs.map((job) => (
-                <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
-              ))
-            ) : (
-              <h3>No accepted jobs</h3>
-            )}
-          </div>
-        )}
-      </div>
-    </>
+    <div className='customer-job-list__container'>
+      {/* PENDING JOB CONTAINER */}
+      {status === 'error' && <div>Error fetching data</div>}
+      {status === 'loading' && <div>Fetching data</div>}
+      {status === 'success' && (
+        <div className='customer-job-list__jobs--pending'>
+          <h2>Pending Jobs</h2>
+          {pendingJobs.length > 0 ? (
+            pendingJobs.map((job) => (
+              <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
+            ))
+          ) : (
+            <h3>No pending jobs</h3>
+          )}
+        </div>
+      )}
+      {/* ACCEPTED JOB CONTAINER */}
+      {status === 'error' && <div>Error fetching data</div>}
+      {status === 'loading' && <div>Fetching data</div>}
+      {status === 'success' && (
+        <div className='customer-job-list__jobs--accepted'>
+          <h2>Accepted Jobs</h2>
+          {acceptedJobs.length > 0 ? (
+            acceptedJobs.map((job) => (
+              <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
+            ))
+          ) : (
+            <h3>No accepted jobs</h3>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

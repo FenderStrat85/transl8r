@@ -66,12 +66,8 @@ const AppRouting = () => {
 
           {/* {CUSTOMER JOBS ROUTE} */}
           <Route exact path="/app/customer/acceptedjob/image:id">
-            {/* {IM THE IMAGE COMPONENT} */}
-            <h1>IMAGE COMPONENT</h1>
           </Route>
           <Route exact path="/app/customer/acceptedjob/chat:id">
-            {/* {IM THE CHAT COMPONENT} */}
-            <h1>CHAT COMPONENT</h1>
             <Conversation job />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">

@@ -79,35 +79,34 @@ export const Chat = ({ socket, name, room, userId }) => {
   //id's 'other' and 'you' are for css styling
 
   return (
-    <div className="chat-job--container">
-      <div className="chat-job--header">
+    <div className="chat-job__container">
+      <div className="chat-job__header">
         <p>Live Chat</p>
       </div>
-      <div className="chat-job--body">
-        <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
-            console.log(messageContent._id);
-            return (
-              <div
-                key={messageContent._id}
-                className="chat-job--message-container"
-                id={name === messageContent.authorName ? 'you' : 'other'}
-              >
-                <div>
-                  <div className="chat-job--message--content">
-                    <p>{messageContent.message}</p>
-                  </div>
-                  <div className="chat-job--message--meta">
-                    <p id="chat-job--message--time">{messageContent.time}</p>
-                    <p id="chat-job--message--author">{messageContent.authorName}</p>
-                  </div>
+      {/* <div className="chat-job__body"> */}
+      <ScrollToBottom className="chat-job__message-container">
+        {messageList.map((messageContent) => {
+          return (
+            <div
+              key={messageContent._id}
+              className="chat-job__message-container"
+              id={name === messageContent.authorName ? 'you' : 'other'}
+            >
+              <div>
+                <div className="chat-job__message-content">
+                  <p>{messageContent.message}</p>
+                </div>
+                <div className="chat-job__message-meta">
+                  <p id="chat-job__message-time">{messageContent.time}</p>
+                  <p id="chat-job__message-author">{messageContent.authorName}</p>
                 </div>
               </div>
-            );
-          })}
-        </ScrollToBottom>
-      </div>
-      <div className="chat-job--footer">
+            </div>
+          );
+        })}
+      </ScrollToBottom>
+      {/* </div> */}
+      <div className="chat-job__footer">
         <input
           value={currentMessage}
           type="text"

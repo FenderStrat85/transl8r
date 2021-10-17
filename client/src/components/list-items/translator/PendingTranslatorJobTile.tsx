@@ -16,7 +16,7 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
   } = props.job;
 
   return (
-    <div>
+    <div className='pending-translator-job-tile__container'>
       {jobName} : Status:{status} is a {jobType}
       <p>Language from: {languageFromName}</p>
       <FlagComponent language={languageFromName} />
@@ -25,7 +25,7 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
       <Link
         to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
       >
-        <button>See more details:</button>
+        <button className='pending-translator-job-tile__button'>See more details:</button>
       </Link>
     </div>
   );

@@ -123,32 +123,36 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div>
-      {stream && <video playsInline muted ref={myVideo} autoPlay />}
-      <div>
+    <div className='video-player__container'>
+      {stream &&
+        <video className='video-player__video--my-video' playsInline muted ref={myVideo} autoPlay />}
+
+      <div className='video-player__controls'>
         {queryResult.data === undefined ||
           queryResult.data.socketId === null ? (
-          <div>Waiting for the other user to connect</div>
+          <p>Waiting for the other user to connect</p>
         ) : null}
-        {/* {console.log(queryResult)} */}
+
         {callAccepted && !callEnded ? (
-          <button onClick={leaveCall}>Leave call</button>
+          <button className='video-player__button' onClick={leaveCall}>Leave call</button>
         ) : null}
-        {console.log(queryResult.data)}
+
         {queryResult.data !== undefined &&
           queryResult.data.socketId !== null ? (
-          <button onClick={() => callUser(queryResult.data.socketId)}>
+          <button className='video-player__button' onClick={() => callUser(queryResult.data.socketId)}>
             Call
           </button>
         ) : null}
+
         {call.isReceivingCall && !callAccepted && queryResult.data !== null ? (
-          <button type="button" onClick={answerCall}>
+          <button className='video-player__button' type="button" onClick={answerCall}>
             Answer this call
           </button>
         ) : null}
       </div>
+
       {callAccepted && !callEnded && (
-        <video playsInline ref={userVideo} autoPlay />
+        <video className='video-player__video--user-video' playsInline ref={userVideo} autoPlay />
       )}
     </div>
   );
