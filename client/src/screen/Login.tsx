@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 
 const LoginScreen = (): JSX.Element => {
   return (
-    <div className="LoginScreen">
+    <div className="login-screen">
       <h1>Login Screen</h1>
       <LoginForm />
+      <p>Don't have an account?</p>
       <Link to="/auth/register">
-        <button title="Register here!">Register Here!</button>
+        <button className="login-screen__button" title="Register here!">
+          Register Here!
+        </button>
       </Link>
     </div>
   );

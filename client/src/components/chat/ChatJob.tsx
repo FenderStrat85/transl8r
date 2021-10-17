@@ -92,8 +92,8 @@ export const Chat = (props: {
   //id's 'other' and 'you' are for css styling
 
   return (
-    <div className="chat-job--container">
-      <div className="chat-job--header">
+    <div className="chat-job__container">
+      <div className="chat-job__header">
         <p>Live Chat</p>
       </div>
       <div className="chat-job--body">

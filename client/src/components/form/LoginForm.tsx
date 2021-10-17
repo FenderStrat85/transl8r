@@ -37,35 +37,27 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <>
-      <form className="LoginForm" onSubmit={handleSubmit}>
-        <div>
-          <label>email </label>
-          <input
-            className="form-control"
-            type="email"
-            name="email"
-            placeholder={'email'}
-            required
-            onChange={(event) => handleInputChange(event)}
-          />
-        </div>
-        <div>
-          <label>password: </label>
-          <input
-            className="form-control"
-            type="password"
-            name="password"
-            placeholder={'password'}
-            required
-            onChange={(event) => handleInputChange(event)}
-          />
-        </div>
-        <div>
-          <button type="submit"> Login </button>
-        </div>
+    <div className='login-form'>
+      <form className="login-form__form" onSubmit={handleSubmit}>
+        <input
+          className="login-form__input"
+          type="email"
+          name="email"
+          placeholder={'email'}
+          required
+          onChange={(event) => handleInputChange(event)}
+        />
+        <input
+          className="login-form__input"
+          type="password"
+          name="password"
+          placeholder={'password'}
+          required
+          onChange={(event) => handleInputChange(event)}
+        />
+        <button className='login-form__button' type="submit"> Login </button>
       </form>
-    </>
+    </div>
   );
 };
 

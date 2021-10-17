@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import FlagComponent from '../../flag-component/FlagComponent';
 
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
@@ -6,18 +7,22 @@ const PendingAndAcceptedCustomerJobTile = (props: {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =
     props.job;
   return (
-    <div>
+    <div className='panding-and-accepted-customer-job-tile__container'>
       {status === 'pending' ? (
-        <div>
-          {jobName} : Status:{status} is a {jobType}
+        <>
+          <p> {jobName} : Status:{status} is a {jobType}</p>
           <p>Language from: {languageFromName}</p>
+          <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
-        </div>
+          <FlagComponent language={languageToName} />
+        </>
       ) : (
-        <div>
-          {jobName} : Status:{status} is a {jobType}
+        <>
+          <p> {jobName} : Status:{status} is a {jobType}</p>
           <p>Language from: {languageFromName}</p>
+          <FlagComponent language={languageFromName} />
           <p>Language to: {languageToName}</p>
+          <FlagComponent language={languageToName} />
           <Link
             to={{
               pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,
@@ -26,7 +31,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
           >
             <button>Go to job:</button>
           </Link>
-        </div>
+        </>
       )}
     </div>
   );

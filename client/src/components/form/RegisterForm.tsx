@@ -37,13 +37,7 @@ const RegisterForm = (): JSX.Element => {
     event.preventDefault();
     const objectToSendToDb: any = formValue;
     if (formValue.role === 'translator') {
-      // let resArr = [];
-      // selected.forEach((item) => {
-      //   resArr.push(item.value);
-      // });
-      // objectToSendToDb.languages = resArr;
-
-      const languageArray = selected.map((item: any) => item.value);
+      const languageArray = selected.map((item) => item.value);
       objectToSendToDb.languages = languageArray;
     }
 
@@ -69,108 +63,96 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <div className="RegisterForm">
+    <div className="register-form">
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="register-form__radio-button-container">
           <p>Please select your role:</p>
-
-          <input
-            type="radio"
-            value="customer"
-            name="role"
-            onClick={(event) => handleInputChange(event)}
-            required
-          />
-          <label htmlFor="contactChoice1">Customer</label>
-
-          <input
-            type="radio"
-            value="translator"
-            name="role"
-            onClick={(event) => handleInputChange(event)}
-            required
-          />
-          <label htmlFor="contactChoice2">Translator</label>
+          <div className="register-form__radio-button">
+            <input
+              className="register-form__radio-select"
+              type="radio"
+              value="customer"
+              name="role"
+              onClick={(event) => handleInputChange(event)}
+              required
+            />
+            <label htmlFor="contactChoice1">Customer</label>
+            <input
+              className="register-form__radio-select"
+              type="radio"
+              value="translator"
+              name="role"
+              onClick={(event) => handleInputChange(event)}
+              required
+            />
+            <label htmlFor="contactChoice2">Translator</label>
+          </div>
         </div>
-        {formValue.role !== 'translator' ? (
-          <>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                name="firstName"
-                placeholder={'first name'}
-                onChange={(event) => handleInputChange(event)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                name="lastName"
-                placeholder={'last name'}
-                onChange={(event) => handleInputChange(event)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="email"
-                name="email"
-                placeholder={'email'}
-                onChange={(event) => handleInputChange(event)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="password"
-                name="password"
-                placeholder={'password'}
-                onChange={(event) => handleInputChange(event)}
-                required
-              />
-            </div>
-            <button type="submit">Register</button>
-          </>
+        {formValue.role === 'customer' ? (
+          <div className="register-form__input-container--customer">
+            <input
+              className="register-form__input"
+              type="text"
+              name="firstName"
+              placeholder={'first name'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+            <input
+              className="register-form__input"
+              type="text"
+              name="lastName"
+              placeholder={'last name'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+            <input
+              className="register-form__input"
+              type="email"
+              name="email"
+              placeholder={'email'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+            <input
+              className="register-form__input"
+              type="password"
+              name="password"
+              placeholder={'password'}
+              onChange={(event) => handleInputChange(event)}
+              required
+            />
+            {/* <button className='register-form__button' type="submit">Register</button> */}
+          </div>
         ) : (
           <>
-            <div className="form-group">
+            <div className="register-form__input-container--translator">
               <input
-                className="form-control"
+                className="register-form__input"
                 type="text"
                 name="firstName"
                 placeholder={'first name'}
                 onChange={(event) => handleInputChange(event)}
                 required
               />
-            </div>
-            <div className="form-group">
               <input
-                className="form-control"
+                className="register-form__input"
                 type="text"
                 name="lastName"
                 placeholder={'last name'}
                 onChange={(event) => handleInputChange(event)}
                 required
               />
-            </div>
-            <div className="form-group">
               <input
-                className="form-control"
+                className="register-form__input"
                 type="email"
                 name="email"
                 placeholder={'email'}
                 onChange={(event) => handleInputChange(event)}
                 required
               />
-            </div>
-            <div className="form-group">
               <input
-                className="form-control"
+                className="register-form__input"
                 type="password"
                 name="password"
                 placeholder={'password'}
@@ -181,14 +163,17 @@ const RegisterForm = (): JSX.Element => {
             <h3>What languages do you speak?</h3>
             {/* <pre>{JSON.stringify(selected)}</pre> */}
             <MultiSelect
+              className="register-form__multi-select"
               options={options}
               value={selected}
               onChange={setSelected}
               labelledBy="Select"
             />
-            <button type="submit">Register</button>
           </>
         )}
+        <button className="register-form__button" type="submit">
+          Register
+        </button>
       </form>
     </div>
   );

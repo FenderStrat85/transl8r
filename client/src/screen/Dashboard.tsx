@@ -23,29 +23,29 @@ const Dashboard = (): JSX.Element => {
   };
 
   return (
-    <>
+    <div className='dashboard-screen'>
       {user.role === 'customer' ? (
         <>
           <h1>{user.role} Dashboard</h1>
           <h2>Your Pending and Accepted jobs</h2>
           <CustomerJobList />
-          <button onClick={goToCompletedJobs}>
+          <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
-          <button onClick={toSelectJob}>Submit a different job</button>
-          <button onClick={logoutFromApp}>Logout</button>
+          <button className='dashboard-screen__button' onClick={toSelectJob}>Submit a different job</button>
+          <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button>
         </>
       ) : (
-        <div>
+        <>
           <h1>{user.role} Dashboard</h1>
           <TranslatorJobList />
-          <button onClick={goToCompletedJobs}>
+          <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button>
-          <button onClick={logoutFromApp}>Logout</button>
-        </div>
+          <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,24 @@
+.register-form {
+  @include container;
+  * {
+    margin-bottom: 10px;
+  }
+  form {
+    @include flex-column;
+  }
+  &__radio-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__input-container--customer {
+    @include flex-column;
+  }
+  &__input-container--translator {
+    @include flex-column;
+  }
+  &__multi-select {
+    width: 100%;
+  }
+}

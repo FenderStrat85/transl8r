@@ -1,0 +1,9 @@
+.login-form {
+  @include container;
+  &__form {
+    @include flex-column;
+  }
+  * {
+    margin-bottom: 10px;
+  }
+}

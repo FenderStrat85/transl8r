@@ -41,6 +41,7 @@ const CompletedJobList = (): JSX.Element => {
   };
 
   return (
+<<<<<<< HEAD
     <>
       <div>
         <h2>Completed Jobs</h2>
@@ -69,6 +70,32 @@ const CompletedJobList = (): JSX.Element => {
         )}
       </div>
     </>
+=======
+    <div className='completed-jobs-list__container'>
+      <h2>Completed Jobs</h2>
+      {status === 'error' && <div>Error fetching data</div>}
+      {status === 'loading' && <div>Fetching data</div>}
+      {status === 'success' && (
+        <>
+          {data.length > 0 ? (
+            data.map((job) => <CompletedJobTile key={job._id} job={job} />)
+          ) : (
+            <h3>No completed jobs</h3>
+          )}
+          {user.role === 'customer' ? (
+            <>
+              <button className='completed-jobs-list__button' onClick={toSelectJob}>Submit a different job</button>
+              <button className='completed-jobs-list__button' onClick={toDashBoard}>To the dashboard!</button>
+            </>
+          ) : (
+            <button className='completed-jobs-list__button' onClick={toTranslatorDashboard}>
+              Take me to my dashboard
+            </button >
+          )}
+        </>
+      )}
+    </div>
+>>>>>>> development
   );
 };
 

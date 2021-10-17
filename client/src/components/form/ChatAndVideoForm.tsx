@@ -77,7 +77,7 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
   };
 
   return (
-    <div>
+    <div className="chat-and-video-form__container">
       <form onSubmit={handleSubmit}>
         <div>
           <div className="form-group">
@@ -119,7 +119,9 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
           <button type="submit">Submit your job</button>
         </div>
       </form>
-      <button onClick={toSelectJob}>Submit a different job</button>
+      <button className="chat-and-video-form__button" onClick={toSelectJob}>
+        Submit a different job
+      </button>
       <DashboardButton role={user.role} />
     </div>
   );

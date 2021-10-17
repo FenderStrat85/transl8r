@@ -76,10 +76,11 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
   };
 
   return (
-    <>
+    <div className='translator-image__container'>
       <h2>{jobName}</h2>
-      <form onSubmit={handleSubmit}>
+      <form className='translator-image__form' onSubmit={handleSubmit}>
         <img
+          className='translator-image__image'
           crossOrigin="anonymous"
           id="translator"
           src={image}
@@ -88,18 +89,15 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
           onClick={() => showMarkerArea()}
         />
         <textarea
+          className='translator-image__text-area'
           required
           name="textarea"
           value={value}
           onChange={(event) => handleChange(event)}
         />
-        <button type="submit">Send Translation</button>
+        <button className='translator-image__button' type="submit">Send Translation</button>
       </form>
-
-      {/*
-        <img src={resultsImage} alt="results" />
-        */}
-    </>
+    </div>
   );
 };
 

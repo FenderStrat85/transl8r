@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import FlagComponent from '../flag-component/FlagComponent';
 
 const CompletedJobTile = (props: { job: any }): JSX.Element => {
   const history = useHistory();
@@ -33,14 +34,18 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="completed-job-tile__container">
+      <p>
         {jobName} : Status:{status}
-        <p>Language from: {languageFromName}</p>
-        <p>Language to: {languageToName}</p>
-        <p>Job Type: {jobType}</p>
-        <button onClick={handleClick}>See details</button>
-      </div>
+      </p>
+      <p>Language from: {languageFromName}</p>
+      <FlagComponent language={languageFromName} />
+      <p>Language to: {languageToName}</p>
+      <FlagComponent language={languageToName} />
+      <p>Job Type: {jobType}</p>
+      <button className="completed-job-tile__button" onClick={handleClick}>
+        See details
+      </button>
     </div>
   );
 };
