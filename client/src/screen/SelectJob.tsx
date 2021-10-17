@@ -15,22 +15,22 @@ function SelectJob() {
     history.push(`/auth/login`);
   };
   return (
-    <>
+    <div className='select-job-screen__container'>
       <h1>Customer Select Job</h1>
       <Link to="/app/customer/createJob/espresso">
-        <button>Espresso</button>
+        <button className='select-job-screen__button'>Espresso</button>
       </Link>
       <Link to="/app/customer/createJob/cappuccino">
-        <button>Cappuccino</button>
+        <button className='select-job-screen__button'>Cappuccino</button>
       </Link>
       <Link to="/app/customer/createJob/macchiato">
-        <button>Macchiato</button>
+        <button className='select-job-screen__button'>Macchiato</button>
       </Link>
       <Link to="/app/customer/dashboard">
-        <button>View pending translations!!!</button>
+        <button className='select-job-screen__button'>View pending translations!!!</button>
       </Link>
-      <button onClick={logoutFromApp}>Logout</button>
-    </>
+      <button className='select-job-screen_button' onClick={logoutFromApp}>Logout</button>
+    </div>
   );
 }
 
