@@ -28,14 +28,16 @@ const TranslatorJobList = () => {
 
   return (
     <>
-      <h2>Pending Jobs</h2>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div>
+        <div className='translator-job-list__container'>
           {data.length > 0 ? (
             data.map((job) => (
-              <PendingTranslatorJobTile key={job._id} job={job} />
+              <>
+                <h2>Pending Jobs</h2>
+                <PendingTranslatorJobTile key={job._id} job={job} />
+              </>
             ))
           ) : (
             <>

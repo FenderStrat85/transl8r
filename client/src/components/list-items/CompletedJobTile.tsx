@@ -33,14 +33,12 @@ const CompletedJobTile = (props: { job: any }) => {
   };
 
   return (
-    <div>
-      <div>
-        {jobName} : Status:{status}
-        <p>Language from: {languageFromName}</p>
-        <p>Language to: {languageToName}</p>
-        <p>Job Type: {jobType}</p>
-        <button onClick={handleClick}>See details</button>
-      </div>
+    <div className='completed-job-tile__container'>
+      <p>{jobName} : Status:{status}</p>
+      <p>Language from: {languageFromName}</p>
+      <p>Language to: {languageToName}</p>
+      <p>Job Type: {jobType}</p>
+      <button className='completed-job-tile__button' onClick={handleClick}>See details</button>
     </div>
   );
 };
