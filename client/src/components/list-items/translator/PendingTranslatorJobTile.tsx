@@ -3,6 +3,8 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
 
+import bidirectional from './../../../assets/icons/bidirectional.svg';
+
 const PendingTranslatorJobTile = (props: { job: any }) => {
   const { user } = useContext(UserContext);
   const {
@@ -16,16 +18,22 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
   } = props.job;
 
   return (
-    <div className='pending-translator-job-tile'>
+    <div className="pending-translator">
       {jobName} : Status:{status} is a {jobType}
-      <p>Language from: {languageFromName}</p>
-      <FlagComponent language={languageFromName} />
-      <p>Language to: {languageToName}</p>
-      <FlagComponent language={languageToName} />
+      <div className="pending-translator__tile">
+        <FlagComponent language={languageFromName} />
+        <img
+          className="pending-translator__bidirectional"
+          src={bidirectional}
+        />
+        <FlagComponent language={languageToName} />
+      </div>
       <Link
         to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
       >
-        <button className='pending-translator-job-tile__button'>See more details:</button>
+        <button className="pending-translator-job-tile__button">
+          See more details:
+        </button>
       </Link>
     </div>
   );

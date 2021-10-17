@@ -1,3 +1,9 @@
-.pending-translator-job-tile {
+.pending-translator {
   @include container;
+  &__bidirectional {
+    width: 10%;
+  }
+  &__tile {
+    @include flex-row;
+  }
 }
