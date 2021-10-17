@@ -57,18 +57,28 @@ export const TranslatorPendingJobDetails = (props: any) => {
   };
 
   return (
-    <div className='translator-pending-job-details__container'>
+    <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-          <h1>Job detail</h1>
-          <h2>{user.firstName}</h2>
-          <h2>{jobType}</h2>
+          <h1>Job details</h1>
+          <h2>{user.firstName} wants a translator</h2>
+          <h2>type of job: {jobType}</h2>
           <h3>{jobDescription}</h3>
           {image ? (
-            <img className='translator-pending-job-details__image' src={image} alt="user's image" style={{ width: 300 }} />
+            <img
+              className="translator-pending-job-details__image"
+              src={image}
+              alt="user's image"
+              style={{ width: 300 }}
+            />
           ) : null}
 
-          <button className='translator-pending-job-details__button' onClick={() => acceptJob()}>Accept this job</button>
+          <button
+            className="translator-pending-job-details__button"
+            onClick={() => acceptJob()}
+          >
+            Accept this job
+          </button>
           <BackButton />
         </>
       ) : (

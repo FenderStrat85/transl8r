@@ -1,6 +1,15 @@
 .translator-image {
   @include container;
-  &__form {
-    @include flex-column;
+  h2 {
+    margin-bottom: 30px;
+  }
+  * {
+    margin: 10px;
+  }
+  form {
+    @include container;
+    img {
+      border-radius: 5px;
+    }
   }
 }
