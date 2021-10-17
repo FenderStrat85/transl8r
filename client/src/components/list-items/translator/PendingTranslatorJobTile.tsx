@@ -1,7 +1,7 @@
 import { UserContext } from '../../../context/Context';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import FlagComponent from '../../flags/FlagComponent';
+import FlagComponent from '../../flag-component/FlagComponent';
 
 const PendingTranslatorJobTile = (props: { job: any }) => {
   const { user } = useContext(UserContext);

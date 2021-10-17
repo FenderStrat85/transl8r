@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import FlagComponent from '../../flags/FlagComponent';
+import FlagComponent from '../../flag-component/FlagComponent';
 
 const PendingAndAcceptedCustomerJobTile = (props: { job: any }) => {
   const { jobName, status, jobType, languageFromName, languageToName, _id } =

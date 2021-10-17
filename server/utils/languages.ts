@@ -1,7 +1,17 @@
 import db from '../models/db';
 const { v4: uuidv4 } = require('uuid');
 
-const languageArray = ['English', 'French', 'Italian', 'Spanish', 'Chinese'];
+const languageArray = [
+  'English',
+  'French',
+  'German',
+  'Italian',
+  'Russian',
+  'Spanish',
+  'Chinese',
+  'Japanese',
+  'Korean',
+];
 //called using npm run populate to automatically populate the languages offered in the app
 const addLang = async () => {
   try {

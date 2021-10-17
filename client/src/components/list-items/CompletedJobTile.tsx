@@ -1,6 +1,6 @@
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import FlagComponent from '../flags/FlagComponent';
+import FlagComponent from '../flag-component/FlagComponent';
 
 const CompletedJobTile = (props: { job: any }) => {
   const history = useHistory();
