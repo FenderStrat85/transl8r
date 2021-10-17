@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
@@ -26,6 +25,14 @@ const ImageForm = (): JSX.Element => {
   };
 
   const [formValue, setFormValue] = useState(initialState);
+
+  const handleSelectedFrom = (event: any) => {
+    setSelectedFrom(event);
+  };
+
+  const handleSelectedTo = (event: any) => {
+    setSelectedTo(event);
+  };
 
   const previewFile = (file: Blob): void => {
     const reader = new FileReader();
@@ -151,7 +158,7 @@ const ImageForm = (): JSX.Element => {
           <Select
             options={options}
             value={selectedFrom}
-            onChange={setSelectedFrom}
+            onChange={(event) => handleSelectedFrom(event)}
             // labelledBy="Select"
           />
           <h3>What languages do you need translating to?</h3>
@@ -159,7 +166,7 @@ const ImageForm = (): JSX.Element => {
           <Select
             options={options}
             value={selectedTo}
-            onChange={setSelectedTo}
+            onChange={(event) => handleSelectedTo(event)}
             // labelledBy="Select"
           />
 

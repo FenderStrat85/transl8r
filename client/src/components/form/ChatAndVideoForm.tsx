@@ -24,17 +24,17 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleSelectedFrom = (event: any) => {
+  const handleSelectedFrom = (event: any): void => {
     setSelectedFrom(event);
   };
 
-  const handleSelectedTo = (event: any) => {
+  const handleSelectedTo = (event: any): void => {
     setSelectedTo(event);
   };
 
   const handleInputChange = (
     event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>,
-  ) => {
+  ): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
