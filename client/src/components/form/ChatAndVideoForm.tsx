@@ -87,7 +87,7 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
 
   return (
     <div className="chat-and-video-form">
-      <h1>Chat and Video</h1>
+      <h1 className="chat-and-video-form__header">Chat and Video</h1>
       <form className="chat-and-video-form__form" onSubmit={handleSubmit}>
         <input
           className="chat-and-video-form__input"

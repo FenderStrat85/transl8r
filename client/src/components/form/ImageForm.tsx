@@ -153,7 +153,7 @@ const ImageForm = (): JSX.Element => {
   return (
     <>
       <div className="image-form">
-        <h1>Image Submission Form</h1>
+        <h1 className="image-form__header">Image Submission Form</h1>
         <form className="image-form__form" onSubmit={handleSubmit}>
           <input
             className="image-form__input"
