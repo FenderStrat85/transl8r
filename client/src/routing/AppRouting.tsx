@@ -37,30 +37,22 @@ const AppRouting = (): JSX.Element => {
 
           {/* This is the route for Espresso, the user will be taken to a screen where the image can be submitted */}
           <Route exact path="/app/customer/createjob/espresso">
-            {/* ESPRESSO CREATE JOB */}
-            <h1>ESPRESSO</h1>
             <ImageForm />
           </Route>
 
           {/* This is the route for Cappuccino, where a user will taken to a chat screen  */}
           <Route exact path="/app/customer/createjob/cappuccino">
-            {/* CAPPUCINO CREATE JOB */}
-            <h1>CAPPUCCINO</h1>
             <ChatAndVideoForm jobType={'chat'} />
           </Route>
 
           {/* This is the route for Macchiato, where a user will taken to a video chat screen  */}
           <Route exact path="/app/customer/createjob/macchiato">
-            {/* MACCHIATO CREATE JOB */}
-            <h1>MACCHIATO</h1>
             <ChatAndVideoForm jobType={'video'} />
           </Route>
 
           {/* {CUSTOMER JOBS ROUTE} */}
           <Route exact path="/app/customer/acceptedjob/image:id"></Route>
           <Route exact path="/app/customer/acceptedjob/chat:id">
-            {/* {IM THE CHAT COMPONENT} */}
-            <h1>CHAT COMPONENT</h1>
             <Conversation />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
@@ -92,7 +84,6 @@ const AppRouting = (): JSX.Element => {
             <TranslatorImage job={job.state} />
           </Route>
           <Route exact path="/app/translator/chat:jobId">
-            <h1>Chat Component</h1>
             <Conversation />
           </Route>
           <Route exact path="/app/translator/video:jobId">

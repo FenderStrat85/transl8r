@@ -105,7 +105,6 @@ const CustomerJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="customer-job-list__jobs--pending">
-          <h2>Pending Jobs</h2>
           {pendingJobs.length > 0 ? (
             pendingJobs.map((job: { _id: React.Key | null | undefined }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />

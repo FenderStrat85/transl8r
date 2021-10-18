@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   return (
-    <div>
+    <>
       <QueryClientProvider client={queryClient}>
         <Router>
           <Switch>
@@ -33,7 +33,7 @@ function App(): JSX.Element {
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </div>
+    </>
   );
 }
 
