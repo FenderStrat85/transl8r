@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import apiService from '../../../services/apiService';
 import { UserContext } from '../../../context/Context';
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
 }): JSX.Element => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
+  const history = useHistory();
 
   const {
     jobName,
@@ -22,9 +24,45 @@ const PendingAndAcceptedCustomerJobTile = (props: {
     notification,
   } = props.job;
 
-  if (notification) {
-    console.log(props.job);
-    toast(`A translator has accepted your job named: ${jobName}`, {
+  let notificationMessage: string = '';
+
+  switch (jobType) {
+    case 'image':
+      notificationMessage =
+        'A translator has accepted your job! Please keep an eye on your completed jobs page for your image translation';
+      break;
+    case 'chat':
+      notificationMessage =
+        'A translator has accepted your job! Click here to join them in the live chat!';
+      break;
+    case 'video':
+      notificationMessage =
+        'A translator has accepted your job! Click here to join them in a live video!';
+      break;
+  }
+
+  if (notification && jobType !== 'image') {
+    toast(notificationMessage, {
+      position: 'top-right',
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      onClose: () => {
+        history.push({
+          pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,
+          state: props.job,
+        });
+      },
+    });
+    apiService.setNotificationToFalse(props.job, accessToken);
+    props.job.notification = false;
+  }
+
+  if (notification && jobType === 'image') {
+    toast(notificationMessage, {
       position: 'top-right',
       autoClose: 10000,
       hideProgressBar: false,
@@ -66,11 +104,10 @@ const PendingAndAcceptedCustomerJobTile = (props: {
               state: props.job,
             }}
           >
-            <button>Go to job:</button>
+            <button>Go to job</button>
           </Link>
         </>
       )}
-      {/* <ToastContainer /> */}
     </div>
   );
 };
