@@ -4,9 +4,10 @@
   width: 90%;
   background-color: $primary-color;
   box-shadow: $box-shadow;
+  padding-top: 10px;
   margin-bottom: 30px;
   &__bidirectional {
-    width: 12%;
+    width: 15%;
   }
   &__flag-container {
     @include flex-row;
@@ -18,7 +19,10 @@
     @include flex-row;
     width: 90%;
     justify-content: space-between;
-    margin-top: -15px;
+    align-items: baseline;
+    p {
+      color: #fff;
+    }
   }
   &__job-type-icon {
     width: 30px;
