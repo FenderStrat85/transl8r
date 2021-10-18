@@ -2,10 +2,11 @@
   @include container;
   border-radius: 12px;
   width: 90%;
-  background-color: $primary-color;
+  background: linear-gradient(to right, #00b4db, #0083b0);
   box-shadow: $box-shadow;
   padding-top: 10px;
   margin-bottom: 30px;
+
   &__bidirectional {
     width: 15%;
   }
@@ -14,6 +15,10 @@
     width: 80%;
     justify-content: space-evenly;
     padding-top: 10px;
+  }
+  & .flag-component {
+    height: 43.33px;
+    border-radius: 13px;
   }
   &__details {
     @include flex-row;
