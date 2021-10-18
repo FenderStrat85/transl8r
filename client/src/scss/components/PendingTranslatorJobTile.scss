@@ -1,7 +1,7 @@
 .pending-translator {
   @include container;
   &__bidirectional {
-    width: 10%;
+    width: 7%;
   }
   &__tile {
     @include flex-row;
