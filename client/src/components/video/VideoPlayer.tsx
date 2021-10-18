@@ -4,6 +4,7 @@ import Peer from 'simple-peer';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { UserContext } from '../../context/Context';
+import Draggable, { DraggableCore } from 'react-draggable';
 
 const server = process.env.REACT_APP_SERVER;
 
@@ -167,12 +168,14 @@ const VideoPlayer = (): JSX.Element => {
       </div>
 
       {callAccepted && !callEnded && (
-        <video
-          className="video-player__video--user-video"
-          playsInline
-          ref={userVideo}
-          autoPlay
-        />
+        <Draggable bounds="parent">
+          <video
+            className="video-player__video--user-video"
+            playsInline
+            ref={userVideo}
+            autoPlay
+          />
+        </Draggable>
       )}
     </div>
   );

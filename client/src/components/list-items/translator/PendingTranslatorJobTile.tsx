@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
 
+import bidirectional from './../../../assets/icons/bidirectional.svg';
+
 const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
   const { jobName, status, jobType, languageFromName, languageToName } =
     props.job;
 
   return (
-    <div className="pending-translator-job-tile">
+    <div className="pending-translator">
       {jobName} : Status:{status} is a {jobType}
-      <p>Language from: {languageFromName}</p>
-      <FlagComponent language={languageFromName} />
-      <p>Language to: {languageToName}</p>
-      <FlagComponent language={languageToName} />
+      <div className="pending-translator__tile">
+        <FlagComponent language={languageFromName} />
+        <img
+          className="pending-translator__bidirectional"
+          src={bidirectional}
+        />
+        <FlagComponent language={languageToName} />
+      </div>
       <Link
         to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
       >
