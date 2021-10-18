@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
 
 import bidirectional from './../../../assets/icons/bidirectional.svg';
+import video from './../../../assets/icons/video.svg';
+import chat from './../../../assets/icons/chat.svg';
+import image from './../../../assets/icons/image.svg';
+import arrow from './../../../assets/icons/arrow.svg';
 
 const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
   const { jobName, status, jobType, languageFromName, languageToName } =
@@ -9,8 +13,7 @@ const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
 
   return (
     <div className="pending-translator">
-      {jobName} : Status:{status} is a {jobType}
-      <div className="pending-translator__tile">
+      <div className="pending-translator__flag-container">
         <FlagComponent language={languageFromName} />
         <img
           className="pending-translator__bidirectional"
@@ -18,13 +21,26 @@ const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
         />
         <FlagComponent language={languageToName} />
       </div>
-      <Link
-        to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
-      >
-        <button className="pending-translator-job-tile__button">
-          See more details:
-        </button>
-      </Link>
+      <div className="pending-translator__details">
+        {jobType === 'video' ? (
+          <img className="pending-translator__job-type-icon" src={video} />
+        ) : null}
+        {jobType === 'chat' ? (
+          <img className="pending-translator__job-type-icon" src={chat} />
+        ) : null}
+        {jobType === 'image' ? (
+          <img className="pending-translator__job-type-icon" src={image} />
+        ) : null}
+        <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+        <Link
+          to={{
+            pathname: '/app/translator/dashboard/viewjob',
+            state: props.job,
+          }}
+        >
+          <img className="pending-translator__job-type-icon" src={arrow} />
+        </Link>
+      </div>
     </div>
   );
 };

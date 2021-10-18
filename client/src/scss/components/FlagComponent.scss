@@ -1,4 +1,9 @@
 .flag-component {
-  width: 75px;
-  height: 75px;
+  height: 60px;
+  height: fit-content;
+  background-color: $primary-color;
+
+  img {
+    height: 75px;
+  }
 }
