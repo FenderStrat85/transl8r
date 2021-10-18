@@ -30,3 +30,11 @@
   font-family: $header-font;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.406);
 }
+@mixin tile {
+    border-radius: 12px;
+  width: 90%;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  box-shadow: $box-shadow;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
