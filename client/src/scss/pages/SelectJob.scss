@@ -1,6 +1,13 @@
 .select-job-screen {
+  height: 100%;
   @include container;
+  @include header;
   * {
     margin-bottom: 10px;
   }
+  &__job-type-icon {
+    height:100px;
+    width: 100px;
+  }
+  background:linear-gradient(to right, #0198ba, #00779f);
 }

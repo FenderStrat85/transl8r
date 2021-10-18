@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
 }
 html {
   box-sizing: border-box;
@@ -8,7 +9,12 @@ html {
   margin: 0;
   padding: 0;
 }
-
+body {
+  height:100%;
+}
+#root {
+  height: 100%;
+}
 *,
 *::before,
 *::after {
