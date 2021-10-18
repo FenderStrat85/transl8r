@@ -1,6 +1,6 @@
 .completed-job-list {
     @include container;
-  * {
-    margin-bottom: 10px;
+    &__header {
+    @include header;
   }
 }
