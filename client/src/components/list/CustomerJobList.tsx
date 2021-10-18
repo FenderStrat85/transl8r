@@ -1,6 +1,11 @@
 import React from 'react';
 import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAndAcceptedCustomerJobTile';
 import { useQuery } from 'react-query';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import apiService from '../../services/apiService';
+import { IJob } from '../../interfaces/interfaces';
+
 const server = process.env.REACT_APP_SERVER;
 
 const CustomerJobList = (): JSX.Element => {
@@ -40,6 +45,59 @@ const CustomerJobList = (): JSX.Element => {
     );
   }
 
+  // if (acceptedJobs.length > 0) {
+  //   acceptedJobs.forEach((job: IJob) => {
+  //     if (job.notification && job.jobType === 'image') {
+  //       toast(
+  //         `A translator has accepted your job named: ${job.jobName}. Please keep an eye on the completed jobs page!`,
+  //         {
+  //           position: 'top-right',
+  //           autoClose: 1000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         },
+  //       );
+  //       apiService.setNotificationToFalse(job, accessToken);
+  //       job.notification = false;
+  //     }
+  //     if (job.notification && job.jobType === 'chat') {
+  //       toast(
+  //         `A translator has accepted your job named: ${job.jobName}. They are waiting for you in the chatroom!`,
+  //         {
+  //           position: 'top-right',
+  //           autoClose: 1000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         },
+  //       );
+  //       apiService.setNotificationToFalse(job, accessToken);
+  //       job.notification = false;
+  //     }
+  //     if (job.notification && job.jobType === 'video') {
+  //       toast(
+  //         `A translator has accepted your job named: ${job.jobName}. They are waiting for you on a video call!`,
+  //         {
+  //           position: 'top-right',
+  //           autoClose: 1000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         },
+  //       );
+  //       apiService.setNotificationToFalse(job, accessToken);
+  //       job.notification = false;
+  //     }
+  //   });
+  // }
+
   return (
     <div className="customer-job-list">
       {/* PENDING JOB CONTAINER */}
@@ -72,6 +130,7 @@ const CustomerJobList = (): JSX.Element => {
           )}
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

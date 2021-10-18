@@ -1,4 +1,4 @@
-export interface Language {
+export interface ILanguage {
   label: string;
   value: string;
 }
@@ -18,4 +18,18 @@ export interface IImage {
   translatedText: string;
   imageUrlTranslated: string;
   JobId: string;
+}
+
+export interface IJob {
+  _id: string;
+  status: string;
+  languageFrom: string;
+  languageFromName: string;
+  languageTo: string;
+  languageToName: string;
+  jobType: string;
+  dateCompleted: Date;
+  jobName: string;
+  jobDescription: string;
+  notification: boolean;
 }
