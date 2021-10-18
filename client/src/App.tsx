@@ -15,23 +15,25 @@ const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <Switch>
-          <Route path="/auth">
-            <AuthRouting />
-          </Route>
-          <Route path="/app">
-            <AppRouting />
-          </Route>
-          <Redirect from="/" to="auth/login"></Redirect>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      </Router>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <div>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Switch>
+            <Route path="/auth">
+              <AuthRouting />
+            </Route>
+            <Route path="/app">
+              <AppRouting />
+            </Route>
+            <Redirect from="/" to="auth/login"></Redirect>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </div>
   );
 }
 

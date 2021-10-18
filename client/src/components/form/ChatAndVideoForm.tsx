@@ -4,7 +4,7 @@ import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
-import { Language } from '../../interfaces/interfaces';
+import { ILanguage } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 import BackButton from '../button/BackButton';
@@ -16,8 +16,8 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
   const jobType = props.jobType;
   const options = languageChoice;
 
-  const [selectedFrom, setSelectedFrom] = useState<Language>();
-  const [selectedTo, setSelectedTo] = useState<Language>();
+  const [selectedFrom, setSelectedFrom] = useState<ILanguage>();
+  const [selectedTo, setSelectedTo] = useState<ILanguage>();
 
   const [myError, setMyError] = useState('');
 

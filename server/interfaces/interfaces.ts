@@ -37,6 +37,9 @@ export interface IJob {
   dateCompleted: Date;
   jobName: string;
   jobDescription: string;
+  notification: boolean;
+  TranslatorId: string | null;
+  CustomerId: string;
 }
 
 export interface ILanguage {

@@ -70,18 +70,31 @@ const createJob = async (req: Request, res: Response) => {
 };
 
 const acceptJob = async (req: Request, res: Response) => {
-  console.log(req.body);
   const { _id } = req.body;
-  console.log(req.user._id);
   try {
     const job = await db.Job.findOne({ where: { _id: _id } });
     job.status = 'accepted';
+    job.notification = true;
     job.TranslatorId = req.user._id;
     await job.save();
-    console.log('updated job!', job);
     res.status(200).send(job);
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Not able to accept a job' });
+  }
+};
+
+const setNotificationToFalse = async (req: Request, res: Response) => {
+  const { _id } = req.body;
+  try {
+    const job = await db.Job.findOne({ where: { _id: _id } });
+    job.notification = false;
+    await job.save();
+    res.status(200).send(job);
+  } catch (error) {
+    res.status(400).send({
+      error: '400',
+      message: 'Not able to update notification status',
+    });
   }
 };
 
@@ -180,4 +193,5 @@ module.exports = {
   getJobs,
   getAvailableJobs,
   changeStatus,
+  setNotificationToFalse,
 };

@@ -4,7 +4,7 @@ import { MultiSelect } from 'react-multi-select-component';
 import ApiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
-import { Language } from '../../interfaces/interfaces';
+import { ILanguage } from '../../interfaces/interfaces';
 
 const RegisterForm = (): JSX.Element => {
   const { login } = useContext(UserContext);
@@ -38,7 +38,7 @@ const RegisterForm = (): JSX.Element => {
     event.preventDefault();
     const objectToSendToDb: any = formValue;
     if (formValue.role === 'translator') {
-      const languageArray = selected.map((item: Language) => item.value);
+      const languageArray = selected.map((item: ILanguage) => item.value);
       objectToSendToDb.languages = languageArray;
     }
 

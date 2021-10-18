@@ -20,6 +20,11 @@ router.put(
   authMiddleware,
   jobsController.changeStatus,
 );
+router.put(
+  '/setNotificationFalse',
+  authMiddleware,
+  jobsController.setNotificationToFalse,
+);
 router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
 router.get(
   '/getAvailableJobs',
