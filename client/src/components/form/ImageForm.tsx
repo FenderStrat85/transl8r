@@ -6,6 +6,8 @@ import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
+import BackButton from '../button/BackButton';
+import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 
 const ImageForm = (): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -18,19 +20,21 @@ const ImageForm = (): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState();
   const [selectedFrom, setSelectedFrom] = useState<Language>();
   const [selectedTo, setSelectedTo] = useState<Language>();
+  const [myError, setMyError] = useState('');
 
   const initialState = {
     jobName: '',
     jobDescription: '',
   };
-
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleSelectedFrom = (event: any) => {
+  const handleSelectedFrom = (event: any): void => {
+    setMyError('');
     setSelectedFrom(event);
   };
 
-  const handleSelectedTo = (event: any) => {
+  const handleSelectedTo = (event: any): void => {
+    setMyError('');
     setSelectedTo(event);
   };
 
@@ -70,23 +74,28 @@ const ImageForm = (): JSX.Element => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+    console.log('XD', selectedFrom);
     try {
-      if (!selectedFile) return;
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile);
-      reader.onloadend = () => {
-        uploadImage();
-      };
-      reader.onerror = () => {
-        console.error('ERROR!!');
-      };
+      if (!selectedFrom || !selectedTo) {
+        setMyError('SELECT LANGUAGES IDIOT');
+        return;
+      } else if (selectedFrom?.value === selectedTo?.value) {
+        setMyError('selected Languages must be different');
+        return;
+      } else {
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+          uploadImage();
+        };
+        reader.onerror = () => {
+          console.error('ERROR!!');
+        };
+      }
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const toSelectJob = (): void => {
-    history.push(`/app/customer/selectjob`);
   };
 
   const uploadImage = async (): Promise<void> => {
@@ -106,7 +115,6 @@ const ImageForm = (): JSX.Element => {
 
     try {
       let languageFromName = selectedFrom?.value;
-      console.log(languageFromName);
       let languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
         ...formValue,
@@ -129,10 +137,23 @@ const ImageForm = (): JSX.Element => {
     }
   };
 
+  // const disable = () => {
+  // if (
+  //   formValue.jobName.length > 0 &&
+  //   formValue.jobDescription.length > 0 &&
+  //   (selectedFrom as Language)?.value?.length > 0 &&
+  //   (selectedTo as Language)?.value?.length > 0
+  // ) {
+  //   setIsDisabled(false);
+  // }
+  // return isDisabled;
+  // return isDisabled;
+  // };
+
   return (
-    <div className="image-form">
-      <form className="image-form__form" onSubmit={handleSubmit}>
-        <>
+    <>
+      <div className="image-form">
+        <form className="image-form__form" onSubmit={handleSubmit}>
           <input
             className="image-form__input"
             type="text"
@@ -148,6 +169,7 @@ const ImageForm = (): JSX.Element => {
             onChange={(event) => handleInputChange(event)}
             required
           />
+          {myError ? <ErrorMessageComponent message={myError} /> : null}
           <h3>What language do you need translating from?</h3>
           <Select
             className="image-form__select"
@@ -169,26 +191,30 @@ const ImageForm = (): JSX.Element => {
             name="image"
             onChange={handleFileInputChange}
             value={fileInputState}
+            required
           />
-          <button className="image-form__button" type="submit">
+          <button
+            // disabled={isDisabled}
+            className="image-form__button"
+            type="submit"
+          >
             Submit your job
           </button>
-        </>
-        {previewSource && (
-          <img
-            className="image-form__image-preview"
-            src={previewSource}
-            id="user"
-            crossOrigin="anonymous"
-            alt="chosen"
-          />
-        )}
-      </form>
-      <button className="image-form__button" onClick={toSelectJob}>
-        Submit a different job
-      </button>
-      <DashboardButton role={user.role} />
-    </div>
+
+          {previewSource && (
+            <img
+              className="image-form__image-preview"
+              src={previewSource}
+              id="user"
+              crossOrigin="anonymous"
+              alt="chosen"
+            />
+          )}
+        </form>
+        <BackButton />
+        <DashboardButton role={user.role} />
+      </div>
+    </>
   );
 };
 
