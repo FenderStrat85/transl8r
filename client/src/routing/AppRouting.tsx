@@ -3,13 +3,7 @@ import SelectJob from '../screen/SelectJob';
 import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
 import { useContext } from 'react';
 import { UserContext } from '../context/Context';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-  useLocation,
-} from 'react-router-dom';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import VideoPlayer from '../components/video/VideoPlayer';
 import NotFound from '../screen/NotFound';
 import ImageForm from '../components/form/ImageForm';
@@ -20,10 +14,8 @@ import CompletedJobList from '../components/list/CompletedJobList';
 import CompletedChat from '../components/chat/CompletedChat';
 import CompletedImage from '../components/image/CompletedImage';
 
-const AppRouting = () => {
+const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
-  const accessToken = localStorage.getItem('accessToken');
-
   let job = useLocation();
 
   return (
@@ -65,10 +57,11 @@ const AppRouting = () => {
           </Route>
 
           {/* {CUSTOMER JOBS ROUTE} */}
-          <Route exact path="/app/customer/acceptedjob/image:id">
-          </Route>
+          <Route exact path="/app/customer/acceptedjob/image:id"></Route>
           <Route exact path="/app/customer/acceptedjob/chat:id">
-            <Conversation job />
+            {/* {IM THE CHAT COMPONENT} */}
+            <h1>CHAT COMPONENT</h1>
+            <Conversation />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
             <VideoPlayer />
@@ -100,7 +93,7 @@ const AppRouting = () => {
           </Route>
           <Route exact path="/app/translator/chat:jobId">
             <h1>Chat Component</h1>
-            <Conversation job />
+            <Conversation />
           </Route>
           <Route exact path="/app/translator/video:jobId">
             <VideoPlayer />

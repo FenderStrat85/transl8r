@@ -1,3 +1,4 @@
+// @ts-nocheck
 /// <reference types="react-scripts" />
 
 declare global {
@@ -10,4 +11,4 @@ declare global {
   }
 }
 
-export { }
+export {};

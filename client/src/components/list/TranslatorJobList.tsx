@@ -1,12 +1,10 @@
 import PendingTranslatorJobTile from '../list-items/translator/PendingTranslatorJobTile';
-import { UserContext } from '../../context/Context';
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { Key } from 'react';
 const server = process.env.REACT_APP_SERVER;
 
-const TranslatorJobList = () => {
-  const { user } = useContext(UserContext);
+const TranslatorJobList = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
 
   const fetchPendingJobs = async () => {
@@ -31,9 +29,9 @@ const TranslatorJobList = () => {
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='translator-job-list'>
+        <div className="translator-job-list">
           {data.length > 0 ? (
-            data.map((job) => (
+            data.map((job: { _id: Key | null | undefined }) => (
               <>
                 <h2>Pending Jobs</h2>
                 <PendingTranslatorJobTile key={job._id} job={job} />

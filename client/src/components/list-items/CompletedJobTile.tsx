@@ -1,15 +1,16 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import FlagComponent from '../flag-component/FlagComponent';
 
-const CompletedJobTile = (props: { job: any }) => {
+const CompletedJobTile = (props: { job: any }): JSX.Element => {
   const history = useHistory();
 
-  const { jobName, status, jobType, languageFromName, languageToName, _id } =
+  const { jobName, status, jobType, languageFromName, languageToName } =
     props.job;
+
   const [showJob, setShowJob] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (jobType === 'chat') {
       history.push(`/app/customer/${jobType}/completed`, {
         state: props.job,
@@ -33,14 +34,18 @@ const CompletedJobTile = (props: { job: any }) => {
   };
 
   return (
-    <div className='completed-job-tile'>
-      <p>{jobName} : Status:{status}</p>
+    <div className="completed-job-tile">
+      <p>
+        {jobName} : Status:{status}
+      </p>
       <p>Language from: {languageFromName}</p>
       <FlagComponent language={languageFromName} />
       <p>Language to: {languageToName}</p>
       <FlagComponent language={languageToName} />
       <p>Job Type: {jobType}</p>
-      <button className='completed-job-tile__button' onClick={handleClick}>See details</button>
+      <button className="completed-job-tile__button" onClick={handleClick}>
+        See details
+      </button>
     </div>
   );
 };

@@ -1,14 +1,13 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
 import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { IImage } from '../../interfaces/interfaces';
 import { useContext } from 'react';
-import { render } from '@testing-library/react';
 import BackButton from '../button/BackButton';
 
-const CompletedImage = () => {
-  const job = useLocation().state;
+const CompletedImage = (): JSX.Element => {
+  const job: any = useLocation().state;
   const accessToken = localStorage.getItem('accessToken');
   const { user } = useContext(UserContext);
   const [image, setImage] = useState<IImage>({
@@ -19,7 +18,7 @@ const CompletedImage = () => {
     JobId: '',
   });
 
-  const fetchImageData = async () => {
+  const fetchImageData = async (): Promise<void> => {
     const imageCompleted = await apiService.fetchImageData(
       job._id,
       accessToken,
@@ -32,49 +31,51 @@ const CompletedImage = () => {
   }, []);
 
   return (
-    <div className='completed-image'>
+    <div className="completed-image">
       {user.role === 'customer' ? (
-        <div className='completed-image__container--customer'>
+        <div className="completed-image__container--customer">
           <h2> Image Job : </h2>
           {image.imageUrl ? (
-            <div className='completed-image__container--image-customer'>
+            <div className="completed-image__container--image-customer">
               <p>You have requested a translation for this image: </p>
-              <img className='completed-image__image--customer'
+              <img
+                className="completed-image__image--customer"
                 src={image.imageUrl}
                 alt="user"
-                style={{ width: '50%' }} />
+                style={{ width: '50%' }}
+              />
               <p>
                 and you have recieved this translation and this helper text:
               </p>
               {image.translatedText}
               <img
-                className='completed-image__image--customer'
+                className="completed-image__image--customer"
                 src={image.imageUrlTranslated}
                 alt="translator"
                 style={{ width: '50%' }}
               />
-              <p>
-                Hoping you liked it don't forget to rate the translator !
-              </p>
+              <p>Hoping you liked it don't forget to rate the translator !</p>
             </div>
           ) : (
             <h2>Fetching your image</h2>
           )}
         </div>
       ) : (
-        <div className='completed-image__container--translator'>
+        <div className="completed-image__container--translator">
           <h2> Image Job : </h2>
           {image.imageUrl ? (
-            <div className='completed-image__container--image-translator'>
+            <div className="completed-image__container--image-translator">
               <p>You completed a translation for this image: </p>
-              <img className='completed-image__image--translator'
+              <img
+                className="completed-image__image--translator"
                 src={image.imageUrl}
                 alt="user"
-                style={{ width: '50%' }} />
+                style={{ width: '50%' }}
+              />
               <p>and you added this helper text: </p>
               {image.translatedText}
               <img
-                className='completed-image__image--translator'
+                className="completed-image__image--translator"
                 src={image.imageUrlTranslated}
                 alt="translator"
                 style={{ width: '50%' }}

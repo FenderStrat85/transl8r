@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { UserContext } from '../../context/Context';
@@ -18,7 +17,7 @@ socket.on('me', (id) => {
   socketId = id;
 });
 
-const VideoPlayer = () => {
+const VideoPlayer = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [callEnded, setCallEnded] = useState(false);
@@ -29,10 +28,10 @@ const VideoPlayer = () => {
   const userVideo: any = useRef();
   const connectionRef: any = useRef();
   const history = useHistory();
-  const job = useLocation();
+  const job: any = useLocation();
   const accessToken = localStorage.getItem('accessToken');
 
-  const getSocketId = async () => {
+  const getSocketId = async (): Promise<any> => {
     const res = await fetch(`${server}/retrieveSocketId/${job.state._id}`, {
       method: 'GET',
       credentials: 'include',
@@ -51,7 +50,7 @@ const VideoPlayer = () => {
 
   const reqBody = { jobId: job.state._id, socketId: '' };
 
-  const insertToken = () => {
+  const insertToken = (): void => {
     fetch(`${server}/insertSocketId`, {
       method: 'POST',
       credentials: 'include',
@@ -66,7 +65,7 @@ const VideoPlayer = () => {
       .catch((err) => console.log(err));
   };
 
-  const populateDb = () => {
+  const populateDb = (): void => {
     setTimeout(() => {
       reqBody.socketId = socketId;
       setMe(socketId);
@@ -89,7 +88,7 @@ const VideoPlayer = () => {
     });
   }, []);
 
-  const answerCall = () => {
+  const answerCall = (): void => {
     setCallAccepted(true);
     const peer = new Peer({ initiator: false, trickle: false, stream });
     peer.on('signal', (data) => {
@@ -102,7 +101,7 @@ const VideoPlayer = () => {
     connectionRef.current = peer;
   };
 
-  const callUser = (id: any) => {
+  const callUser = (id: any): void => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
     peer.on('signal', (data) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me });
@@ -117,7 +116,7 @@ const VideoPlayer = () => {
     connectionRef.current = peer;
   };
 
-  const leaveCall = () => {
+  const leaveCall = (): void => {
     setCallEnded(true);
     connectionRef.current.destroy();
     history.push(`/app/${user.role}/dashboard`);

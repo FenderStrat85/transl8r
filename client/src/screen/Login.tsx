@@ -1,8 +1,7 @@
-import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 import { Link } from 'react-router-dom';
 
-const LoginScreen = () => {
+const LoginScreen = (): JSX.Element => {
   return (
     <div className="login-screen">
       <h1>Login Screen</h1>

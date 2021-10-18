@@ -1,5 +1,12 @@
-import { disconnect } from 'process';
-import React, { useEffect, useState } from 'react';
+import {
+  Key,
+  ReactChild,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+  useState,
+} from 'react';
+//@ts-expect-error
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage } from '../../interfaces/interfaces';
 import apiService from '../../services/apiService';
@@ -7,9 +14,15 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
 
-export const Chat = ({ socket, name, room, userId }) => {
+export const Chat = (props: {
+  socket: any;
+  name: any;
+  room: any;
+  userId: any;
+}): JSX.Element => {
+  const { socket, name, room, userId } = props;
   const [currentMessage, setCurrentMessage] = useState('');
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList]: any[] = useState([]);
   const history = useHistory();
   const { user } = useContext(UserContext);
 
@@ -17,9 +30,9 @@ export const Chat = ({ socket, name, room, userId }) => {
   //authorName = first name of the user
   //userId = the id of the user sending the message
   //_id initial undefined, but is set the _id of the specific message sent
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
 
-  const sendMessage = async () => {
+  const sendMessage = async (): Promise<void> => {
     if (currentMessage !== '') {
       const messageData: IChatMessage = {
         room: room,
@@ -37,20 +50,20 @@ export const Chat = ({ socket, name, room, userId }) => {
       console.log(res);
       messageData._id = res._id;
       await socket.emit('send_message', messageData);
-      setMessageList((list) => [...list, messageData]);
+      setMessageList((list: string[]) => [...list, messageData]);
       setCurrentMessage('');
     }
   };
 
   useEffect(() => {
     socket.on('welcome_message', (data: IChatMessage) => {
-      setMessageList((list) => [...list, data]);
+      setMessageList((list: string[]) => [...list, data]);
     });
     socket.on('receive_message', (data: IChatMessage) => {
-      setMessageList((list) => [...list, data]);
+      setMessageList((list: string[]) => [...list, data]);
     });
     socket.on('leave_message', (data: IChatMessage) => {
-      setMessageList((list) => [...list, data]);
+      setMessageList((list: string[]) => [...list, data]);
     });
   }, [socket]);
 
@@ -82,30 +95,58 @@ export const Chat = ({ socket, name, room, userId }) => {
       <div className="chat-job__header">
         <p>Live Chat</p>
       </div>
-      {/* <div className="chat-job__body"> */}
-      <ScrollToBottom className="chat-job__message-container">
-        {messageList.map((messageContent) => {
-          return (
-            <div
-              key={messageContent._id}
-              className="chat-job__message-container"
-              id={name === messageContent.authorName ? 'you' : 'other'}
-            >
-              <div>
-                <div className="chat-job__message-content">
-                  <p>{messageContent.message}</p>
+      <div className="chat-job--body">
+        <ScrollToBottom className="message-container">
+          {messageList.map(
+            (messageContent: {
+              _id: Key | null | undefined;
+              authorName:
+                | boolean
+                | ReactChild
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+              message:
+                | boolean
+                | ReactChild
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+              time:
+                | boolean
+                | ReactChild
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+            }) => {
+              console.log(messageContent._id);
+              return (
+                <div
+                  key={messageContent._id}
+                  className="chat-job--message-container"
+                  id={name === messageContent.authorName ? 'you' : 'other'}
+                >
+                  <div>
+                    <div className="chat-job--message--content">
+                      <p>{messageContent.message}</p>
+                    </div>
+                    <div className="chat-job--message--meta">
+                      <p id="chat-job--message--time">{messageContent.time}</p>
+                      <p id="chat-job--message--author">
+                        {messageContent.authorName}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="chat-job__message-meta">
-                  <p id="chat-job__message-time">{messageContent.time}</p>
-                  <p id="chat-job__message-author">{messageContent.authorName}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </ScrollToBottom>
-      {/* </div> */}
-      <div className="chat-job__footer">
+              );
+            },
+          )}
+        </ScrollToBottom>
+      </div>
+      <div className="chat-job--footer">
         <input
           value={currentMessage}
           type="text"
