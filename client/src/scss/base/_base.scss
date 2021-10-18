@@ -1,7 +1,12 @@
+body {
+  margin: 0;
+}
 html {
   box-sizing: border-box;
   background-color: $background-color;
   font-family: $main-font;
+  margin: 0;
+  padding: 0;
 }
 
 *,

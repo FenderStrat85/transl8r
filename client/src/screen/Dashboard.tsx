@@ -26,7 +26,10 @@ const Dashboard = (): JSX.Element => {
     <div className='dashboard-screen'>
       {user.role === 'customer' ? (
         <>
-          <h1>{user.role} Dashboard</h1>
+
+          <div className='dashboard-screen__header'>
+            <h1>Dashboard</h1>
+          </div>
           <h2>Your Pending and Accepted jobs</h2>
           <CustomerJobList />
           <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
@@ -37,7 +40,9 @@ const Dashboard = (): JSX.Element => {
         </>
       ) : (
         <>
-          <h1>{user.role} Dashboard</h1>
+          <div className='dashboard-screen__header'>
+            <h1>Dashboard</h1>
+          </div>
           <TranslatorJobList />
           <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!
