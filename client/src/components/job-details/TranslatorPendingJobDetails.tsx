@@ -14,7 +14,6 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
 
   const fetchImage = async (): Promise<void> => {
     const { imageUrl } = await apiService.fetchImage(_id, accessToken);
-    console.log(imageUrl);
     setImage(imageUrl);
   };
 

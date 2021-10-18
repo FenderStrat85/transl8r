@@ -1,3 +1,5 @@
+import { IJob } from '../interfaces/interfaces';
+
 // const server = process.env.REACT_APP_SERVER_URL;
 const server = process.env.REACT_APP_SERVER;
 
@@ -48,6 +50,21 @@ apiService.createJob = (
 
 apiService.acceptJob = (jobInfos: any, accessToken: string) => {
   return fetch(`${server}/acceptJob`, {
+    method: 'PUT',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(jobInfos),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+
+apiService.setNotificationToFalse = (jobInfos: IJob, accessToken: string) => {
+  return fetch(`${server}/setNotificationFalse`, {
     method: 'PUT',
     credentials: 'include',
     mode: 'cors',

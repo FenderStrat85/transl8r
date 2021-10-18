@@ -45,9 +45,7 @@ export const Chat = (props: {
           ':' +
           new Date(Date.now()).getMinutes(),
       };
-      console.log(messageData);
       let res = await apiService.createMessage(messageData, accessToken);
-      console.log(res);
       messageData._id = res._id;
       await socket.emit('send_message', messageData);
       setMessageList((list: string[]) => [...list, messageData]);
@@ -79,10 +77,9 @@ export const Chat = (props: {
       new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
   };
 
-  console.log(userId);
   const disconnectFromChat = async () => {
     //leave chat function called in index.ts
-    await socket.emit('leave_chat', leaveMessage);
+    socket.emit('leave_chat', leaveMessage);
     socket.close();
     await apiService.changeStatus(room, 'completed', accessToken);
     history.push(`/app/${user.role}/dashboard`);
@@ -101,6 +98,7 @@ export const Chat = (props: {
             (messageContent: {
               _id: Key | null | undefined;
               authorName:
+                | string
                 | boolean
                 | ReactChild
                 | ReactFragment
@@ -122,7 +120,6 @@ export const Chat = (props: {
                 | null
                 | undefined;
             }) => {
-              console.log(messageContent._id);
               return (
                 <div
                   key={messageContent._id}
