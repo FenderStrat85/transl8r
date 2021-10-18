@@ -1,6 +1,31 @@
-.completed-job-tile {
+.translator-completed {
   @include container;
-  * {
-    margin-bottom: 10px;
+  border-radius: 12px;
+  width: 90%;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  box-shadow: $box-shadow;
+  padding-top: 10px;
+  margin-bottom: 30px;
+
+  &__bidirectional {
+    width: 15%;
+  }
+  &__flag-container {
+    @include flex-row;
+    width: 80%;
+    justify-content: space-evenly;
+    padding-top: 10px;
+  }
+  &__details {
+    @include flex-row;
+    width: 90%;
+    justify-content: space-between;
+    align-items: baseline;
+    p {
+      color: #fff;
+    }
+  }
+  &__job-type-icon {
+    width: 30px;
   }
 }
