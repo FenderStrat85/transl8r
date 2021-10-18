@@ -6,6 +6,8 @@ import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
+import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
+import BackButton from '../button/BackButton';
 
 const ChatAndVideoForm = (props: { jobType: String }) => {
   const history = useHistory();
@@ -17,18 +19,21 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
   const [selectedFrom, setSelectedFrom] = useState<Language>();
   const [selectedTo, setSelectedTo] = useState<Language>();
 
+  const [myError, setMyError] = useState('');
+
   const initialState = {
     jobName: '',
     jobDescription: '',
   };
 
   const [formValue, setFormValue] = useState(initialState);
-
   const handleSelectedFrom = (event: any): void => {
+    setMyError('');
     setSelectedFrom(event);
   };
 
   const handleSelectedTo = (event: any): void => {
+    setMyError('');
     setSelectedTo(event);
   };
 
@@ -49,31 +54,35 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
     event.preventDefault();
 
     try {
-      const languageFromName = selectedFrom?.value;
-      const languageToName = selectedTo?.value;
-      const objToSendBackToTheDb = {
-        ...formValue,
-        languageFromName,
-        languageToName,
-      };
-      const res = await apiService.createJob(
-        objToSendBackToTheDb,
-        jobType,
-        accessToken,
-      );
-      if (res.error) {
-        alert(`${res.message}`);
-        setFormValue(initialState);
+      if (!selectedFrom || !selectedTo) {
+        setMyError('SELECT LANGUAGES IDIOT');
+        return;
+      } else if (selectedFrom?.value === selectedTo?.value) {
+        setMyError('selected Languages must be different');
+        return;
+      } else {
+        const languageFromName = selectedFrom?.value;
+        const languageToName = selectedTo?.value;
+        const objToSendBackToTheDb = {
+          ...formValue,
+          languageFromName,
+          languageToName,
+        };
+        const res = await apiService.createJob(
+          objToSendBackToTheDb,
+          jobType,
+          accessToken,
+        );
+        if (res.error) {
+          alert(`${res.message}`);
+          setFormValue(initialState);
+        }
+        history.push(`/app/customer/dashboard`);
       }
-      history.push(`/app/customer/dashboard`);
     } catch (error) {
       //TODO: redirect to an error page
       console.log(error);
     }
-  };
-
-  const toSelectJob = (): void => {
-    history.push(`/app/customer/selectjob`);
   };
 
   return (
@@ -89,37 +98,32 @@ const ChatAndVideoForm = (props: { jobType: String }) => {
         />
         <textarea
           className="chat-and-video-form__text-area"
-          // type="text"
           name="jobDescription"
           placeholder={'Tell the translator about the job'}
           onChange={(event) => handleInputChange(event)}
           required
         />
+        {myError ? <ErrorMessageComponent message={myError} /> : null}
         <h3>What language do you need translating from?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
+
         <Select
           className="chat-and-video-form__select"
           options={options}
           value={selectedFrom}
           onChange={(event) => handleSelectedFrom(event)}
-          // labelledBy="Select"
         />
         <h3>What languages do you need translating to?</h3>
-        {/* <pre>{JSON.stringify(selected)}</pre> */}
         <Select
           className="chat-and-video-form__select"
           options={options}
           value={selectedTo}
           onChange={(event) => handleSelectedTo(event)}
-          // labelledBy="Select"
         />
         <button className="chat-and-video-form__button" type="submit">
           Submit your job
         </button>
       </form>
-      <button className="chat-and-video-form__button" onClick={toSelectJob}>
-        Submit a different job
-      </button>
+      <BackButton />
       <DashboardButton role={user.role} />
     </div>
   );
