@@ -1,4 +1,10 @@
 .flag-component {
-  width: 75px;
-  height: 75px;
+  height: 60px;
+  width: 60px;
+  height: fit-content;
+  background-color: $primary-color;
+  img {
+    box-shadow: $box-shadow;
+    border-radius: 12px;
+  }
 }
