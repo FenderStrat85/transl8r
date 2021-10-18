@@ -33,7 +33,7 @@ const Dashboard = (): JSX.Element => {
             <img className='dashboard-screen__logout-button' src={logoutButton} alt='logout button' onClick={logoutFromApp} />
             <h1>Dashboard</h1>
           </div>
-          <h2>Your Pending and Accepted jobs</h2>
+          <h2>Your Pending and<br></br>Accepted jobs</h2>
           <CustomerJobList />
           {/* <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!

@@ -49,7 +49,11 @@ const CompletedJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <>
-          <h2>Your good deeds:</h2>
+          {user.role === 'customer' ? (
+            <h2>Your completed translations:</h2>
+          ) : (
+            <h2>Your good deeds:</h2>
+          )}
           {data.length > 0 ? (
             data.map((job: { _id: React.Key | null | undefined }) => (
               <CompletedJobTile key={job._id} job={job} />

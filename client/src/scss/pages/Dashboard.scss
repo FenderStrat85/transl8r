@@ -1,6 +1,6 @@
 .dashboard-screen {
   @include container;
-
+text-align: center;
 &__header {
 @include header;
 }

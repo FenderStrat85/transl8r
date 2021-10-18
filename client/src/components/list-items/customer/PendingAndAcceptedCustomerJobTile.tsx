@@ -7,6 +7,12 @@ import { UserContext } from '../../../context/Context';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import bidirectional from './../../../assets/icons/bidirectional.svg';
+import video from './../../../assets/icons/video.svg';
+import chat from './../../../assets/icons/chat.svg';
+import image from './../../../assets/icons/image.svg';
+import arrow from './../../../assets/icons/arrow.svg';
+
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
 }): JSX.Element => {
@@ -76,39 +82,68 @@ const PendingAndAcceptedCustomerJobTile = (props: {
   }
 
   return (
-    <div className="pending-and-accepted-customer-job-tile">
+    <>
       {status === 'pending' ? (
-        <>
+        <div className="pending-customer">
           <p>
-            {' '}
-            {jobName} : Status:{status} is a {jobType}
+            {/* {' '} */}
+            {/* {jobName} : Status:{status} is a {jobType} */}
           </p>
-          <p>Language from: {languageFromName}</p>
-          <FlagComponent language={languageFromName} />
-          <p>Language to: {languageToName}</p>
-          <FlagComponent language={languageToName} />
-        </>
+          <div className="pending-customer__flag-container">
+            <FlagComponent language={languageFromName} />
+            <img
+              className="pending-customer__bidirectional"
+              src={bidirectional}
+            />
+            <FlagComponent language={languageToName} />
+          </div>
+          <div className="pending-customer__details">
+            {jobType === 'video' ? (
+              <img className="pending-customer__job-type-icon" src={video} />
+            ) : null}
+            {jobType === 'chat' ? (
+              <img className="pending-customer__job-type-icon" src={chat} />
+            ) : null}
+            {jobType === 'image' ? (
+              <img className="pending-customer__job-type-icon" src={image} />
+            ) : null}
+            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+          </div>
+        </div>
       ) : (
-        <>
-          <p>
-            {' '}
-            {jobName} : Status:{status} is a {jobType}
-          </p>
-          <p>Language from: {languageFromName}</p>
-          <FlagComponent language={languageFromName} />
-          <p>Language to: {languageToName}</p>
-          <FlagComponent language={languageToName} />
-          <Link
-            to={{
-              pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,
-              state: props.job,
-            }}
-          >
-            <button>Go to job</button>
-          </Link>
-        </>
-      )}
-    </div>
+        <div className="accepted-and-completed-customer">
+          <div className="accepted-and-completed-customer__flag-container">
+            <FlagComponent language={languageFromName} />
+            <img
+              className="accepted-and-completed-customer__bidirectional"
+              src={bidirectional}
+            />
+            <FlagComponent language={languageToName} />
+          </div>
+          <div className="accepted-and-completed-customer__details">
+            {jobType === 'video' ? (
+              <img className="accepted-and-completed-customer__job-type-icon" src={video} />
+            ) : null}
+            {jobType === 'chat' ? (
+              <img className="accepted-and-completed-customer__job-type-icon" src={chat} />
+            ) : null}
+            {jobType === 'image' ? (
+              <img className="accepted-and-completed-customer__job-type-icon" src={image} />
+            ) : null}
+            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <Link
+              to={{
+                pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,
+                state: props.job,
+              }}
+            >
+              <img className="accepted-and-completed-customer__job-type-icon" src={arrow} />
+            </Link>
+          </div>
+        </div>
+      )
+      }
+    </>
   );
 };
 

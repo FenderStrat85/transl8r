@@ -71,14 +71,7 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
           <img className="translator-completed__job-type-icon" src={image} />
         ) : null}
         <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
-        <Link
-          to={{
-            pathname: '/app/translator/dashboard/viewjob',
-            state: props.job,
-          }}
-        >
-          <img className="translator-completed__job-type-icon" src={arrow} />
-        </Link>
+        <img className="translator-completed__job-type-icon" src={arrow} onClick={handleClick} />
       </div>
     </div>
   );

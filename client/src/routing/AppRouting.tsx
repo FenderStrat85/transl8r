@@ -53,8 +53,6 @@ const AppRouting = (): JSX.Element => {
           {/* {CUSTOMER JOBS ROUTE} */}
           <Route exact path="/app/customer/acceptedjob/image:id"></Route>
           <Route exact path="/app/customer/acceptedjob/chat:id">
-            {/* {IM THE CHAT COMPONENT} */}
-            <h1>CHAT COMPONENT</h1>
             <Conversation />
           </Route>
           <Route exact path="/app/customer/acceptedjob/video:id">
@@ -86,7 +84,6 @@ const AppRouting = (): JSX.Element => {
             <TranslatorImage job={job.state} />
           </Route>
           <Route exact path="/app/translator/chat:jobId">
-            <h1>Chat Component</h1>
             <Conversation />
           </Route>
           <Route exact path="/app/translator/video:jobId">
