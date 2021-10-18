@@ -50,7 +50,7 @@ const Conversation = (): JSX.Element => {
   };
 
   return (
-    <div className="conversation__container">
+    <div className="conversation">
       {!showChat ? (
         <div className="conversation__join-chat">
           <h1>I am in the chat component</h1>

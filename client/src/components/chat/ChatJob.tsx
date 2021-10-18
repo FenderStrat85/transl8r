@@ -9,7 +9,6 @@ import {
 //@ts-expect-error
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage } from '../../interfaces/interfaces';
-import './chat.css';
 import apiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
@@ -92,7 +91,7 @@ export const Chat = (props: {
   //id's 'other' and 'you' are for css styling
 
   return (
-    <div className="chat-job__container">
+    <div className="chat-job">
       <div className="chat-job__header">
         <p>Live Chat</p>
       </div>

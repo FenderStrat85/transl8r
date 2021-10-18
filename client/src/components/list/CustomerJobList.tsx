@@ -41,51 +41,15 @@ const CustomerJobList = (): JSX.Element => {
   }
 
   return (
-<<<<<<< HEAD
-    <>
-      <div>
-        <h2>Pending Jobs</h2>
-        {status === 'error' && <div>Error fetching data</div>}
-        {status === 'loading' && <div>Fetching data</div>}
-        {status === 'success' && (
-          <div>
-            {pendingJobs.length > 0 ? (
-              pendingJobs.map((job: { _id: React.Key }) => (
-                <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
-              ))
-            ) : (
-              <h3>No pending jobs</h3>
-            )}
-          </div>
-        )}
-      </div>
-      <div>
-        <h2>Accepted Jobs</h2>
-        {status === 'error' && <div>Error fetching data</div>}
-        {status === 'loading' && <div>Fetching data</div>}
-        {status === 'success' && (
-          <div>
-            {acceptedJobs.length > 0 ? (
-              acceptedJobs.map((job: { _id: React.Key }) => (
-                <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
-              ))
-            ) : (
-              <h3>No accepted jobs</h3>
-            )}
-          </div>
-        )}
-      </div>
-    </>
-=======
-    <div className='customer-job-list__container'>
+    <div className="customer-job-list">
       {/* PENDING JOB CONTAINER */}
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='customer-job-list__jobs--pending'>
+        <div className="customer-job-list__jobs--pending">
           <h2>Pending Jobs</h2>
           {pendingJobs.length > 0 ? (
-            pendingJobs.map((job) => (
+            pendingJobs.map((job: { _id: React.Key | null | undefined }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
@@ -97,10 +61,10 @@ const CustomerJobList = (): JSX.Element => {
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='customer-job-list__jobs--accepted'>
+        <div className="customer-job-list__jobs--accepted">
           <h2>Accepted Jobs</h2>
           {acceptedJobs.length > 0 ? (
-            acceptedJobs.map((job) => (
+            acceptedJobs.map((job: { _id: React.Key | null | undefined }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
@@ -109,7 +73,6 @@ const CustomerJobList = (): JSX.Element => {
         </div>
       )}
     </div>
->>>>>>> development
   );
 };
 

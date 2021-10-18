@@ -34,7 +34,7 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
   };
 
   return (
-    <div className="completed-job-tile__container">
+    <div className="completed-job-tile">
       <p>
         {jobName} : Status:{status}
       </p>

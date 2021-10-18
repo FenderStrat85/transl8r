@@ -29,18 +29,13 @@ const TranslatorJobList = (): JSX.Element => {
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='translator-job-list__container'>
+        <div className="translator-job-list">
           {data.length > 0 ? (
-<<<<<<< HEAD
-            data.map((job: { _id: Key }) => (
-              <PendingTranslatorJobTile key={job._id} job={job} />
-=======
-            data.map((job) => (
+            data.map((job: { _id: Key | null | undefined }) => (
               <>
                 <h2>Pending Jobs</h2>
                 <PendingTranslatorJobTile key={job._id} job={job} />
               </>
->>>>>>> development
             ))
           ) : (
             <>

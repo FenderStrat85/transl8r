@@ -122,7 +122,7 @@ const VideoPlayer = (): JSX.Element => {
   };
 
   return (
-    <div className="video-player__container">
+    <div className="video-player">
       {stream && (
         <video
           className="video-player__video--my-video"

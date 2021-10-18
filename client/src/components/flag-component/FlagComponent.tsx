@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactCountryFlag from 'react-country-flag';
 import Chinese from '../../assets/images-components/flags/Chinese.svg';
 import English from '../../assets/images-components/flags/English.svg';
 import French from '../../assets/images-components/flags/French.svg';
@@ -11,7 +10,7 @@ import Russian from '../../assets/images-components/flags/Russian.svg';
 import Spanish from '../../assets/images-components/flags/Spanish.svg';
 
 const FlagComponent = (props: { language: string }) => {
-  let country: string;
+  let country: string = '';
 
   switch (props.language) {
     case 'Chinese':
@@ -43,44 +42,10 @@ const FlagComponent = (props: { language: string }) => {
   }
 
   return (
-    <div style={{ width: 75, height: 75 }}>
-      <img src={country} />
+    <div className="flag-component">
+      <img src={country} alt="country flag" />
     </div>
   );
 };
-
-// let code: string;
-//   switch (props.language) {
-//     case 'Chinese':
-//       code = 'CN';
-//       break;
-//     case 'English':
-//       code = 'GB';
-//       break;
-//     case 'French':
-//       code = 'FR';
-//       break;
-//     case 'Italian':
-//       code = 'IT';
-//       break;
-//     case 'Spanish':
-//       code = 'ES';
-//       break;
-//   }
-
-//   return (
-//     <div>
-//       <ReactCountryFlag
-//         className="emojiFlag"
-//         countryCode={code}
-//         style={{
-//           fontSize: '4em',
-//           // lineHeight: '4em',
-//         }}
-//         aria-label={props.language}
-//       />
-//     </div>
-//   );
-// };
 
 export default FlagComponent;

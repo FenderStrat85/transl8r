@@ -20,7 +20,7 @@ const CompletedChat = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="completed-chat--container">
+    <div className="completed-chat">
       <h2>I am a completed chat</h2>
       {messages.length > 0 ? (
         messages.map((message: any) => {
