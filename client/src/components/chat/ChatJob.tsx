@@ -17,7 +17,7 @@ export const Chat = (props: {
   const { socket, name, room, userId } = props;
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList]: any[] = useState([]);
-  const history = useHistory();
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
 
   //room is set to job._id

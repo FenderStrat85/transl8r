@@ -6,6 +6,7 @@ import video from './../../../assets/icons/video.svg';
 import chat from './../../../assets/icons/chat.svg';
 import image from './../../../assets/icons/image.svg';
 import arrow from './../../../assets/icons/arrow.svg';
+import { IJob } from '../../../interfaces/interfaces';
 
 const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
   const { jobName, jobType, languageFromName, languageToName } = props.job;

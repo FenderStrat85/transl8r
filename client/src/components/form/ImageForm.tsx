@@ -10,7 +10,7 @@ import BackButton from '../button/BackButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 
 const ImageForm = (props: { jobType: string }): JSX.Element => {
-  const history = useHistory();
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const options = languageChoice;

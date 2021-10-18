@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import apiService from '../../../services/apiService';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
 }): JSX.Element => {
   const accessToken: string | null = localStorage.getItem('accessToken');
-  const history = useHistory();
+  const history = useHistory<History>();
 
   const {
     jobName,
@@ -105,7 +105,6 @@ const PendingAndAcceptedCustomerJobTile = (props: {
           </Link>
         </>
       )}
-      <ToastContainer />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { Key } from 'react';
+
 export interface IRegister {
   firstName: string;
   lastName: string;
@@ -5,6 +7,11 @@ export interface IRegister {
   password: string;
   role: string;
   languages: string[];
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
 }
 
 export interface ILanguage {
@@ -30,7 +37,7 @@ export interface IImage {
 }
 
 export interface IJob {
-  _id: string;
+  _id: Key;
   status: string;
   languageFrom: string;
   languageFromName: string;

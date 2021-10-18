@@ -7,9 +7,9 @@ import languageChoice from '../../constants/languageChoice';
 import { ILanguage, IRegister } from '../../interfaces/interfaces';
 
 const RegisterForm = (): JSX.Element => {
-  const history = useHistory();
+  const history = useHistory<History>();
   const { login } = useContext(UserContext);
-  const options = languageChoice;
+  const options: ILanguage[] = languageChoice;
   const [selected, setSelected] = useState([]);
 
   const initialState: IRegister = {

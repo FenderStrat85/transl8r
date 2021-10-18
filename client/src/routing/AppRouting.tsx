@@ -16,7 +16,7 @@ import CompletedImage from '../components/image/CompletedImage';
 
 const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
-  let job = useLocation();
+  let job: any = useLocation();
 
   return (
     <>

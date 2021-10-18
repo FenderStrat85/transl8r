@@ -11,7 +11,7 @@ import NotFound from './screen/NotFound';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-const queryClient = new QueryClient();
+const queryClient: QueryClient = new QueryClient();
 
 function App(): JSX.Element {
   return (

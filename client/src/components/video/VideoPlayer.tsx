@@ -1,19 +1,22 @@
 import { useState, useRef, useEffect, useContext } from 'react';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import Peer from 'simple-peer';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { UserContext } from '../../context/Context';
-import Draggable, { DraggableCore } from 'react-draggable';
+import Draggable from 'react-draggable';
 import apiService from '../../services/apiService';
+import { DefaultEventsMap } from 'socket.io-client/build/typed-events';
 
 const server = process.env.REACT_APP_SERVER;
 
-console.log(server);
+//console.log(server);
 
 const CONNECTION_PORT = server || '';
-const socket = io(CONNECTION_PORT, { transports: ['websocket'] });
-let socketId: any;
+const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(CONNECTION_PORT, {
+  transports: ['websocket'],
+});
+let socketId: string;
 socket.on('me', (id) => {
   socketId = id;
 });
@@ -45,9 +48,13 @@ const VideoPlayer = (): JSX.Element => {
     return await res.json();
   };
 
-  const queryResult = useQuery('getSocketId', getSocketId, {
-    refetchInterval: 1000,
-  });
+  const queryResult: UseQueryResult<any, unknown> = useQuery(
+    'getSocketId',
+    getSocketId,
+    {
+      refetchInterval: 1000,
+    },
+  );
 
   const reqBody = { jobId: job.state._id, socketId: '' };
 
@@ -102,7 +109,7 @@ const VideoPlayer = (): JSX.Element => {
     connectionRef.current = peer;
   };
 
-  const callUser = (id: any): void => {
+  const callUser = (id: string): void => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
     peer.on('signal', (data) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me });

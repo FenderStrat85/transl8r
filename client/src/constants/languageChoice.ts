@@ -1,4 +1,6 @@
-const languageChoice = [
+import { ILanguage } from '../interfaces/interfaces';
+
+const languageChoice: ILanguage[] = [
   { label: '🇬🇧 English', value: 'English' },
   { label: '🇫🇷 French', value: 'French' },
   { label: '🇩🇪 German', value: 'German' },

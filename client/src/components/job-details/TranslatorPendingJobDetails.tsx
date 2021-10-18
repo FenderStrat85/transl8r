@@ -5,7 +5,7 @@ import apiService from '../../services/apiService';
 import BackButton from '../button/BackButton';
 
 export const TranslatorPendingJobDetails = (): JSX.Element => {
-  const history = useHistory();
+  const history: any = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const [image, setImage] = useState('');
@@ -13,7 +13,7 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
   const { _id, jobType, jobDescription } = job.state;
 
   const fetchImage = async (): Promise<void> => {
-    if (jobType != 'image') return;
+    if (jobType !== 'image') return;
     const { imageUrl } = await apiService.fetchImage(_id, accessToken);
     setImage(imageUrl);
   };

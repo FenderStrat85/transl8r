@@ -1,12 +1,14 @@
 import { Key } from 'react';
 import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAndAcceptedCustomerJobTile';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { IJob } from '../../interfaces/interfaces';
 
 const server = process.env.REACT_APP_SERVER;
 
 const CustomerJobList = (): JSX.Element => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
 
   const fetchPendingAndAcceptedJobs = async (): Promise<any> => {
     const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
@@ -21,7 +23,7 @@ const CustomerJobList = (): JSX.Element => {
     return res.json();
   };
 
-  const { data, status } = useQuery(
+  const result: UseQueryResult<any, unknown> = useQuery(
     'pendingJobs',
     fetchPendingAndAcceptedJobs,
     {
@@ -29,8 +31,11 @@ const CustomerJobList = (): JSX.Element => {
     },
   );
 
-  let pendingJobs = [];
-  let acceptedJobs = [];
+  const status: string = result.status;
+  const data: IJob[] = result.data;
+
+  let pendingJobs: IJob[] = [];
+  let acceptedJobs: IJob[] = [];
 
   if (data && data.length > 0) {
     // TODO: only one loop
@@ -74,6 +79,7 @@ const CustomerJobList = (): JSX.Element => {
           )}
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

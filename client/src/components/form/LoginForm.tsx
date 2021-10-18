@@ -1,16 +1,17 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
+import { ILogin } from '../../interfaces/interfaces';
 
 const LoginForm = (): JSX.Element => {
   const { login } = useContext(UserContext);
   const history = useHistory();
 
-  const initialState = { email: '', password: '' };
+  const initialState: ILogin = { email: '', password: '' };
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event: any): void => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -19,7 +20,9 @@ const LoginForm = (): JSX.Element => {
     });
   };
 
-  const handleSubmit = async (event: any): Promise<void> => {
+  const handleSubmit = async (event: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     event.preventDefault();
     const res = await apiService.login(formValue);
     if (res.error) {

@@ -10,10 +10,10 @@ import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 import BackButton from '../button/BackButton';
 
 const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
-  const history = useHistory();
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const options = languageChoice;
+  const options: ILanguage[] = languageChoice;
   const { jobType } = props;
 
   const [selectedFrom, setSelectedFrom] = useState<ILanguage>();

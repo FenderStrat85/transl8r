@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 // job: IImageJob -> in approuting it is passed as job.state so we've used any
 const TranslatorImage = (props: { job: any }): JSX.Element => {
-  const history = useHistory();
+  const history = useHistory<History>();
 
   const accessToken: string | null = localStorage.getItem('accessToken');
   const { jobName, image, _id } = props.job;

@@ -1,7 +1,9 @@
 import PendingTranslatorJobTile from '../list-items/translator/PendingTranslatorJobTile';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Key } from 'react';
+import { IJob } from '../../interfaces/interfaces';
+import reactQueryRefetchingInterval from '../../constants/ReactQueryConstant';
 const server = process.env.REACT_APP_SERVER;
 
 const TranslatorJobList = (): JSX.Element => {
@@ -20,10 +22,16 @@ const TranslatorJobList = (): JSX.Element => {
     return await res.json();
   };
 
-  const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
-    refetchInterval: 1000,
-  });
-  console.log('XD', data);
+  const result: UseQueryResult<any, unknown> = useQuery(
+    'pendingJobs',
+    fetchPendingJobs,
+    {
+      refetchInterval: reactQueryRefetchingInterval,
+    },
+  );
+
+  const status: string = result.status;
+  const data: IJob[] = result.data;
 
   return (
     <>
