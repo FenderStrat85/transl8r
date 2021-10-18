@@ -30,7 +30,7 @@ const TranslatorJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="translator-job-list">
-          <h2>Pending Jobs</h2>
+          <h2>Translation help requests:</h2>
           {data.length > 0 ? (
             data.map((job: { _id: Key | null | undefined }) => (
               <>

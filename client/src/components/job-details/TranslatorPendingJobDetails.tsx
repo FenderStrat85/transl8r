@@ -52,7 +52,10 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-          <h1>Job details</h1>
+
+          <div className='translator-pending-job-details__header'>
+            <h1>Job details</h1>
+          </div>
           <h2>{user.firstName} wants a translator</h2>
           <h2>type of job: {jobType}</h2>
           <h3>{jobDescription}</h3>

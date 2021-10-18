@@ -52,7 +52,6 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
     //   </button>
     // </div>
     <div className="translator-completed">
-
       <div className="translator-completed__flag-container">
         <FlagComponent language={languageFromName} />
         <img

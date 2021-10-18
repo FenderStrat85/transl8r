@@ -43,12 +43,13 @@ const CompletedJobList = (): JSX.Element => {
   return (
     <div className="completed-job-list">
       <div className='completed-job-list__header'>
-        <h1>Completed Jobs</h1>
+        <h1>Completed Tasks</h1>
       </div>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <>
+          <h2>Your good deeds:</h2>
           {data.length > 0 ? (
             data.map((job: { _id: React.Key | null | undefined }) => (
               <CompletedJobTile key={job._id} job={job} />

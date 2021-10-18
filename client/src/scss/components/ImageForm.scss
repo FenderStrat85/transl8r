@@ -1,8 +1,10 @@
 .image-form {
     @include container;
+    &__header {
+    @include header;
+    }
       &__form {
     @include flex-column;
-
   }
   &__input {
     width: 100%;
@@ -12,9 +14,6 @@
   }
   &__select {
     width: 100%;
-  }
-  * {
-    margin-bottom: 10px;
   }
   &__image-preview {
     width: 80%;
