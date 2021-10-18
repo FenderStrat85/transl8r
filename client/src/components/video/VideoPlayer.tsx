@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { UserContext } from '../../context/Context';
 import Draggable, { DraggableCore } from 'react-draggable';
+import apiService from '../../services/apiService';
 
 const server = process.env.REACT_APP_SERVER;
 
@@ -119,6 +120,7 @@ const VideoPlayer = (): JSX.Element => {
   const leaveCall = (): void => {
     setCallEnded(true);
     connectionRef.current.destroy();
+    apiService.changeStatus(job.state._id, 'completed', accessToken);
     history.push(`/app/${user.role}/dashboard`);
   };
 
