@@ -1,10 +1,4 @@
-import {
-  useState,
-  useContext,
-  SetStateAction,
-  ChangeEvent,
-  useRef,
-} from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -13,7 +7,7 @@ import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 
-const ImageForm = () => {
+const ImageForm = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const history = useHistory();
@@ -32,7 +26,15 @@ const ImageForm = () => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const previewFile = (file: Blob) => {
+  const handleSelectedFrom = (event: any) => {
+    setSelectedFrom(event);
+  };
+
+  const handleSelectedTo = (event: any) => {
+    setSelectedTo(event);
+  };
+
+  const previewFile = (file: Blob): void => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
@@ -40,7 +42,7 @@ const ImageForm = () => {
     };
   };
 
-  const handleFileInputChange = (event: any) => {
+  const handleFileInputChange = (event: any): void => {
     const file = event.target.files[0];
     const extension = file.name.split('.').reverse()[0].toLowerCase();
     const supportedExtensions = ['png', 'jpeg', 'heic', 'gif', 'jpg'];
@@ -57,7 +59,7 @@ const ImageForm = () => {
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
-  ) => {
+  ): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -83,15 +85,11 @@ const ImageForm = () => {
     }
   };
 
-  const toDashBoard = () => {
-    history.push(`/app/customer/dashboard`);
-  };
-
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 
-  const uploadImage = async () => {
+  const uploadImage = async (): Promise<void> => {
     //TODO: It's better to use React's way of handing HTML elements (refs) instead of using the native DOM API (getElementById).
     const imgToUpload = (document.getElementById('user') as HTMLInputElement)
       .src;
@@ -107,8 +105,9 @@ const ImageForm = () => {
     const { secure_url } = await res.json();
 
     try {
-      let languageFromName = selectedFrom.value;
-      let languageToName = selectedTo.value;
+      let languageFromName = selectedFrom?.value;
+      console.log(languageFromName);
+      let languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
         ...formValue,
         languageFromName,
@@ -131,8 +130,8 @@ const ImageForm = () => {
   };
 
   return (
-    <div className='image-form'>
-      <form className='image-form__form' onSubmit={handleSubmit}>
+    <div className="image-form">
+      <form className="image-form__form" onSubmit={handleSubmit}>
         <>
           <input
             className="image-form__input"
@@ -151,31 +150,33 @@ const ImageForm = () => {
           />
           <h3>What language do you need translating from?</h3>
           <Select
-            className='image-form__select'
+            className="image-form__select"
             options={options}
             value={selectedFrom}
-            onChange={setSelectedFrom}
+            onChange={(event) => handleSelectedFrom(event)}
           />
           <h3>What languages do you need translating to?</h3>
           <Select
-            className='image-form__select'
+            className="image-form__select"
             options={options}
             value={selectedTo}
-            onChange={setSelectedTo}
+            onChange={(event) => handleSelectedTo(event)}
           />
           <input
-            className='image-form__image-select'
+            className="image-form__image-select"
             id="fileInput"
             type="file"
             name="image"
             onChange={handleFileInputChange}
             value={fileInputState}
           />
-          <button className='image-form__button' type="submit">Submit your job</button>
+          <button className="image-form__button" type="submit">
+            Submit your job
+          </button>
         </>
         {previewSource && (
           <img
-            className='image-form__image-preview'
+            className="image-form__image-preview"
             src={previewSource}
             id="user"
             crossOrigin="anonymous"
@@ -183,7 +184,9 @@ const ImageForm = () => {
           />
         )}
       </form>
-      <button className='image-form__button' onClick={toSelectJob}>Submit a different job</button>
+      <button className="image-form__button" onClick={toSelectJob}>
+        Submit a different job
+      </button>
       <DashboardButton role={user.role} />
     </div>
   );

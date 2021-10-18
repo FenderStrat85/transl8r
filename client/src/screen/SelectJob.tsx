@@ -1,15 +1,14 @@
-import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../context/Context';
 import { useContext } from 'react';
 
-function SelectJob() {
+const SelectJob = (): JSX.Element => {
   const { user, logout } = useContext(UserContext);
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
   const history = useHistory();
 
-  const logoutFromApp = () => {
-    logout(accessToken);
+  const logoutFromApp = (): void => {
+    logout(accessToken as string);
     console.log('accessToken', accessToken);
     console.log('accessToken', user);
     history.push(`/auth/login`);
@@ -32,6 +31,6 @@ function SelectJob() {
       <button className='select-job-screen_button' onClick={logoutFromApp}>Logout</button>
     </div>
   );
-}
+};
 
 export default SelectJob;

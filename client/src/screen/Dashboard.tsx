@@ -1,32 +1,24 @@
 import CustomerJobList from '../components/list/CustomerJobList';
 import TranslatorJobList from '../components/list/TranslatorJobList';
 import { UserContext } from '../context/Context';
-import { useContext, useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = (): JSX.Element => {
   const history = useHistory();
   const { user, logout } = useContext(UserContext);
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: any = localStorage.getItem('accessToken');
 
-  useEffect(() => {
-    // API GET JOBS
-    //setJobs(response)
-  }, []);
-
-  const logoutFromApp = () => {
-    logout(accessToken);
-    console.log('accessToken', accessToken);
-    console.log('accessToken', user);
+  const logoutFromApp = (): void => {
+    logout(accessToken as string);
     history.push(`/auth/login`);
   };
 
-  const goToCompletedJobs = () => {
+  const goToCompletedJobs = (): void => {
     history.push(`/app/completedJobs`);
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 

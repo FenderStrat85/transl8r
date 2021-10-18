@@ -1,14 +1,12 @@
 import React from 'react';
 import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAndAcceptedCustomerJobTile';
-import { UserContext } from '../../context/Context';
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 const server = process.env.REACT_APP_SERVER;
 
-const CustomerJobList = () => {
+const CustomerJobList = (): JSX.Element => {
   const accessToken = localStorage.getItem('accessToken');
 
-  const fetchPendingAndAcceptedJobs = async () => {
+  const fetchPendingAndAcceptedJobs = async (): Promise<any> => {
     const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
       method: 'GET',
       credentials: 'include',
@@ -34,20 +32,24 @@ const CustomerJobList = () => {
 
   if (data && data.length > 0) {
     // TODO: only one loop
-    pendingJobs = data.filter((job) => job.status === 'pending');
-    acceptedJobs = data.filter((job) => job.status === 'accepted');
+    pendingJobs = data.filter(
+      (job: { status: string }) => job.status === 'pending',
+    );
+    acceptedJobs = data.filter(
+      (job: { status: string }) => job.status === 'accepted',
+    );
   }
 
   return (
-    <div className='customer-job-list'>
+    <div className="customer-job-list">
       {/* PENDING JOB CONTAINER */}
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='customer-job-list__jobs--pending'>
+        <div className="customer-job-list__jobs--pending">
           <h2>Pending Jobs</h2>
           {pendingJobs.length > 0 ? (
-            pendingJobs.map((job) => (
+            pendingJobs.map((job: { _id: React.Key | null | undefined }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
@@ -59,10 +61,10 @@ const CustomerJobList = () => {
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
-        <div className='customer-job-list__jobs--accepted'>
+        <div className="customer-job-list__jobs--accepted">
           <h2>Accepted Jobs</h2>
           {acceptedJobs.length > 0 ? (
-            acceptedJobs.map((job) => (
+            acceptedJobs.map((job: { _id: React.Key | null | undefined }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (

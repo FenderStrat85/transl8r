@@ -1,22 +1,12 @@
-import { UserContext } from '../../../context/Context';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
 
-const PendingTranslatorJobTile = (props: { job: any }) => {
-  const { user } = useContext(UserContext);
-  const {
-    jobName,
-    status,
-    jobType,
-    languageFromName,
-    languageToName,
-    jobDescription,
-    _id,
-  } = props.job;
+const PendingTranslatorJobTile = (props: { job: any }): JSX.Element => {
+  const { jobName, status, jobType, languageFromName, languageToName } =
+    props.job;
 
   return (
-    <div className='pending-translator-job-tile'>
+    <div className="pending-translator-job-tile">
       {jobName} : Status:{status} is a {jobType}
       <p>Language from: {languageFromName}</p>
       <FlagComponent language={languageFromName} />
@@ -25,7 +15,9 @@ const PendingTranslatorJobTile = (props: { job: any }) => {
       <Link
         to={{ pathname: '/app/translator/dashboard/viewjob', state: props.job }}
       >
-        <button className='pending-translator-job-tile__button'>See more details:</button>
+        <button className="pending-translator-job-tile__button">
+          See more details:
+        </button>
       </Link>
     </div>
   );

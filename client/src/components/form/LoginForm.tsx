@@ -3,13 +3,13 @@ import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   const initialState = { email: '', password: '' };
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -18,7 +18,7 @@ const LoginForm = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any): Promise<void> => {
     event.preventDefault();
     const res = await apiService.login(formValue);
     if (res.error) {

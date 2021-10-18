@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/socket.io": "^3.0.2",
     "@types/socket.io-client": "^3.0.0",
+    "eslint-plugin-react-hooks": "^4.2.1-alpha-930c9e7ee-20211015",
     "markerjs2": "^2.14.1",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
@@ -56,6 +57,9 @@
     ]
   },
   "devDependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.2",
+    "@types/react-router-dom": "^5.3.1",
+    "@types/simple-peer": "^9.11.3",
     "react-dotenv": "^0.1.3"
   },
   "react-dotenv": {

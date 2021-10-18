@@ -4,22 +4,15 @@ import { useLocation, useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import BackButton from '../button/BackButton';
 
-export const TranslatorPendingJobDetails = (props: any) => {
+export const TranslatorPendingJobDetails = (): JSX.Element => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const [image, setImage] = useState('');
-  const job = useLocation();
-  const {
-    _id,
-    jobName,
-    jobType,
-    languageFromName,
-    languageToName,
-    jobDescription,
-  } = job.state;
+  const job: any = useLocation();
+  const { _id, jobType, jobDescription } = job.state;
 
-  const fetchImage = async () => {
+  const fetchImage = async (): Promise<void> => {
     const { imageUrl } = await apiService.fetchImage(_id, accessToken);
     console.log(imageUrl);
     setImage(imageUrl);
@@ -31,7 +24,7 @@ export const TranslatorPendingJobDetails = (props: any) => {
 
   let jobAccepted = false;
 
-  const acceptJob = async () => {
+  const acceptJob = async (): Promise<void> => {
     const res = await apiService.acceptJob(job.state, accessToken);
     console.log('res from translatorJobDetail', res);
     if (res.status === 'accepted') {

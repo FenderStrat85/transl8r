@@ -24,7 +24,6 @@ const files = fs.readdirSync(__dirname);
 
 for (const file of files) {
   if (file !== 'db.ts') {
-    console.log('files from loop', path.join(__dirname, file));
     const model = require(path.join(__dirname, file))(
       sequelize,
       Sequelize.DataTypes,

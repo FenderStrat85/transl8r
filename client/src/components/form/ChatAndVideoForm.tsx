@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { Language } from '../../interfaces/interfaces';
 import DashboardButton from '../button/DashboardButton';
 
-const ChatAndVideoForm = (props) => {
+const ChatAndVideoForm = (props: { jobType: String }) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
@@ -24,7 +24,17 @@ const ChatAndVideoForm = (props) => {
 
   const [formValue, setFormValue] = useState(initialState);
 
-  const handleInputChange = (event) => {
+  const handleSelectedFrom = (event: any): void => {
+    setSelectedFrom(event);
+  };
+
+  const handleSelectedTo = (event: any): void => {
+    setSelectedTo(event);
+  };
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>,
+  ): void => {
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -33,12 +43,14 @@ const ChatAndVideoForm = (props) => {
     });
   };
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     event.preventDefault();
 
     try {
-      const languageFromName = selectedFrom.value;
-      const languageToName = selectedTo.value;
+      const languageFromName = selectedFrom?.value;
+      const languageToName = selectedTo?.value;
       const objToSendBackToTheDb = {
         ...formValue,
         languageFromName,
@@ -60,14 +72,13 @@ const ChatAndVideoForm = (props) => {
     }
   };
 
-  const toSelectJob = () => {
+  const toSelectJob = (): void => {
     history.push(`/app/customer/selectjob`);
   };
 
   return (
-    <div className='chat-and-video-form'>
-      <form className='chat-and-video-form__form'
-        onSubmit={handleSubmit}>
+    <div className="chat-and-video-form">
+      <form className="chat-and-video-form__form" onSubmit={handleSubmit}>
         <input
           className="chat-and-video-form__input"
           type="text"
@@ -87,24 +98,28 @@ const ChatAndVideoForm = (props) => {
         <h3>What language do you need translating from?</h3>
         {/* <pre>{JSON.stringify(selected)}</pre> */}
         <Select
-          className='chat-and-video-form__select'
+          className="chat-and-video-form__select"
           options={options}
           value={selectedFrom}
-          onChange={setSelectedFrom}
-        // labelledBy="Select"
+          onChange={(event) => handleSelectedFrom(event)}
+          // labelledBy="Select"
         />
         <h3>What languages do you need translating to?</h3>
         {/* <pre>{JSON.stringify(selected)}</pre> */}
         <Select
-          className='chat-and-video-form__select'
+          className="chat-and-video-form__select"
           options={options}
           value={selectedTo}
-          onChange={setSelectedTo}
-        // labelledBy="Select"
+          onChange={(event) => handleSelectedTo(event)}
+          // labelledBy="Select"
         />
-        <button className='chat-and-video-form__button' type="submit">Submit your job</button>
+        <button className="chat-and-video-form__button" type="submit">
+          Submit your job
+        </button>
       </form>
-      <button className='chat-and-video-form__button' onClick={toSelectJob}>Submit a different job</button>
+      <button className="chat-and-video-form__button" onClick={toSelectJob}>
+        Submit a different job
+      </button>
       <DashboardButton role={user.role} />
     </div>
   );
