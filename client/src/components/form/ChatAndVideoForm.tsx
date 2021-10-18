@@ -9,16 +9,15 @@ import DashboardButton from '../button/DashboardButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 import BackButton from '../button/BackButton';
 
-const ChatAndVideoForm = (props: { jobType: String }) => {
+const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const jobType = props.jobType;
   const options = languageChoice;
+  const { jobType } = props;
 
   const [selectedFrom, setSelectedFrom] = useState<ILanguage>();
   const [selectedTo, setSelectedTo] = useState<ILanguage>();
-
   const [myError, setMyError] = useState('');
 
   const initialState = {

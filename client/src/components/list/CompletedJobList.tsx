@@ -1,4 +1,4 @@
-import React from 'react';
+import { Key } from 'react';
 import CompletedJobTile from '../list-items/CompletedJobTile';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
@@ -48,7 +48,7 @@ const CompletedJobList = (): JSX.Element => {
       {status === 'success' && (
         <>
           {data.length > 0 ? (
-            data.map((job: { _id: React.Key | null | undefined }) => (
+            data.map((job: { _id: Key }) => (
               <CompletedJobTile key={job._id} job={job} />
             ))
           ) : (

@@ -2,18 +2,17 @@ import { useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
+//import { IImageJob } from '../../interfaces/interfaces';
 
+// job: IImageJob -> in approuting it is passed as job.state so we've used any
 const TranslatorImage = (props: { job: any }): JSX.Element => {
   const history = useHistory();
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
   const { jobName, image, _id } = props.job;
   const COMPLETED = 'completed';
 
   const [value, setValue] = useState('');
-
-  // needed if we want a confirmation img
-  // const [resultsImage, setResultsImage] = useState('');
 
   const showMarkerArea = (): void => {
     //TODO: It's probably better to avoid native DOM API methods and use the Refs which is React's way of accessing DOM elements.
@@ -76,11 +75,11 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
   };
 
   return (
-    <div className='translator-image'>
+    <div className="translator-image">
       <h2>{jobName}</h2>
-      <form className='translator-image__form' onSubmit={handleSubmit}>
+      <form className="translator-image__form" onSubmit={handleSubmit}>
         <img
-          className='translator-image__image'
+          className="translator-image__image"
           crossOrigin="anonymous"
           id="translator"
           src={image}
@@ -89,13 +88,15 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
           onClick={() => showMarkerArea()}
         />
         <textarea
-          className='translator-image__text-area'
+          className="translator-image__text-area"
           required
           name="textarea"
           value={value}
           onChange={(event) => handleChange(event)}
         />
-        <button className='translator-image__button' type="submit">Send Translation</button>
+        <button className="translator-image__button" type="submit">
+          Send Translation
+        </button>
       </form>
     </div>
   );

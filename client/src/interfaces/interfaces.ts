@@ -1,3 +1,12 @@
+export interface IRegister {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: string;
+  languages: string[];
+}
+
 export interface ILanguage {
   label: string;
   value: string;
@@ -32,4 +41,17 @@ export interface IJob {
   jobName: string;
   jobDescription: string;
   notification: boolean;
+}
+
+export interface IImageJob {
+  _id: string;
+  image: string;
+  jobName: string;
+}
+
+export interface IDbMessage {
+  _id: string;
+  messageAuthor: string;
+  messageContent: string;
+  ConversationId: string;
 }

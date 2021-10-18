@@ -14,6 +14,7 @@ const Conversation = (): JSX.Element => {
   const job: any = useLocation();
   let room: string;
   let userId: string;
+  const name = user.firstName;
 
   if (user.role === 'customer') {
     const { _id, CustomerId } = job.state;
@@ -30,8 +31,6 @@ const Conversation = (): JSX.Element => {
     //room set to job._id
     room = _id;
   }
-
-  const name = user.firstName;
 
   const joinRoomInfo: IChatMessage = {
     room: room,

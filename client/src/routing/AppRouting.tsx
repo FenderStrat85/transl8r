@@ -39,7 +39,7 @@ const AppRouting = (): JSX.Element => {
           <Route exact path="/app/customer/createjob/espresso">
             {/* ESPRESSO CREATE JOB */}
             <h1>ESPRESSO</h1>
-            <ImageForm />
+            <ImageForm jobType={'image'} />
           </Route>
 
           {/* This is the route for Cappuccino, where a user will taken to a chat screen  */}

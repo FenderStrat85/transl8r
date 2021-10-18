@@ -23,6 +23,7 @@ const TranslatorJobList = (): JSX.Element => {
   const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
     refetchInterval: 1000,
   });
+  console.log('XD', data);
 
   return (
     <>
@@ -32,7 +33,7 @@ const TranslatorJobList = (): JSX.Element => {
         <div className="translator-job-list">
           <h2>Pending Jobs</h2>
           {data.length > 0 ? (
-            data.map((job: { _id: Key | null | undefined }) => (
+            data.map((job: { _id: Key }) => (
               <>
                 <PendingTranslatorJobTile key={job._id} job={job} />
               </>

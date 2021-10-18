@@ -6,6 +6,7 @@ import { UserContext } from '../../context/Context';
 const LoginForm = (): JSX.Element => {
   const { login } = useContext(UserContext);
   const history = useHistory();
+
   const initialState = { email: '', password: '' };
   const [formValue, setFormValue] = useState(initialState);
 
@@ -37,7 +38,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <div className='login-form'>
+    <div className="login-form">
       <form className="login-form__form" onSubmit={handleSubmit}>
         <input
           className="login-form__input"
@@ -55,7 +56,9 @@ const LoginForm = (): JSX.Element => {
           required
           onChange={(event) => handleInputChange(event)}
         />
-        <button className='login-form__button' type="submit"> Login </button>
+        <button className="login-form__button" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
