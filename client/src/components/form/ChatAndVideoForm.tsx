@@ -54,10 +54,8 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
     try {
       if (!selectedFrom || !selectedTo) {
         setMyError('SELECT LANGUAGES IDIOT');
-        return;
       } else if (selectedFrom?.value === selectedTo?.value) {
         setMyError('selected Languages must be different');
-        return;
       } else {
         const languageFromName = selectedFrom?.value;
         const languageToName = selectedTo?.value;
