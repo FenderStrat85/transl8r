@@ -9,6 +9,7 @@ interface JobModel extends Model {
   dateCompleted: Date;
   jobName: string;
   jobDescription: string;
+  notification: boolean;
 }
 
 type JobInstance = typeof Model & {

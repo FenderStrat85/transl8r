@@ -1,11 +1,11 @@
-import { IJob, ILogin, IRegister } from '../interfaces/interfaces';
+import { ICustomer, IJob, ILogin, ITranslator } from '../interfaces/interfaces';
 
 // const server = process.env.REACT_APP_SERVER_URL;
 const server = process.env.REACT_APP_SERVER;
 
 const apiService: { [key: string]: any } = {};
 
-apiService.register = (userInfo: IRegister) => {
+apiService.register = (userInfo: ICustomer | ITranslator) => {
   return fetch(`${server}/register`, {
     method: 'POST',
     credentials: 'include',
