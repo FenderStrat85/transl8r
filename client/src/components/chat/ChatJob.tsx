@@ -86,16 +86,16 @@ export const Chat = (props: {
     socket.emit('leave_chat', leaveMessage);
     socket.close();
     await apiService.changeStatus(room, 'completed', accessToken);
-    history.push(`/app/${user.role}/dashboard`);
+    user.role === 'translator'
+      ? history.push(`/app/translator/dashboard`)
+      : history.push(`/app/customer/selectjob`);
   };
 
   //id's 'other' and 'you' are for css styling
 
   return (
     <div className="chat-job">
-      <div className="chat-job__header">
-        <p>Live Chat</p>
-      </div>
+      <h1>Live Chat</h1>
       <div className="chat-job--body">
         <ScrollToBottom className="message-container">
           {messageList.map(

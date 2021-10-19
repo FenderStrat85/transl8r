@@ -13,19 +13,19 @@ const SelectJob = (): JSX.Element => {
 
   return (
     <div className="select-job-screen">
-      <div className="select-job-screen__header">
-        <h1>Translation</h1>
-      </div>
+      {/* <div className="select-job-screen__header"> */}
+      <h1>Translation</h1>
+      {/* </div> */}
       <h2>
         Please select the type of <br /> translation you require:
       </h2>
       <div className="select-job-screen__button-container">
         <Link to="/app/customer/createJob/espresso">
-          <img className="select-job-screen__job-type-icon" src={image} alt='image translation'/>
+          <img className="select-job-screen__job-type-icon" src={image} alt='image translation' />
           {/* <button className='select-job-screen__button'>Espresso</button> */}
         </Link>
         <Link to="/app/customer/createJob/cappuccino">
-          <img className="select-job-screen__job-type-icon" src={chat} alt='chat translation'/>
+          <img className="select-job-screen__job-type-icon" src={chat} alt='chat translation' />
           {/* <button className='select-job-screen__button'>Cappuccino</button> */}
         </Link>
         <Link to="/app/customer/createJob/macchiato">

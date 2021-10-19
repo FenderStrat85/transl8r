@@ -1,21 +1,60 @@
 .image-form {
-    @include container;
-    &__header {
+  @include container;
+  &__form {
+  width:280px;
+}
+  h1 {
     @include header;
-    }
-      &__form {
+    width: 280px;
+    // margin-top: 56px;
+  }
+  h3 {
+    @include header2;
+  }
+  &__form {
     @include flex-column;
   }
   &__input {
+    @include input;
     width: 100%;
+  }
+  &__input::placeholder {
+    @include input-placeholder;
   }
   &__text-area {
-    width: 100%
+    @include input;
+    margin-left: 10%;
+    margin-right: 10%;
+    resize: vertical;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  &__text-area::placeholder {
+    @include input-placeholder;
   }
   &__select {
-    width: 100%;
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  button {
+    @include button;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
   }
   &__image-preview {
     width: 80%;
+  }
+  &__choose-button {
+    @include button;
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  &__choose:hover {
+    @include button-hover;
+  }
+  &__image-preview {
+    box-shadow: $box-shadow;
   }
 }

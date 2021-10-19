@@ -4,6 +4,9 @@
   h1 {
     @include header;
   }
+  h2 {
+    @include header2;
+  }
   &__logout-button {
     position: absolute;
     right: 25px;
