@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent, SetStateAction } from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';

@@ -28,6 +28,7 @@ const CompletedImage = (): JSX.Element => {
 
   useEffect(() => {
     fetchImageData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -54,7 +55,6 @@ const CompletedImage = (): JSX.Element => {
                 alt="translator"
                 style={{ width: '50%' }}
               />
-              <p>Hoping you liked it don't forget to rate the translator !</p>
             </div>
           ) : (
             <h2>Fetching your image</h2>

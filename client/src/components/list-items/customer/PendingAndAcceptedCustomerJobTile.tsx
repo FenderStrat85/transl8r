@@ -95,18 +95,31 @@ const PendingAndAcceptedCustomerJobTile = (props: {
             <img
               className="pending-customer__bidirectional"
               src={bidirectional}
+              alt="bidirectional"
             />
             <FlagComponent language={languageToName} />
           </div>
           <div className="pending-customer__details">
             {jobType === 'video' ? (
-              <img className="pending-customer__job-type-icon" src={video} />
+              <img
+                className="pending-customer__job-type-icon"
+                src={video}
+                alt="video"
+              />
             ) : null}
             {jobType === 'chat' ? (
-              <img className="pending-customer__job-type-icon" src={chat} />
+              <img
+                className="pending-customer__job-type-icon"
+                src={chat}
+                alt="chat"
+              />
             ) : null}
             {jobType === 'image' ? (
-              <img className="pending-customer__job-type-icon" src={image} />
+              <img
+                className="pending-customer__job-type-icon"
+                src={image}
+                alt="imageIcon"
+              />
             ) : null}
             <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
           </div>
@@ -118,6 +131,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
             <img
               className="accepted-and-completed-customer__bidirectional"
               src={bidirectional}
+              alt="bidirectional"
             />
             <FlagComponent language={languageToName} />
           </div>
@@ -126,18 +140,21 @@ const PendingAndAcceptedCustomerJobTile = (props: {
               <img
                 className="accepted-and-completed-customer__job-type-icon"
                 src={video}
+                alt="video"
               />
             ) : null}
             {jobType === 'chat' ? (
               <img
                 className="accepted-and-completed-customer__job-type-icon"
                 src={chat}
+                alt="chat"
               />
             ) : null}
             {jobType === 'image' ? (
               <img
                 className="accepted-and-completed-customer__job-type-icon"
                 src={image}
+                alt="imageIcon"
               />
             ) : null}
             <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
@@ -150,6 +167,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
               <img
                 className="accepted-and-completed-customer__job-type-icon"
                 src={arrow}
+                alt="arrow"
               />
             </Link>
           </div>
