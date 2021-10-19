@@ -1,7 +1,7 @@
 import Dashboard from '../screen/Dashboard';
 import SelectJob from '../screen/SelectJob';
 import TranslatorPendingJobDetails from '../components/job-details/TranslatorPendingJobDetails';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/Context';
 import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import VideoPlayer from '../components/video/VideoPlayer';

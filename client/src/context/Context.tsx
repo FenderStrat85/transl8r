@@ -47,7 +47,7 @@ const UserProvider = (props: { children: any }): JSX.Element => {
 
   const logout = (accessToken: string): void => {
     setUser(initialState);
-    localStorage.removeItem(accessToken);
+    localStorage.removeItem('accessToken');
   };
 
   return (

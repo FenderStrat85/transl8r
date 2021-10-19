@@ -81,4 +81,24 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-module.exports = { register, login };
+const isTokenValid = async (req: Request, res: Response) => {
+  const { accessToken } = req.body;
+  try {
+    const userInfo = jwt.verify(accessToken, SECRET_KEY);
+    const id = userInfo._id;
+    const user: IUser =
+      (await db.Customer.findOne({ where: { _id: id } })) ||
+      (await db.Translator.findOne({ where: { _id: id } }));
+    if (!user) {
+      return res
+        .status(402)
+        .send({ error: '402', message: 'access token not valid' });
+    }
+    const { _id, role, firstName, lastName } = user;
+    res.status(200).send({ accessToken, _id, role, firstName, lastName });
+  } catch (error) {
+    res.status(402).send({ error: '402', message: 'access token not valid' });
+  }
+};
+
+module.exports = { register, login, isTokenValid };

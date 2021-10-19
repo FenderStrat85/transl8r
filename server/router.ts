@@ -11,6 +11,7 @@ const videoChatController = require('./controllers/videoChats');
 // auth routes
 router.post('/register', authController.register);
 router.post('/login', authController.login);
+router.post('/isTokenValid', authController.isTokenValid);
 
 // jobs routes
 router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
