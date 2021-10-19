@@ -51,6 +51,7 @@ export interface ILanguage {
 
 export interface IConversation {
   _id: string;
+  JobId: string;
 }
 
 export interface IMessage {
@@ -64,12 +65,14 @@ export interface IImage {
   imageUrl: string;
   imageUrlTranslated: string;
   translatedText: string;
+  JobId: string;
 }
 
 export interface IVideoChat {
   _id: string;
   translatorSocketId: string;
   customerSocketId: string;
+  JobId: string;
 }
 
 export interface IRoomJoin {
