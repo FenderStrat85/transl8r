@@ -68,26 +68,32 @@ const RegisterForm = (): JSX.Element => {
     <div className="register-form">
       <form onSubmit={handleSubmit}>
         <div className="register-form__radio-button-container">
-          <p>Please select your role:</p>
+          <h3>I am:</h3>
           <div className="register-form__radio-button">
-            <input
-              className="register-form__radio-select"
-              type="radio"
-              value="customer"
-              name="role"
-              onClick={(event) => handleInputChange(event)}
-              required
-            />
-            <label htmlFor="contactChoice1">Customer</label>
-            <input
-              className="register-form__radio-select"
-              type="radio"
-              value="translator"
-              name="role"
-              onClick={(event) => handleInputChange(event)}
-              required
-            />
-            <label htmlFor="contactChoice2">Translator</label>
+            <div className="register-form__radio-button-customer">
+              <input
+                id="contactChoice1"
+                className="register-form__radio-select"
+                type="radio"
+                value="customer"
+                name="role"
+                onClick={(event) => handleInputChange(event)}
+                required
+              />
+              <label htmlFor="contactChoice1"> Seeking a translation</label>
+            </div>
+            <div className="register-form__radio-button-translator">
+              <input
+                id="contactChoice2"
+                className="register-form__radio-select"
+                type="radio"
+                value="translator"
+                name="role"
+                onClick={(event) => handleInputChange(event)}
+                required
+              />
+              <label htmlFor="contactChoice2"> A translator</label>
+            </div>
           </div>
         </div>
         {formValue.role === 'customer' ? (
@@ -162,7 +168,9 @@ const RegisterForm = (): JSX.Element => {
                 required
               />
             </div>
-            <h3>What languages do you speak?</h3>
+            <h3 className="register-form__selection-languages-header">
+              Which languages do you speak?
+            </h3>
             {/* <pre>{JSON.stringify(selected)}</pre> */}
             <MultiSelect
               className="register-form__multi-select"

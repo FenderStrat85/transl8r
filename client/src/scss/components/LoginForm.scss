@@ -16,9 +16,11 @@
     outline: none;
   }
   .login-form__button {
-    @include button
+    @include button;
+    padding: 7px 30px;
   }
   .login-form__button:hover {
-    @include button-hover
+    @include button-hover;
+    padding: 7px 25px;
   }
 }
