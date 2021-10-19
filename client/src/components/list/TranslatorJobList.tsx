@@ -1,7 +1,12 @@
 import PendingTranslatorJobTile from '../list-items/translator/PendingTranslatorJobTile';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Key } from 'react';
+import { IJob } from '../../interfaces/interfaces';
+
+const reactQueryRefetchingInterval = Number(
+  process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
+);
 const server = process.env.REACT_APP_SERVER;
 
 const TranslatorJobList = (): JSX.Element => {
@@ -20,9 +25,16 @@ const TranslatorJobList = (): JSX.Element => {
     return await res.json();
   };
 
-  const { data, status } = useQuery('pendingJobs', fetchPendingJobs, {
-    refetchInterval: 1000,
-  });
+  const result: UseQueryResult<any, unknown> = useQuery(
+    'pendingJobs',
+    fetchPendingJobs,
+    {
+      refetchInterval: reactQueryRefetchingInterval,
+    },
+  );
+
+  const status: string = result.status;
+  const data: IJob[] = result.data;
 
   return (
     <>
@@ -32,7 +44,7 @@ const TranslatorJobList = (): JSX.Element => {
         <div className="translator-job-list">
           <h2>Translation help requests:</h2>
           {data.length > 0 ? (
-            data.map((job: { _id: Key | null | undefined }) => (
+            data.map((job: { _id: Key }) => (
               <>
                 <PendingTranslatorJobTile key={job._id} job={job} />
               </>

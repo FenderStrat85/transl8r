@@ -1,11 +1,5 @@
-import {
-  Key,
-  ReactChild,
-  ReactFragment,
-  ReactPortal,
-  useEffect,
-  useState,
-} from 'react';
+import { Key, useEffect, useState } from 'react';
+// Have not found a TS solution for this
 //@ts-expect-error
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IChatMessage } from '../../interfaces/interfaces';
@@ -16,14 +10,14 @@ import { useContext } from 'react';
 
 export const Chat = (props: {
   socket: any;
-  name: any;
-  room: any;
-  userId: any;
+  name: string;
+  room: string;
+  userId: string;
 }): JSX.Element => {
   const { socket, name, room, userId } = props;
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList]: any[] = useState([]);
-  const history = useHistory();
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
 
   //room is set to job._id
@@ -77,7 +71,7 @@ export const Chat = (props: {
       new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
   };
 
-  const disconnectFromChat = async () => {
+  const disconnectFromChat = async (): Promise<void> => {
     //leave chat function called in index.ts
     socket.emit('leave_chat', leaveMessage);
     socket.close();
@@ -96,29 +90,10 @@ export const Chat = (props: {
         <ScrollToBottom className="message-container">
           {messageList.map(
             (messageContent: {
-              _id: Key | null | undefined;
-              authorName:
-                | string
-                | boolean
-                | ReactChild
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-              message:
-                | boolean
-                | ReactChild
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-              time:
-                | boolean
-                | ReactChild
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
+              _id: Key;
+              authorName: string;
+              message: string;
+              time: string;
             }) => {
               return (
                 <div

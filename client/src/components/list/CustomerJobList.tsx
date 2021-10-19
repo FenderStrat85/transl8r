@@ -1,15 +1,16 @@
-import React from 'react';
+import { Key } from 'react';
 import PendingAndAcceptedCustomerJobTile from '../list-items/customer/PendingAndAcceptedCustomerJobTile';
-import { useQuery } from 'react-query';
-import { ToastContainer, toast } from 'react-toastify';
+import { useQuery, UseQueryResult } from 'react-query';
 import 'react-toastify/dist/ReactToastify.css';
-import apiService from '../../services/apiService';
+import { ToastContainer } from 'react-toastify';
 import { IJob } from '../../interfaces/interfaces';
-
+const reactQueryRefetchingInterval = Number(
+  process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
+);
 const server = process.env.REACT_APP_SERVER;
 
 const CustomerJobList = (): JSX.Element => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
 
   const fetchPendingAndAcceptedJobs = async (): Promise<any> => {
     const res = await fetch(`${server}/getJobs/pendingAndAccepted`, {
@@ -24,16 +25,19 @@ const CustomerJobList = (): JSX.Element => {
     return res.json();
   };
 
-  const { data, status } = useQuery(
+  const result: UseQueryResult<any, unknown> = useQuery(
     'pendingJobs',
     fetchPendingAndAcceptedJobs,
     {
-      refetchInterval: 5000,
+      refetchInterval: reactQueryRefetchingInterval,
     },
   );
 
-  let pendingJobs = [];
-  let acceptedJobs = [];
+  const status: string = result.status;
+  const data: IJob[] = result.data;
+
+  let pendingJobs: IJob[] = [];
+  let acceptedJobs: IJob[] = [];
 
   if (data && data.length > 0) {
     // TODO: only one loop
@@ -45,59 +49,6 @@ const CustomerJobList = (): JSX.Element => {
     );
   }
 
-  // if (acceptedJobs.length > 0) {
-  //   acceptedJobs.forEach((job: IJob) => {
-  //     if (job.notification && job.jobType === 'image') {
-  //       toast(
-  //         `A translator has accepted your job named: ${job.jobName}. Please keep an eye on the completed jobs page!`,
-  //         {
-  //           position: 'top-right',
-  //           autoClose: 1000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         },
-  //       );
-  //       apiService.setNotificationToFalse(job, accessToken);
-  //       job.notification = false;
-  //     }
-  //     if (job.notification && job.jobType === 'chat') {
-  //       toast(
-  //         `A translator has accepted your job named: ${job.jobName}. They are waiting for you in the chatroom!`,
-  //         {
-  //           position: 'top-right',
-  //           autoClose: 1000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         },
-  //       );
-  //       apiService.setNotificationToFalse(job, accessToken);
-  //       job.notification = false;
-  //     }
-  //     if (job.notification && job.jobType === 'video') {
-  //       toast(
-  //         `A translator has accepted your job named: ${job.jobName}. They are waiting for you on a video call!`,
-  //         {
-  //           position: 'top-right',
-  //           autoClose: 1000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         },
-  //       );
-  //       apiService.setNotificationToFalse(job, accessToken);
-  //       job.notification = false;
-  //     }
-  //   });
-  // }
-
   return (
     <div className="customer-job-list">
       {/* PENDING JOB CONTAINER */}
@@ -105,8 +56,9 @@ const CustomerJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="customer-job-list__jobs--pending">
+          <h2>Pending Jobs</h2>
           {pendingJobs.length > 0 ? (
-            pendingJobs.map((job: { _id: React.Key | null | undefined }) => (
+            pendingJobs.map((job: { _id: Key }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
@@ -121,7 +73,7 @@ const CustomerJobList = (): JSX.Element => {
         <div className="customer-job-list__jobs--accepted">
           <h2>Accepted Jobs</h2>
           {acceptedJobs.length > 0 ? (
-            acceptedJobs.map((job: { _id: React.Key | null | undefined }) => (
+            acceptedJobs.map((job: { _id: Key }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (

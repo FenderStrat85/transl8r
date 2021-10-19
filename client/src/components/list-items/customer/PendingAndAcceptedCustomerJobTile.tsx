@@ -3,8 +3,6 @@ import FlagComponent from '../../flag-component/FlagComponent';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import apiService from '../../../services/apiService';
-import { UserContext } from '../../../context/Context';
-import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import bidirectional from './../../../assets/icons/bidirectional.svg';
@@ -16,9 +14,8 @@ import arrow from './../../../assets/icons/arrow.svg';
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
 }): JSX.Element => {
-  const { user } = useContext(UserContext);
-  const accessToken = localStorage.getItem('accessToken');
-  const history = useHistory();
+  const accessToken: string | null = localStorage.getItem('accessToken');
+  const history = useHistory<History>();
 
   const {
     jobName,

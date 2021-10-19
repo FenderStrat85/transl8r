@@ -4,21 +4,21 @@ import { MultiSelect } from 'react-multi-select-component';
 import ApiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
-import { ILanguage } from '../../interfaces/interfaces';
+import { ILanguage, IRegister } from '../../interfaces/interfaces';
 
 const RegisterForm = (): JSX.Element => {
+  const history = useHistory<History>();
   const { login } = useContext(UserContext);
-  const history = useHistory();
+  const options: ILanguage[] = languageChoice;
   const [selected, setSelected] = useState([]);
 
-  const options = languageChoice;
-
-  const initialState = {
+  const initialState: IRegister = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     role: '',
+    languages: [''],
   };
 
   const [formValue, setFormValue] = useState(initialState);
@@ -36,10 +36,11 @@ const RegisterForm = (): JSX.Element => {
     preventDefault: () => void;
   }): Promise<void> => {
     event.preventDefault();
-    const objectToSendToDb: any = formValue;
+    const objectToSendToDb: IRegister = formValue;
     if (formValue.role === 'translator') {
       const languageArray = selected.map((item: ILanguage) => item.value);
       objectToSendToDb.languages = languageArray;
+      console.log(objectToSendToDb);
     }
 
     try {

@@ -1,19 +1,23 @@
 import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
+import { DefaultEventsMap } from 'socket.io-client/build/typed-events';
 import { UserContext } from '../../context/Context';
 import { IChatMessage } from '../../interfaces/interfaces';
 import Chat from './ChatJob';
 
-export const socket = io('http://localhost:5000');
+export const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(
+  'http://localhost:5000',
+);
 
 const Conversation = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const [showChat, setShowChat] = useState(false);
 
-  const job: any = useLocation();
+  const job = useLocation<any>();
   let room: string;
   let userId: string;
+  const name = user.firstName;
 
   if (user.role === 'customer') {
     const { _id, CustomerId } = job.state;
@@ -30,8 +34,6 @@ const Conversation = (): JSX.Element => {
     //room set to job._id
     room = _id;
   }
-
-  const name = user.firstName;
 
   const joinRoomInfo: IChatMessage = {
     room: room,

@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent } from 'react';
+import { useState, useContext, ChangeEvent, SetStateAction } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -9,12 +9,13 @@ import DashboardButton from '../button/DashboardButton';
 import BackButton from '../button/BackButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 
-const ImageForm = (): JSX.Element => {
+const ImageForm = (props: { jobType: string }): JSX.Element => {
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
-  const history = useHistory();
-  const jobType = 'image';
   const options = languageChoice;
+  const { jobType } = props;
+
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
@@ -42,7 +43,7 @@ const ImageForm = (): JSX.Element => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result as any);
+      setPreviewSource(reader.result as string);
     };
   };
 
@@ -74,7 +75,7 @@ const ImageForm = (): JSX.Element => {
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log('XD', selectedFrom);
+
     try {
       if (!selectedFrom || !selectedTo) {
         setMyError('SELECT LANGUAGES IDIOT');
@@ -137,19 +138,6 @@ const ImageForm = (): JSX.Element => {
     }
   };
 
-  // const disable = () => {
-  // if (
-  //   formValue.jobName.length > 0 &&
-  //   formValue.jobDescription.length > 0 &&
-  //   (selectedFrom as Language)?.value?.length > 0 &&
-  //   (selectedTo as Language)?.value?.length > 0
-  // ) {
-  //   setIsDisabled(false);
-  // }
-  // return isDisabled;
-  // return isDisabled;
-  // };
-
   return (
     <>
       <div className="image-form">
@@ -194,11 +182,7 @@ const ImageForm = (): JSX.Element => {
             value={fileInputState}
             required
           />
-          <button
-            // disabled={isDisabled}
-            className="image-form__button"
-            type="submit"
-          >
+          <button className="image-form__button" type="submit">
             Submit your job
           </button>
 

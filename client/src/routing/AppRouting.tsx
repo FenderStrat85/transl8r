@@ -16,7 +16,7 @@ import CompletedImage from '../components/image/CompletedImage';
 
 const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
-  let job = useLocation();
+  let job: any = useLocation();
 
   return (
     <>
@@ -37,7 +37,7 @@ const AppRouting = (): JSX.Element => {
 
           {/* This is the route for Espresso, the user will be taken to a screen where the image can be submitted */}
           <Route exact path="/app/customer/createjob/espresso">
-            <ImageForm />
+            <ImageForm jobType={'image'} />
           </Route>
 
           {/* This is the route for Cappuccino, where a user will taken to a chat screen  */}

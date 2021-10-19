@@ -1,14 +1,16 @@
-import React from 'react';
+import { Key } from 'react';
 import CompletedJobTile from '../list-items/CompletedJobTile';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { useHistory } from 'react-router-dom';
+import { IJob } from '../../interfaces/interfaces';
+const reactQueryRefetchingInterval = process.env.REACT_APP_QUERY_REFETCHING_INTERVAL;
 const server = process.env.REACT_APP_SERVER;
 
 const CompletedJobList = (): JSX.Element => {
-  const accessToken = localStorage.getItem('accessToken');
-  const history = useHistory();
+  const accessToken: string | null = localStorage.getItem('accessToken');
+  const history = useHistory<History>();
   const { user } = useContext(UserContext);
 
   const fetchCompletedJobs = async (): Promise<any> => {
@@ -24,9 +26,16 @@ const CompletedJobList = (): JSX.Element => {
     return res.json();
   };
 
-  const { data, status } = useQuery('completed', fetchCompletedJobs, {
-    refetchInterval: 5000,
-  });
+  const result: UseQueryResult<any, unknown> = useQuery(
+    'completed',
+    fetchCompletedJobs,
+    {
+      refetchInterval: reactQueryRefetchingInterval,
+    },
+  );
+
+  const status: string = result.status;
+  const data: IJob[] = result.data;
 
   const toDashBoard = (): void => {
     history.push(`/app/customer/dashboard`);
@@ -55,7 +64,7 @@ const CompletedJobList = (): JSX.Element => {
             <h2>Your good deeds:</h2>
           )}
           {data.length > 0 ? (
-            data.map((job: { _id: React.Key | null | undefined }) => (
+            data.map((job: { _id: Key }) => (
               <CompletedJobTile key={job._id} job={job} />
             ))
           ) : (

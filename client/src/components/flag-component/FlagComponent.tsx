@@ -9,10 +9,12 @@ import Korean from '../../assets/images-components/flags/Korean.svg';
 import Russian from '../../assets/images-components/flags/Russian.svg';
 import Spanish from '../../assets/images-components/flags/Spanish.svg';
 
-const FlagComponent = (props: { language: string }) => {
+const FlagComponent = (props: { language: string }): JSX.Element => {
+  const { language } = props;
+
   let country: string = '';
 
-  switch (props.language) {
+  switch (language) {
     case 'Chinese':
       country = Chinese;
       break;
