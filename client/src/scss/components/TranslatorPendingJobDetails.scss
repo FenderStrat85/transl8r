@@ -1,6 +1,12 @@
 .translator-pending-job-details {
+
 @include container;
 &__header {
   @include header;
+}
+h2 {
+  @include header2;
+  width: 300px;
+
 }
 }

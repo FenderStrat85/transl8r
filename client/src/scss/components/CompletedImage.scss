@@ -1,4 +1,27 @@
 .completed-image {
-  @include container;
+  &__container {
+    @include container;
+  }
+  margin-bottom: 60px;
 
+  h1 {
+    @include header;
+    margin-top: 56px;
+  }
+  h3 {
+    @include header2;
+  }
+  &__container--image {
+    width:300px;
+  }
+  &__image {
+  box-shadow: $box-shadow;
+    width: 100%;
+  }
+  .translated-text {
+    @include header2;
+    margin-bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.043);
+    font-style: italic;
+  }
 }

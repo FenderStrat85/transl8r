@@ -102,19 +102,20 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
           required
         />
         {myError ? <ErrorMessageComponent message={myError} /> : null}
-        <p>Which language do you need translating from?</p>
+        <p>Select languages:</p>
 
         <Select
           className="chat-and-video-form__select"
           options={options}
           value={selectedFrom}
+          placeholder={'language from'}
           onChange={(event) => handleSelectedFrom(event)}
         />
-        <p>Which language do you need translating to?</p>
         <Select
           className="chat-and-video-form__select"
           options={options}
           value={selectedTo}
+          placeholder={'language to'}
           onChange={(event) => handleSelectedTo(event)}
         />
         <button className="chat-and-video-form__button" type="submit">

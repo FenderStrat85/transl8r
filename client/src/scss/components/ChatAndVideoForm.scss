@@ -4,8 +4,13 @@
     @include header;
   }
   @include container;
+  // padding: 0px 60px;
+  h1 {
+    @include header;
+  }
   &__form {
     @include flex-column;
+    width:280px;
   }
   &__input {
     @include input;
@@ -29,7 +34,7 @@
     width: 80%;
     margin-bottom: 10px;
   }
-  button {
+  &__button {
     @include button;
     margin-top: 50px;
   }
