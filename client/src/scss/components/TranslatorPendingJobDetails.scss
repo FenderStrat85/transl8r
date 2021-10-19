@@ -1,12 +1,19 @@
 .translator-pending-job-details {
-
+padding: 0 60px;
 @include container;
 &__header {
   @include header;
 }
 h2 {
   @include header2;
-  width: 300px;
-
+  // width: 300px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+p {
+  font-style: italic;
+}
+&__button {
+  @include button;
 }
 }

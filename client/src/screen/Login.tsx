@@ -15,8 +15,11 @@ const LoginScreen = (): JSX.Element => {
       loop: true,
       autoplay: true,
       animationData: require('../assets/animations/login-page.json'),
-    });
+    })
+      .setSpeed(0.35);
   }, []);
+
+
 
   return (
     <div className="login-screen">

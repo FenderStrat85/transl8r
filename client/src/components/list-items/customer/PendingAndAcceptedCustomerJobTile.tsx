@@ -10,6 +10,7 @@ import video from './../../../assets/icons/video.svg';
 import chat from './../../../assets/icons/chat.svg';
 import image from './../../../assets/icons/image.svg';
 import arrow from './../../../assets/icons/arrow.svg';
+import del from './../../../assets/icons/del.svg';
 
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
@@ -86,9 +87,9 @@ const PendingAndAcceptedCustomerJobTile = (props: {
           <p>
             {/* {' '} */}
             {/* {jobName} : Status:{status} is a {jobType} */}
-            <button onClick={() => props.deleteJob(props.job._id, accessToken)}>
+            {/* <button onClick={() => props.deleteJob(props.job._id, accessToken)}>
               I am the delete button
-            </button>
+            </button> */}
           </p>
           <div className="pending-customer__flag-container">
             <FlagComponent language={languageFromName} />
@@ -122,6 +123,12 @@ const PendingAndAcceptedCustomerJobTile = (props: {
               />
             ) : null}
             <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <img
+              className="accepted-and-completed-customer__job-type-icon"
+              src={del}
+              onClick={() => props.deleteJob(props.job._id, accessToken)}
+              alt="arrow"
+            />
           </div>
         </div>
       ) : (

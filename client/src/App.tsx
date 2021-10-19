@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  Redirect
 } from 'react-router-dom';
 import AuthRouting from './routing/AuthRouting';
 import AppRouting from './routing/AppRouting';
