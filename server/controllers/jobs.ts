@@ -190,6 +190,21 @@ const changeStatus = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const deleteJob = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const jobToDelete = await db.Job.findOne({ where: { _id: id } });
+    jobToDelete.destroy();
+    res.status(200);
+  } catch (error) {
+    res.status(400).send({
+      error: '400',
+      message: 'Not able to delete job',
+    });
+  }
+};
+
 module.exports = {
   createJob,
   acceptJob,
@@ -197,4 +212,5 @@ module.exports = {
   getAvailableJobs,
   changeStatus,
   setNotificationToFalse,
+  deleteJob,
 };

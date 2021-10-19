@@ -13,6 +13,7 @@ import arrow from './../../../assets/icons/arrow.svg';
 
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;
+  deleteJob?: any;
 }): JSX.Element => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   const history = useHistory<History>();
@@ -85,6 +86,9 @@ const PendingAndAcceptedCustomerJobTile = (props: {
           <p>
             {/* {' '} */}
             {/* {jobName} : Status:{status} is a {jobType} */}
+            <button onClick={() => props.deleteJob(props.job._id, accessToken)}>
+              I am the delete button
+            </button>
           </p>
           <div className="pending-customer__flag-container">
             <FlagComponent language={languageFromName} />
@@ -119,13 +123,22 @@ const PendingAndAcceptedCustomerJobTile = (props: {
           </div>
           <div className="accepted-and-completed-customer__details">
             {jobType === 'video' ? (
-              <img className="accepted-and-completed-customer__job-type-icon" src={video} />
+              <img
+                className="accepted-and-completed-customer__job-type-icon"
+                src={video}
+              />
             ) : null}
             {jobType === 'chat' ? (
-              <img className="accepted-and-completed-customer__job-type-icon" src={chat} />
+              <img
+                className="accepted-and-completed-customer__job-type-icon"
+                src={chat}
+              />
             ) : null}
             {jobType === 'image' ? (
-              <img className="accepted-and-completed-customer__job-type-icon" src={image} />
+              <img
+                className="accepted-and-completed-customer__job-type-icon"
+                src={image}
+              />
             ) : null}
             <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
             <Link
@@ -134,12 +147,14 @@ const PendingAndAcceptedCustomerJobTile = (props: {
                 state: props.job,
               }}
             >
-              <img className="accepted-and-completed-customer__job-type-icon" src={arrow} />
+              <img
+                className="accepted-and-completed-customer__job-type-icon"
+                src={arrow}
+              />
             </Link>
           </div>
         </div>
-      )
-      }
+      )}
     </>
   );
 };

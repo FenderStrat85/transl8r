@@ -13,6 +13,12 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // jobs routes
+router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
+router.get(
+  '/getAvailableJobs',
+  authMiddleware,
+  jobsController.getAvailableJobs,
+);
 router.post('/createJob/:type', authMiddleware, jobsController.createJob);
 router.put('/acceptJob', authMiddleware, jobsController.acceptJob);
 router.put(
@@ -25,12 +31,7 @@ router.put(
   authMiddleware,
   jobsController.setNotificationToFalse,
 );
-router.get('/getJobs/:status', authMiddleware, jobsController.getJobs);
-router.get(
-  '/getAvailableJobs',
-  authMiddleware,
-  jobsController.getAvailableJobs,
-);
+router.delete('/deleteJob/:id', authMiddleware, jobsController.deleteJob);
 
 // images router
 router.get('/getImageUrl/:jobId', authMiddleware, imageController.getImageUrl);

@@ -4,6 +4,7 @@ import { useQuery, UseQueryResult } from 'react-query';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { IJob } from '../../interfaces/interfaces';
+import apiService from '../../services/apiService';
 const reactQueryRefetchingInterval = Number(
   process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
 );
@@ -49,6 +50,10 @@ const CustomerJobList = (): JSX.Element => {
     );
   }
 
+  const deleteJob = (_id: string, accessToken: string) => {
+    apiService.deleteJob(_id, accessToken);
+  };
+
   return (
     <div className="customer-job-list">
       {/* PENDING JOB CONTAINER */}
@@ -58,7 +63,11 @@ const CustomerJobList = (): JSX.Element => {
         <div className="customer-job-list__jobs--pending">
           {pendingJobs.length > 0 ? (
             pendingJobs.map((job: { _id: Key }) => (
-              <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
+              <PendingAndAcceptedCustomerJobTile
+                key={job._id}
+                job={job}
+                deleteJob={deleteJob}
+              />
             ))
           ) : (
             <h3>No goods deeds required</h3>
