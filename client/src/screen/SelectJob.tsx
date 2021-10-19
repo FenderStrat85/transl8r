@@ -6,8 +6,6 @@ import video from './../assets/icons/video.svg';
 import chat from './../assets/icons/chat.svg';
 import image from './../assets/icons/image.svg';
 
-
-
 const SelectJob = (): JSX.Element => {
   const { user, logout } = useContext(UserContext);
   const accessToken: string | null = localStorage.getItem('accessToken');
@@ -20,27 +18,43 @@ const SelectJob = (): JSX.Element => {
     history.push(`/auth/login`);
   };
   return (
-    <div className='select-job-screen'>
-      <div className='select-job-screen__header'>
+    <div className="select-job-screen">
+      <div className="select-job-screen__header">
         <h1>Translation</h1>
       </div>
       <h1>Please select a translation type:</h1>
       <Link to="/app/customer/createJob/espresso">
-        <img className="select-job-screen__job-type-icon" src={image} />
+        <img
+          className="select-job-screen__job-type-icon"
+          src={image}
+          alt="imageIcon"
+        />
         {/* <button className='select-job-screen__button'>Espresso</button> */}
       </Link>
       <Link to="/app/customer/createJob/cappuccino">
-        <img className="select-job-screen__job-type-icon" src={chat} />
+        <img
+          className="select-job-screen__job-type-icon"
+          src={chat}
+          alt="chat"
+        />
         {/* <button className='select-job-screen__button'>Cappuccino</button> */}
       </Link>
       <Link to="/app/customer/createJob/macchiato">
-        <img className="select-job-screen__job-type-icon" src={video} />
+        <img
+          className="select-job-screen__job-type-icon"
+          src={video}
+          alt="video"
+        />
         {/* <button className='select-job-screen__button'>Macchiato</button> */}
       </Link>
       <Link to="/app/customer/dashboard">
-        <button className='select-job-screen__button'>View pending translations!!!</button>
+        <button className="select-job-screen__button">
+          View pending translations!!!
+        </button>
       </Link>
-      <button className='select-job-screen_button' onClick={logoutFromApp}>Logout</button>
+      <button className="select-job-screen_button" onClick={logoutFromApp}>
+        Logout
+      </button>
     </div>
   );
 };
