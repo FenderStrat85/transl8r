@@ -1,6 +1,12 @@
 .completed-job-list {
-    @include container;
-    &__header {
+  @include container;
+  &__header {
     @include header;
+  }
+  button {
+    @include button;
+  }
+  button:hover {
+    @include button-hover;
   }
 }

@@ -76,15 +76,9 @@ const CompletedJobList = (): JSX.Element => {
             <>
               <button
                 className="completed-jobs-list__button"
-                onClick={toSelectJob}
-              >
-                Submit a different job
-              </button>
-              <button
-                className="completed-jobs-list__button"
                 onClick={toDashBoard}
               >
-                To the dashboard!
+                Dashboard
               </button>
             </>
           ) : (
@@ -92,7 +86,7 @@ const CompletedJobList = (): JSX.Element => {
               className="completed-jobs-list__button"
               onClick={toTranslatorDashboard}
             >
-              Take me to my dashboard
+              Dashboard
             </button>
           )}
         </>

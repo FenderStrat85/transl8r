@@ -1,13 +1,23 @@
 .select-job-screen {
-  height: 100%;
   @include container;
-  @include header;
-  * {
-    margin-bottom: 10px;
-  }
   &__job-type-icon {
-    height:100px;
+    height: 100px;
     width: 100px;
   }
-  background:linear-gradient(to right, #0198ba, #00779f);
+  h1 {
+    color: $secondary-color;
+    margin-top: 60px;
+  }
+  &__button-container {
+    @include flex-column;
+    margin-bottom: 20px;
+  }
+  button {
+    @include button;
+    width: 210px;
+  }
+  button:hover {
+    @include button-hover;
+    width: 210px;
+  }
 }

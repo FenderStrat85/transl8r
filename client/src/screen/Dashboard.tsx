@@ -25,33 +25,43 @@ const Dashboard = (): JSX.Element => {
   };
 
   return (
-    <div className='dashboard-screen'>
+    <div className="dashboard-screen">
       {user.role === 'customer' ? (
         <>
-
-          <div className='dashboard-screen__header'>
-            <img className='dashboard-screen__logout-button' src={logoutButton} alt='logout button' onClick={logoutFromApp} />
+          <div className="dashboard-screen__header">
+            <img
+              className="dashboard-screen__logout-button"
+              src={logoutButton}
+              alt="logout button"
+              onClick={logoutFromApp}
+            />
             <h1>Dashboard</h1>
           </div>
-          <h2>Your Pending and<br></br>Accepted jobs</h2>
           <CustomerJobList />
           {/* <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button> */}
-          <button className='dashboard-screen__button' onClick={toSelectJob}>Submit a different job</button>
+          <button className="dashboard-screen__button" onClick={toSelectJob}>
+            Submit a new request
+          </button>
           {/* <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button> */}
         </>
       ) : (
         <>
-          <div className='dashboard-screen__header'>
-            <img className='dashboard-screen__logout-button' src={logoutButton} alt='logout button' onClick={logoutFromApp} />
+          <div className="dashboard-screen__header">
+            <img
+              className="dashboard-screen__logout-button"
+              src={logoutButton}
+              alt="logout button"
+              onClick={logoutFromApp}
+            />
             <h1>Dashboard</h1>
           </div>
           <TranslatorJobList />
           {/* <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button> */}
         </>
       )}
-      <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
+      <button className="dashboard-screen__button" onClick={goToCompletedJobs}>
         My completed translations
       </button>
     </div>
