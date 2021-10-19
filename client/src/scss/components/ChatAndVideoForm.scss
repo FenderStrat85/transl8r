@@ -1,11 +1,12 @@
 .chat-and-video-form {
   @include container;
-  padding: 0px 60px;
+  // padding: 0px 60px;
   h1 {
     @include header;
   }
   &__form {
     @include flex-column;
+    width:280px;
   }
   &__input {
     @include input;
