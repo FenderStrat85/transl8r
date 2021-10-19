@@ -4,12 +4,12 @@ const DashboardButton = (props: { role: string }): JSX.Element => {
   const role = props.role;
   const history = useHistory<History>();
 
-  const toTranslatorDashboard = (): void => {
+  const toDashboard = (): void => {
     history.push(`/app/${role}/dashboard`);
   };
 
   return (
-    <button type="button" onClick={toTranslatorDashboard}>
+    <button type="button" onClick={toDashboard}>
       Go to Dashboard!
     </button>
   );

@@ -1,6 +1,8 @@
 .register-screen {
   @include container;
   h1 {
-  @include header;
+    color: $secondary-color;
+    margin-top: 130px;
+    font-size: 3rem;
   }
 }

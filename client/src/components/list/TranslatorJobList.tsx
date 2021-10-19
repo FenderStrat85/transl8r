@@ -45,9 +45,7 @@ const TranslatorJobList = (): JSX.Element => {
           <h2>Translation help requests:</h2>
           {data.length > 0 ? (
             data.map((job: { _id: Key }) => (
-              <>
-                <PendingTranslatorJobTile key={job._id} job={job} />
-              </>
+              <PendingTranslatorJobTile key={job._id} job={job} />
             ))
           ) : (
             <h3>No pending jobs</h3>

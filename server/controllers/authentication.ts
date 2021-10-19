@@ -10,8 +10,6 @@ const register = async (req: Request, res: Response) => {
   // IUser is a supertype of translator and customer  since the difference between the two is the  languages array
   const { email, password, firstName, lastName, role, languages }: IUser =
     req.body;
-  console.log(req.body);
-
   const user =
     role === 'customer'
       ? await db.Customer.findOne({ where: { email: email } })

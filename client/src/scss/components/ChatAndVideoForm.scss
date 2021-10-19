@@ -1,4 +1,8 @@
 .chat-and-video-form {
+  padding: 0px 60px;
+  h1 {
+    @include header;
+  }
   @include container;
   // padding: 0px 60px;
   h1 {

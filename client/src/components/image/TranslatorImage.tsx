@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../context/Context';
 //import { IImageJob } from '../../interfaces/interfaces';
 
 // job: IImageJob -> in approuting it is passed as job.state so we've used any
 const TranslatorImage = (props: { job: any }): JSX.Element => {
   const history = useHistory<History>();
 
+  const { user } = useContext(UserContext);
   const accessToken: string | null = localStorage.getItem('accessToken');
   const { jobName, image, _id } = props.job;
   const COMPLETED = 'completed';
+  const cloudinaryApiKey: any = process.env.REACT_APP_CLOUDINARY_API_KEY;
 
   const [value, setValue] = useState('');
 
@@ -44,28 +47,39 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
       data.append('upload_preset', 'transl8r');
 
       // call to the api cloudinary need to be setup
-      const res = await fetch(
-        'https://api.cloudinary.com/v1_1/uro00/image/upload',
-        {
+      try {
+        const res = await fetch(cloudinaryApiKey, {
           method: 'POST',
           body: data,
-        },
-      );
-      const { secure_url } = await res.json();
+        });
+        const { secure_url } = await res.json();
 
-      uploadImageToDB(secure_url);
+        uploadImageToDB(secure_url);
+      } catch (error) {
+        console.log(error);
+      }
     }
     uploadTextToDb(textToUpload);
   };
 
   const uploadImageToDB = async (url: string): Promise<void> => {
-    await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
+    try {
+      await ApiService.uploadTranslatedImage({ url }, accessToken, _id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const uploadTextToDb = async (text: string): Promise<void> => {
-    await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
-    await ApiService.changeStatus(_id, COMPLETED, accessToken);
-    history.push(`/app/translator/dashboard`);
+    try {
+      await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
+      await ApiService.changeStatus(_id, COMPLETED, accessToken);
+      user.role === 'translator'
+        ? history.push(`/app/translator/dashboard`)
+        : history.push(`/app/customer/selectjob`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event: {

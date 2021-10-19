@@ -142,11 +142,13 @@ const getAvailableJobs = async (req: Request, res: Response): Promise<void> => {
       where: { _id: _id },
       include: [{ model: db.Language, as: 'language' }],
     });
+    //Below is an alternative to using map
     // pushing the ids of the languages into an array
-    const langArray: string[] = [];
-    for (let lang of language) {
-      langArray.push(lang._id);
-    }
+    // const langArray: string[] = [];
+    // for (let lang of language) {
+    //   langArray.push(lang._id);
+    // }
+    const langArray: string[] = language.map((lang: ILanguage) => lang._id);
     // retrieving all the pending jobs
     const jobsPending: IJob[] = await db.Job.findAll({
       where: { status: 'pending' },
@@ -190,6 +192,21 @@ const changeStatus = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const deleteJob = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const jobToDelete = await db.Job.findOne({ where: { _id: id } });
+    jobToDelete.destroy();
+    res.status(200);
+  } catch (error) {
+    res.status(400).send({
+      error: '400',
+      message: 'Not able to delete job',
+    });
+  }
+};
+
 module.exports = {
   createJob,
   acceptJob,
@@ -197,4 +214,5 @@ module.exports = {
   getAvailableJobs,
   changeStatus,
   setNotificationToFalse,
+  deleteJob,
 };

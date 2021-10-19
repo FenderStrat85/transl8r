@@ -51,15 +51,15 @@ const Dashboard = (): JSX.Element => {
         </>
       ) : (
         <>
-          {/* <div className="dashboard-screen__header"> */}
-          <img
-            className="dashboard-screen__logout-button"
-            src={logoutButton}
-            alt="logout button"
-            onClick={logoutFromApp}
-          />
-          <h1>Dashboard</h1>
-          {/* </div> */}
+          <div className="dashboard-screen__header">
+            <img
+              className="dashboard-screen__logout-button"
+              src={logoutButton}
+              alt="logout button"
+              onClick={logoutFromApp}
+            />
+            <h1>Dashboard</h1>
+          </div>
           <TranslatorJobList />
           {/* <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button> */}
         </>

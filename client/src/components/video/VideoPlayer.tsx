@@ -123,13 +123,29 @@ const VideoPlayer = (): JSX.Element => {
       peer.signal(signal);
     });
     connectionRef.current = peer;
+    setCallAccepted(false);
   };
 
   const leaveCall = (): void => {
     setCallEnded(true);
+
+    const video: any = document.querySelector('video');
+
+    // A video's MediaStream object is available through its srcObject attribute
+    const mediaStream = video?.srcObject;
+
+    // Through the MediaStream, you can get the MediaStreamTracks with getTracks():
+    const tracks = mediaStream.getTracks();
+
+    // Or stop all like so:
+    tracks.forEach((track: { stop: () => any }) => track.stop());
+
+
     connectionRef.current.destroy();
     apiService.changeStatus(job.state._id, 'completed', accessToken);
-    history.push(`/app/${user.role}/dashboard`);
+    user.role === 'translator'
+      ? history.push(`/app/translator/dashboard`)
+      : history.push(`/app/customer/selectjob`);
   };
 
   return (
@@ -146,7 +162,7 @@ const VideoPlayer = (): JSX.Element => {
 
       <div className="video-player__controls">
         {queryResult.data === undefined ||
-        queryResult.data.socketId === null ? (
+          queryResult.data.socketId === null ? (
           <p>Waiting for the other user to connect</p>
         ) : null}
 
@@ -157,7 +173,9 @@ const VideoPlayer = (): JSX.Element => {
         ) : null}
 
         {queryResult.data !== undefined &&
-        queryResult.data.socketId !== null ? (
+          queryResult.data.socketId !== null &&
+          !callAccepted &&
+          !call.isReceivingCall ? (
           <button
             className="video-player__button"
             onClick={() => callUser(queryResult.data.socketId)}
