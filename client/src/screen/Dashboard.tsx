@@ -52,7 +52,7 @@ const Dashboard = (): JSX.Element => {
         </>
       )}
       <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
-        Take me to my completed jobs!
+        My completed translations
       </button>
     </div>
   );
