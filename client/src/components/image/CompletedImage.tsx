@@ -65,21 +65,21 @@ const CompletedImage = (): JSX.Element => {
               <div className="completed-image__container">
                 <h1>Your translation:</h1>
                 <div className="completed-image__container--image">
-                  <h3>You completed a translation for this image: </h3>
-                  <img
-                    className="completed-image__image"
-                    src={image.imageUrl}
-                    alt="user"
-                  />
-                  <h3>and you added this helper text: </h3>
-
-                  <div className='translated-text'>
-                    {image.translatedText}
-                  </div>
+                  <h3>Your completed translation for this image: </h3>
                   <img
                     className="completed-image__image"
                     src={image.imageUrlTranslated}
                     alt="translator"
+                  />
+                  <h3>You added this helper text: </h3>
+                  <div className='translated-text'>
+                    {image.translatedText}
+                  </div>
+                  <h3>The original image:</h3>
+                  <img
+                    className="completed-image__image"
+                    src={image.imageUrl}
+                    alt="user"
                   />
                   <p>Thanks for helping someone translate!</p>
                 </div>
