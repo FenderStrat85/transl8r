@@ -1,3 +1,6 @@
 .translator-pending-job-details {
 @include container;
+&__header {
+  @include header;
+}
 }

@@ -76,7 +76,9 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
 
   return (
     <div className="translator-image">
-      <h2>{jobName}</h2>
+      <div className="translator-image__header">
+        <h2>{jobName}</h2>
+      </div>
       <form className="translator-image__form" onSubmit={handleSubmit}>
         <img
           className="translator-image__image"

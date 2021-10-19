@@ -4,7 +4,9 @@ import { useQuery, UseQueryResult } from 'react-query';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { IJob } from '../../interfaces/interfaces';
-
+const reactQueryRefetchingInterval = Number(
+  process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
+);
 const server = process.env.REACT_APP_SERVER;
 
 const CustomerJobList = (): JSX.Element => {
@@ -27,7 +29,7 @@ const CustomerJobList = (): JSX.Element => {
     'pendingJobs',
     fetchPendingAndAcceptedJobs,
     {
-      refetchInterval: 5000,
+      refetchInterval: reactQueryRefetchingInterval,
     },
   );
 

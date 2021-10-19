@@ -1,11 +1,8 @@
 .translator-image {
   @include container;
-  h2 {
-    margin-bottom: 30px;
-  }
-  * {
-    margin: 10px;
-  }
+&__header {
+  @include header;
+}
   form {
     @include container;
     img {

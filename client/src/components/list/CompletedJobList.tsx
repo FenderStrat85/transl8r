@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { useQuery, UseQueryResult } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { IJob } from '../../interfaces/interfaces';
-import reactQueryRefetchingInterval from '../../constants/ReactQueryConstant';
+const reactQueryRefetchingInterval = process.env.REACT_APP_QUERY_REFETCHING_INTERVAL;
 const server = process.env.REACT_APP_SERVER;
 
 const CompletedJobList = (): JSX.Element => {
@@ -51,11 +51,18 @@ const CompletedJobList = (): JSX.Element => {
 
   return (
     <div className="completed-job-list">
-      <h2>Completed Jobs</h2>
+      <div className='completed-job-list__header'>
+        <h1>Completed Tasks</h1>
+      </div>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <>
+          {user.role === 'customer' ? (
+            <h2>Your completed translations:</h2>
+          ) : (
+            <h2>Your good deeds:</h2>
+          )}
           {data.length > 0 ? (
             data.map((job: { _id: Key }) => (
               <CompletedJobTile key={job._id} job={job} />

@@ -3,7 +3,10 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Key } from 'react';
 import { IJob } from '../../interfaces/interfaces';
-import reactQueryRefetchingInterval from '../../constants/ReactQueryConstant';
+
+const reactQueryRefetchingInterval = Number(
+  process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
+);
 const server = process.env.REACT_APP_SERVER;
 
 const TranslatorJobList = (): JSX.Element => {
@@ -39,7 +42,7 @@ const TranslatorJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="translator-job-list">
-          <h2>Pending Jobs</h2>
+          <h2>Translation help requests:</h2>
           {data.length > 0 ? (
             data.map((job: { _id: Key }) => (
               <>

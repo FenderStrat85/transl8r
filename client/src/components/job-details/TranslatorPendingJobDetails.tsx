@@ -53,10 +53,14 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-          <h1>Job details</h1>
-          <h2>{user.firstName} wants a translator</h2>
-          <h2>type of job: {jobType}</h2>
-          <h3>{jobDescription}</h3>
+
+          <div className='translator-pending-job-details__header'>
+            <h1>Job details</h1>
+          </div>
+          {jobType === 'chat' ? <h2>{user.firstName} would like to have a chat with you</h2> : null}
+          {jobType === 'video' ? <h2>{user.firstName} would like to have a video call with you</h2> : null}
+          {jobType === 'image' ? <h2>{user.firstName} needs a translation for this image</h2> : null}
+          <h3>Details: {jobDescription}</h3>
           {image ? (
             <img
               className="translator-pending-job-details__image"

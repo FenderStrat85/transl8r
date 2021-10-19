@@ -2,6 +2,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../context/Context';
 import { useContext } from 'react';
 
+import video from './../assets/icons/video.svg';
+import chat from './../assets/icons/chat.svg';
+import image from './../assets/icons/image.svg';
+
+
+
 const SelectJob = (): JSX.Element => {
   const { user, logout } = useContext(UserContext);
   const accessToken: string | null = localStorage.getItem('accessToken');
@@ -15,15 +21,21 @@ const SelectJob = (): JSX.Element => {
   };
   return (
     <div className='select-job-screen'>
-      <h1>Customer Select Job</h1>
+      <div className='select-job-screen__header'>
+        <h1>Translation</h1>
+      </div>
+      <h1>Please select a translation type:</h1>
       <Link to="/app/customer/createJob/espresso">
-        <button className='select-job-screen__button'>Espresso</button>
+        <img className="select-job-screen__job-type-icon" src={image} />
+        {/* <button className='select-job-screen__button'>Espresso</button> */}
       </Link>
       <Link to="/app/customer/createJob/cappuccino">
-        <button className='select-job-screen__button'>Cappuccino</button>
+        <img className="select-job-screen__job-type-icon" src={chat} />
+        {/* <button className='select-job-screen__button'>Cappuccino</button> */}
       </Link>
       <Link to="/app/customer/createJob/macchiato">
-        <button className='select-job-screen__button'>Macchiato</button>
+        <img className="select-job-screen__job-type-icon" src={video} />
+        {/* <button className='select-job-screen__button'>Macchiato</button> */}
       </Link>
       <Link to="/app/customer/dashboard">
         <button className='select-job-screen__button'>View pending translations!!!</button>
