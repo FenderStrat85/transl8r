@@ -142,11 +142,13 @@ const getAvailableJobs = async (req: Request, res: Response): Promise<void> => {
       where: { _id: _id },
       include: [{ model: db.Language, as: 'language' }],
     });
+    //Below is an alternative to using map
     // pushing the ids of the languages into an array
-    const langArray: string[] = [];
-    for (let lang of language) {
-      langArray.push(lang._id);
-    }
+    // const langArray: string[] = [];
+    // for (let lang of language) {
+    //   langArray.push(lang._id);
+    // }
+    const langArray: string[] = language.map((lang: ILanguage) => lang._id);
     // retrieving all the pending jobs
     const jobsPending: IJob[] = await db.Job.findAll({
       where: { status: 'pending' },
