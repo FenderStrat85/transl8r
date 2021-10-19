@@ -5,8 +5,10 @@
     width: 100px;
   }
   h1 {
-    color: $secondary-color;
-    margin-top: 60px;
+    @include header;
+  }
+  h2 {
+    font-weight: 400;
   }
   &__button-container {
     @include flex-column;

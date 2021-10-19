@@ -23,11 +23,17 @@
     input {
       @include input;
     }
+    input::placeholder {
+      @include input-placeholder;
+    }
   }
   &__input-container--translator {
     @include flex-column;
     input {
       @include input;
+    }
+    input::placeholder {
+      @include input-placeholder;
     }
   }
   &__selection-languages-header {

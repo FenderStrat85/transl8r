@@ -34,9 +34,7 @@ const SelectJob = (): JSX.Element => {
         </Link>
       </div>
       <Link to="/app/customer/dashboard">
-        <button className="select-job-screen__button">
-          Pending translations
-        </button>
+        <button className="select-job-screen__button">Dashboard</button>
       </Link>
     </div>
   );

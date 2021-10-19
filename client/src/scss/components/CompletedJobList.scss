@@ -1,7 +1,10 @@
 .completed-job-list {
   @include container;
-  &__header {
+  h1 {
     @include header;
+  }
+  h2 {
+    font-weight: 400;
   }
   button {
     @include button;

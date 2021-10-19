@@ -1,15 +1,15 @@
 .dashboard-screen {
   @include container;
   text-align: center;
-  &__header {
+  h1 {
     @include header;
   }
   &__logout-button {
     position: absolute;
-    right: 20px;
+    right: 25px;
     top: 25px;
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
   }
   &__button {
     @include button;

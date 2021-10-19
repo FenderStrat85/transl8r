@@ -4,6 +4,7 @@ import { UserContext } from '../context/Context';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import button from '../assets/icons/logout.svg';
+import backIcon from '../assets/icons/back-button.svg';
 
 const Dashboard = (): JSX.Element => {
   const history = useHistory();
@@ -41,9 +42,11 @@ const Dashboard = (): JSX.Element => {
           {/* <button className='dashboard-screen__button' onClick={goToCompletedJobs}>
             Take me to my completed jobs!
           </button> */}
-          <button className="dashboard-screen__button" onClick={toSelectJob}>
-            Submit a new request
-          </button>
+          <img
+            className="back-button"
+            src={backIcon}
+            onClick={toSelectJob}
+          ></img>
           {/* <button className='dashboard-screen__button' onClick={logoutFromApp}>Logout</button> */}
         </>
       ) : (
