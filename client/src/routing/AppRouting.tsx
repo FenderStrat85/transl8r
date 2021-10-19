@@ -13,6 +13,7 @@ import TranslatorImage from '../components/image/TranslatorImage';
 import CompletedJobList from '../components/list/CompletedJobList';
 import CompletedChat from '../components/chat/CompletedChat';
 import CompletedImage from '../components/image/CompletedImage';
+import CompletedVideo from '../components/video/CompletedVideo';
 
 const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -63,6 +64,9 @@ const AppRouting = (): JSX.Element => {
           </Route>
           <Route exact path="/app/customer/chat/completed">
             <CompletedChat />
+          </Route>
+          <Route exact path="/app/customer/video/completed">
+            <CompletedVideo />
           </Route>
 
           {/* Translator Route */}

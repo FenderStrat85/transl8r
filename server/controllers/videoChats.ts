@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
+import { IVideoChat } from '../interfaces/interfaces';
 import db from '../models/db';
 
-const insertSocketId = async (req: Request, res: Response) => {
+const insertSocketId = async (req: Request, res: Response): Promise<void> => {
   const { jobId, socketId } = req.body;
   const { role } = req.user;
-  console.log('req.user', req.user);
-  console.log('req.params', req.body);
 
   try {
     const videoChat = await db.VideoChat.findOne({
@@ -25,16 +24,15 @@ const insertSocketId = async (req: Request, res: Response) => {
   }
 };
 
-const retrieveSocketId = async (req: Request, res: Response) => {
+const retrieveSocketId = async (req: Request, res: Response): Promise<void> => {
   const { jobId } = req.params;
   const { role } = req.user;
 
   try {
-    const { customerSocketId, translatorSocketId } = await db.VideoChat.findOne(
-      {
+    const { customerSocketId, translatorSocketId }: IVideoChat =
+      await db.VideoChat.findOne({
         where: { JobId: jobId },
-      },
-    );
+      });
     if (role === 'translator') {
       res.status(201).send({ socketId: customerSocketId });
     } else if (role === 'customer') {

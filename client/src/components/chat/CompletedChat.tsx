@@ -18,6 +18,7 @@ const CompletedChat = (): JSX.Element => {
 
   useEffect(() => {
     fetchMessages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

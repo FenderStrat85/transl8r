@@ -20,6 +20,7 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
 
   useEffect(() => {
     fetchImage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let jobAccepted: boolean = false;
@@ -53,13 +54,18 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-
-          <div className='translator-pending-job-details__header'>
+          <div className="translator-pending-job-details__header">
             <h1>Job details</h1>
           </div>
-          {jobType === 'chat' ? <h2>{user.firstName} would like to have a chat with you</h2> : null}
-          {jobType === 'video' ? <h2>{user.firstName} would like to have a video call with you</h2> : null}
-          {jobType === 'image' ? <h2>{user.firstName} needs a translation for this image</h2> : null}
+          {jobType === 'chat' ? (
+            <h2>{user.firstName} would like to have a chat with you</h2>
+          ) : null}
+          {jobType === 'video' ? (
+            <h2>{user.firstName} would like to have a video call with you</h2>
+          ) : null}
+          {jobType === 'image' ? (
+            <h2>{user.firstName} needs a translation for this image</h2>
+          ) : null}
           <h3>Details: {jobDescription}</h3>
           {image ? (
             <img

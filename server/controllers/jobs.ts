@@ -1,15 +1,16 @@
 import db from '../models/db';
 import { Request, Response } from 'express';
-import { IJob } from './../interfaces/interfaces';
+import {
+  IConversation,
+  IImage,
+  IJob,
+  ILanguage,
+  IVideoChat,
+} from './../interfaces/interfaces';
+import { v4 as uuidv4 } from 'uuid';
 
-const { v4: uuidv4 } = require('uuid');
-
-const createJob = async (req: Request, res: Response) => {
-  console.log('Inside create job function in server');
-  console.log('req.body', req.body);
-  console.log('req.user', req.user);
-  console.log('params', req.params);
-  const { jobName, languageFromName, languageToName, jobDescription } =
+const createJob = async (req: Request, res: Response): Promise<void> => {
+  const { jobName, languageFromName, languageToName, jobDescription }: IJob =
     req.body;
   const { type } = req.params;
   const { _id } = req.user;
@@ -17,10 +18,10 @@ const createJob = async (req: Request, res: Response) => {
   try {
     // languageFromName and languageToName are strings, therefore the
     // the next two queries are for retrieving the id of the languages
-    const languageFrom = await db.Language.findOne({
+    const languageFrom: ILanguage = await db.Language.findOne({
       where: { languageName: languageFromName },
     });
-    const languageTo = await db.Language.findOne({
+    const languageTo: ILanguage = await db.Language.findOne({
       where: { languageName: languageToName },
     });
     const newJob = new db.Job({
@@ -34,7 +35,7 @@ const createJob = async (req: Request, res: Response) => {
       CustomerId: _id,
       jobDescription: jobDescription,
     });
-    const job = await newJob.save();
+    const job: IJob = await newJob.save();
     const jobId = job._id;
     if (type === 'image') {
       const { imageUrl } = req.body;
@@ -43,25 +44,23 @@ const createJob = async (req: Request, res: Response) => {
         imageUrl: imageUrl,
         JobId: jobId,
       });
-      const img = await newImage.save();
+      const img: IImage = await newImage.save();
       res.status(201).send(img);
     }
     if (type === 'chat') {
-      console.log('I am a chat!');
       const newChat = new db.Conversation({
         _id: uuidv4(),
         JobId: jobId,
       });
-      const chat = await newChat.save();
+      const chat: IConversation = await newChat.save();
       res.status(201).send(chat);
     }
     if (type === 'video') {
-      console.log('I am a video');
       const newVideoChat = new db.VideoChat({
         _id: uuidv4(),
         JobId: jobId,
       });
-      const videoChat = await newVideoChat.save();
+      const videoChat: IVideoChat = await newVideoChat.save();
       res.status(201).send(videoChat);
     }
   } catch (error) {
@@ -69,8 +68,8 @@ const createJob = async (req: Request, res: Response) => {
   }
 };
 
-const acceptJob = async (req: Request, res: Response) => {
-  const { _id } = req.body;
+const acceptJob = async (req: Request, res: Response): Promise<void> => {
+  const { _id }: IJob = req.body;
   try {
     const job = await db.Job.findOne({ where: { _id: _id } });
     job.status = 'accepted';
@@ -83,8 +82,11 @@ const acceptJob = async (req: Request, res: Response) => {
   }
 };
 
-const setNotificationToFalse = async (req: Request, res: Response) => {
-  const { _id } = req.body;
+const setNotificationToFalse = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const { _id }: IJob = req.body;
   try {
     const job = await db.Job.findOne({ where: { _id: _id } });
     job.notification = false;
@@ -98,18 +100,17 @@ const setNotificationToFalse = async (req: Request, res: Response) => {
   }
 };
 
-const getJobs = async (req: Request, res: Response) => {
+const getJobs = async (req: Request, res: Response): Promise<void> => {
   const { role, _id } = req.user;
   const { status } = req.params;
   try {
     if (role === 'customer') {
-      const jobs = await db.Job.findAll({ where: { CustomerId: _id } });
+      const jobs: IJob[] = await db.Job.findAll({ where: { CustomerId: _id } });
       if (status === 'pendingAndAccepted') {
         const filteredJobs = jobs.filter(
           (job: IJob) => job.status === 'pending' || job.status === 'accepted',
         );
         if (filteredJobs.length === 0) {
-          console.log('i have no jobs');
           res.status(200).send([]);
         } else {
           res.status(200).send(filteredJobs);
@@ -119,7 +120,7 @@ const getJobs = async (req: Request, res: Response) => {
         res.status(200).send(filteredJobs);
       }
     } else if (role === 'translator') {
-      let jobs = await db.Job.findAll({ where: { TranslatorId: _id } });
+      let jobs: IJob[] = await db.Job.findAll({ where: { TranslatorId: _id } });
       const filteredJobs = jobs.filter((job: IJob) => job.status === status);
       if (!filteredJobs) {
         res.status(200).send([]);
@@ -133,8 +134,8 @@ const getJobs = async (req: Request, res: Response) => {
   }
 };
 
-const getAvailableJobs = async (req: Request, res: Response) => {
-  const { role, _id } = req.user;
+const getAvailableJobs = async (req: Request, res: Response): Promise<void> => {
+  const { _id } = req.user;
   try {
     // retrieving all the languages that the translator speaks
     const { language } = await db.Translator.findOne({
@@ -142,15 +143,17 @@ const getAvailableJobs = async (req: Request, res: Response) => {
       include: [{ model: db.Language, as: 'language' }],
     });
     // pushing the ids of the languages into an array
-    const langArray = [];
+    const langArray: string[] = [];
     for (let lang of language) {
       langArray.push(lang._id);
     }
     // retrieving all the pending jobs
-    const jobsPending = await db.Job.findAll({ where: { status: 'pending' } });
+    const jobsPending: IJob[] = await db.Job.findAll({
+      where: { status: 'pending' },
+    });
     // iterating through the pending jobs and checking if the user speaks
     // both languageFrom and languageTo. Finally, pushing the matches in jobsSuited
-    const suitedJobs = [];
+    const suitedJobs: IJob[] = [];
     for (let job of jobsPending) {
       if (
         langArray.includes(job.languageFrom) &&
@@ -172,7 +175,7 @@ const getAvailableJobs = async (req: Request, res: Response) => {
   }
 };
 
-const changeStatus = async (req: Request, res: Response) => {
+const changeStatus = async (req: Request, res: Response): Promise<void> => {
   const { jobId, status } = req.params;
   try {
     const job = await db.Job.findOne({ where: { _id: jobId } });
