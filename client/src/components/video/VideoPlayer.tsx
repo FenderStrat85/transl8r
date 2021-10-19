@@ -94,6 +94,7 @@ const VideoPlayer = (): JSX.Element => {
     socket.on('callUser', ({ from, signal }) => {
       setCall({ isReceivingCall: true, from, signal });
     });
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const answerCall = (): void => {

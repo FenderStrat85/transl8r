@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent, SetStateAction } from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
@@ -159,20 +159,23 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
             required
           />
           {myError ? <ErrorMessageComponent message={myError} /> : null}
-          <h3>What language do you need translating from?</h3>
+          <h3>Select languages:</h3>
           <Select
             className="image-form__select"
             options={options}
             value={selectedFrom}
+            placeholder={'language from'}
             onChange={(event) => handleSelectedFrom(event)}
           />
-          <h3>What languages do you need translating to?</h3>
+          {/* <h3>What languages do you need translating to?</h3> */}
           <Select
             className="image-form__select"
             options={options}
             value={selectedTo}
+            placeholder={'language to'}
             onChange={(event) => handleSelectedTo(event)}
           />
+          <label className='image-form__choose-button' htmlFor='fileInput'>Choose File</label>
           <input
             className="image-form__image-select"
             id="fileInput"
@@ -181,11 +184,8 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
             onChange={handleFileInputChange}
             value={fileInputState}
             required
+            style={{ display: 'none' }}
           />
-          <button className="image-form__button" type="submit">
-            Submit your job
-          </button>
-
           {previewSource && (
             <img
               className="image-form__image-preview"
@@ -195,9 +195,12 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
               alt="chosen"
             />
           )}
+          <button className="image-form__button" type="submit">
+            Submit your job
+          </button>
         </form>
         <BackButton />
-        <DashboardButton role={user.role} />
+        {/* <DashboardButton role={user.role} /> */}
       </div>
     </>
   );

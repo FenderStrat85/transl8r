@@ -1,3 +1,18 @@
 .login-screen {
   @include container;
+  h1 {
+    color: $secondary-color;
+    margin-top: 130px;
+    font-size: 3rem;
+  }
+  p {
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+  .login-screen__button {
+    @include button;
+  }
+  .login-screen__button:hover {
+    @include button-hover;
+  }
 }

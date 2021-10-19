@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
+import { IImage } from '../interfaces/interfaces';
 import db from '../models/db';
 
-const getImageUrl = async (req: Request, res: Response) => {
+const getImageUrl = async (req: Request, res: Response): Promise<void> => {
   const { jobId } = req.params;
   try {
-    const { imageUrl } = await db.Image.findOne({
+    const { imageUrl }: IImage = await db.Image.findOne({
       where: { JobId: jobId },
     });
     res.status(201).send({ imageUrl });
@@ -15,7 +16,10 @@ const getImageUrl = async (req: Request, res: Response) => {
   }
 };
 
-const uploadTranslatedImageUrl = async (req: Request, res: Response) => {
+const uploadTranslatedImageUrl = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const { url } = req.body;
   const { jobId } = req.params;
   try {
@@ -30,7 +34,10 @@ const uploadTranslatedImageUrl = async (req: Request, res: Response) => {
   }
 };
 
-const uploadTranslatedTextOfImage = async (req: Request, res: Response) => {
+const uploadTranslatedTextOfImage = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   const { text } = req.body;
   const { jobId } = req.params;
   try {
@@ -43,7 +50,7 @@ const uploadTranslatedTextOfImage = async (req: Request, res: Response) => {
   }
 };
 
-const fetchImageData = async (req: Request, res: Response) => {
+const fetchImageData = async (req: Request, res: Response): Promise<void> => {
   const { jobId } = req.params;
   try {
     const image = await db.Image.findOne({ where: { JobId: jobId } });
