@@ -63,6 +63,22 @@ apiService.acceptJob = (jobInfos: IJob, accessToken: string) => {
     .catch((err) => console.log(err));
 };
 
+apiService.deleteJob = (jobId: string, accessToken: string) => {
+  return (
+    fetch(`${server}/deleteJob/${jobId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      // .then((res) => res.json())
+      .catch((err) => console.log(err))
+  );
+};
+
 apiService.setNotificationToFalse = (jobInfos: IJob, accessToken: string) => {
   return fetch(`${server}/setNotificationFalse`, {
     method: 'PUT',
