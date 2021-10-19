@@ -1,4 +1,5 @@
 //@ts-nocheck
+//above needed for container as part of lottie animation
 import React, { useEffect, useRef } from 'react';
 import LoginForm from '../components/form/LoginForm';
 import { Link } from 'react-router-dom';
@@ -27,7 +28,10 @@ const LoginScreen = (): JSX.Element => {
           Register
         </button>
       </Link>
-      <div className="animationContainer" ref={animationContainer}></div>
+      <div
+        className="login-screen__animation-container"
+        ref={animationContainer}
+      ></div>
     </div>
   );
 };
