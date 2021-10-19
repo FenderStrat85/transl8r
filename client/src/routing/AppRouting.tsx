@@ -13,6 +13,7 @@ import TranslatorImage from '../components/image/TranslatorImage';
 import CompletedJobList from '../components/list/CompletedJobList';
 import CompletedChat from '../components/chat/CompletedChat';
 import CompletedImage from '../components/image/CompletedImage';
+import CompletedVideo from '../components/video/CompletedVideo';
 
 const AppRouting = (): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -64,6 +65,9 @@ const AppRouting = (): JSX.Element => {
           <Route exact path="/app/customer/chat/completed">
             <CompletedChat />
           </Route>
+          <Route exact path="/app/customer/video/completed">
+            <CompletedVideo />
+          </Route>
 
           {/* Translator Route */}
           {/* This is the translator dashboard, where a translator can view available jobs for translation */}
@@ -71,9 +75,9 @@ const AppRouting = (): JSX.Element => {
             <Dashboard />
           </Route>
           {/* Here the translator can view pending and completed jobs  */}
-          <Route exact path="/app/translator/dashboard/history">
+          {/* <Route exact path="/app/translator/dashboard/history">
             <Dashboard />
-          </Route>
+          </Route> */}
           {/* Here a translator can view a selected job tile in more detail, and accept the job */}
           <Route exact path="/app/translator/dashboard/viewjob">
             <TranslatorPendingJobDetails />

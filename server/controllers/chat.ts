@@ -5,7 +5,7 @@ import {
   IConversation,
   IMessage,
 } from '../interfaces/interfaces';
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 const createMessage = async (req: Request, res: Response) => {
   const messageData: IChatMessage = req.body;
@@ -29,7 +29,7 @@ const createMessage = async (req: Request, res: Response) => {
   }
 };
 
-const getChatMessages = async (req: Request, res: Response) => {
+const getChatMessages = async (req: Request, res: Response): Promise<void> => {
   const { jobId } = req.params;
   try {
     const Conversation: IConversation = await db.Conversation.findOne({

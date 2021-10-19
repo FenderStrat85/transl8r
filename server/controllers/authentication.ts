@@ -3,11 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 import db from '../models/db';
 const SECRET_KEY = process.env.SECRET_KEY;
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
+import { ILogin, IUser } from '../interfaces/interfaces';
 
 const register = async (req: Request, res: Response) => {
-  const { email, password, firstName, lastName, role, languages } = req.body;
-  console.log(req.body);
+  // IUser is a supertype of translator and customer  since the difference between the two is the  languages array
+  const { email, password, firstName, lastName, role, languages }: IUser =
+    req.body;
   const user =
     role === 'customer'
       ? await db.Customer.findOne({ where: { email: email } })
@@ -31,7 +33,7 @@ const register = async (req: Request, res: Response) => {
       const { _id } = await newCustomer.save();
       const accessToken = jwt.sign({ _id }, SECRET_KEY);
       res.status(201).send({ accessToken, role, _id, firstName, lastName });
-    } else {
+    } else if (languages) {
       const newTranslator = new db.Translator({
         _id: uuidv4(),
         firstName,
@@ -62,7 +64,7 @@ const register = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password }: ILogin = req.body;
   try {
     const user =
       (await db.Customer.findOne({ where: { email: email } })) ||

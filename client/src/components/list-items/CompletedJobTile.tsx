@@ -1,5 +1,5 @@
-import { useHistory, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+//import { useState } from 'react';
 import FlagComponent from '../flag-component/FlagComponent';
 
 import bidirectional from './../../assets/icons/bidirectional.svg';
@@ -11,10 +11,9 @@ import arrow from './../../assets/icons/arrow.svg';
 const CompletedJobTile = (props: { job: any }): JSX.Element => {
   const history = useHistory();
 
-  const { jobName, status, jobType, languageFromName, languageToName } =
-    props.job;
+  const { jobName, jobType, languageFromName, languageToName } = props.job;
 
-  const [showJob, setShowJob] = useState(false);
+  //const [showJob, setShowJob] = useState(false);
 
   const handleClick = (): void => {
     if (jobType === 'chat') {
@@ -36,42 +35,49 @@ const CompletedJobTile = (props: { job: any }): JSX.Element => {
         state: props.job,
       });
     }
-    setShowJob(true);
+    //setShowJob(true);
   };
 
   return (
-    // <div className="completed-job-tile">
-    //   <p>
-    //     {jobName} : Status:{status}
-    //   </p>
-    //   <FlagComponent language={languageFromName} />
-    //   <FlagComponent language={languageToName} />
-    //   <p>Job Type: {jobType}</p>
-    //   <button className="completed-job-tile__button" onClick={handleClick}>
-    //     See details
-    //   </button>
-    // </div>
     <div className="translator-completed">
       <div className="translator-completed__flag-container">
         <FlagComponent language={languageFromName} />
         <img
           className="translator-completed__bidirectional"
           src={bidirectional}
+          alt="bidirectional"
         />
         <FlagComponent language={languageToName} />
       </div>
       <div className="translator-completed__details">
         {jobType === 'video' ? (
-          <img className="translator-completed__job-type-icon" src={video} />
+          <img
+            className="translator-completed__job-type-icon"
+            src={video}
+            alt="video Icon"
+          />
         ) : null}
         {jobType === 'chat' ? (
-          <img className="translator-completed__job-type-icon" src={chat} />
+          <img
+            className="translator-completed__job-type-icon"
+            src={chat}
+            alt="Chat Icon"
+          />
         ) : null}
         {jobType === 'image' ? (
-          <img className="translator-completed__job-type-icon" src={image} />
+          <img
+            className="translator-completed__job-type-icon"
+            src={image}
+            alt="iconImage"
+          />
         ) : null}
         <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
-        <img className="translator-completed__job-type-icon" src={arrow} onClick={handleClick} />
+        <img
+          className="translator-completed__job-type-icon"
+          src={arrow}
+          onClick={handleClick}
+          alt="arrow"
+        />
       </div>
     </div>
   );

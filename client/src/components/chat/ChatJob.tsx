@@ -7,9 +7,10 @@ import apiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
+import { Socket } from 'socket.io-client';
 
 export const Chat = (props: {
-  socket: any;
+  socket: Socket;
   name: string;
   room: string;
   userId: string;
@@ -26,7 +27,12 @@ export const Chat = (props: {
   //_id initial undefined, but is set the _id of the specific message sent
   const accessToken: string | null = localStorage.getItem('accessToken');
 
-  const sendMessage = async (): Promise<void> => {
+  const sendMessage = async (
+    room: string,
+    name: string,
+    userId: string,
+    currentMessage: string,
+  ): Promise<void> => {
     if (currentMessage !== '') {
       const messageData: IChatMessage = {
         room: room,
@@ -39,12 +45,16 @@ export const Chat = (props: {
           ':' +
           new Date(Date.now()).getMinutes(),
       };
-      let res = await apiService.createMessage(messageData, accessToken);
+      const res = await apiService.createMessage(messageData, accessToken);
       messageData._id = res._id;
       await socket.emit('send_message', messageData);
-      setMessageList((list: string[]) => [...list, messageData]);
-      setCurrentMessage('');
+      updateMessageStates(messageData);
     }
+  };
+
+  const updateMessageStates = (messageData: IChatMessage): void => {
+    setMessageList((list: string[]) => [...list, messageData]);
+    setCurrentMessage('');
   };
 
   useEffect(() => {
@@ -128,10 +138,13 @@ export const Chat = (props: {
           }}
           //allows press of enter key to send message
           onKeyPress={(event) => {
-            event.key === 'Enter' && sendMessage();
+            event.key === 'Enter' &&
+              sendMessage(room, name, userId, currentMessage);
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        <button onClick={() => sendMessage(room, name, userId, currentMessage)}>
+          &#9658;
+        </button>
       </div>
       <button onClick={disconnectFromChat}>Click me to disconnect</button>
     </div>

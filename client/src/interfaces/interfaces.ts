@@ -1,11 +1,14 @@
 import { Key } from 'react';
 
-export interface IRegister {
+export interface ICustomer {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   role: string;
+}
+
+export interface ITranslator extends ICustomer {
   languages: string[];
 }
 

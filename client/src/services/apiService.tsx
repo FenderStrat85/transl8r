@@ -1,11 +1,11 @@
-import { IJob, ILogin, IRegister } from '../interfaces/interfaces';
+import { ICustomer, IJob, ILogin, ITranslator } from '../interfaces/interfaces';
 
 // const server = process.env.REACT_APP_SERVER_URL;
 const server = process.env.REACT_APP_SERVER;
 
 const apiService: { [key: string]: any } = {};
 
-apiService.register = (userInfo: IRegister) => {
+apiService.register = (userInfo: ICustomer | ITranslator) => {
   return fetch(`${server}/register`, {
     method: 'POST',
     credentials: 'include',
@@ -61,6 +61,22 @@ apiService.acceptJob = (jobInfos: IJob, accessToken: string) => {
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
+};
+
+apiService.deleteJob = (jobId: string, accessToken: string) => {
+  return (
+    fetch(`${server}/deleteJob/${jobId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      // .then((res) => res.json())
+      .catch((err) => console.log(err))
+  );
 };
 
 apiService.setNotificationToFalse = (jobInfos: IJob, accessToken: string) => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import apiService from '../../services/apiService';
 import { useLocation } from 'react-router-dom';
 import BackButton from '../button/BackButton';
-import { IDbMessage } from '../../interfaces/interfaces';
+import { IChatMessage, IDbMessage } from '../../interfaces/interfaces';
 
 const CompletedChat = (): JSX.Element => {
   const accessToken: string | null = localStorage.getItem('accessToken');
@@ -11,13 +11,24 @@ const CompletedChat = (): JSX.Element => {
   //ability to access job info from previous page
   const job = useLocation<any>().state.state;
 
-  const fetchMessages = async (): Promise<void> => {
-    const messageArray = await apiService.getChatMessages(job._id, accessToken);
+  const fetchMessages = async (
+    _id: string,
+    accessToken: string | null,
+  ): Promise<void> => {
+    const messageArray: IChatMessage[] = await apiService.getChatMessages(
+      _id,
+      accessToken,
+    );
+    setMessageArray(messageArray);
+  };
+
+  const setMessageArray = (messageArray: any) => {
     setMessages(messageArray);
   };
 
   useEffect(() => {
-    fetchMessages();
+    fetchMessages(job._id, accessToken);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

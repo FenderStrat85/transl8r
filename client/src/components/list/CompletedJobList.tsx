@@ -5,7 +5,9 @@ import { useContext } from 'react';
 import { useQuery, UseQueryResult } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { IJob } from '../../interfaces/interfaces';
-const reactQueryRefetchingInterval = Number(process.env.REACT_APP_QUERY_REFETCHING_INTERVAL);
+const reactQueryRefetchingInterval = Number(
+  process.env.REACT_APP_QUERY_REFETCHING_INTERVAL,
+);
 const server = process.env.REACT_APP_SERVER;
 
 const CompletedJobList = (): JSX.Element => {
@@ -51,7 +53,7 @@ const CompletedJobList = (): JSX.Element => {
 
   return (
     <div className="completed-job-list">
-      <div className='completed-job-list__header'>
+      <div className="completed-job-list__header">
         <h1>Completed Tasks</h1>
       </div>
       {status === 'error' && <div>Error fetching data</div>}
@@ -74,15 +76,9 @@ const CompletedJobList = (): JSX.Element => {
             <>
               <button
                 className="completed-jobs-list__button"
-                onClick={toSelectJob}
-              >
-                Submit a different job
-              </button>
-              <button
-                className="completed-jobs-list__button"
                 onClick={toDashBoard}
               >
-                To the dashboard!
+                Dashboard
               </button>
             </>
           ) : (
@@ -90,7 +86,7 @@ const CompletedJobList = (): JSX.Element => {
               className="completed-jobs-list__button"
               onClick={toTranslatorDashboard}
             >
-              Take me to my dashboard
+              Dashboard
             </button>
           )}
         </>

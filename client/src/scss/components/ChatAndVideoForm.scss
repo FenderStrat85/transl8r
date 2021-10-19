@@ -1,18 +1,36 @@
 .chat-and-video-form {
+  padding: 0px 60px;
+  h1 {
+    @include header;
+  }
   @include container;
-    &__form {
+  &__form {
     @include flex-column;
   }
   &__input {
+    @include input;
     width: 100%;
+  }
+  &__input::placeholder {
+    @include input-placeholder;
   }
   &__text-area {
+    @include input;
+    margin-left: 10%;
+    margin-right: 10%;
+    resize: vertical;
     width: 100%;
+    margin-bottom: 30px;
+  }
+  &__text-area::placeholder {
+    @include input-placeholder;
   }
   &__select {
-    width: 100%;
-  }
-  * {
+    width: 80%;
     margin-bottom: 10px;
+  }
+  button {
+    @include button;
+    margin-top: 50px;
   }
 }
