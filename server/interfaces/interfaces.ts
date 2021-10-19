@@ -5,8 +5,15 @@ export interface IUser {
   email: string;
   password: string;
   role: string;
-  averageRating?: number;
+  //averageRating?: number;
+  languages?: string[];
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
 export interface ICustomer {
   _id: string;
   firstName: string;
@@ -16,14 +23,9 @@ export interface ICustomer {
   role: string;
 }
 
-export interface ITranslator {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  role: string;
-  averageRating: string;
+export interface ITranslator extends ICustomer {
+  languages: string[];
+  // averageRating: string;
 }
 
 export interface IJob {

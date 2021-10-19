@@ -1,15 +1,15 @@
-import { disconnect } from 'process';
-import { IChatMessage, IRoomJoin } from './interfaces/interfaces';
+//import { disconnect } from 'process';
+import { IChatMessage } from './interfaces/interfaces';
 import { sequelize } from './models/db';
 
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
+import express from 'express';
+import cors from 'cors';
+import http from 'http';
 const { Server, Socket } = require('socket.io');
 
 require('dotenv').config();
-const PORT = process.env.SERVER_PORT;
-const CLIENT_PORT = process.env.CLIENT_PORT;
+const PORT: string | undefined = process.env.SERVER_PORT;
+const CLIENT_PORT: string | undefined = process.env.CLIENT_PORT;
 const router = require('./router');
 
 const app = express();
