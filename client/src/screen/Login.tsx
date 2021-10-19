@@ -1,14 +1,18 @@
+//@ts-nocheck
+//above needed for container as part of lottie animation
+import React, { useEffect, useRef, useContext } from 'react';
 import LoginForm from '../components/form/LoginForm';
-import { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from './../context/Context';
 import ApiService from './../services/apiService';
+import lottie from 'lottie-web';
 
 const LoginScreen = (): JSX.Element => {
   const history = useHistory();
   const { user, login } = useContext(UserContext);
   const token: string | null = localStorage.getItem('accessToken');
   const accessToken = { accessToken: token };
+  const animationContainer = useRef(null);
 
   async function checkAuth() {
     if (!user.token && accessToken.accessToken) {
@@ -29,6 +33,13 @@ const LoginScreen = (): JSX.Element => {
 
   useEffect(() => {
     checkAuth();
+    lottie.loadAnimation({
+      container: animationContainer.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: require('../assets/animations/login-page.json'),
+    });
   }, []);
 
   return (
@@ -41,6 +52,10 @@ const LoginScreen = (): JSX.Element => {
           Register
         </button>
       </Link>
+      <div
+        className="login-screen__animation-container"
+        ref={animationContainer}
+      ></div>
     </div>
   );
 };
