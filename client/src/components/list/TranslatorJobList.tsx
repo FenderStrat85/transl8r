@@ -50,13 +50,11 @@ const TranslatorJobList = (): JSX.Element => {
               </>
             ))
           ) : (
-            <>
-              <h3>No pending jobs</h3>
-              <Link to={{ pathname: '/app/translator/dashboard/history' }}>
-                <button>View Accepted jobs</button>
-              </Link>
-            </>
+            <h3>No pending jobs</h3>
           )}
+          <Link to={{ pathname: '/app/translator/dashboard/history' }}>
+            <button>View Accepted jobs</button>
+          </Link>
         </div>
       )}
     </>

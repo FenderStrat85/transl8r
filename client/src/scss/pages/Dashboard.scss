@@ -14,11 +14,11 @@
   &__button {
     @include button;
     width: 220px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   &__button:hover {
     @include button-hover;
     width: 220px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
