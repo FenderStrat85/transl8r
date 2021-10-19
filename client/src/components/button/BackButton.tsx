@@ -9,4 +9,4 @@ const BackButton = (): JSX.Element => {
 
   return <img className="back-button" src={backIcon} onClick={goBack}></img>;
 };
-export default BackButton;
+export default BackButton

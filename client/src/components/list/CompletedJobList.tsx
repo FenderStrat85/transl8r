@@ -53,9 +53,7 @@ const CompletedJobList = (): JSX.Element => {
 
   return (
     <div className="completed-job-list">
-      <div className="completed-job-list__header">
-        <h1>Completed Tasks</h1>
-      </div>
+      <h1 className="completed-job-list__header">Completed Tasks</h1>
       {status === 'error' && <div>Error fetching data</div>}
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (

@@ -6,14 +6,23 @@ padding: 0 60px;
 }
 h2 {
   @include header2;
-  // width: 300px;
-  margin-top: 20px;
+  margin-top: 56px;
+  margin-bottom: 0;
+}
+h3 {
+  @include header2;
+  margin-top:20px;
   margin-bottom: 0;
 }
 p {
   font-style: italic;
+  background-color: rgba(0, 0, 0, 0.071);
+  margin-top: 15px;
 }
 &__button {
   @include button;
+}
+&__image {
+  margin-bottom: 10px;
 }
 }
