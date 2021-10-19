@@ -5,6 +5,7 @@ import ApiService from '../../services/apiService';
 import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import { ICustomer, ILanguage, ITranslator } from '../../interfaces/interfaces';
+import BackButton from '../button/BackButton';
 
 const RegisterForm = (): JSX.Element => {
   const history = useHistory<History>();
@@ -185,6 +186,7 @@ const RegisterForm = (): JSX.Element => {
           Register
         </button>
       </form>
+      <BackButton />
     </div>
   );
 };

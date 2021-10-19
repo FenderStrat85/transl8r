@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as markerjs2 from 'markerjs2';
 import ApiService from '../../services/apiService';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../context/Context';
 //import { IImageJob } from '../../interfaces/interfaces';
 
 // job: IImageJob -> in approuting it is passed as job.state so we've used any
 const TranslatorImage = (props: { job: any }): JSX.Element => {
   const history = useHistory<History>();
-
+  const { user } = useContext(UserContext);
   const accessToken: string | null = localStorage.getItem('accessToken');
   const { jobName, image, _id } = props.job;
   const COMPLETED = 'completed';
@@ -72,7 +73,9 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
     try {
       await ApiService.uploadTranslatedTextOfImage({ text }, accessToken, _id);
       await ApiService.changeStatus(_id, COMPLETED, accessToken);
-      history.push(`/app/translator/dashboard`);
+      user.role === 'translator'
+        ? history.push(`/app/translator/dashboard`)
+        : history.push(`/app/customer/selectjob`);
     } catch (error) {
       console.log(error);
     }

@@ -86,7 +86,9 @@ export const Chat = (props: {
     socket.emit('leave_chat', leaveMessage);
     socket.close();
     await apiService.changeStatus(room, 'completed', accessToken);
-    history.push(`/app/${user.role}/dashboard`);
+    user.role === 'translator'
+      ? history.push(`/app/translator/dashboard`)
+      : history.push(`/app/customer/selectjob`);
   };
 
   //id's 'other' and 'you' are for css styling
