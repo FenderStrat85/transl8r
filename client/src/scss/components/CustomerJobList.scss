@@ -1,10 +1,12 @@
 .customer-job-list {
-      @include container;
-
-      &__jobs--pending {
-        @include container;
-      }
-      &__jobs--accepted {
-        @include container;
-      }
+  @include container;
+  h2 {
+    font-weight: 400;
+  }
+  &__jobs--pending {
+    @include container;
+  }
+  &__jobs--accepted {
+    @include container;
+  }
 }

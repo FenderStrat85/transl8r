@@ -23,14 +23,15 @@
 }
 
 @mixin header {
-  width: 100%;
-  background: linear-gradient(to right, #0198ba, #0083b0);
-  color: white;
-  text-align: center;
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.351);
-  font-family: $header-font;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.406);
+  color: $secondary-color;
+  margin: 50px 0px 30px 0px;
 }
+
+@mixin header2 {
+  margin-top: 30px;
+  font-weight: 400;
+}
+
 @mixin tile {
   border-radius: 12px;
   height: 117px;
@@ -39,4 +40,40 @@
   box-shadow: $box-shadow;
   padding-top: 10px;
   margin-bottom: 20px;
+}
+
+@mixin button {
+  margin-top: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: $primary-color;
+  padding: 7px 0px;
+  width: 160px;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+@mixin button-hover {
+  margin-top: 5px;
+  background-color: $secondary-color;
+  color: white;
+  border-radius: 5px;
+  padding: 7px 0px;
+  width: 160px;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin input {
+  margin-bottom: 10px;
+  padding: 7px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 1px solid $primary-color;
+  text-align: center;
+}
+
+@mixin input-placeholder {
+  color: rgba(58, 58, 58, 0.701);
+  font-family: $main-font;
 }

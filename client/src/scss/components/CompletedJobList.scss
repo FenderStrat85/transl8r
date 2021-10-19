@@ -1,6 +1,15 @@
 .completed-job-list {
-    @include container;
-    &__header {
+  @include container;
+  h1 {
     @include header;
+  }
+  h2 {
+    font-weight: 400;
+  }
+  button {
+    @include button;
+  }
+  button:hover {
+    @include button-hover;
   }
 }

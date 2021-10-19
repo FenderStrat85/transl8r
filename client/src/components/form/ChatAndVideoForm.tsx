@@ -5,7 +5,6 @@ import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { ILanguage } from '../../interfaces/interfaces';
-import DashboardButton from '../button/DashboardButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 import BackButton from '../button/BackButton';
 
@@ -92,19 +91,20 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
           className="chat-and-video-form__input"
           type="text"
           name="jobName"
-          placeholder={'Give your job a name!'}
+          placeholder={'Give a short name to your request'}
           onChange={(event) => handleInputChange(event)}
           required
         />
         <textarea
           className="chat-and-video-form__text-area"
           name="jobDescription"
-          placeholder={'Tell the translator about the job'}
+          rows={4}
+          placeholder={'Tell the translator about the request'}
           onChange={(event) => handleInputChange(event)}
           required
         />
         {myError ? <ErrorMessageComponent message={myError} /> : null}
-        <h3>What language do you need translating from?</h3>
+        <p>Which language do you need translating from?</p>
 
         <Select
           className="chat-and-video-form__select"
@@ -112,7 +112,7 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
           value={selectedFrom}
           onChange={(event) => handleSelectedFrom(event)}
         />
-        <h3>What languages do you need translating to?</h3>
+        <p>Which language do you need translating to?</p>
         <Select
           className="chat-and-video-form__select"
           options={options}
@@ -120,11 +120,10 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
           onChange={(event) => handleSelectedTo(event)}
         />
         <button className="chat-and-video-form__button" type="submit">
-          Submit your job
+          Submit request
         </button>
       </form>
       <BackButton />
-      <DashboardButton role={user.role} />
     </div>
   );
 };
