@@ -1,9 +1,21 @@
 .login-form {
   @include container;
+  margin-top: 20px;
   &__form {
     @include flex-column;
   }
-  * {
+  input {
     margin-bottom: 10px;
+    padding: 7px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+  }
+  input:focus {
+    border: 2px solid $secondary-color;
+    outline: none;
+  }
+  button {
+    margin-top: 5px;
   }
 }
