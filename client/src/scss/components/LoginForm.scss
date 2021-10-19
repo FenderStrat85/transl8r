@@ -15,7 +15,10 @@
     border: 2px solid $secondary-color;
     outline: none;
   }
-  button {
-    margin-top: 5px;
+  .login-form__button {
+    @include button
+  }
+  .login-form__button:hover {
+    @include button-hover
   }
 }
