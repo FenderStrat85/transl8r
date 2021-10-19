@@ -55,7 +55,7 @@ const Conversation = (): JSX.Element => {
     <div className="conversation">
       {!showChat ? (
         <div className="conversation__join-chat">
-          <h1>I am in the chat component</h1>
+          <h1>Ready to join a chat?</h1>
           <button onClick={joinRoom}>Join live chat!</button>
         </div>
       ) : (

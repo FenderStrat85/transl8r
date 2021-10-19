@@ -32,63 +32,66 @@ const CompletedImage = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="completed-image">
-      {user.role === 'customer' ? (
-        <div className="completed-image__container--customer">
-          <h2> Image Job : </h2>
-          {image.imageUrl ? (
-            <div className="completed-image__container--image-customer">
-              <p>You have requested a translation for this image: </p>
-              <img
-                className="completed-image__image--customer"
-                src={image.imageUrl}
-                alt="user"
-                style={{ width: '50%' }}
-              />
-              <p>
-                and you have recieved this translation and this helper text:
-              </p>
-              {image.translatedText}
-              <img
-                className="completed-image__image--customer"
-                src={image.imageUrlTranslated}
-                alt="translator"
-                style={{ width: '50%' }}
-              />
-            </div>
-          ) : (
-            <h2>Fetching your image</h2>
-          )}
-        </div>
-      ) : (
-        <div className="completed-image__container--translator">
-          <h2> Image Job : </h2>
-          {image.imageUrl ? (
-            <div className="completed-image__container--image-translator">
-              <p>You completed a translation for this image: </p>
-              <img
-                className="completed-image__image--translator"
-                src={image.imageUrl}
-                alt="user"
-                style={{ width: '50%' }}
-              />
-              <p>and you added this helper text: </p>
-              {image.translatedText}
-              <img
-                className="completed-image__image--translator"
-                src={image.imageUrlTranslated}
-                alt="translator"
-                style={{ width: '50%' }}
-              />
-              <p>Thanks for helping someone translate!</p>
-            </div>
-          ) : (
-            <h2>Fetching your image</h2>
-          )}
-        </div>
-      )}
-      <BackButton />
-    </div>
+    <>
+      <div className="completed-image">
+        {user.role === 'customer' ? (
+          <div className="completed-image__container">
+            <h1>Your image has been translated:</h1>
+            {image.imageUrl ? (
+              <div className="completed-image__container--image">
+                <h3>Your translated image:</h3>
+                <img
+                  className="completed-image__image"
+                  src={image.imageUrlTranslated}
+                  alt="translator"
+                />
+                <div className='translated-text'>
+                  {image.translatedText}
+                </div>
+                <h3>The original image: </h3>
+                <img
+                  className="completed-image__image"
+                  src={image.imageUrl}
+                  alt="user"
+                />
+              </div>
+            ) : (
+              <h2>Fetching your image</h2>
+            )}
+          </div>
+        ) : (
+          <div className="completed-image">
+            {image.imageUrl ? (
+              <div className="completed-image__container">
+                <h1>Your translation:</h1>
+                <div className="completed-image__container--image">
+                  <h3>You completed a translation for this image: </h3>
+                  <img
+                    className="completed-image__image"
+                    src={image.imageUrl}
+                    alt="user"
+                  />
+                  <h3>and you added this helper text: </h3>
+
+                  <div className='translated-text'>
+                    {image.translatedText}
+                  </div>
+                  <img
+                    className="completed-image__image"
+                    src={image.imageUrlTranslated}
+                    alt="translator"
+                  />
+                  <p>Thanks for helping someone translate!</p>
+                </div>
+              </div>
+            ) : (
+              <h2>Fetching your image</h2>
+            )}
+          </div>
+        )}
+        <BackButton />
+      </div>
+    </>
   );
 };
 

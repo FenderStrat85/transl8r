@@ -1,7 +1,12 @@
 .conversation {
   @include container;
-  * {
-    text-align: center;
-    margin-bottom: 10px;
-  }
+h1 {
+  @include header;
+}
+&__join-chat {
+  width:70%;
+}
+button {
+  @include button;
+}
 }

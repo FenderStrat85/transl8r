@@ -83,9 +83,7 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <div className="chat-job__header">
-        <p>Live Chat</p>
-      </div>
+      <h1>Live Chat</h1>
       <div className="chat-job--body">
         <ScrollToBottom className="message-container">
           {messageList.map(
