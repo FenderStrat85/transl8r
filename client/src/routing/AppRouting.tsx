@@ -75,9 +75,9 @@ const AppRouting = (): JSX.Element => {
             <Dashboard />
           </Route>
           {/* Here the translator can view pending and completed jobs  */}
-          <Route exact path="/app/translator/dashboard/history">
+          {/* <Route exact path="/app/translator/dashboard/history">
             <Dashboard />
-          </Route>
+          </Route> */}
           {/* Here a translator can view a selected job tile in more detail, and accept the job */}
           <Route exact path="/app/translator/dashboard/viewjob">
             <TranslatorPendingJobDetails />

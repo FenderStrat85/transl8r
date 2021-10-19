@@ -1,24 +1,46 @@
 .register-form {
   @include container;
-  * {
-    margin-bottom: 10px;
-  }
   form {
     @include flex-column;
+    button {
+      @include button;
+      margin-top: 20px;
+    }
+    button:hover {
+      @include button-hover;
+      margin-top: 20px;
+    }
   }
   &__radio-button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex-column;
+    margin-bottom: 20px;
+    h3 {
+      margin-bottom: 5px;
+    }
   }
   &__input-container--customer {
     @include flex-column;
+    input {
+      @include input;
+    }
+    input::placeholder {
+      @include input-placeholder;
+    }
   }
   &__input-container--translator {
     @include flex-column;
+    input {
+      @include input;
+    }
+    input::placeholder {
+      @include input-placeholder;
+    }
+  }
+  &__selection-languages-header {
+    margin-top: 35px;
   }
   &__multi-select {
-    width: 100%;
+    width: 70%;
+    margin: 0px 0px 5px 0px;
   }
 }

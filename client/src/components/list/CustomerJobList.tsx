@@ -56,12 +56,13 @@ const CustomerJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="customer-job-list__jobs--pending">
+          <h2>Pending Requests</h2>
           {pendingJobs.length > 0 ? (
             pendingJobs.map((job: { _id: Key }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
-            <h3>No goods deeds required</h3>
+            <h3>No pending requests</h3>
           )}
         </div>
       )}
@@ -70,13 +71,13 @@ const CustomerJobList = (): JSX.Element => {
       {status === 'loading' && <div>Fetching data</div>}
       {status === 'success' && (
         <div className="customer-job-list__jobs--accepted">
-          <h2>Accepted Jobs</h2>
+          <h2>Accepted Requests</h2>
           {acceptedJobs.length > 0 ? (
             acceptedJobs.map((job: { _id: Key }) => (
               <PendingAndAcceptedCustomerJobTile key={job._id} job={job} />
             ))
           ) : (
-            <h3>No accepted jobs</h3>
+            <h3>No accepted Requests</h3>
           )}
         </div>
       )}
