@@ -9,6 +9,7 @@ height: 800px;
 p {
   font-size: 0.8rem;
   margin: 5px;
+  margin-bottom: 0;
 }
 &__body {
   width: 100%;
@@ -18,6 +19,7 @@ p {
 &__message-container {
   height: 550px;
   width: 90%;
+  padding: 10px;
   margin: auto;
   @include flex-column;
   justify-content: flex-start;
@@ -33,7 +35,7 @@ p {
   overflow-wrap: break-word;
   word-break: break-word;
   padding: 0 5px;
-  margin: 10px;
+  margin: 7px;
   width: fit-content;
   max-width: 70%;
   text-align:left;
@@ -49,26 +51,18 @@ p {
   align-self: flex-start;
 }
 &__message-meta {
+  padding: 0 10px;
+  margin-bottom: 2px;
+  p {
+    font-size: 0.5rem;
+    font-style: italic;
+  }
+}
+&__message-author {
   display: flex;
   flex-direction: row;
   width: 100%;
-  font-size: 14px;
-}
-&__message-author {
   justify-content: flex-end;
-  p {
-color: white;
-    font-size: 0.6rem;
-  }
-}
-&__message-meta {
-  justify-content: flex-end;
-  p {
-    font-size: 0.5rem;
-  }
-}
-&__message--author {
-  font-weight: bold;
 }
 
   @media screen and (min-width: 1199px) {
