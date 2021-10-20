@@ -33,17 +33,16 @@ const LoginScreen = (): JSX.Element => {
 
   useEffect(() => {
     checkAuth();
-    lottie.loadAnimation({
-      container: animationContainer.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: require('../assets/animations/login-page.json'),
-    })
+    lottie
+      .loadAnimation({
+        container: animationContainer.current,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        animationData: require('../assets/animations/login-page.json'),
+      })
       .setSpeed(0.35);
   }, []);
-
-
 
   return (
     <div className="login-screen">

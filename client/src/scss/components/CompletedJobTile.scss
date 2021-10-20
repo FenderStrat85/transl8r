@@ -1,6 +1,7 @@
 .translator-completed {
   @include container;
   @include tile;
+  padding-top: 30px;
 
   &__bidirectional {
     width: 15%;
@@ -26,22 +27,22 @@
   @media screen and (min-width: 1199px) {
     @include tile-xl;
     padding-top: 40px;
-  }
-  &__bidirectional {
-    width: 12%;
-    padding-top: 25px;
-  }
-  &__flag-container {
-    margin-top: 0px;
-  }
-  &__details {
-    padding-bottom: 30px;
-    p {
-      font-size: 1.3rem;
-      align-items: center;
+    &__bidirectional {
+      width: 12%;
+      padding-top: 25px;
     }
-  }
-  &__job-type-icon {
-    width: 40px;
+    &__flag-container {
+      margin-top: 0px;
+    }
+    &__details {
+      padding-bottom: 30px;
+      p {
+        font-size: 1.3rem;
+        align-items: center;
+      }
+    }
+    &__job-type-icon {
+      width: 40px;
+    }
   }
 }

@@ -24,6 +24,20 @@
   }
   .login-form__button:hover {
     @include button-hover;
-    padding: 7px 25px;
+    padding: 7px 30px;
+  }
+  @media screen and (min-width: 1199px) {
+    margin-top: 0px;
+
+    input {
+      padding: 10px;
+    }
+    .login-form__button {
+      padding: 10px 35px;
+      width: 168px;
+    }
+    .login-form__button:hover {
+      padding: 10px 35px;
+    }
   }
 }
