@@ -1,1 +1,1 @@
-web: cd server npx nodemon
+web: npx nodemon 

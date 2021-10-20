@@ -9,16 +9,7 @@ const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
 const db: { [key: string]: any } = {};
 
-export const sequelize = new Sequelize({
-  database: process.env.DB_NAME,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  host: '127.0.0.1',
-  port: process.env.DB_PORT,
-  dialect: 'postgres',
-  //logging must be set to boolean
-  logging: false,
-});
+export const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 const files = fs.readdirSync(__dirname);
 
