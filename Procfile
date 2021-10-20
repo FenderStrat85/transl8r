@@ -1,1 +1,1 @@
-web: npx nodemon 
+web: npx nodemon ./server/index.ts
