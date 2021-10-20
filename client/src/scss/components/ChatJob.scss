@@ -114,6 +114,16 @@ p {
     display: none;
   }
 }
+@media screen and (min-width: 700px) {
+  &__message-container {
+  width: 700px;
+  }
+  &__footer {
+    width:700px;
+  }
+}
+
+
   @media screen and (min-width: 1199px) {
     height: 100%;
     h1 {
