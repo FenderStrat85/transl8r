@@ -43,23 +43,23 @@ const CompletedChat = (): JSX.Element => {
 
   return (
     <div className="completed-chat">
-      <h1 className="completed-chat__header">I am a completed chat</h1>
-      <div className="completed-chat--body">
-        <div className="completed-chat--message-container">
+      <h1 className="completed-chat__header">Your completed chat:</h1>
+      <div className="completed-chat__body">
+        <div className="completed-chat__message-container">
           {messages.length > 0 ? (
             messages.map((message: IDbMessage) => {
               return (
                 <div
                   key={message._id}
-                  className="completed-chat--single-message-container"
-                  id={user._id === message.messageAuthor ? 'you' : 'other'}
+                  className={`completed-chat__single-message-container ${user._id === message.messageAuthor ? 'you' : 'other'}`}
+                // id={user._id === message.messageAuthor ? 'you' : 'other'}
                 >
-                  <div>
-                    <div className="completed-chat--message--content">
+                  <>
+                    <div className="completed-chat__message-content">
                       <p>{message.messageContent}</p>
                     </div>
-                    <div className="completed-chat--message--meta">
-                      <p id="completed-chat--message--author">
+                    <div className="completed-chat__message-meta">
+                      <p id="completed-chat__message-author">
                         {user._id === message.messageAuthor
                           ? user.firstName
                           : otherParticipant}
@@ -68,7 +68,7 @@ const CompletedChat = (): JSX.Element => {
                       {message.updatedAt}
                     </p> */}
                     </div>
-                  </div>
+                  </>
                 </div>
               );
             })
