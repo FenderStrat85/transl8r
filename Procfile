@@ -1,1 +1,1 @@
-web: node app.js
+web: cd server npx nodemon
