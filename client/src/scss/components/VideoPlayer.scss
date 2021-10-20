@@ -4,24 +4,34 @@
     @include header;
   }
   &__video--my-video {
+    width: 20%;
+    border-radius: 12px;
+    position: absolute;
+    left: 5vw;
+    top: 19vh;
+    z-index: 10;
+    transform: rotateY(180deg);
+  }
+  &__video--user-video {
     border-radius: 12px;
     position: relative;
     width: 90%;
     z-index: 0;
     margin-bottom: 30px;
-    transform: rotateY(180deg);
-  }
-  &__video--user-video {
-    width: 20%;
-    border-radius: 12px;
-    position: absolute;
-    left: 10vw;
-    top: 10vh;
-    z-index: 10;
+    margin-top: 30px;
     transform: rotateY(180deg);
   }
   &__button {
     @include button;
+    position: absolute;
+    top: 55vh;
+    left: 30vw;
+  }
+  p {
+    margin-top: -20px;
+  }
+  h3 {
+    margin-top: 50px;
   }
   @media screen and (min-width: 1199px) {
     height: 100vh;
@@ -62,4 +72,3 @@
     }
   }
 }
-
