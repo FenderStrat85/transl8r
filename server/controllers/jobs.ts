@@ -2,6 +2,7 @@ import db from '../models/db';
 import { Request, Response } from 'express';
 import {
   IConversation,
+  ICustomer,
   IImage,
   IJob,
   ILanguage,
@@ -79,6 +80,22 @@ const acceptJob = async (req: Request, res: Response): Promise<void> => {
     res.status(200).send(job);
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Not able to accept a job' });
+  }
+};
+
+const getCustomerName = async (req: Request, res: Response): Promise<void> => {
+  const { jobId } = req.params;
+  try {
+    const job: IJob = await db.Job.findOne({ where: { _id: jobId } });
+    const customer: ICustomer = await db.Customer.findOne({
+      where: { _id: job.CustomerId },
+    });
+    res.status(200).send(customer);
+  } catch (error) {
+    res.status(404).send({
+      error: '404',
+      message: 'Item not found',
+    });
   }
 };
 
@@ -215,4 +232,5 @@ module.exports = {
   changeStatus,
   setNotificationToFalse,
   deleteJob,
+  getCustomerName,
 };
