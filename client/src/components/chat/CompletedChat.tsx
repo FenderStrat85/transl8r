@@ -4,8 +4,6 @@ import apiService from '../../services/apiService';
 import { useLocation } from 'react-router-dom';
 import BackButton from '../button/BackButton';
 import { IChatMessage, IDbMessage } from '../../interfaces/interfaces';
-//@ts-expect-error
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const CompletedChat = (): JSX.Element => {
   const accessToken: string | null = localStorage.getItem('accessToken');
@@ -54,7 +52,6 @@ const CompletedChat = (): JSX.Element => {
   return (
     <div className="completed-chat">
       <h1 className="completed-chat__header">Your completed chat:</h1>
-      {/* <div className="completed-chat__body"> */}
       <div className="completed-chat__message-container">
         {messages.length > 0 ? (
           messages.map((message: IDbMessage) => {
@@ -83,7 +80,6 @@ const CompletedChat = (): JSX.Element => {
         <BackButton />
       </div>
     </div>
-    // </div>
   );
 };
 
