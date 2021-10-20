@@ -5,6 +5,7 @@
     button {
       @include button;
       margin-top: 20px;
+      padding: 7px 30px;
     }
     button:hover {
       @include button-hover;
