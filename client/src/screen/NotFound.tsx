@@ -12,7 +12,7 @@ const NotFound = () => {
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        animationData: require('../assets/animations/login-page.json'),
+        animationData: require('../assets/animations/404.json'),
       })
       .setSpeed(0.35);
     // eslint-disable-next-line react-hooks/exhaustive-deps
