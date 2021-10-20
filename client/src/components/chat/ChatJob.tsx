@@ -95,9 +95,14 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <h1>Live Chat</h1>
+      <div className="chat-job--chat-header">
+        <h1>Live Chat</h1>
+      </div>
       <div className="chat-job--body">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom
+          className="chat-job--message-container"
+          followButtonClassName={'takeMeToBottom'}
+        >
           {messageList.map(
             (messageContent: {
               _id: Key;
@@ -108,18 +113,22 @@ export const Chat = (props: {
               return (
                 <div
                   key={messageContent._id}
-                  className="chat-job--message-container"
-                  id={name === messageContent.authorName ? 'you' : 'other'}
+                  className="chat-job--single-message-container"
+                  id={
+                    user.firstName === messageContent.authorName
+                      ? 'you'
+                      : 'other'
+                  }
                 >
                   <div>
                     <div className="chat-job--message--content">
                       <p>{messageContent.message}</p>
                     </div>
                     <div className="chat-job--message--meta">
-                      <p id="chat-job--message--time">{messageContent.time}</p>
                       <p id="chat-job--message--author">
                         {messageContent.authorName}
                       </p>
+                      <p id="chat-job--message--time">{messageContent.time}</p>
                     </div>
                   </div>
                 </div>
@@ -129,9 +138,10 @@ export const Chat = (props: {
         </ScrollToBottom>
       </div>
       <div className="chat-job--footer">
-        <input
+        <textarea
+          className="chat-job--footer--textarea"
           value={currentMessage}
-          type="text"
+          // type="text"
           placeholder="Write message"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
