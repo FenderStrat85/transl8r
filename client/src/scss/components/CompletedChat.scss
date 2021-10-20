@@ -1,5 +1,5 @@
 .completed-chat {
-
+height: 800px;
   @include container;
   &__header {
     @include header;
@@ -13,25 +13,18 @@ p {
 &__body {
   width: 100%;
   height: 600px;
-
 }
 
 &__message-container {
   height: 550px;
-  width: 400px;
+  width: 90%;
   margin: auto;
   @include flex-column;
   justify-content: flex-start;
   border-radius: 10px;
   background-color: $secondary-color;
-  //must be set to column in completed chat
   box-shadow: $box-shadow;
   overflow: scroll;
-  //desktop
-
-  //mobile
-  // height: 350px;
-  // width: 300px;
 }
 
 &__single-message-container {
@@ -74,46 +67,6 @@ color: white;
     font-size: 0.5rem;
   }
 }
-// &__message-meta {
-
-// }
-
-// .completed-chat--single-message-container p {
-//   //mobile
-//   margin: 5px;
-// }
-
-// &__message-content {
-//   width: 100%;
-//   font-size: 18px;
-// }
-
-// #you {
-//   justify-content: flex-start;
-//   background-color: rgb(48, 131, 31);
-// }
-
-// #you .completed-chat--message--content {
-//   justify-content: flex-start;
-//   text-align: left;
-// }
-
-
-// #other {
-//   margin-left: auto;
-//   justify-content: flex-end;
-// }
-
-// #other .completed-chat--message--content {
-//   justify-content: flex-end;
-//   text-align: right;
-// }
-
-// #other .completed-chat--message--meta {
-//   justify-content: flex-end;
-// }
-
-// .completed-chat--message--meta
 &__message--author {
   font-weight: bold;
 }
@@ -125,22 +78,15 @@ color: white;
       @include header-xl;
       width: 700px;
       font-size: 3.5rem;
-      margin-bottom: 90px;
+      margin-bottom: 60px;
     }
     h3 {
       @include header3-xl;
     }
-    // &__container--image {
-    //   width: 700px;
-    // }
-    // &__image {
-    //   box-shadow: $box-shadow;
-    //   width: 100%;
-    // }
-    // .translated-text {
-    //   font-size: 1.3rem;
-    // margin-bottom: 60px;
-    // }
+    &__message-container {
+    width: 400px;
+    height: 650px;
+    }
   }
 }
 
