@@ -1,3 +1,7 @@
 .completed-chat {
   @include container;
+  h1 {
+    @include header;
+    width: 250px;
+  }
 }

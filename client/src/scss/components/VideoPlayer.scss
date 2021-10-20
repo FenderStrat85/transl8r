@@ -1,20 +1,27 @@
 .video-player {
+
   @include container;
-  * {
-    margin: 10px;
-  }
+h1 {
+  @include header;
+}
   &__video--my-video {
     border-radius: 12px;
     position: relative;
-    width: 80%;
+    width: 90%;
     z-index: 0;
+    margin-bottom: 30px;
+    transform:rotateY(180deg);
   }
   &__video--user-video {
     width: 20%;
     border-radius: 12px;
     position: absolute;
-    left: 10%;
-    top: 10px;
+    left: 10vw;
+    top: 10vh;
     z-index: 10;
+    transform:rotateY(180deg);
+  }
+  &__button {
+    @include button;
   }
 }

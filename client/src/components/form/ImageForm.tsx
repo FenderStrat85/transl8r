@@ -97,6 +97,8 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
+    console.log('uploaded!');
+
   };
 
   const uploadImage = async (): Promise<void> => {
@@ -167,7 +169,6 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
             placeholder={'language from'}
             onChange={(event) => handleSelectedFrom(event)}
           />
-          {/* <h3>What languages do you need translating to?</h3> */}
           <Select
             className="image-form__select"
             options={options}
@@ -200,7 +201,6 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
           </button>
         </form>
         <BackButton />
-        {/* <DashboardButton role={user.role} /> */}
       </div>
     </>
   );
