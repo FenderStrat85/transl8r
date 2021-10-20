@@ -7,7 +7,7 @@ height: 800px;
     margin-bottom:30px;
   }
 p {
-  font-size: 0.9rem;
+  font-size:1rem;
   margin: 5px;
   margin-bottom: 0;
 }
@@ -24,7 +24,7 @@ p {
   @include flex-column;
   justify-content: flex-start;
   border-radius: 10px;
-  background-color: $secondary-color;
+  background-color: rgb(174, 206, 211);
   box-shadow: $box-shadow;
   overflow: scroll;
 }
@@ -33,7 +33,7 @@ p {
 }
 &__single-message-container {
   border-radius: 10px;
-  box-shadow: $box-shadow;
+  box-shadow:$box-shadow;
   overflow-wrap: break-word;
   word-break: break-word;
   padding: 0 5px;
@@ -43,14 +43,18 @@ p {
   text-align:left;
 }
 .you {
-  background-color: $primary-color;
+  background-color: $secondary-color;
   justify-content: flex-start;
   align-self: flex-end;
+  color: white;
+  font-weight: 400;
 }
 .other {
-  background-color: rgb(116, 151, 255);
+  background-color: $primary-color;
   justify-content: flex-end;
   align-self: flex-start;
+  color: white;
+  font-weight: 400;
 }
 &__message-meta {
   padding: 0 10px;
