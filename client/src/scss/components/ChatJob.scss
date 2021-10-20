@@ -11,7 +11,7 @@ height: 800px;
     margin-bottom:30px;
   }
 p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin: 5px;
   margin-bottom: 0;
 }
@@ -28,6 +28,7 @@ p {
   background-color: $secondary-color;
   box-shadow: $box-shadow;
   overflow: scroll;
+
 }
 &__message-container > div {
   @include flex-column;
@@ -50,8 +51,6 @@ p {
   justify-content: flex-start;
   align-self: flex-end;
 }
-
-
 .other {
   background-color: rgb(116, 151, 255);
   justify-content: flex-end;

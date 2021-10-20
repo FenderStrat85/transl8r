@@ -124,8 +124,6 @@ export const Chat = (props: {
                     <p className="chat-job__message-author">
                       {messageContent.authorName} - {messageContent.time}
                     </p>
-                    {/* <p className="chat-job__message-time">{messageContent.time}
-                    </p> */}
                   </div>
                 </>
               </div>
