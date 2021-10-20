@@ -11,6 +11,16 @@
       @include button-hover;
       margin-top: 20px;
     }
+    #root
+      > div
+      > div
+      > form
+      > div.rmsc.register-form__multi-select
+      > div
+      > div.dropdown-heading
+      > button {
+      display: none;
+    }
   }
   &__radio-button-container {
     @include flex-column;
