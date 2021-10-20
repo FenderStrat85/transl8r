@@ -11,6 +11,13 @@
   }
 }
 
+.conversation-screen__animation-container {
+  //desktop ONLY
+  //Sets height fine for desktop, but for phone pushes it
+  //to the bottom of the screen
+  // height: 600px;
+}
+
 .conversation__chat {
   @include container;
 }
