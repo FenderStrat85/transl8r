@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
-//import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../context/Context';
 import FlagComponent from '../flag-component/FlagComponent';
 
 import bidirectional from './../../assets/icons/bidirectional.svg';
@@ -10,28 +11,26 @@ import arrow from './../../assets/icons/arrow.svg';
 
 const CompletedJobTile = (props: { job: any }): JSX.Element => {
   const history = useHistory();
-
+  const { user } = useContext(UserContext);
   const { jobName, jobType, languageFromName, languageToName } = props.job;
 
   //const [showJob, setShowJob] = useState(false);
 
   const handleClick = (): void => {
     if (jobType === 'chat') {
-      history.push(`/app/customer/${jobType}/completed`, {
+      history.push(`/app/${user.role}/${jobType}/completed`, {
         state: props.job,
       });
     }
     if (jobType === 'image') {
       history.push({
-        // pathname: `/app/customer/${jobType}:${_id}`,
-        pathname: `/app/customer/${jobType}/completed`,
+        pathname: `/app/${user.role}/${jobType}/completed`,
         state: props.job,
       });
     }
     if (jobType === 'video') {
       history.push({
-        // pathname: `/app/customer/${jobType}:${_id}`,
-        pathname: `/app/customer/${jobType}/completed`,
+        pathname: `/app/${user.role}/${jobType}/completed`,
         state: props.job,
       });
     }
