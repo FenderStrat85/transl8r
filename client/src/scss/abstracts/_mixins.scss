@@ -55,6 +55,16 @@
   margin-bottom: 20px;
 }
 
+@mixin tile-xl {
+  border-radius: 12px;
+  height: 180px;
+  width: 800px;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  box-shadow: $box-shadow;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+
 @mixin logout-button {
   position: absolute;
   right: 25px;
