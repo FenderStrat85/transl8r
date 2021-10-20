@@ -45,6 +45,12 @@
   font-size: 2.2rem;
 }
 
+@mixin header3-xl {
+  font-weight: 300;
+  font-size: 1.7rem;
+  margin-top: 10px;
+}
+
 @mixin tile {
   border-radius: 12px;
   height: 117px;
@@ -102,7 +108,7 @@
   color: white;
   border-radius: 5px;
   background-color: $primary-color;
-  padding: 7px 0px;
+  padding: 10px 0px;
   width: 160px;
   border: none;
   font-size: 1rem;
@@ -114,7 +120,7 @@
   color: white;
   border-radius: 5px;
   background-color: $primary-color;
-  padding: 12px 5px;
+  padding: 13px 5px;
   width: 220px;
   border: none;
   font-size: 1.4rem;

@@ -16,6 +16,10 @@
     @include input;
     width: 100%;
   }
+  input:focus {
+    border: 2px solid $secondary-color;
+    outline: none;
+  }
   &__input::placeholder {
     @include input-placeholder;
   }
@@ -30,6 +34,10 @@
   &__text-area::placeholder {
     @include input-placeholder;
   }
+  &__text-area:focus {
+    border: 2px solid $secondary-color;
+    outline: none;
+  }
   &__select {
     width: 80%;
     margin-bottom: 10px;
@@ -37,5 +45,35 @@
   &__button {
     @include button;
     margin-top: 50px;
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+      width: 700px;
+      font-size: 3rem;
+    }
+    &__input {
+      @include input;
+      width: 100%;
+      padding: 10px;
+    }
+    &__input::placeholder {
+      font-size: 1rem;
+    }
+    &__text-area::placeholder {
+      font-size: 1rem;
+    }
+    &__choose-button {
+      width: 130px;
+      padding: 8px 20px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    &__choose:hover {
+      @include button-hover;
+    }
+    h3 {
+      @include header3-xl;
+    }
   }
 }

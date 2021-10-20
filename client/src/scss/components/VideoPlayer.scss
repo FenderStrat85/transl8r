@@ -1,16 +1,15 @@
 .video-player {
-
   @include container;
-h1 {
-  @include header;
-}
+  h1 {
+    @include header;
+  }
   &__video--my-video {
     border-radius: 12px;
     position: relative;
     width: 90%;
     z-index: 0;
     margin-bottom: 30px;
-    transform:rotateY(180deg);
+    transform: rotateY(180deg);
   }
   &__video--user-video {
     width: 20%;
@@ -19,9 +18,48 @@ h1 {
     left: 10vw;
     top: 10vh;
     z-index: 10;
-    transform:rotateY(180deg);
+    transform: rotateY(180deg);
   }
   &__button {
     @include button;
   }
+  @media screen and (min-width: 1199px) {
+    height: 100vh;
+    h1 {
+      @include header;
+      position: absolute;
+      top: 0vh;
+    }
+    h3 {
+      @include header;
+      position: absolute;
+      top: 40vh;
+      left: 41vw;
+    }
+    &__button {
+      @include button;
+      position: absolute;
+      top: 85vh;
+      left: 43vw;
+    }
+    &__video--user-video {
+      border-radius: 12px;
+      position: relative;
+      width: 50%;
+      z-index: 0;
+      margin-top: -10%;
+      margin-left: -20%;
+      transform: rotateY(180deg);
+    }
+    &__video--my-video {
+      width: 20%;
+      border-radius: 12px;
+      position: absolute;
+      left: 10vw;
+      top: 10vh;
+      z-index: 10;
+      transform: rotateY(180deg);
+    }
+  }
 }
+
