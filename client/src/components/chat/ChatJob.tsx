@@ -27,6 +27,13 @@ export const Chat = (props: {
   //_id initial undefined, but is set the _id of the specific message sent
   const accessToken: string | null = localStorage.getItem('accessToken');
 
+  const getCurrentTime = () => {
+    const current = new Date(Date.now());
+    const hours = current.getHours();
+    const minutes = ('0' + current.getMinutes()).slice(-2);
+    return hours + ':' + minutes;
+  };
+
   const sendMessage = async (
     room: string,
     name: string,
@@ -34,16 +41,15 @@ export const Chat = (props: {
     currentMessage: string,
   ): Promise<void> => {
     if (currentMessage !== '') {
+      const currentTime = getCurrentTime();
+      console.log(currentTime);
       const messageData: IChatMessage = {
         room: room,
         authorName: name,
         userId: userId,
         message: currentMessage,
         _id: '',
-        time:
-          new Date(Date.now()).getHours() +
-          ':' +
-          new Date(Date.now()).getMinutes(),
+        time: currentTime,
       };
       const res = await apiService.createMessage(messageData, accessToken);
       messageData._id = res._id;

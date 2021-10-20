@@ -41,6 +41,16 @@ const CompletedChat = (): JSX.Element => {
     otherParticipant = 'Customer';
   }
 
+  const getDate = (dateFromDb: string) => {
+    const newDate = new Date(dateFromDb);
+    const date = newDate.getDate();
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
+    const hours = newDate.getHours();
+    const minutes = ('0' + newDate.getMinutes()).slice(-2);
+    return `${date}/${month}/${year} ${hours}:${minutes}`;
+  };
+
   return (
     <div className="completed-chat">
       <h1 className="completed-chat__header">I am a completed chat</h1>
@@ -64,9 +74,9 @@ const CompletedChat = (): JSX.Element => {
                           ? user.firstName
                           : otherParticipant}
                       </p>
-                      {/* <p id="completed-chat--message--time">
-                      {message.updatedAt}
-                    </p> */}
+                      <p id="completed-chat--message--time">
+                        {getDate(message.createdAt)}
+                      </p>
                     </div>
                   </div>
                 </div>

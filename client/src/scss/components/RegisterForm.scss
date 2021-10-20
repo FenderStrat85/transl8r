@@ -2,7 +2,9 @@
   @include container;
   form {
     @include flex-column;
-    button {
+    //need specify this button's styling specifically it triggered
+    //the button in the multiselect.
+    .register-form__button {
       @include button;
       margin-top: 20px;
       padding: 7px 30px;
