@@ -1,14 +1,38 @@
 //@ts-nocheck
 //above needed for container as part of lottie animation
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import LoginForm from '../components/form/LoginForm';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from './../context/Context';
+import ApiService from './../services/apiService';
 import lottie from 'lottie-web';
 
 const LoginScreen = (): JSX.Element => {
+  const history = useHistory();
+  const { user, login } = useContext(UserContext);
+  const token: string | null = localStorage.getItem('accessToken');
+  const accessToken = { accessToken: token };
   const animationContainer = useRef(null);
 
+  async function checkAuth() {
+    if (!user.token && accessToken.accessToken) {
+      const res = await ApiService.isTokenValid(accessToken);
+      if (res.message === 'access token not valid' && !accessToken) {
+        localStorage.removeItem('accessToken');
+      } else {
+        const { accessToken, _id, role, firstName, lastName } = res;
+        login(accessToken, _id, role, firstName, lastName);
+        history.push(
+          role === 'customer'
+            ? `/app/${role}/selectjob`
+            : `/app/${role}/dashboard`,
+        );
+      }
+    }
+  }
+
   useEffect(() => {
+    checkAuth();
     lottie.loadAnimation({
       container: animationContainer.current,
       renderer: 'svg',

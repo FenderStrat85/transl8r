@@ -207,4 +207,16 @@ apiService.changeStatus = (
     .catch((err) => console.log(err));
 };
 
+apiService.isTokenValid = (accessToken: string) => {
+  return fetch(`${server}/isTokenValid`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(accessToken),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log('error register', err));
+};
+
 export default apiService;

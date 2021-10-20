@@ -14,6 +14,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 const queryClient: QueryClient = new QueryClient();
 
 function App(): JSX.Element {
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
