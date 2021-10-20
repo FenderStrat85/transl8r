@@ -23,4 +23,25 @@
   &__job-type-icon {
     width: 30px;
   }
+  @media screen and (min-width: 1199px) {
+    @include tile-xl;
+    padding-top: 40px;
+  }
+  &__bidirectional {
+    width: 12%;
+    padding-top: 25px;
+  }
+  &__flag-container {
+    margin-top: 0px;
+  }
+  &__details {
+    padding-bottom: 30px;
+    p {
+      font-size: 1.3rem;
+      align-items: center;
+    }
+  }
+  &__job-type-icon {
+    width: 40px;
+  }
 }
