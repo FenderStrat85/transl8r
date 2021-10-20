@@ -64,7 +64,7 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
           {jobType === 'image' ? (
             <h2>{user.firstName.toLocaleUpperCase()} needs help with some words in this image:</h2>
           ) : null}
-          <p>{jobDescription}</p>
+          <p>"{jobDescription}"</p>
           {image ? (
             <img
               className="translator-pending-job-details__image"

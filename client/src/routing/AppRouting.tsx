@@ -52,7 +52,9 @@ const AppRouting = (): JSX.Element => {
           </Route>
 
           {/* {CUSTOMER JOBS ROUTE} */}
-          <Route exact path="/app/customer/acceptedjob/image:id"></Route>
+          <Route exact path="/app/customer/acceptedjob/image:id">
+            {/* <CompletedImage /> */}
+          </Route>
           <Route exact path="/app/customer/acceptedjob/chat:id">
             <Conversation />
           </Route>

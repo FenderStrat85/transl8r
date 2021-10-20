@@ -73,7 +73,7 @@ const CompletedImage = (): JSX.Element => {
                   />
                   <h3>You added this helper text: </h3>
                   <div className='translated-text'>
-                    {image.translatedText}
+                    "{image.translatedText}"
                   </div>
                   <h3>The original image:</h3>
                   <img

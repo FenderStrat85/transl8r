@@ -1,0 +1,15 @@
+.completed-video {
+  @include container;
+padding: 0 5%;
+
+  h1 {
+    @include header;
+  }
+  h2 {
+    @include header2;
+  }
+  p {
+    font-style: italic;
+    background-color: rgba(0, 0, 0, 0.071);
+  }
+}

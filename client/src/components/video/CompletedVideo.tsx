@@ -5,13 +5,14 @@ const CompletedVideo = (): JSX.Element => {
   const job: any = useLocation().state;
 
   return (
-    <div>
+    <div className='completed-video'>
+      <h1 className='completed-video__header'>Video Chat</h1>
       <h2>
-        You have requested a translation through video about this topic :{' '}
+        You requested a translation through video about this topic:{' '}
       </h2>
-      <h3>{job.jobDescription}</h3>
+      <p>"{job.jobDescription}"</p>
 
-      <h3>Hoping you've been able to find a good translation</h3>
+      {/* <h3>Hoping you've been able to find a good translation</h3> */}
       <BackButton />
     </div>
   );

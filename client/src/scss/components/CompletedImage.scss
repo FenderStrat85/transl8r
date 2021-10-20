@@ -6,6 +6,7 @@
 
   h1 {
     @include header;
+    width: 250px;
   }
   h3 {
     @include header2;
