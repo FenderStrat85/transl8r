@@ -140,7 +140,6 @@ const VideoPlayer = (): JSX.Element => {
     // Or stop all like so:
     tracks.forEach((track: { stop: () => any }) => track.stop());
 
-
     connectionRef.current.destroy();
     apiService.changeStatus(job.state._id, 'completed', accessToken);
     user.role === 'translator'
@@ -153,19 +152,21 @@ const VideoPlayer = (): JSX.Element => {
       {stream && (
         <>
           <h1>Video Conference</h1>
-          <video
-            className="video-player__video--my-video"
-            playsInline
-            muted
-            ref={myVideo}
-            autoPlay
-          />
+          <Draggable bounds="parent">
+            <video
+              className="video-player__video--my-video"
+              playsInline
+              muted
+              ref={myVideo}
+              autoPlay
+            />
+          </Draggable>
         </>
       )}
 
       <div className="video-player__controls">
         {queryResult.data === undefined ||
-          queryResult.data.socketId === null ? (
+        queryResult.data.socketId === null ? (
           <p>Waiting for the other user to connect</p>
         ) : null}
 
@@ -176,9 +177,9 @@ const VideoPlayer = (): JSX.Element => {
         ) : null}
 
         {queryResult.data !== undefined &&
-          queryResult.data.socketId !== null &&
-          !callAccepted &&
-          !call.isReceivingCall ? (
+        queryResult.data.socketId !== null &&
+        !callAccepted &&
+        !call.isReceivingCall ? (
           <button
             className="video-player__button"
             onClick={() => callUser(queryResult.data.socketId)}
@@ -189,7 +190,7 @@ const VideoPlayer = (): JSX.Element => {
 
         {call.isReceivingCall && !callAccepted && queryResult.data !== null ? (
           <>
-            <h1>Somebody is calling you!</h1>
+            <h3>Somebody is calling you!</h3>
             <button
               className="video-player__button"
               type="button"
@@ -202,14 +203,12 @@ const VideoPlayer = (): JSX.Element => {
       </div>
 
       {callAccepted && !callEnded && (
-        <Draggable bounds="parent">
-          <video
-            className="video-player__video--user-video"
-            playsInline
-            ref={userVideo}
-            autoPlay
-          />
-        </Draggable>
+        <video
+          className="video-player__video--user-video"
+          playsInline
+          ref={userVideo}
+          autoPlay
+        />
       )}
     </div>
   );
