@@ -1,5 +1,3 @@
-//@ts-nocheck
-//above needed for container as part of lottie animation
 import React, { useEffect, useRef, useContext } from 'react';
 import LoginForm from '../components/form/LoginForm';
 import { Link, useHistory } from 'react-router-dom';
@@ -35,6 +33,8 @@ const LoginScreen = (): JSX.Element => {
     checkAuth();
     lottie
       .loadAnimation({
+        //above needed for container as part of lottie animation
+        //@ts-expect-error
         container: animationContainer.current,
         renderer: 'svg',
         loop: false,
@@ -42,6 +42,7 @@ const LoginScreen = (): JSX.Element => {
         animationData: require('../assets/animations/login-page.json'),
       })
       .setSpeed(0.35);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

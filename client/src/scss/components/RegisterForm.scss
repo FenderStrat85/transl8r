@@ -2,7 +2,9 @@
   @include container;
   form {
     @include flex-column;
-    button {
+    //need specify this button's styling specifically it triggered
+    //the button in the multiselect.
+    .register-form__button {
       @include button;
       margin-top: 20px;
       padding: 7px 30px;
@@ -10,6 +12,16 @@
     button:hover {
       @include button-hover;
       margin-top: 20px;
+    }
+    #root
+      > div
+      > div
+      > form
+      > div.rmsc.register-form__multi-select
+      > div
+      > div.dropdown-heading
+      > button {
+      display: none;
     }
   }
   &__radio-button-container {

@@ -48,7 +48,7 @@ const TranslatorJobList = (): JSX.Element => {
               <PendingTranslatorJobTile key={job._id} job={job} />
             ))
           ) : (
-            <h3>No pending jobs</h3>
+            <h3>No pending requests</h3>
           )}
           {/* <Link to={{ pathname: '/app/translator/dashboard/history' }}>
             <button>View Accepted jobs</button>

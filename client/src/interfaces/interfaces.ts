@@ -64,5 +64,5 @@ export interface IDbMessage {
   messageAuthor: string;
   messageContent: string;
   ConversationId: string;
-  updatedAt: string;
+  createdAt: string;
 }

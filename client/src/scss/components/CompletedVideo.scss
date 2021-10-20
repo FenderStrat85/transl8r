@@ -1,6 +1,6 @@
 .completed-video {
   @include container;
-padding: 0 5%;
+  padding: 0 5%;
 
   h1 {
     @include header;
@@ -33,6 +33,20 @@ padding: 0 5%;
     }
     p {
       font-size: 2.2rem;
+    }
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+      width: 700px;
+      font-size: 3rem;
+    }
+    h3 {
+      @include header3-xl;
+    }
+    .translated-text {
+      font-size: 1.3rem;
+      margin-bottom: 60px;
     }
   }
 }

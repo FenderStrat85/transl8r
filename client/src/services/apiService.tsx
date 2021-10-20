@@ -48,6 +48,20 @@ apiService.createJob = (
     .catch((err) => console.log(err));
 };
 
+apiService.getCustomerName = (jobId: string, accessToken: string) => {
+  return fetch(`${server}/getCustomerName/${jobId}`, {
+    method: 'GET',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error('error', err));
+};
+
 apiService.acceptJob = (jobInfos: IJob, accessToken: string) => {
   return fetch(`${server}/acceptJob`, {
     method: 'PUT',
