@@ -1,6 +1,6 @@
 .back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 30px;
+  @include back-button;
+  @media screen and (min-width: 1199px) {
+    @include back-button-xl;
+  }
 }

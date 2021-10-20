@@ -3,11 +3,19 @@
   width: 60px;
   height: fit-content;
   background-color: $primary-color;
-      height: 43.33px;
-    border-radius: 13px;
+  height: 43.33px;
+  border-radius: 13px;
 
-    img {
+  img {
     box-shadow: $box-shadow;
     border-radius: 12px;
+  }
+  @media screen and (min-width: 1199px) {
+    height: 90px;
+    width: 90px;
+    height: fit-content;
+    background-color: $primary-color;
+    height: 43.33px;
+    border-radius: 13px;
   }
 }

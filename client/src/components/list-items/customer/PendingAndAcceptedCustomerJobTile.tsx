@@ -122,7 +122,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
                 alt="imageIcon"
               />
             ) : null}
-            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <p>{jobName}</p>
             <img
               className="accepted-and-completed-customer__job-type-icon"
               src={del}
@@ -164,7 +164,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
                 alt="imageIcon"
               />
             ) : null}
-            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <p>{jobName}</p>
             <Link
               to={{
                 pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,

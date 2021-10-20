@@ -8,7 +8,7 @@
     @include header;
   }
   h2 {
-    margin-top:0;
+    margin-top: 0;
     font-weight: 200;
   }
   &__button-container {
@@ -22,5 +22,34 @@
   button:hover {
     @include button-hover;
     width: 210px;
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+    }
+    h2 {
+      @include header2-xl;
+    }
+    button {
+      @include button-xl;
+      width: 250px;
+    }
+    button:hover {
+      @include button-xl-hover;
+      width: 250px;
+    }
+    &__job-type-icon--image {
+      width: 150px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+    &__job-type-icon--chat {
+      width: 135px;
+      margin-bottom: 15px;
+    }
+    &__job-type-icon--video {
+      width: 145px;
+      margin-bottom: 15px;
+    }
   }
 }
