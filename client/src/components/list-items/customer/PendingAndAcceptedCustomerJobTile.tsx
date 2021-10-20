@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import FlagComponent from '../../flag-component/FlagComponent';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import apiService from '../../../services/apiService';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,7 @@ import chat from './../../../assets/icons/chat.svg';
 import image from './../../../assets/icons/image.svg';
 import arrow from './../../../assets/icons/arrow.svg';
 import del from './../../../assets/icons/del.svg';
+import { ProgressBar } from 'react-toastify/dist/components';
 
 const PendingAndAcceptedCustomerJobTile = (props: {
   job: any;

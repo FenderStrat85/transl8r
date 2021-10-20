@@ -9,7 +9,6 @@ import AuthRouting from './routing/AuthRouting';
 import AppRouting from './routing/AppRouting';
 import NotFound from './screen/NotFound';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient: QueryClient = new QueryClient();
 
