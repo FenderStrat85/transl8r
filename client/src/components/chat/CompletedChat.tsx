@@ -58,19 +58,16 @@ const CompletedChat = (): JSX.Element => {
             return (
               <div
                 key={message._id}
-                className={`completed-chat__single-message-container ${
-                  user._id === message.messageAuthor ? 'you' : 'other'
-                }`}
+                className={`completed-chat__single-message-container ${user._id === message.messageAuthor ? 'you' : 'other'}`}
               >
                 <>
-                  <p className="completed-chat__message-content">
-                    {message.messageContent}
-                  </p>
+                  <p className="completed-chat__message-content">{message.messageContent}</p>
+
                   <div className="completed-chat__message-meta">
                     <p className="completed-chat__message-author">
                       {user._id === message.messageAuthor
-                        ? user.firstName
-                        : otherParticipant}
+                        ? user.firstName + ' - ' + getDate(message.createdAt)
+                        : otherParticipant + ' - ' + getDate(message.createdAt)}
                     </p>
                   </div>
                 </>

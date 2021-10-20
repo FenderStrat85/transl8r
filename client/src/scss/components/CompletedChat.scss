@@ -7,7 +7,7 @@ height: 800px;
     margin-bottom:30px;
   }
 p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin: 5px;
   margin-bottom: 0;
 }
@@ -28,7 +28,9 @@ p {
   box-shadow: $box-shadow;
   overflow: scroll;
 }
-
+&__message-container::-webkit-scrollbar {
+  display: none;
+}
 &__single-message-container {
   border-radius: 10px;
   box-shadow: $box-shadow;

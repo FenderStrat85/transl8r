@@ -126,7 +126,7 @@ export const Chat = (props: {
                   </p>
                   <div className="chat-job__message-meta">
                     <p className="chat-job__message-author">
-                      {messageContent.authorName}
+                      {messageContent.authorName} - {messageContent.time}
                     </p>
                   </div>
                 </>
