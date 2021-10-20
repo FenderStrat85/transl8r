@@ -31,6 +31,8 @@
   flex-direction: row;
   border-radius: 10px;
   box-shadow: $box-shadow;
+  overflow-wrap: break-word;
+  word-break: break-word;
   //mobile
   width: 50%;
   padding: 0 5px;

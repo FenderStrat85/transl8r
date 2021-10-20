@@ -4,4 +4,97 @@
     @include header;
     width: 250px;
   }
+  border: 1px solid black;
+  //mobile && desktop
+  height: 620px;
+}
+
+.completed-chat--message-container {
+  border-radius: 10px;
+  background-color: $secondary-color;
+  display: flex;
+  //must be set to column in completed chat
+  flex-direction: column;
+  box-shadow: $box-shadow;
+  overflow: scroll;
+  //desktop
+  height: 550px;
+  width: 1000px;
+
+  //mobile
+  // height: 350px;
+  // width: 300px;
+}
+
+.completed-chat--single-message-container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  //mobile
+  // width: 50%;
+  // padding: 0 5px;
+  // margin: 10px;
+
+  //desktop
+  width: 40%;
+  padding: 0 10px;
+  margin: 20px;
+}
+
+.completed-chat--single-message-container p {
+  //mobile
+  margin: 5px;
+}
+
+.completed-chat--message--content {
+  width: 100%;
+  font-size: 18px;
+}
+
+.completed-chat--message--meta {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 14px;
+}
+
+#completed-chat--message--author {
+  margin-right: 10px;
+}
+
+#you {
+  justify-content: flex-start;
+  background-color: rgb(48, 131, 31);
+}
+
+#you .completed-chat--message--content {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+#you .completed-chat--message--meta {
+  justify-content: flex-start;
+}
+
+#other {
+  margin-left: auto;
+  justify-content: flex-end;
+  background-color: chocolate;
+}
+
+#other .completed-chat--message--content {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+#other .completed-chat--message--meta {
+  justify-content: flex-end;
+}
+
+.completed-chat--message--meta #completed-chat--message--author {
+  font-weight: bold;
 }

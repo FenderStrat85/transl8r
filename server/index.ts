@@ -34,16 +34,11 @@ io.on('connection', (socket: any) => {
   // console.log('User Connected', socket.id);
 
   socket.on('join_room', (data: IChatMessage) => {
-    // room = data.room;
-    // name = data.name;
     socket.join(data.room);
-
     io.in(data.room).emit('welcome_message', data);
-    // console.log(`User with name: ${data.name} joined room: ${data.room}`);
   });
 
   socket.on('send_message', (data: IChatMessage) => {
-    console.log(data.message);
     socket.to(data.room).emit('receive_message', data);
   });
 
