@@ -11,7 +11,7 @@ height: 800px;
     margin-bottom:30px;
   }
 p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin: 5px;
   margin-bottom: 0;
 }
@@ -28,12 +28,15 @@ p {
   background-color: $secondary-color;
   box-shadow: $box-shadow;
   overflow: scroll;
+
 }
 &__message-container > div {
   @include flex-column;
   justify-content: flex-start;
 }
-
+&__message-container::-webkit-scrollbar {
+  display: none;
+}
 &__single-message-container {
   border-radius: 10px;
   box-shadow: $box-shadow;
@@ -56,18 +59,25 @@ p {
   align-self: flex-start;
 }
 &__message-meta {
-  padding: 0 10px;
+  padding: 0 0 0 10px;
   margin-bottom: 2px;
+  @include flex-row;
+
   p {
     font-size: 0.5rem;
     font-style: italic;
   }
+}
+&__message-time {
+  width: 50px;
+  margin:0;
 }
 &__message-author {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: flex-end;
+  margin:0;
 }
 &__button-send {
   @include button;
@@ -104,6 +114,16 @@ p {
     display: none;
   }
 }
+@media screen and (min-width: 700px) {
+  &__message-container {
+  width: 700px;
+  }
+  &__footer {
+    width:700px;
+  }
+}
+
+
   @media screen and (min-width: 1199px) {
     height: 100%;
     h1 {

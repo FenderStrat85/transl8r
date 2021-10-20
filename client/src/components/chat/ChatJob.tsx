@@ -101,7 +101,7 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <h1 className='chat-job__header'>Live Chat</h1>
+      <h1 className="chat-job__header">Live Chat</h1>
       <ScrollToBottom
         className="chat-job__message-container"
         followButtonClassName={'takeMeToBottom'}
@@ -116,15 +116,18 @@ export const Chat = (props: {
             return (
               <div
                 key={messageContent._id}
-                className={`chat-job__single-message-container ${user.firstName === messageContent.authorName ? 'you' : 'other'}`}
+                className={`chat-job__single-message-container ${
+                  user.firstName === messageContent.authorName ? 'you' : 'other'
+                }`}
               >
                 <>
-                  <p className="chat-job__message-content">{messageContent.message}</p>
+                  <p className="chat-job__message-content">
+                    {messageContent.message}
+                  </p>
                   <div className="chat-job__message-meta">
                     <p className="chat-job__message-author">
-                      {messageContent.authorName}
+                      {messageContent.authorName} - {messageContent.time}
                     </p>
-                    {/* <p id="chat-job--message--time">{messageContent.time}</p> */}
                   </div>
                 </>
               </div>
@@ -138,7 +141,6 @@ export const Chat = (props: {
           cols={120}
           className="chat-job__footer-textarea"
           value={currentMessage}
-          // type="text"
           placeholder="Write message"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
@@ -149,11 +151,19 @@ export const Chat = (props: {
               sendMessage(room, name, userId, currentMessage);
           }}
         />
-        <button className='chat-job__button-send' onClick={() => sendMessage(room, name, userId, currentMessage)}>
+        <button
+          className="chat-job__button-send"
+          onClick={() => sendMessage(room, name, userId, currentMessage)}
+        >
           &#9658;
         </button>
       </div>
-      <button className='chat-job__button-disconnect' onClick={disconnectFromChat}>Click me to disconnect</button>
+      <button
+        className="chat-job__button-disconnect"
+        onClick={disconnectFromChat}
+      >
+        Click me to disconnect
+      </button>
     </div>
   );
 };

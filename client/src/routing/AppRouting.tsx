@@ -96,6 +96,15 @@ const AppRouting = (): JSX.Element => {
             <VideoPlayer />
           </Route>
 
+          <Route exact path="/app/translator/image/completed">
+            <CompletedImage />
+          </Route>
+          <Route exact path="/app/translator/chat/completed">
+            <CompletedChat />
+          </Route>
+          <Route exact path="/app/translator/video/completed">
+            <CompletedVideo />
+          </Route>
           {/* COMPLETED JOBS CUSTOMERS AND TRANSLATORS */}
           <Route exact path="/app/completedJobs">
             <CompletedJobList />

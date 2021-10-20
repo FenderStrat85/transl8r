@@ -3,7 +3,7 @@
   @include tile;
 
   &__bidirectional {
-    width: 15%;
+    width: 50px;
   }
   &__flag-container {
     @include flex-row;

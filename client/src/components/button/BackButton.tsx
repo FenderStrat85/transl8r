@@ -7,6 +7,13 @@ const BackButton = (): JSX.Element => {
     history.goBack();
   };
 
-  return <img className="back-button" src={backIcon} onClick={goBack}></img>;
+  return (
+    <img
+      className="back-button"
+      src={backIcon}
+      onClick={goBack}
+      alt="back"
+    ></img>
+  );
 };
-export default BackButton
+export default BackButton;

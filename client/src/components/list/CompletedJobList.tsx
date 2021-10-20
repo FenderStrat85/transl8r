@@ -43,10 +43,6 @@ const CompletedJobList = (): JSX.Element => {
     history.push(`/app/customer/dashboard`);
   };
 
-  const toSelectJob = (): void => {
-    history.push(`/app/customer/selectjob`);
-  };
-
   const toTranslatorDashboard = (): void => {
     history.push(`/app/translator/dashboard`);
   };
