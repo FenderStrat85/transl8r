@@ -6,9 +6,9 @@
   &__join-chat {
     width: 70%;
   }
-  button {
-    @include button;
-  }
+&__button-join {
+  @include button;
+}
 }
 
 .conversation-screen__animation-container {

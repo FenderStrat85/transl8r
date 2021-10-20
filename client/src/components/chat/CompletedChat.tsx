@@ -53,42 +53,41 @@ const CompletedChat = (): JSX.Element => {
 
   return (
     <div className="completed-chat">
-      <h1 className="completed-chat__header">I am a completed chat</h1>
-      <div className="completed-chat--body">
-        <div className="completed-chat--message-container">
-          {messages.length > 0 ? (
-            messages.map((message: IDbMessage) => {
-              return (
-                <div
-                  key={message._id}
-                  className="completed-chat--single-message-container"
-                  id={user._id === message.messageAuthor ? 'you' : 'other'}
-                >
-                  <div>
-                    <div className="completed-chat--message--content">
-                      <p>{message.messageContent}</p>
-                    </div>
-                    <div className="completed-chat--message--meta">
-                      <p id="completed-chat--message--author">
-                        {user._id === message.messageAuthor
-                          ? user.firstName
-                          : otherParticipant}
-                      </p>
-                      <p id="completed-chat--message--time">
-                        {getDate(message.createdAt)}
-                      </p>
-                    </div>
+      <h1 className="completed-chat__header">Your completed chat:</h1>
+      {/* <div className="completed-chat__body"> */}
+      <div className="completed-chat__message-container">
+        {messages.length > 0 ? (
+          messages.map((message: IDbMessage) => {
+            return (
+              <div
+                key={message._id}
+                className={`completed-chat__single-message-container ${user._id === message.messageAuthor ? 'you' : 'other'}`}
+              // id={user._id === message.messageAuthor ? 'you' : 'other'}
+              >
+                <>
+                  <p className="completed-chat__message-content">{message.messageContent}</p>
+                  {/* </div> */}
+                  <div className="completed-chat__message-meta">
+                    <p className="completed-chat__message-author">
+                      {user._id === message.messageAuthor
+                        ? user.firstName
+                        : otherParticipant}
+                    </p>
+                    {/* <p id="completed-chat--message--time">
+                      {message.updatedAt}
+                    </p> */}
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <h2>No messages yet!</h2>
-          )}
-          <BackButton />
-        </div>
+                </>
+              </div>
+            );
+          })
+        ) : (
+          <h2>No messages yet!</h2>
+        )}
+        <BackButton />
       </div>
     </div>
+    // </div>
   );
 };
 

@@ -1,99 +1,89 @@
 .completed-chat {
+height: 800px;
   @include container;
-  h1 {
+  &__header {
     @include header;
     width: 250px;
+    margin-bottom:30px;
   }
-  //mobile && desktop
-  height: 620px;
+p {
+  font-size: 0.8rem;
+  margin: 5px;
+  margin-bottom: 0;
+}
+&__body {
+  width: 100%;
+  height: 600px;
 }
 
-.completed-chat--message-container {
+&__message-container {
+  height: 550px;
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  @include flex-column;
+  justify-content: flex-start;
   border-radius: 10px;
   background-color: $secondary-color;
-  display: flex;
-  //must be set to column in completed chat
-  flex-direction: column;
   box-shadow: $box-shadow;
   overflow: scroll;
-  //desktop
-  height: 550px;
-  width: 1000px;
-
-  //mobile
-  // height: 350px;
-  // width: 300px;
 }
 
-.completed-chat--single-message-container {
-  display: flex;
-  flex-direction: row;
+&__single-message-container {
   border-radius: 10px;
   box-shadow: $box-shadow;
   overflow-wrap: break-word;
   word-break: break-word;
-
-  //mobile
-  // width: 50%;
-  // padding: 0 5px;
-  // margin: 10px;
-
-  //desktop
-  width: 40%;
+  padding: 0 5px;
+  margin: 7px;
+  width: fit-content;
+  max-width: 70%;
+  text-align:left;
+}
+.you {
+  background-color: $primary-color;
+  justify-content: flex-start;
+  align-self: flex-end;
+}
+.other {
+  background-color: rgb(116, 151, 255);
+  justify-content: flex-end;
+  align-self: flex-start;
+}
+&__message-meta {
   padding: 0 10px;
-  margin: 20px;
+  margin-bottom: 2px;
+  p {
+    font-size: 0.5rem;
+    font-style: italic;
+  }
 }
-
-.completed-chat--single-message-container p {
-  //mobile
-  margin: 5px;
-}
-
-.completed-chat--message--content {
-  width: 100%;
-  font-size: 18px;
-}
-
-.completed-chat--message--meta {
+&__message-author {
   display: flex;
   flex-direction: row;
   width: 100%;
-  font-size: 14px;
-}
-
-#completed-chat--message--author {
-  margin-right: 10px;
-}
-
-#you {
-  justify-content: flex-start;
-  background-color: rgb(48, 131, 31);
-}
-
-#you .completed-chat--message--content {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-#you .completed-chat--message--meta {
-  justify-content: flex-start;
-}
-
-#other {
-  margin-left: auto;
-  justify-content: flex-end;
-  background-color: chocolate;
-}
-
-#other .completed-chat--message--content {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-#other .completed-chat--message--meta {
   justify-content: flex-end;
 }
 
-.completed-chat--message--meta #completed-chat--message--author {
-  font-weight: bold;
+  @media screen and (min-width: 1199px) {
+    height: 100%;
+    h1 {
+      @include container;
+      @include header-xl;
+      width: 700px;
+      font-size: 3.5rem;
+      margin-bottom: 60px;
+    }
+    h3 {
+      @include header3-xl;
+    }
+    &__message-container {
+    width: 400px;
+    height: 650px;
+    }
+  }
 }
+
+
+
+

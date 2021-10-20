@@ -101,51 +101,42 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <div className="chat-job--chat-header">
-        <h1>Live Chat</h1>
-      </div>
-      <div className="chat-job--body">
-        <ScrollToBottom
-          className="chat-job--message-container"
-          followButtonClassName={'takeMeToBottom'}
-        >
-          {messageList.map(
-            (messageContent: {
-              _id: Key;
-              authorName: string;
-              message: string;
-              time: string;
-            }) => {
-              return (
-                <div
-                  key={messageContent._id}
-                  className="chat-job--single-message-container"
-                  id={
-                    user.firstName === messageContent.authorName
-                      ? 'you'
-                      : 'other'
-                  }
-                >
-                  <div>
-                    <div className="chat-job--message--content">
-                      <p>{messageContent.message}</p>
-                    </div>
-                    <div className="chat-job--message--meta">
-                      <p id="chat-job--message--author">
-                        {messageContent.authorName}
-                      </p>
-                      <p id="chat-job--message--time">{messageContent.time}</p>
-                    </div>
+      <h1 className='chat-job__header'>Live Chat</h1>
+      <ScrollToBottom
+        className="chat-job__message-container"
+        followButtonClassName={'takeMeToBottom'}
+      >
+        {messageList.map(
+          (messageContent: {
+            _id: Key;
+            authorName: string;
+            message: string;
+            time: string;
+          }) => {
+            return (
+              <div
+                key={messageContent._id}
+                className={`chat-job__single-message-container ${user.firstName === messageContent.authorName ? 'you' : 'other'}`}
+              >
+                <>
+                  <p className="chat-job__message-content">{messageContent.message}</p>
+                  <div className="chat-job__message-meta">
+                    <p className="chat-job__message-author">
+                      {messageContent.authorName}
+                    </p>
+                    {/* <p id="chat-job--message--time">{messageContent.time}</p> */}
                   </div>
-                </div>
-              );
-            },
-          )}
-        </ScrollToBottom>
-      </div>
-      <div className="chat-job--footer">
+                </>
+              </div>
+            );
+          },
+        )}
+      </ScrollToBottom>
+      <div className="chat-job__footer">
         <textarea
-          className="chat-job--footer--textarea"
+          rows={1}
+          cols={120}
+          className="chat-job__footer-textarea"
           value={currentMessage}
           // type="text"
           placeholder="Write message"
@@ -158,11 +149,11 @@ export const Chat = (props: {
               sendMessage(room, name, userId, currentMessage);
           }}
         />
-        <button onClick={() => sendMessage(room, name, userId, currentMessage)}>
+        <button className='chat-job__button-send' onClick={() => sendMessage(room, name, userId, currentMessage)}>
           &#9658;
         </button>
       </div>
-      <button onClick={disconnectFromChat}>Click me to disconnect</button>
+      <button className='chat-job__button-disconnect' onClick={disconnectFromChat}>Click me to disconnect</button>
     </div>
   );
 };

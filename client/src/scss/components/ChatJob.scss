@@ -1,131 +1,128 @@
 .chat-job {
-  @include container;
-  width: 100%;
-  background-color: $background-color;
+  &__button {
+  height:40px;
+  width:190px;
 }
-
-.chat-job--chat-header {
-  @include header;
-  margin-top: 0;
+height: 800px;
+  @include container;
+  &__header {
+    @include header;
+    width: 250px;
+    margin-bottom:30px;
+  }
+p {
+  font-size: 0.8rem;
+  margin: 5px;
   margin-bottom: 0;
 }
-
-.chat-job--message-container {
+&__body {
+  width: 100%;
+  height: 600px;
+}
+&__message-container {
+  height: 550px;
+  width: 90%;
+  padding: 10px;
+  margin: auto;
   border-radius: 10px;
   background-color: $secondary-color;
-  display: flex;
-  flex-direction: row;
   box-shadow: $box-shadow;
   overflow: scroll;
-  //desktop
-  // height: 450px;
-  // width: 1000px;
-
-  //mobile
-  height: 400px;
-  width: 300px;
+}
+&__message-container > div {
+  @include flex-column;
+  justify-content: flex-start;
 }
 
-.chat-job--single-message-container {
-  display: flex;
-  flex-direction: row;
+&__single-message-container {
   border-radius: 10px;
   box-shadow: $box-shadow;
   overflow-wrap: break-word;
   word-break: break-word;
-  //mobile
-  width: 50%;
   padding: 0 5px;
-  margin: 10px;
-
-  //desktop
-  // width: 40%;
-  // padding: 0 10px;
-  // margin: 20px;
+  margin: 7px;
+  width: fit-content;
+  max-width: 70%;
+  text-align:left;
 }
-
-.chat-job--single-message-container p {
-  //mobile
-  margin: 5px;
+.you {
+  background-color: $primary-color;
+  justify-content: flex-start;
+  align-self: flex-end;
 }
-
-.chat-job--message--content {
-  width: 100%;
-  font-size: 18px;
+.other {
+  background-color: rgb(116, 151, 255);
+  justify-content: flex-end;
+  align-self: flex-start;
 }
-
-.chat-job--message--meta {
+&__message-meta {
+  padding: 0 10px;
+  margin-bottom: 2px;
+  p {
+    font-size: 0.5rem;
+    font-style: italic;
+  }
+}
+&__message-author {
   display: flex;
   flex-direction: row;
   width: 100%;
-  font-size: 14px;
-}
-
-#chat-job--message--author {
-  margin-right: 10px;
-}
-
-#you {
-  justify-content: flex-start;
-  background-color: rgb(48, 131, 31);
-}
-
-#you .chat-job--message--content {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-#you .chat-job--message--meta {
-  justify-content: flex-start;
-}
-
-#other {
-  margin-left: auto;
-  justify-content: flex-end;
-  background-color: chocolate;
-}
-
-#other .chat-job--message--content {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-#other .chat-job--message--meta {
   justify-content: flex-end;
 }
-
-.chat-job--message--meta #chat-job--message--author {
-  font-weight: bold;
+&__button-send {
+  @include button;
+  margin-top: 0;
+    align-self: center;
+    height:40px;
+    border-radius: 8px;
+  }
+  &__button-disconnect {
+    @include button;
+    width: 200px;
+  height:40px;
 }
-
-.chat-job--footer {
+&__footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-
-  //mobile
-  margin-top: 5px;
+  align-items: flex-start;
+  margin-top: 10px;
   margin-bottom: 10px;
+  width: 90%;
 
-  //desktop
-  // margin-top: 10px;
-  // margin-bottom: 20px;
-}
-
-.chat-job--footer--textarea {
-  //mobile
-  width: 150px;
+&-textarea {
   height: 40px;
-  margin-right: 10px;
-
-  //desktop
-  // width: 300px;
-  // height: 80px;
-  // margin-right: 40px;
+  resize: none;
+  border-radius: 8px;
+}
+&-textarea:focus {
+ border: 2px solid $secondary-color;
+    outline: none;
+}
+  //removes the default button added by react-scroll-to-bottom
+  .takeMeToBottom {
+    display: none;
+  }
+}
+  @media screen and (min-width: 1199px) {
+    height: 100%;
+    h1 {
+      @include container;
+      @include header-xl;
+      width: 700px;
+      font-size: 3.5rem;
+      margin-bottom: 60px;
+    }
+    h3 {
+      @include header3-xl;
+    }
+    &__message-container {
+    width: 500px;
+    height: 650px;
+    }
+    &__footer {
+      width:500px;
+    }
+  }
 }
 
-//removes the default button added by react-scroll-to-bottom
-.takeMeToBottom {
-  display: none;
-}
