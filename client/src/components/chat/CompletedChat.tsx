@@ -55,7 +55,6 @@ const CompletedChat = (): JSX.Element => {
               // id={user._id === message.messageAuthor ? 'you' : 'other'}
               >
                 <>
-                  {/* <div className="completed-chat__message-content"> */}
                   <p className="completed-chat__message-content">{message.messageContent}</p>
                   {/* </div> */}
                   <div className="completed-chat__message-meta">
