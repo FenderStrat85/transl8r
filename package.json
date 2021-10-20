@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "postinstall": "tsc && npm install --prefix server && npm install --prefix client",
+    "postinstall": "npm install --prefix server && npm install --prefix client",
     "start": "node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
