@@ -1,7 +1,6 @@
 .chat-job {
   @include container;
   width: 100%;
-  border: 1px solid black;
   background-color: $background-color;
 }
 
@@ -34,18 +33,23 @@
   box-shadow: $box-shadow;
   //mobile
   width: 50%;
-  padding: 5px;
+  padding: 0 5px;
   margin: 10px;
 
   //desktop
   // width: 40%;
-  // padding: 10px;
+  // padding: 0 10px;
   // margin: 20px;
+}
+
+.chat-job--single-message-container p {
+  //mobile
+  margin: 5px;
 }
 
 .chat-job--message--content {
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .chat-job--message--meta {
@@ -66,6 +70,7 @@
 
 #you .chat-job--message--content {
   justify-content: flex-start;
+  text-align: left;
 }
 
 #you .chat-job--message--meta {
@@ -80,6 +85,7 @@
 
 #other .chat-job--message--content {
   justify-content: flex-end;
+  text-align: right;
 }
 
 #other .chat-job--message--meta {
@@ -117,6 +123,7 @@
   // margin-right: 40px;
 }
 
+//removes the default button added by react-scroll-to-bottom
 .takeMeToBottom {
   display: none;
 }
