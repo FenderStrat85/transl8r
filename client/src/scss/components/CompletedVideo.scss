@@ -10,6 +10,29 @@ padding: 0 5%;
   }
   p {
     font-style: italic;
-    background-color: rgba(0, 0, 0, 0.071);
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+      width: 700px;
+      font-size: 3.5rem;
+    }
+    h2 {
+      @include header3-xl;
+    }
+    &__container--image {
+      width: 700px;
+    }
+    &__image {
+      box-shadow: $box-shadow;
+      width: 100%;
+    }
+    .translated-text {
+      font-size: 1.3rem;
+    margin-bottom: 60px;
+    }
+    p {
+      font-size: 2.2rem;
+    }
   }
 }
