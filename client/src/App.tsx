@@ -30,7 +30,6 @@ function App(): JSX.Element {
             </Route>
           </Switch>
         </Router>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </>
   );

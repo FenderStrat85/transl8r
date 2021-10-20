@@ -1,5 +1,4 @@
-import { UserContext } from '../../context/Context';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import BackButton from '../button/BackButton';
@@ -7,7 +6,6 @@ import { ICustomer } from '../../interfaces/interfaces';
 
 export const TranslatorPendingJobDetails = (): JSX.Element => {
   const history: any = useHistory();
-  const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const [image, setImage] = useState('');
   const [customerName, setCustomerName] = useState('');
