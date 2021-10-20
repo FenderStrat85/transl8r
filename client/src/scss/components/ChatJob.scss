@@ -34,7 +34,9 @@ p {
   @include flex-column;
   justify-content: flex-start;
 }
-
+&__message-container::-webkit-scrollbar {
+  display: none;
+}
 &__single-message-container {
   border-radius: 10px;
   box-shadow: $box-shadow;
