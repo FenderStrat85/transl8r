@@ -69,7 +69,7 @@ const Conversation = (): JSX.Element => {
       {!showChat ? (
         <div className="conversation__join-chat">
           <h1>Ready to join a chat?</h1>
-          <button onClick={joinRoom}>Join live chat!</button>
+          <button className='conversation__button-join' onClick={joinRoom}>Join live chat!</button>
           <div
             className="conversation-screen__animation-container"
             ref={animationContainer}
