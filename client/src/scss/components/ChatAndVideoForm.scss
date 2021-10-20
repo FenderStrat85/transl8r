@@ -10,7 +10,7 @@
   }
   &__form {
     @include flex-column;
-    width:280px;
+    width: 280px;
   }
   &__input {
     @include input;

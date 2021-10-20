@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 @mixin flex-row {
@@ -28,9 +28,21 @@
   margin: 50px 0px 30px 0px;
 }
 
+@mixin header-xl {
+  color: $secondary-color;
+  margin: 80px 0px 50px 0px;
+  font-size: 3.5rem;
+}
+
 @mixin header2 {
   font-weight: 300;
-  margin-top:10px;
+  margin-top: 10px;
+}
+
+@mixin header2-xl {
+  font-weight: 300;
+  margin-top: 10px;
+  font-size: 2.2rem;
 }
 
 @mixin tile {
@@ -41,6 +53,38 @@
   box-shadow: $box-shadow;
   padding-top: 10px;
   margin-bottom: 20px;
+}
+
+@mixin logout-button {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  height: 32px;
+  width: 32px;
+}
+
+@mixin logout-button-xl {
+  position: absolute;
+  right: 45px;
+  top: 45px;
+  height: 52px;
+  width: 52px;
+}
+
+@mixin back-button {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  height: 32px;
+  width: 32px;
+}
+
+@mixin back-button-xl {
+  position: absolute;
+  left: 45px;
+  top: 45px;
+  height: 52px;
+  width: 52px;
 }
 
 @mixin button {
@@ -55,14 +99,24 @@
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
+@mixin button-xl {
+  margin-top: 15px;
+  color: white;
+  border-radius: 5px;
+  background-color: $primary-color;
+  padding: 12px 5px;
+  width: 220px;
+  border: none;
+  font-size: 1.4rem;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
 @mixin button-hover {
-  // margin-top: 5px;
   background-color: $secondary-color;
-  // color: white;
-  // border-radius: 5px;
-  // padding: 7px 0px;
-  // width: 160px;
-  // box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin button-xl-hover {
+  background-color: $secondary-color;
 }
 
 @mixin input {
