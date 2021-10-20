@@ -6,9 +6,12 @@
   &__join-chat {
     width: 70%;
   }
-  button {
-    @include button;
-  }
+  // button {
+  //   @include button;
+  //   margin-top: 0;
+  //   align-self: center;
+  //   height:40px;
+  // }
 }
 
 .conversation-screen__animation-container {

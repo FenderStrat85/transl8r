@@ -128,6 +128,8 @@ export const Chat = (props: {
       </ScrollToBottom>
       <div className="chat-job__footer">
         <textarea
+          rows={1}
+          cols={120}
           className="chat-job__footer-textarea"
           value={currentMessage}
           // type="text"
@@ -141,11 +143,11 @@ export const Chat = (props: {
               sendMessage(room, name, userId, currentMessage);
           }}
         />
-        <button onClick={() => sendMessage(room, name, userId, currentMessage)}>
+        <button className='chat-job__button-send' onClick={() => sendMessage(room, name, userId, currentMessage)}>
           &#9658;
         </button>
       </div>
-      <button onClick={disconnectFromChat}>Click me to disconnect</button>
+      <button className='chat-job__button-disconnect' onClick={disconnectFromChat}>Click me to disconnect</button>
     </div>
   );
 };
