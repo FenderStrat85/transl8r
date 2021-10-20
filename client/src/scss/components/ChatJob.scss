@@ -95,6 +95,10 @@ p {
   resize: none;
   border-radius: 8px;
 }
+&-textarea:focus {
+ border: 2px solid $secondary-color;
+    outline: none;
+}
   //removes the default button added by react-scroll-to-bottom
   .takeMeToBottom {
     display: none;
@@ -113,11 +117,11 @@ p {
       @include header3-xl;
     }
     &__message-container {
-    width: 400px;
+    width: 500px;
     height: 650px;
     }
     &__footer {
-      width:400px;
+      width:500px;
     }
   }
 }
