@@ -3,12 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
 import BackButton from '../button/BackButton';
+import { ICustomer } from '../../interfaces/interfaces';
 
 export const TranslatorPendingJobDetails = (): JSX.Element => {
   const history: any = useHistory();
   const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const [image, setImage] = useState('');
+  const [customerName, setCustomerName] = useState('');
   const job: any = useLocation();
   const { _id, jobType, jobDescription } = job.state;
 
@@ -18,8 +20,17 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     setImage(imageUrl);
   };
 
+  const fetchCustomerName = async (): Promise<void> => {
+    const customerObject: ICustomer = await apiService.getCustomerName(
+      _id,
+      accessToken,
+    );
+    const name = customerObject.firstName;
+    setCustomerName(name);
+  };
   useEffect(() => {
     fetchImage();
+    fetchCustomerName();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,15 +65,26 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-          <h1 className='translator-pending-job-details__header'>Job details</h1>
+          <h1 className="translator-pending-job-details__header">
+            Job details
+          </h1>
           {jobType === 'chat' ? (
-            <h2>{user.firstName.toLocaleUpperCase()} has requested some help via chat with you:</h2>
+            <h2>
+              {customerName.toLocaleUpperCase()} has requested some help via
+              chat with you:
+            </h2>
           ) : null}
           {jobType === 'video' ? (
-            <h2>{user.firstName.toLocaleUpperCase()} would like to receive some help via video chat:</h2>
+            <h2>
+              {customerName.toLocaleUpperCase()} would like to receive some help
+              via video chat:
+            </h2>
           ) : null}
           {jobType === 'image' ? (
-            <h2>{user.firstName.toLocaleUpperCase()} needs help with some words in this image:</h2>
+            <h2>
+              {customerName.toLocaleUpperCase()} needs help with some words in
+              this image:
+            </h2>
           ) : null}
           <p>"{jobDescription}"</p>
           {image ? (
