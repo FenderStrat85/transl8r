@@ -1,17 +1,14 @@
-import { useState, useContext, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../../services/apiService';
-import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import Select from 'react-select';
 import { ILanguage } from '../../interfaces/interfaces';
-import DashboardButton from '../button/DashboardButton';
 import BackButton from '../button/BackButton';
 import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 
 const ImageForm = (props: { jobType: string }): JSX.Element => {
   const history = useHistory<History>();
-  const { user } = useContext(UserContext);
   const accessToken = localStorage.getItem('accessToken');
   const options = languageChoice;
   const { jobType } = props;
@@ -98,7 +95,6 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
       console.log(error);
     }
     console.log('uploaded!');
-
   };
 
   const uploadImage = async (): Promise<void> => {
@@ -176,7 +172,9 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
             placeholder={'language to'}
             onChange={(event) => handleSelectedTo(event)}
           />
-          <label className='image-form__choose-button' htmlFor='fileInput'>Choose File</label>
+          <label className="image-form__choose-button" htmlFor="fileInput">
+            Choose File
+          </label>
           <input
             className="image-form__image-select"
             id="fileInput"

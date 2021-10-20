@@ -1,6 +1,5 @@
 import PendingTranslatorJobTile from '../list-items/translator/PendingTranslatorJobTile';
 import { useQuery, UseQueryResult } from 'react-query';
-import { Link } from 'react-router-dom';
 import { Key } from 'react';
 import { IJob } from '../../interfaces/interfaces';
 
@@ -50,9 +49,6 @@ const TranslatorJobList = (): JSX.Element => {
           ) : (
             <h3>No pending jobs</h3>
           )}
-          {/* <Link to={{ pathname: '/app/translator/dashboard/history' }}>
-            <button>View Accepted jobs</button>
-          </Link> */}
         </div>
       )}
     </>
