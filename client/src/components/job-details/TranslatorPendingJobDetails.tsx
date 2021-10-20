@@ -54,19 +54,17 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
     <div className="translator-pending-job-details">
       {!jobAccepted ? (
         <>
-          <div className="translator-pending-job-details__header">
-            <h1>Job details</h1>
-          </div>
+          <h1 className='translator-pending-job-details__header'>Job details</h1>
           {jobType === 'chat' ? (
-            <h2>{user.firstName} would like to have a chat with you</h2>
+            <h2>{user.firstName.toLocaleUpperCase()} has requested some help via chat with you:</h2>
           ) : null}
           {jobType === 'video' ? (
-            <h2>{user.firstName} would like to have a video call with you</h2>
+            <h2>{user.firstName.toLocaleUpperCase()} would like to receive some help via video chat:</h2>
           ) : null}
           {jobType === 'image' ? (
-            <h2>{user.firstName} needs a translation for this image</h2>
+            <h2>{user.firstName.toLocaleUpperCase()} needs help with some words in this image:</h2>
           ) : null}
-          <p>Details: {jobDescription}</p>
+          <p>"{jobDescription}"</p>
           {image ? (
             <img
               className="translator-pending-job-details__image"

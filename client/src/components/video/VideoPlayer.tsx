@@ -151,13 +151,16 @@ const VideoPlayer = (): JSX.Element => {
   return (
     <div className="video-player">
       {stream && (
-        <video
-          className="video-player__video--my-video"
-          playsInline
-          muted
-          ref={myVideo}
-          autoPlay
-        />
+        <>
+          <h1>Video Conference</h1>
+          <video
+            className="video-player__video--my-video"
+            playsInline
+            muted
+            ref={myVideo}
+            autoPlay
+          />
+        </>
       )}
 
       <div className="video-player__controls">
@@ -185,13 +188,16 @@ const VideoPlayer = (): JSX.Element => {
         ) : null}
 
         {call.isReceivingCall && !callAccepted && queryResult.data !== null ? (
-          <button
-            className="video-player__button"
-            type="button"
-            onClick={answerCall}
-          >
-            Answer this call
-          </button>
+          <>
+            <h1>Somebody is calling you!</h1>
+            <button
+              className="video-player__button"
+              type="button"
+              onClick={answerCall}
+            >
+              Answer this call
+            </button>
+          </>
         ) : null}
       </div>
 

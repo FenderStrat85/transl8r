@@ -11,7 +11,7 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
 
   const { user } = useContext(UserContext);
   const accessToken: string | null = localStorage.getItem('accessToken');
-  const { jobName, image, _id } = props.job;
+  const { jobName, jobDescription, image, _id } = props.job;
   const COMPLETED = 'completed';
   const cloudinaryApiKey: any = process.env.REACT_APP_CLOUDINARY_API_KEY;
 
@@ -90,9 +90,8 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
 
   return (
     <div className="translator-image">
-      <div className="translator-image__header">
-        <h2>{jobName}</h2>
-      </div>
+      <h1 className="translator-image__header">{jobName}</h1>
+      <p>"{jobDescription}"</p>
       <form className="translator-image__form" onSubmit={handleSubmit}>
         <img
           className="translator-image__image"
@@ -100,7 +99,6 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
           id="translator"
           src={image}
           alt="sample"
-          style={{ maxWidth: '50%' }}
           onClick={() => showMarkerArea()}
         />
         <textarea

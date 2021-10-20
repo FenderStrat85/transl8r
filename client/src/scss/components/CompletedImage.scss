@@ -6,7 +6,7 @@
 
   h1 {
     @include header;
-    margin-top: 56px;
+    width: 250px;
   }
   h3 {
     @include header2;
@@ -20,8 +20,8 @@
   }
   .translated-text {
     @include header2;
-    margin-bottom: 50px;
-    background-color: rgba(0, 0, 0, 0.043);
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.077);
     font-style: italic;
   }
 }
