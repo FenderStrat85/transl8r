@@ -58,10 +58,16 @@ p {
 &__message-meta {
   padding: 0 10px;
   margin-bottom: 2px;
+  @include flex-row;
+
   p {
     font-size: 0.5rem;
     font-style: italic;
   }
+}
+&__message-time {
+  width: 50px;
+  margin:0;
 }
 &__message-author {
   display: flex;
