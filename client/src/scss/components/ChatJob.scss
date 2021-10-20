@@ -50,13 +50,15 @@ p {
   justify-content: flex-start;
   align-self: flex-end;
 }
+
+
 .other {
   background-color: rgb(116, 151, 255);
   justify-content: flex-end;
   align-self: flex-start;
 }
 &__message-meta {
-  padding: 0 10px;
+  padding: 0 0 0 10px;
   margin-bottom: 2px;
   @include flex-row;
 
@@ -74,6 +76,7 @@ p {
   flex-direction: row;
   width: 100%;
   justify-content: flex-end;
+  margin:0;
 }
 &__button-send {
   @include button;

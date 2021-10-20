@@ -69,8 +69,8 @@ const CompletedChat = (): JSX.Element => {
                   <div className="completed-chat__message-meta">
                     <p className="completed-chat__message-author">
                       {user._id === message.messageAuthor
-                        ? user.firstName + '-' + getDate(message.createdAt)
-                        : otherParticipant + '-' + getDate(message.createdAt)}
+                        ? user.firstName + ' - ' + getDate(message.createdAt)
+                        : otherParticipant + ' - ' + getDate(message.createdAt)}
                     </p>
                   </div>
                 </>
