@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "nodemon --watch './**/*.ts' --exec 'ts-node' index.ts",
     "populate": "ts-node ./utils/languages.ts"
