@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
 
 const NotFound = () => {
+  const animationContainer = useRef(null);
+
   useEffect(() => {
     lottie
       .loadAnimation({
@@ -18,6 +20,10 @@ const NotFound = () => {
   return (
     <div className="not-found-screen">
       <h1>404 - Not Found</h1>
+      <div
+        className="login-screen__animation-container"
+        ref={animationContainer}
+      ></div>
     </div>
   );
 };
