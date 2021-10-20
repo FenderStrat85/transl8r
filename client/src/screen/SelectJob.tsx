@@ -21,15 +21,15 @@ const SelectJob = (): JSX.Element => {
       </h2>
       <div className="select-job-screen__button-container">
         <Link to="/app/customer/createJob/espresso">
-          <img className="select-job-screen__job-type-icon" src={image} alt='image translation' />
+          <img className="select-job-screen__job-type-icon--image" src={image} alt='image translation' />
           {/* <button className='select-job-screen__button'>Espresso</button> */}
         </Link>
         <Link to="/app/customer/createJob/cappuccino">
-          <img className="select-job-screen__job-type-icon" src={chat} alt='chat translation' />
+          <img className="select-job-screen__job-type-icon--chat" src={chat} alt='chat translation' />
           {/* <button className='select-job-screen__button'>Cappuccino</button> */}
         </Link>
         <Link to="/app/customer/createJob/macchiato">
-          <img className="select-job-screen__job-type-icon" src={video} alt='video translation' />
+          <img className="select-job-screen__job-type-icon--video" src={video} alt='video translation' />
           {/* <button className='select-job-screen__button'>Macchiato</button> */}
         </Link>
       </div>
