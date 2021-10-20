@@ -21,4 +21,25 @@
     margin-top: 50px;
     width: 70%;
   }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+    }
+    p {
+      margin-top: 20px;
+    }
+    .login-screen__button {
+      @include button;
+      padding: 10px 50px;
+      width: 168px;
+    }
+    .login-screen__button:hover {
+      @include button-hover;
+      padding: 10px 35px;
+      width: 168px;
+    }
+    &__animation-container {
+      width: 35%;
+    }
+  }
 }

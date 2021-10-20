@@ -27,6 +27,10 @@
     input::placeholder {
       @include input-placeholder;
     }
+    input:focus {
+      border: 2px solid $secondary-color;
+      outline: none;
+    }
   }
   &__input-container--translator {
     @include flex-column;
@@ -36,6 +40,10 @@
     input::placeholder {
       @include input-placeholder;
     }
+    input:focus {
+      border: 2px solid $secondary-color;
+      outline: none;
+    }
   }
   &__selection-languages-header {
     margin-top: 35px;
@@ -43,5 +51,43 @@
   &__multi-select {
     width: 70%;
     margin: 0px 0px 5px 0px;
+  }
+  @media screen and (min-width: 1199px) {
+    form {
+      @include flex-column;
+      button {
+        @include button;
+        margin-top: 20px;
+        padding: 10px 35px;
+        width: 168px;
+      }
+      button:hover {
+        @include button-hover;
+        margin-top: 20px;
+        padding: 10px 35px;
+        width: 168px;
+      }
+    }
+    &__input-container--customer {
+      @include flex-column;
+      input {
+        @include input;
+        padding: 10px;
+      }
+      input::placeholder {
+        @include input-placeholder;
+        padding: 10px;
+      }
+    }
+    &__input-container--translator {
+      @include flex-column;
+      input {
+        @include input;
+        padding: 10px;
+      }
+      input::placeholder {
+        @include input-placeholder;
+      }
+    }
   }
 }

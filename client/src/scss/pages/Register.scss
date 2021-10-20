@@ -5,4 +5,9 @@
     margin-top: 70px;
     font-size: 3rem;
   }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+    }
+  }
 }

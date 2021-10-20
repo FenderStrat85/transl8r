@@ -1,8 +1,8 @@
 .image-form {
   @include container;
   &__form {
-  width:280px;
-}
+    width: 280px;
+  }
   h1 {
     @include header;
     width: 280px;
@@ -20,6 +20,10 @@
   &__input::placeholder {
     @include input-placeholder;
   }
+  input:focus {
+    border: 2px solid $secondary-color;
+    outline: none;
+  }
   &__text-area {
     @include input;
     margin-left: 10%;
@@ -31,6 +35,10 @@
   &__text-area::placeholder {
     @include input-placeholder;
   }
+  &__text-area:focus {
+    border: 2px solid $secondary-color;
+    outline: none;
+  }
   &__select {
     width: 80%;
     margin-bottom: 10px;
@@ -39,7 +47,6 @@
     @include button;
     margin-top: 50px;
     margin-bottom: 50px;
-
   }
   &__image-preview {
     width: 80%;
@@ -55,5 +62,40 @@
   }
   &__image-preview {
     box-shadow: $box-shadow;
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+      width: 700px;
+      font-size: 3rem;
+    }
+    &__input {
+      @include input;
+      width: 100%;
+      padding: 10px;
+    }
+    &__input::placeholder {
+      font-size: 1rem;
+    }
+    &__text-area::placeholder {
+      font-size: 1rem;
+    }
+    &__choose-button {
+      width: 130px;
+      padding: 8px 20px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    &__choose:hover {
+      @include button-hover;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 1.7rem;
+      margin-top: 10px;
+    }
+    &__image-preview {
+      width: 240%;
+    }
   }
 }
