@@ -1,11 +1,9 @@
-//@ts-nocheck
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import io, { Socket } from 'socket.io-client';
 import { DefaultEventsMap } from 'socket.io-client/build/typed-events';
 import { UserContext } from '../../context/Context';
 import { IChatMessage } from '../../interfaces/interfaces';
-import lottie from 'lottie-web';
 import Chat from './ChatJob';
 
 export const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(
@@ -15,17 +13,6 @@ export const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(
 const Conversation = (): JSX.Element => {
   const { user } = useContext(UserContext);
   const [showChat, setShowChat] = useState(false);
-  const animationContainer = useRef(null);
-
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: animationContainer.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: require('../../assets/animations/conversation-component.json'),
-    });
-  }, []);
 
   const job = useLocation<any>();
   let room: string;
@@ -70,12 +57,6 @@ const Conversation = (): JSX.Element => {
         <div className="conversation__join-chat">
           <h1>Ready to join a chat?</h1>
           <button onClick={joinRoom}>Join live chat!</button>
-          <div
-            className="conversation-screen__animation-container"
-            ref={animationContainer}
-          >
-            {' '}
-          </div>
         </div>
       ) : (
         <div className="conversation__chat">

@@ -1,12 +1,16 @@
 .conversation {
   @include container;
-h1 {
-  @include header;
+  h1 {
+    @include header;
+  }
+  &__join-chat {
+    width: 70%;
+  }
+  button {
+    @include button;
+  }
 }
-&__join-chat {
-  width:70%;
-}
-button {
-  @include button;
-}
+
+.conversation__chat {
+  @include container;
 }

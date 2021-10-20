@@ -95,9 +95,11 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <h1>Live Chat</h1>
+      <div className="chat-job--chat-header">
+        <h1>Live Chat</h1>
+      </div>
       <div className="chat-job--body">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom className="chat-job--message-container">
           {messageList.map(
             (messageContent: {
               _id: Key;
@@ -108,7 +110,7 @@ export const Chat = (props: {
               return (
                 <div
                   key={messageContent._id}
-                  className="chat-job--message-container"
+                  className="chat-job--single-message-container"
                   id={name === messageContent.authorName ? 'you' : 'other'}
                 >
                   <div>

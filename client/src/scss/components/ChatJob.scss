@@ -3,3 +3,62 @@
   width: 100%;
   border: 1px solid black;
 }
+
+.chat-job--chat-header {
+  @include header;
+  margin-top: 0;
+}
+
+.chat-job--message-container {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+
+  //desktop
+  height: 600px;
+  width: 1000px;
+
+  //mobile
+  // height: 400px;
+  // width: 300px;
+  overflow: scroll;
+}
+
+.chat-job--single-message-container {
+  border: 1px solid pink;
+  margin: 10px;
+  width: 60%;
+}
+
+#you {
+  margin-right: auto;
+  // justify-content: flex-start;
+}
+
+#you .message-content {
+  justify-content: flex-start;
+}
+
+#you .message-meta {
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+
+#other {
+  justify-content: flex-end;
+}
+
+#other .message-content {
+  justify-content: flex-end;
+  background-color: cornflowerblue;
+}
+
+#other .message-meta {
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
+.message-meta #author {
+  margin-left: 10px;
+  font-weight: bold;
+}
