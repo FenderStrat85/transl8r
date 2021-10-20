@@ -70,7 +70,6 @@ export const TranslatorPendingJobDetails = (): JSX.Element => {
               className="translator-pending-job-details__image"
               src={image}
               alt="customer's translation request"
-              style={{ width: 300 }}
             />
           ) : null}
 
