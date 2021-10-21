@@ -24,7 +24,7 @@ p {
   @include flex-column;
   justify-content: flex-start;
   border-radius: 10px;
-  background-color: rgb(174, 206, 211);
+  background-color: rgb(200, 209, 210);
   box-shadow: $box-shadow;
   overflow: scroll;
 }
@@ -50,7 +50,7 @@ p {
   font-weight: 400;
 }
 .other {
-  background-color: $primary-color;
+  background-color: #055c6f;
   justify-content: flex-end;
   align-self: flex-start;
   color: white;
