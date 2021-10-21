@@ -106,6 +106,7 @@ const TranslatorImage = (props: { job: any }): JSX.Element => {
           required
           name="textarea"
           value={value}
+          placeholder={'Please add any notes or translation details here'}
           onChange={(event) => handleChange(event)}
         />
         <button className="translator-image__button" type="submit">
