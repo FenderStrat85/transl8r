@@ -39,14 +39,46 @@ There's a few things you need to do to get started:
 npm install npm@latest -g
 ```
 
+- API Keys
+
+  - Cloudinary
+
+- Database
+
+You will need to create a Postgres database. You can set the name and password of this database in the servers environment variables as shown in the .env.example file
+
+1. Clone this repo
+
+2.
+3. transl8r/client % npm install
+4. transl8r/server % npm install
+
+5. Create `server/.env` using `server/.env.example` as a template
+
+6. Create `client/.env` using `client/.env.example` as a template
+
 ### BackEnd
 
-Navigate to the server folder and run npx nodemon, quit and run npm populate to populate the languages database. From here on npx nodemon will be the only command you need
+- This will create the tables in the Postgresql database
+
+```
+transl8r/server npx nodemon
+```
+
+- This will populate the databases language table
+
+```
+transl8r/server npm run populate
+```
+
+- Now fire up database with the populated languages and you're good to go!
+
+```
+transl8r/server npx nodemon
+```
 
 ### FrontEnd
 
-Navigate to the client and type npm start
-
-### Environment variables
-
-You will need to set a few env variables in the client and server. Examples for both can be found in the .env.example file located in both the client and server directories.
+```
+transl8r/client % npm start
+```
