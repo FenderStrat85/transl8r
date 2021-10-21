@@ -106,6 +106,8 @@ p {
   height: 40px;
   resize: none;
   border-radius: 8px;
+    border: 1px solid $primary-color;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 &-textarea:focus {
  border: 2px solid $secondary-color;
