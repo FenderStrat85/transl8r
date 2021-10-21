@@ -6,8 +6,6 @@ Transl8r is an app designed to connect people and translators to provide fast, e
 
 ## Contributors
 
-Markup:
-
 - [Richard Barnes](https://www.linkedin.com/in/richard-barnes-cmgr-421996a9/)
 - [Francesco Elia Foradori](https://github.com/Fora00)
 - [Thomas Macfie](https://www.linkedin.com/in/tom-macfie-bb4832175/)
@@ -35,13 +33,11 @@ There's a few things you need to do to get started:
 
 ### Prerequsites
 
-Markup:
-
 - npm
 
-Markup: `code()`
-
+```
 npm install npm@latest -g
+```
 
 ### BackEnd
 
