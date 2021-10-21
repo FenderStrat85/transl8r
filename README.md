@@ -49,13 +49,13 @@ You will need to create a Postgres database. You can set the name and password o
 
 1. Clone this repo
 
-2.
-3. transl8r/client % npm install
-4. transl8r/server % npm install
+2. `transl8r/client % npm install`
 
-5. Create `server/.env` using `server/.env.example` as a template
+3. `transl8r/server % npm install`
 
-6. Create `client/.env` using `client/.env.example` as a template
+4. Create `server/.env` using `server/.env.example` as a template
+
+5. Create `client/.env` using `client/.env.example` as a template
 
 ### BackEnd
 
