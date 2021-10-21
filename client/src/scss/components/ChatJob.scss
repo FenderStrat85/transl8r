@@ -22,17 +22,19 @@ p {
 &__message-container {
   height: 550px;
   width: 90%;
-  padding: 10px;
+  padding: 0 10px;
   margin: auto;
   border-radius: 10px;
   background-color: $secondary-color;
   box-shadow: $box-shadow;
   overflow: scroll;
-
 }
 &__message-container > div {
   @include flex-column;
   justify-content: flex-start;
+}
+&__message-container > div::-webkit-scrollbar {
+  display: none;
 }
 &__message-container::-webkit-scrollbar {
   display: none;

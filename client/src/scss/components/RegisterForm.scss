@@ -13,16 +13,16 @@
       @include button-hover;
       margin-top: 20px;
     }
-    #root
-      > div
-      > div
-      > form
-      > div.rmsc.register-form__multi-select
-      > div
-      > div.dropdown-heading
-      > button {
-      display: none;
-    }
+    // #root
+    //   > div
+    //   > div
+    //   > form
+    //   > div.rmsc.register-form__multi-select
+    //   > div
+    //   > div.dropdown-heading
+    //   > button {
+    //   display: none;
+    // }
   }
   &__radio-button-container {
     @include flex-column;
@@ -64,6 +64,10 @@
     width: 70%;
     margin: 0px 0px 5px 0px;
   }
+  .dropdown-heading-value  {
+    // display: inline-block;
+    text-overflow: ellipsis;
+  }
   @media screen and (min-width: 1199px) {
     form {
       @include flex-column;
@@ -78,6 +82,9 @@
         margin-top: 20px;
         padding: 10px 35px;
         width: 168px;
+      }
+      .dropdown-heading-value {
+        text-overflow: ellipsis;
       }
     }
     &__input-container--customer {
@@ -102,4 +109,7 @@
       }
     }
   }
+}
+.clear-selected-button {
+visibility: hidden;
 }
