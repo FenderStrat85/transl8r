@@ -117,31 +117,28 @@ const setNotificationToFalse = async (
   }
 };
 
-const getJobs = async (req: Request, res: Response): Promise<void> => {
+const getJobs = async (req: Request, res: Response) => {
   const { role, _id } = req.user;
   const { status } = req.params;
+  const basedOnPendingOrAccepted = (job: IJob) => {
+    return job.status === 'pending' || job.status === 'accepted';
+  };
   try {
     if (role === 'customer') {
       const jobs: IJob[] = await db.Job.findAll({ where: { CustomerId: _id } });
       if (status === 'pendingAndAccepted') {
-        const filteredJobs = jobs.filter(
-          (job: IJob) => job.status === 'pending' || job.status === 'accepted',
-        );
-        if (filteredJobs.length === 0) {
-          res.status(200).send([]);
-        } else {
-          res.status(200).send(filteredJobs);
-        }
-      } else {
-        const filteredJobs = jobs.filter((job: IJob) => job.status === status);
-        res.status(200).send(filteredJobs);
+        const filteredJobs = jobs.filter(basedOnPendingOrAccepted);
+        return res.status(200).send(filteredJobs);
       }
-    } else if (role === 'translator') {
+
+      const filteredJobs = jobs.filter((job: IJob) => job.status === status);
+      return res.status(200).send(filteredJobs);
+    }
+
+    if (role === 'translator') {
       let jobs: IJob[] = await db.Job.findAll({ where: { TranslatorId: _id } });
       const filteredJobs = jobs.filter((job: IJob) => job.status === status);
-      if (!filteredJobs) {
-        res.status(200).send([]);
-      }
+
       res.status(200).send(filteredJobs);
     }
   } catch (error) {
@@ -181,11 +178,7 @@ const getAvailableJobs = async (req: Request, res: Response): Promise<void> => {
         suitedJobs.push(job);
       }
     }
-    if (suitedJobs.length <= 0) {
-      res.status(200).send([]);
-    } else {
-      res.status(200).send(suitedJobs);
-    }
+    res.status(200).send(suitedJobs);
   } catch (error) {
     res.status(400).send({
       error: '400',
