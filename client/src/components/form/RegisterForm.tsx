@@ -97,7 +97,7 @@ const RegisterForm = (): JSX.Element => {
             </div>
           </div>
         </div>
-        {formValue.role === 'customer' ? (
+        {formValue.role !== 'translator' ? (
           <div className="register-form__input-container--customer">
             <input
               className="register-form__input"
