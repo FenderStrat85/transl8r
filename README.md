@@ -8,7 +8,7 @@ Transl8r is an app designed to connect people and translators to provide fast, e
 
 - [Richard Barnes](https://www.linkedin.com/in/richard-barnes-cmgr/)
 - [Francesco Elia Foradori](https://www.linkedin.com/in/francesco-elia-foradori/)
-- [Thomas Macfie](https://www.linkedin.com/in/tom-macfie-bb4832175/)
+- [Tom Macfie](https://www.linkedin.com/in/tom-macfie/)
 - [Christian Letter](www.linkedin.com/in/christian-letter)
 
 ## Technologies
