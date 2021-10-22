@@ -2,8 +2,8 @@
   @include container;
   @include tile;
   padding-top: 0;
-    &__bidirectional {
-    width: 15%;
+  &__bidirectional {
+    width: 50px;
   }
   &__flag-container {
     @include flex-row;
@@ -22,14 +22,36 @@
   }
   &__job-type-icon {
     width: 30px;
+  }
+  @media screen and (min-width: 1199px) {
+    @include tile-xl;
+    &__bidirectional {
+      width: 12%;
+      padding-top: 25px;
+    }
+    &__flag-container {
+      margin-top: 0px;
+    }
+    &__details {
+      padding-bottom: 30px;
+      p {
+        font-size: 1.3rem;
+        align-items: center;
+      }
+    }
+    &__job-type-icon {
+      width: 40px;
+    }
   }
 }
 
-.accepted-and-completed-customer{
+.accepted-and-completed-customer {
   @include container;
   @include tile;
-    &__bidirectional {
-    width: 15%;
+  padding-top: 30px;
+
+  &__bidirectional {
+    width: 50px;
   }
   &__flag-container {
     @include flex-row;
@@ -48,5 +70,26 @@
   }
   &__job-type-icon {
     width: 30px;
+  }
+  @media screen and (min-width: 1199px) {
+    @include tile-xl;
+    padding-top: 40px;
+    &__bidirectional {
+      width: 12%;
+      padding-top: 25px;
+    }
+    &__flag-container {
+      margin-top: 0px;
+    }
+    &__details {
+      padding-bottom: 30px;
+      p {
+        font-size: 1.3rem;
+        align-items: center;
+      }
+    }
+    &__job-type-icon {
+      width: 40px;
+    }
   }
 }

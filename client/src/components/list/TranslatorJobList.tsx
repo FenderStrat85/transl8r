@@ -47,7 +47,7 @@ const TranslatorJobList = (): JSX.Element => {
               <PendingTranslatorJobTile key={job._id} job={job} />
             ))
           ) : (
-            <h3>No pending jobs</h3>
+            <h3>No pending requests</h3>
           )}
         </div>
       )}

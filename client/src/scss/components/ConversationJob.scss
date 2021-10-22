@@ -1,12 +1,23 @@
 .conversation {
   @include container;
-h1 {
-  @include header;
-}
-&__join-chat {
-  width:70%;
-}
-button {
+  h1 {
+    @include header;
+  }
+  &__join-chat {
+    width: 70%;
+  }
+&__button-join {
   @include button;
 }
+}
+
+.conversation-screen__animation-container {
+  //desktop ONLY
+  //Sets height fine for desktop, but for phone pushes it
+  //to the bottom of the screen
+  height: 600px;
+}
+
+.conversation__chat {
+  @include container;
 }

@@ -1,41 +1,56 @@
 .translator-image {
   @include container;
-&__header {
-  @include header;
-}
-p {
-  @include header2;
-  font-style: italic;
-  background-color: rgba(0, 0, 0, 0.071);
-  width:80%;
-}
-form {
-  @include flex-column;
-}
-&__input {
-@include input;
-width: 100%;
-}
-&__input::placeholder {
-  @include input-placeholder;
-}
-&__text-area {
-  @include input;
-  margin-left: 10%;
-  margin-right: 10%;
-  resize: vertical;
-  width: 80%;
-  margin-bottom: 30px;
-}
-&__text-area::placeholder {
-  @include input-placeholder;
-}
-&__button {
-@include button;
-}
-&__image {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  width: 80%;
-}
+  &__header {
+    @include header;
+  }
+  p {
+    @include header2;
+    font-style: italic;
+    width: 80%;
+  }
+  form {
+    @include flex-column;
+  }
+  &__text-area {
+    @include input;
+    margin-left: 10%;
+    margin-right: 10%;
+    resize: vertical;
+    width: 80%;
+    margin-bottom: 30px;
+  }
+  &__text-area::placeholder {
+    @include input-placeholder;
+  }
+  &__text-area:focus {
+    // @include input-placeholder;
+        border: 2px solid $secondary-color;
+    outline: none;
+  }
+  &__button {
+    @include button;
+  }
+  &__image {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+    }
+    &__text-area {
+      font-size: 1.1rem;
+      font-family: $main-font;
+      width: 75%;
+    }
+    &__text-area::placeholder {
+      @include input-placeholder;
+    }
+    &__image {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      width: 75%;
+    }
+  }
 }

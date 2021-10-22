@@ -36,7 +36,7 @@ const CompletedImage = (): JSX.Element => {
       <div className="completed-image">
         {user.role === 'customer' ? (
           <div className="completed-image__container">
-            <h1>Your image has been translated:</h1>
+            <h1>Your image translation:</h1>
             {image.imageUrl ? (
               <div className="completed-image__container--image">
                 <h3>Your translated image:</h3>
@@ -45,9 +45,7 @@ const CompletedImage = (): JSX.Element => {
                   src={image.imageUrlTranslated}
                   alt="translator"
                 />
-                <div className='translated-text'>
-                  {image.translatedText}
-                </div>
+                <div className="translated-text">"{image.translatedText}"</div>
                 <h3>The original image: </h3>
                 <img
                   className="completed-image__image"
@@ -72,7 +70,7 @@ const CompletedImage = (): JSX.Element => {
                     alt="translator"
                   />
                   <h3>You added this helper text: </h3>
-                  <div className='translated-text'>
+                  <div className="translated-text">
                     "{image.translatedText}"
                   </div>
                   <h3>The original image:</h3>

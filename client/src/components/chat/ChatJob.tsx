@@ -27,6 +27,13 @@ export const Chat = (props: {
   //_id initial undefined, but is set the _id of the specific message sent
   const accessToken: string | null = localStorage.getItem('accessToken');
 
+  const getCurrentTime = () => {
+    const current = new Date(Date.now());
+    const hours = current.getHours();
+    const minutes = ('0' + current.getMinutes()).slice(-2);
+    return hours + ':' + minutes;
+  };
+
   const sendMessage = async (
     room: string,
     name: string,
@@ -34,16 +41,15 @@ export const Chat = (props: {
     currentMessage: string,
   ): Promise<void> => {
     if (currentMessage !== '') {
+      const currentTime = getCurrentTime();
+      console.log(currentTime);
       const messageData: IChatMessage = {
         room: room,
         authorName: name,
         userId: userId,
         message: currentMessage,
         _id: '',
-        time:
-          new Date(Date.now()).getHours() +
-          ':' +
-          new Date(Date.now()).getMinutes(),
+        time: currentTime,
       };
       const res = await apiService.createMessage(messageData, accessToken);
       messageData._id = res._id;
@@ -95,43 +101,46 @@ export const Chat = (props: {
 
   return (
     <div className="chat-job">
-      <h1>Live Chat</h1>
-      <div className="chat-job--body">
-        <ScrollToBottom className="message-container">
-          {messageList.map(
-            (messageContent: {
-              _id: Key;
-              authorName: string;
-              message: string;
-              time: string;
-            }) => {
-              return (
-                <div
-                  key={messageContent._id}
-                  className="chat-job--message-container"
-                  id={name === messageContent.authorName ? 'you' : 'other'}
-                >
-                  <div>
-                    <div className="chat-job--message--content">
-                      <p>{messageContent.message}</p>
-                    </div>
-                    <div className="chat-job--message--meta">
-                      <p id="chat-job--message--time">{messageContent.time}</p>
-                      <p id="chat-job--message--author">
-                        {messageContent.authorName}
-                      </p>
-                    </div>
+      <h1 className="chat-job__header">Live Chat</h1>
+      <ScrollToBottom
+        className="chat-job__message-container"
+        followButtonClassName={'takeMeToBottom'}
+      >
+        {messageList.map(
+          (messageContent: {
+            _id: Key;
+            authorName: string;
+            message: string;
+            time: string;
+          }) => {
+            return (
+              <div
+                key={messageContent._id}
+                className={`chat-job__single-message-container ${
+                  user.firstName === messageContent.authorName ? 'you' : 'other'
+                }`}
+              >
+                <>
+                  <p className="chat-job__message-content">
+                    {messageContent.message}
+                  </p>
+                  <div className="chat-job__message-meta">
+                    <p className="chat-job__message-author">
+                      {messageContent.authorName} - {messageContent.time}
+                    </p>
                   </div>
-                </div>
-              );
-            },
-          )}
-        </ScrollToBottom>
-      </div>
-      <div className="chat-job--footer">
-        <input
+                </>
+              </div>
+            );
+          },
+        )}
+      </ScrollToBottom>
+      <div className="chat-job__footer">
+        <textarea
+          rows={1}
+          cols={120}
+          className="chat-job__footer-textarea"
           value={currentMessage}
-          type="text"
           placeholder="Write message"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
@@ -142,11 +151,19 @@ export const Chat = (props: {
               sendMessage(room, name, userId, currentMessage);
           }}
         />
-        <button onClick={() => sendMessage(room, name, userId, currentMessage)}>
+        <button
+          className="chat-job__button-send"
+          onClick={() => sendMessage(room, name, userId, currentMessage)}
+        >
           &#9658;
         </button>
       </div>
-      <button onClick={disconnectFromChat}>Click me to disconnect</button>
+      <button
+        className="chat-job__button-disconnect"
+        onClick={disconnectFromChat}
+      >
+        Click me to disconnect
+      </button>
     </div>
   );
 };

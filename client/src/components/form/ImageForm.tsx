@@ -48,13 +48,11 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
     const file = event.target.files[0];
     const extension = file.name.split('.').reverse()[0].toLowerCase();
     const supportedExtensions = ['png', 'jpeg', 'heic', 'gif', 'jpg'];
-    //TODO: add supported extensions
     if (supportedExtensions.includes(extension)) {
       previewFile(file);
       setSelectedFile(file);
       setFileInputState(event.target.value);
     } else {
-      //TODO: redirect to an error page
       alert('This image is not an image');
     }
   };
@@ -98,7 +96,6 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
   };
 
   const uploadImage = async (): Promise<void> => {
-    //TODO: It's better to use React's way of handing HTML elements (refs) instead of using the native DOM API (getElementById).
     const imgToUpload = (document.getElementById('user') as HTMLInputElement)
       .src;
     const data = new FormData();

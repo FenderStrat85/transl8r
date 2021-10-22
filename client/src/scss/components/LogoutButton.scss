@@ -1,6 +1,6 @@
 .logout-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 30px;
+  @include logout-button;
+  @media screen and (min-width: 1199px) {
+    @include logout-button-xl;
+  }
 }

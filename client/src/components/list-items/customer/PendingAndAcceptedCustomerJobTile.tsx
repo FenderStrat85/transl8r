@@ -84,13 +84,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
     <>
       {status === 'pending' ? (
         <div className="pending-customer">
-          <p>
-            {/* {' '} */}
-            {/* {jobName} : Status:{status} is a {jobType} */}
-            {/* <button onClick={() => props.deleteJob(props.job._id, accessToken)}>
-              I am the delete button
-            </button> */}
-          </p>
+          <p></p>
           <div className="pending-customer__flag-container">
             <FlagComponent language={languageFromName} />
             <img
@@ -122,7 +116,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
                 alt="imageIcon"
               />
             ) : null}
-            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <p>{jobName}</p>
             <img
               className="accepted-and-completed-customer__job-type-icon"
               src={del}
@@ -164,7 +158,7 @@ const PendingAndAcceptedCustomerJobTile = (props: {
                 alt="imageIcon"
               />
             ) : null}
-            <p> &nbsp;&nbsp;&nbsp;{jobName}</p>
+            <p>{jobName}</p>
             <Link
               to={{
                 pathname: `/app/customer/acceptedjob/${jobType}:${_id}`,

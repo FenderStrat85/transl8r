@@ -20,6 +20,11 @@ router.get(
   authMiddleware,
   jobsController.getAvailableJobs,
 );
+router.get(
+  '/getCustomerName/:jobId',
+  authMiddleware,
+  jobsController.getCustomerName,
+);
 router.post('/createJob/:type', authMiddleware, jobsController.createJob);
 router.put('/acceptJob', authMiddleware, jobsController.acceptJob);
 router.put(

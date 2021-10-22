@@ -6,13 +6,6 @@
   h2 {
     @include header2;
   }
-  &__logout-button {
-    position: absolute;
-    right: 25px;
-    top: 25px;
-    height: 32px;
-    width: 32px;
-  }
   &__button {
     @include button;
     width: 220px;
@@ -22,5 +15,23 @@
     @include button-hover;
     width: 220px;
     margin-top: 10px;
+  }
+  @media screen and (min-width: 1199px) {
+    h1 {
+      @include header-xl;
+    }
+    h2 {
+      @include header2-xl;
+    }
+    &__button {
+      @include button-xl;
+      width: 320px;
+      margin-top: -30px;
+    }
+    &__button:hover {
+      @include button-xl-hover;
+      width: 320px;
+      margin-top: -30px;
+    }
   }
 }

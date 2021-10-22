@@ -1,4 +1,3 @@
-// import { useHistory } from 'react-router-dom';
 import logoutButton from './../../assets/icons/logout.svg';
 
 const LogoutButton = (props: { logout: any }): JSX.Element => {

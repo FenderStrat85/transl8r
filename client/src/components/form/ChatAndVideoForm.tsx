@@ -51,7 +51,7 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
 
     try {
       if (!selectedFrom || !selectedTo) {
-        setMyError('SELECT LANGUAGES IDIOT');
+        setMyError('SELECT LANGUAGES ');
       } else if (selectedFrom?.value === selectedTo?.value) {
         setMyError('selected Languages must be different');
       } else {
@@ -74,14 +74,16 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
         history.push(`/app/customer/dashboard`);
       }
     } catch (error) {
-      //TODO: redirect to an error page
       console.log(error);
     }
   };
 
   return (
     <div className="chat-and-video-form">
-      <h1 className="chat-and-video-form__header">Chat and Video</h1>
+      <h1 className="chat-and-video-form__header">
+        Join a {jobType}
+        {jobType === 'video' ? ' chat' : null}
+      </h1>
       <form className="chat-and-video-form__form" onSubmit={handleSubmit}>
         <input
           className="chat-and-video-form__input"

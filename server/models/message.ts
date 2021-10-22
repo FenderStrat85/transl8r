@@ -1,3 +1,4 @@
+import { Sequelize } from 'sequelize';
 import { Model, BuildOptions } from 'sequelize';
 
 interface MessageModel extends Model {

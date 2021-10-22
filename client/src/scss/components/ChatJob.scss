@@ -1,5 +1,159 @@
 .chat-job {
-  @include container;
-  width: 100%;
-  border: 1px solid black;
+  &__button {
+  height:40px;
+  width:190px;
 }
+height: 800px;
+  @include container;
+  &__header {
+    @include header;
+    width: 250px;
+    margin-bottom:30px;
+  }
+p {
+  font-size: 0.9rem;
+  margin: 5px;
+  margin-bottom: 0;
+}
+&__body {
+  width: 100%;
+  height: 600px;
+}
+&__message-container {
+  height: 550px;
+  width: 90%;
+  padding: 0 10px;
+  margin: auto;
+  border-radius: 10px;
+  background-color: rgb(196, 204, 205);
+  box-shadow: $box-shadow;
+  overflow: scroll;
+}
+&__message-container > div {
+  @include flex-column;
+  justify-content: flex-start;
+}
+&__message-container > div::-webkit-scrollbar {
+  display: none;
+}
+&__message-container::-webkit-scrollbar {
+  display: none;
+}
+&__single-message-container {
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding: 0 5px;
+  margin: 7px;
+  width: fit-content;
+  max-width: 70%;
+  text-align:left;
+}
+.you {
+  background-color: $secondary-color;
+  justify-content: flex-start;
+  align-self: flex-end;
+  color: white;
+}
+.other {
+  background-color: #055c6f;
+  justify-content: flex-end;
+  align-self: flex-start;
+  color: white;
+}
+&__message-meta {
+  padding: 0 0 0 10px;
+  margin-bottom: 2px;
+  @include flex-row;
+
+  p {
+    font-size: 0.5rem;
+    font-style: italic;
+  }
+}
+&__message-time {
+  width: 50px;
+  margin:0;
+}
+&__message-author {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+  margin:0;
+}
+&__button-send {
+  @include button;
+  margin-top: 0;
+    align-self: center;
+    height:40px;
+    border-radius: 8px;
+  }
+  &__button-disconnect {
+    @include button;
+    width: 200px;
+  height:40px;
+}
+&__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+
+&-textarea {
+  height: 40px;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid $primary-color;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+}
+&-textarea::placeholder {
+  font-family: $main-font;
+  font-size: 1rem;
+}
+&-textarea:focus {
+ border: 2px solid $secondary-color;
+    outline: none;
+}
+  //removes the default button added by react-scroll-to-bottom
+  .takeMeToBottom {
+    display: none;
+  }
+}
+@media screen and (min-width: 700px) {
+  &__message-container {
+  width: 700px;
+  }
+  &__footer {
+    width:700px;
+  }
+}
+
+
+  @media screen and (min-width: 1199px) {
+    height: 100%;
+    h1 {
+      @include container;
+      @include header-xl;
+      width: 700px;
+      font-size: 3.5rem;
+      margin-bottom: 60px;
+    }
+    h3 {
+      @include header3-xl;
+    }
+    &__message-container {
+    width: 500px;
+    height: 650px;
+    }
+    &__footer {
+      width:500px;
+    }
+  }
+}
+
