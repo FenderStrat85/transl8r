@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 describe('Login form', () => {
   const credentials = { email: 'test@test.com', password: '123' };
 
-  test('Should render form correctly', () => {
+  test('Form should render correctly', () => {
     render(<LoginForm />);
     screen.getByPlaceholderText(/email/);
     screen.getByPlaceholderText(/password/);
