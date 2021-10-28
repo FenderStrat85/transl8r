@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-//above needed for container as part of lottie animation
-import { useEffect, useRef, useContext } from 'react';
-=======
 import React, { useEffect, useRef, useContext } from 'react';
->>>>>>> development
 import LoginForm from '../components/form/LoginForm';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from './../context/Context';
@@ -38,18 +33,11 @@ const LoginScreen = (): JSX.Element => {
     checkAuth();
     lottie
       .loadAnimation({
-<<<<<<< HEAD
-        //@ts-expect-error
-        container: animationContainer.current,
-        renderer: 'svg',
-        loop: true,
-=======
         //above needed for container as part of lottie animation
         //@ts-expect-error
         container: animationContainer.current,
         renderer: 'svg',
         loop: false,
->>>>>>> development
         autoplay: true,
         animationData: require('../assets/animations/login-page.json'),
       })
