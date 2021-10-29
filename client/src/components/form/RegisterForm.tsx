@@ -181,6 +181,7 @@ const RegisterForm = (): JSX.Element => {
               value={selected}
               onChange={setSelected}
               labelledBy="Select"
+              data-testid='multi-select'
             />
           </>
         )}

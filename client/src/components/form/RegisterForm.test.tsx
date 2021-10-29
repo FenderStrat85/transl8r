@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 import apiService from '../../services/apiService';
 import RegisterForm from './RegisterForm';
 import userEvent from '@testing-library/user-event';
@@ -85,6 +85,28 @@ describe('Register form', () => {
     expect(radioButtonTranslator.checked);
     screen.getByText(/Which languages do you speak?/);
   });
+
+  test('If the user selects a language from the multi-select, the value should be submitted',
+    () => {
+      render(<RegisterForm />);
+      const radioButtonTranslator = screen.getByTestId(
+        'contactChoice2',
+      ) as HTMLInputElement;
+
+      //selecting the radio button through fireEvent
+      fireEvent.click(radioButtonTranslator, { target: { checked: true } });
+
+      // The text that is rendered inside of the multi-select
+      const multiSelect = screen.getByText(/Select.../);
+
+      // This opens the multi select menu
+      fireEvent.click(multiSelect);
+      const option = screen.getByText('Select All');
+
+      userEvent.click(option);
+
+    });
+
 
   test('If the user selects they are a translator, apiService.register is called with the correct credentials', () => {
     const spyRegister = jest.spyOn(apiService, 'register');
