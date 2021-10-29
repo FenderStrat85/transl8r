@@ -156,6 +156,7 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
           {myError ? <ErrorMessageComponent message={myError} /> : null}
           <h3>Select languages:</h3>
           <Select
+            data-testid="language-from-select"
             className="image-form__select"
             options={options}
             value={selectedFrom}
