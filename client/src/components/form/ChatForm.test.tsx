@@ -11,6 +11,9 @@ const chatJobCredentials = {
   languageTo: 'Chinese'
 }
 
+const jobType = 'chat'
+const accessToken = '1234abcd'
+
 describe('Chat form', () => {
 
   test('The form should render correctly', () => {
@@ -29,20 +32,37 @@ describe('Chat form', () => {
     ) as HTMLInputElement;
     //select the language and then check it is rendered in the DOM to confirm
     //selection has worked.
-    selectEvent.select(screen.getByText(/language from/), 'English');
-    expect(screen.getByText(/🇬🇧 English/));
+    // selectEvent.select(screen.getByText(/language from/), '🇬🇧 English');
+    const selectedFrom = selectEvent.select(languageFromSelect, '🇬🇧 English')
+    // expect(selectedFrom).toBe('🇬🇧 English');
+    expect(screen.getByText(/🇬🇧 English/))
   });
   test('The customer is able to select a language to', () => {
     render(<ChatAndVideoForm jobType="chat" />);
-    const languageToSelect = screen.getByText(
-      /language to/,
-    ) as HTMLInputElement;
+    // const languageToSelect = screen.getByText(
+    //   /language to/,
+    // ) as HTMLInputElement;
     //select the language and then check it is rendered in the DOM to confirm
     //selection has worked.
     selectEvent.select(screen.getByText(/language to/), 'English');
     expect(screen.getByText(/🇬🇧 English/));
   });
+  test('Upon submission of the form, the createJob function is called with the appropriate credentials', () => {
+    const spyChatJobCreation = jest.spyOn(apiService, 'createJob')
+    render(<ChatAndVideoForm jobType='chat' />)
+    const jobNameInput = screen.getByPlaceholderText(/Give a short name to your request/);
+    const jobDescriptionInput = screen.getByPlaceholderText(/Tell the translator about the request/);
+    const submitButton = screen.getByRole('button', { name: 'Submit request' })
 
+    userEvent.type(jobNameInput, 'Chat example job');
+    userEvent.type(jobDescriptionInput, 'Testing the chat job creation form')
+    selectEvent.select(screen.getByText(/language from/), 'English')
+    selectEvent.select(screen.getByText(/language to/), 'Chinese')
+
+    userEvent.click(submitButton);
+
+    expect(spyChatJobCreation).toHaveBeenCalledWith(chatJobCredentials, jobType, accessToken);
+  })
 
 
 })

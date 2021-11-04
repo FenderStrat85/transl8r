@@ -84,7 +84,7 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
         Join a {jobType}
         {jobType === 'video' ? ' chat' : null}
       </h1>
-      <form className="chat-and-video-form__form" onSubmit={handleSubmit}>
+      <form data-testid="form" className="chat-and-video-form__form" onSubmit={handleSubmit}>
         <input
           className="chat-and-video-form__input"
           type="text"

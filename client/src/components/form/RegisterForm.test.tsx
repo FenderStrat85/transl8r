@@ -101,7 +101,7 @@ describe('Register form', () => {
     // This opens the multi select menu
     fireEvent.click(multiSelect);
     const option = screen.getByText('Select All');
-
+    // console.log(option)
     // userEvent.click(option);
   });
 
