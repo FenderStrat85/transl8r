@@ -51,9 +51,9 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
 
     try {
       if (!selectedFrom || !selectedTo) {
-        setMyError('SELECT LANGUAGES ');
+        setMyError('Please select languages');
       } else if (selectedFrom?.value === selectedTo?.value) {
-        setMyError('selected Languages must be different');
+        setMyError('Selected languages must be different');
       } else {
         const languageFromName = selectedFrom?.value;
         const languageToName = selectedTo?.value;
@@ -84,7 +84,11 @@ const ChatAndVideoForm = (props: { jobType: String }): JSX.Element => {
         Join a {jobType}
         {jobType === 'video' ? ' chat' : null}
       </h1>
-      <form data-testid="form" className="chat-and-video-form__form" onSubmit={handleSubmit}>
+      <form
+        data-testid="form"
+        className="chat-and-video-form__form"
+        onSubmit={handleSubmit}
+      >
         <input
           className="chat-and-video-form__input"
           type="text"
