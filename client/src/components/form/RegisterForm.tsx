@@ -6,12 +6,14 @@ import { UserContext } from '../../context/Context';
 import languageChoice from '../../constants/languageChoice';
 import { ICustomer, ILanguage, ITranslator } from '../../interfaces/interfaces';
 import BackButton from '../button/BackButton';
+import ErrorMessageComponent from '../../utils/ErrorMessageComponent';
 
 const RegisterForm = (): JSX.Element => {
   const history = useHistory<History>();
   const { login } = useContext(UserContext);
   const options: ILanguage[] = languageChoice;
   const [selected, setSelected] = useState([]);
+  const [myError, setMyError] = useState('');
 
   const initialState: ICustomer | ITranslator = {
     firstName: '',
@@ -39,18 +41,24 @@ const RegisterForm = (): JSX.Element => {
 
     const objectToSendToDb: ITranslator | ICustomer = formValue;
     if (formValue.role === 'translator') {
-      const languageArray = selected.map((item: ILanguage) => item.value);
-      (objectToSendToDb as ITranslator).languages = languageArray;
-      console.log(objectToSendToDb);
+      if (selected.length <= 1) {
+        setMyError('Please select at least two languages');
+        return;
+      } else {
+        setMyError('');
+        const languageArray = selected.map((item: ILanguage) => item.value);
+        (objectToSendToDb as ITranslator).languages = languageArray;
+        // console.log(objectToSendToDb);
+      }
     }
 
     try {
       const res = await ApiService.register(objectToSendToDb);
-      if (res.error) {
+      if (res && res.error) {
         alert(`${res.message}`);
         setFormValue(initialState);
         setSelected([]);
-      } else {
+      } else if (res) {
         const { accessToken, role, firstName, lastName, _id } = res;
         localStorage.setItem('accessToken', accessToken);
         login(accessToken, _id, role, firstName, lastName);
@@ -175,13 +183,14 @@ const RegisterForm = (): JSX.Element => {
               Which languages do you speak?
             </h3>
             {/* <pre>{JSON.stringify(selected)}</pre> */}
+            {myError ? <ErrorMessageComponent message={myError} /> : null}
             <MultiSelect
               className="register-form__multi-select"
               options={options}
               value={selected}
               onChange={setSelected}
               labelledBy="Select"
-              data-testid='multi-select'
+              data-testid="multi-select"
             />
           </>
         )}

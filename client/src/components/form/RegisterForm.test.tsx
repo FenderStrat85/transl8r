@@ -105,7 +105,7 @@ describe('Register form', () => {
     // userEvent.click(option);
   });
 
-  test('If the user selects they are a translator, apiService.register is called with the correct credentials', () => {
+  test('If the user selects they are a translator, apiService.register is not called if languages are not selected', () => {
     const spyRegister = jest.spyOn(apiService, 'register');
 
     render(<RegisterForm />);
@@ -127,7 +127,6 @@ describe('Register form', () => {
     userEvent.type(passwordInput, '123');
     userEvent.click(submitButton);
 
-    expect(spyRegister).toHaveBeenCalledWith(translatorCredentials);
-    expect(spyRegister).toHaveBeenCalledTimes(1);
+    expect(spyRegister).toHaveBeenCalledTimes(0);
   });
 });
