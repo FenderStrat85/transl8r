@@ -77,4 +77,4 @@ router.get(
   videoChatController.retrieveSocketId,
 );
 
-export = router;
+module.exports = router;
