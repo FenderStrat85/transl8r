@@ -73,7 +73,7 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
 
     try {
       if (!selectedFrom || !selectedTo) {
-        setMyError('SELECT LANGUAGES IDIOT');
+        setMyError('PLEASE SELECT LANGUAGES');
         return;
       } else if (selectedFrom?.value === selectedTo?.value) {
         setMyError('selected Languages must be different');
@@ -156,6 +156,7 @@ const ImageForm = (props: { jobType: string }): JSX.Element => {
           {myError ? <ErrorMessageComponent message={myError} /> : null}
           <h3>Select languages:</h3>
           <Select
+            data-testid="language-from-select"
             className="image-form__select"
             options={options}
             value={selectedFrom}

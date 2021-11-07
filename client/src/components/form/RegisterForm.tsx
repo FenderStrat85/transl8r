@@ -74,6 +74,7 @@ const RegisterForm = (): JSX.Element => {
             <div className="register-form__radio-button-customer">
               <input
                 id="contactChoice1"
+                data-testid="contactChoice1"
                 className="register-form__radio-select"
                 type="radio"
                 value="customer"
@@ -86,6 +87,7 @@ const RegisterForm = (): JSX.Element => {
             <div className="register-form__radio-button-translator">
               <input
                 id="contactChoice2"
+                data-testid="contactChoice2"
                 className="register-form__radio-select"
                 type="radio"
                 value="translator"
@@ -179,6 +181,7 @@ const RegisterForm = (): JSX.Element => {
               value={selected}
               onChange={setSelected}
               labelledBy="Select"
+              data-testid='multi-select'
             />
           </>
         )}
