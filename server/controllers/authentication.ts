@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 import db from '../models/db';
 const SECRET_KEY = process.env.SECRET_KEY;
