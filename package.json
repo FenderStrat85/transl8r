@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm install --prefix server && npm install --prefix client",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
